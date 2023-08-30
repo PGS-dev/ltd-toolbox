@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "esnext",
+    "noImplicitAny": true,
+    "moduleResolution": "NodeNext",
+    "allowImportingTsExtensions": true,
+    "preserveSymlinks": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "lib": ["es2020"],
+    "types": ["node"],
+    "paths": {
+      "*": [
+        "node_modules/*",
+        "packages/*"
+      ]
+    }
+  }
+}

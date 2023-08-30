@@ -1,0 +1,44 @@
+{
+  "name": "@ltd-toolbox/figma-parser",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "yarn vite build --watch",
+    "build": "yarn vite build"
+  },
+  "files": [
+    "./dist/*"
+  ],
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./parser": {
+      "types": "./dist/parser.d.ts",
+      "import": "./dist/parser.mjs",
+      "require": "./dist/parser.cjs"
+    },
+    "./plugins/*" : {
+      "types": "./dist/plugins/*/index.d.ts",
+      "import": "./dist/plugins/*/index.mjs",
+      "require": "./dist/plugins/*/index.cjs"
+    },
+    "./plugins/styles/transformsers/*" : {
+      "types": "./dist/plugins/styles/transformsers/*/index.d.ts",
+      "import": "./dist/plugins/styles/transformsers/*/index.mjs",
+      "require": "./dist/plugins/styles/transformsers/*/index.cjs"
+    }
+  },
+  "devDependencies": {
+    "typescript": "^5.0.2",
+    "vite": "^4.4.9",
+    "vite-plugin-dts": "^3.6.0"
+  },
+  "dependencies": {}
+}

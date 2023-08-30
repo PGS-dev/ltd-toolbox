@@ -1,0 +1,12 @@
+node_modules
+.idea
+.cache.cache
+
+.env.local
+/**/.env.local
+
+yarn-error.log
+dist
+
+# test package
+packages/test

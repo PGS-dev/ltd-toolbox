@@ -1,0 +1,24 @@
+{
+  "name": "ltd-toolbox",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Set of tools that help with Design systems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "workspaces": [
+    "packages/ts-runner",
+    "packages/figma-parser"
+  ],
+  "keywords": [],
+  "author": {
+    "name": "Jakub Hajduk",
+    "email": "devhajduk@gmail.com"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.5.7"
+  },
+  "devDependencies": {}
+}
