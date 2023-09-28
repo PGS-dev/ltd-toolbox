@@ -1,18 +1,10 @@
 # typescript runner
 
-This runner runs typescript files without previously compiling it using tsx.
+This runner runs typescript files without previously compiling it using `tsx`.
 
-It also loads dotenv variables so that they are available in your scripts.
+It also loads `dotenv` variables so that they are available in your scripts.
 
-This two operations can be executed using both tools cli's but it is not very readable. Therefore functionalities of those two libraries were combined in one single executable, sprinkled with little bit of additional logic, like multiple .env file loading, and environment selection.
-
-## Dotenv loading orders.
-With each run, `tsrun` looks for three closest files:
-- `.env` - this should be package's local environment variables definitions. (e.g. api keys specific for given tool)
-- `.env.global`- global variables definitions, that are shared between packages.
-- `.env.defaults` - default values that are always loaded globally regardless the scope.
-
-Lets say, for given file structure:
+This two operations can be also executed using both tools cli's, but such commands are not easy to use and are not very readable. Therefore functionalities of those two libraries were combined in one single executable, sprinkled with little bit of additional logic, like multiple .env file loading, and environment selection.
 
 ## Environment specific variables
 By specifying `--env` or `-e` parameter when running `tsrun` you can choose environment
