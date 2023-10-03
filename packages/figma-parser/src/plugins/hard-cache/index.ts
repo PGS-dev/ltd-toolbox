@@ -1,5 +1,5 @@
-import { join, resolve } from 'node:path'
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { join, resolve } from 'path'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { hashData } from '../../shared/create-hash.util.ts'
 import type { FigmaParserPlugin } from '../../types.d.ts'
 import { FigmaParser } from '../../parser.ts'

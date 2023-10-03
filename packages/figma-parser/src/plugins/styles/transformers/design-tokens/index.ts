@@ -4,9 +4,9 @@ import {
   isFillDefinition,
   isTextDefinition,
   isTextStyle
-} from '../../index.ts'
+} from '../../types.ts'
 import type { Effect, Paint, TypeStyle } from '../../../../full-figma-types.d.ts'
-import { rgbaToHexa } from '../../../../shared/rgba-to-hex.util.js'
+import { rgbaToHexa } from '../../../../shared/rgba-to-hex.util.ts'
 
 export interface TypographyTokenValue {
   fontFamily: string

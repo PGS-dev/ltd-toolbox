@@ -24,21 +24,25 @@
       "import": "./dist/parser.mjs",
       "require": "./dist/parser.cjs"
     },
-    "./plugins/*" : {
+    "./plugins/*": {
       "types": "./dist/plugins/*/index.d.ts",
       "import": "./dist/plugins/*/index.mjs",
       "require": "./dist/plugins/*/index.cjs"
     },
-    "./plugins/styles/transformsers/*" : {
+    "./plugins/styles/transformsers/*": {
       "types": "./dist/plugins/styles/transformsers/*/index.d.ts",
       "import": "./dist/plugins/styles/transformsers/*/index.mjs",
       "require": "./dist/plugins/styles/transformsers/*/index.cjs"
     }
   },
   "devDependencies": {
+    "@types/node": "^20.8.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.9",
     "vite-plugin-dts": "^3.6.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@types/node": "^20.7.1",
+    "picomatch": "^2.3.1"
+  }
 }
