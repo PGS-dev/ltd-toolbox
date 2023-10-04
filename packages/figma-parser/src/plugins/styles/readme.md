@@ -2,7 +2,7 @@
 This plugin allows for fetching styles from given figma file.
 
 ```js
-const parser = new FigmaParser('<token>', {
+const parser = new FigmaParser(TOKEN, {
   plugins: [FigmaParserStylesPlugin]
 })
 
@@ -25,7 +25,7 @@ console.log(fileStyles)
 ## Transforming output
 
 ```js
-const parser = new FigmaParser('<token>', {
+const parser = new FigmaParser(TOKEN, {
   plugins: [FigmaParserStylesPlugin]
 })
 

@@ -5,6 +5,8 @@ import type {
   FigmaPAT,
   FigmaParserPluginFunction
 } from './types.d.ts'
+import { Document } from './plugins/document/index.ts'
+import { deepMerge } from './shared/deep-merge.js'
 
 export interface FigmaParserOptions {
   plugins: FigmaParserPluginConstructor[],
@@ -13,16 +15,13 @@ export interface FigmaParserOptions {
 export class FigmaParser {
   plugins: FigmaParserPlugin[] = []
   private options: FigmaParserOptions = {
-    plugins: [],
+    plugins: [Document]
   }
 
   constructor(private token: FigmaPAT, userOptions?: Partial<FigmaParserOptions>) {
     if (!token) throw new Error('You need to provide Personal Access Token for Figma.ś')
 
-    this.options = {
-      ...this.options,
-      ...userOptions
-    }
+    this.options = deepMerge(this.options, userOptions)
 
     this.options.plugins.forEach(plugin => this.use(plugin))
   }

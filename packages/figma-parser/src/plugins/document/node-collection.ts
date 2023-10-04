@@ -1,25 +1,30 @@
 import { Node } from '../../full-figma-types.ts'
-import { FigmaId, CallbackFunction } from './types.ts'
+import { FigmaId, CallbackFunction, PathBreadcrumb } from './types.ts'
 import { SingleNode } from './single-node.ts'
 
 export class NodeCollection {
-  length: number = 0;
+  public readonly length: number = 0;
+  public readonly parent: SingleNode;
 
   [i: number]: SingleNode
 
-  constructor(nodes: Node[] | ReadonlyArray<Node> | SingleNode[], private parent: SingleNode) {
+  constructor(nodes: Node[] | ReadonlyArray<Node> | SingleNode[], parent: SingleNode) {
     let length = 0
+
     nodes.forEach((node, index) => {
       this[index] = node instanceof SingleNode ? node : new SingleNode(node)
-      this.length = index + 1
+      length++
     })
+
+    this.parent = parent
+    this.length = length
   }
 
   table(): void {
     const lines = Array.from(this).map((node, index) => ({
-      name: node.name,
-      id: node.id,
-      type: node.type
+      name: node?.name,
+      id: node?.id,
+      type: node?.type
     }))
 
     console.table(lines)
@@ -52,11 +57,11 @@ export class NodeCollection {
     }
   }
 
-  getById(id: FigmaId | string): SingleNode {
+  id(id: FigmaId | string): SingleNode {
     return this.get((node: SingleNode) => node.id === id)
   }
 
-  getByName(name: string, caseInsensitive = false): SingleNode {
+  name(name: string, caseInsensitive = false): SingleNode {
     return this.get((node: SingleNode) => {
       if (caseInsensitive) {
         return node.name.toLowerCase() === name.toLowerCase()
@@ -79,6 +84,12 @@ export class NodeCollection {
   each(callback: CallbackFunction): void {
     for (let i = 0; i <= this.length - 1; i++) {
       callback(this[i], i, this)
+    }
+  }
+
+  walk(callback: (node: SingleNode, path: PathBreadcrumb[]) => void) {
+    for (let i = 0; i <= this.length - 1; i++) {
+      this[i].walk(callback)
     }
   }
 

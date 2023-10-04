@@ -19,19 +19,15 @@ export class SingleNode {
 
   table() {
     console.table({
-      name: this.name,
+      children: this.children.length,
       id: this.id,
-      type: this.type,
-      children: this.children.length
+      name: this.name,
+      type: this.type
     })
   }
 
   toString() {
     return this.name
-  }
-
-  get(predicate: CallbackFunction<boolean>): SingleNode {
-    return this.children.get(predicate)
   }
 
   glob(...paths: string[]): GlobSearchNodes[]

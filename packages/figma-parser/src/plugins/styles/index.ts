@@ -19,6 +19,7 @@ import {
   isTextStyle,
   TextStyle
 } from './types.js'
+import { DesignTokens } from './transformers/design-tokens/index.js'
 
 export class Styles implements FigmaParserPlugin {
   private host: FigmaParser
@@ -73,6 +74,10 @@ export class Styles implements FigmaParserPlugin {
       nodeId: style.styleMeta.node_id,
       definition: this.getStyle(style)
     }))
+  }
+
+  designTokens() {
+    return this.transform(DesignTokens)
   }
 
   transform(...transformers: FigmaStylesTransformer[]) {
