@@ -19,6 +19,6 @@ export class Document {
 
 declare module "../../parser.ts" {
   interface FigmaParser {
-    document(document: any): Promise<SingleNode>
+    document(fileId: string): Promise<SingleNode>
   }
 }

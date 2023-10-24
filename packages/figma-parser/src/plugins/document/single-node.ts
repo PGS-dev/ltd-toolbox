@@ -1,13 +1,14 @@
 import { NodeCollection } from './node-collection.ts'
-import { Node, NodeType } from '../../full-figma-types.ts'
-import { FigmaId, hasChildren, PathBreadcrumb, CallbackFunction, GlobSearchNodes } from './types.ts'
+import type { Node, NodeType } from '../../full-figma-types.js'
+import { Text } from '../../full-figma-types.js'
+import { FigmaId, GlobSearchNodes, hasChildren, isTextNode, PathBreadcrumb } from './types.ts'
 import pm from 'picomatch'
 
 export class SingleNode {
   id: FigmaId;
   name: string;
   children: NodeCollection;
-  type: NodeType;
+  type: NodeType | string;
 
   constructor(node: Node | SingleNode) {
     if (node instanceof SingleNode) return node;
@@ -40,7 +41,7 @@ export class SingleNode {
     this.walk((node, path) => {
       const nodePath = path.map(path => path.name.toLowerCase()).join('/')
 
-      if ( matcher(nodePath)) {
+      if (matcher(nodePath)) {
         output.push({path, node})
       }
     })
@@ -49,7 +50,7 @@ export class SingleNode {
   }
 
   walk(callback: (node: SingleNode, path: PathBreadcrumb[]) => void) {
-    const walker = (node: SingleNode, path: PathBreadcrumb[] = []) => {
+    function walker(node: SingleNode, path: PathBreadcrumb[] = []) {
       if (!node) return
 
       const breadcrumb: PathBreadcrumb = {
@@ -67,5 +68,69 @@ export class SingleNode {
     };
 
     walker(this);
+  }
+
+  findDeep(predicate: (node: SingleNode, path?: PathBreadcrumb[]) => boolean) {
+    let output: SingleNode | null = null
+    function walker(node: SingleNode, path: PathBreadcrumb[] = []) {
+      if (!node) return
+
+      const breadcrumb: PathBreadcrumb = {
+        name: node.name,
+        id: node.id
+      }
+
+      if (predicate(node, [...path, breadcrumb])) {
+          output = node
+      }
+
+      if (node.children && node.children.length > 0) {
+        for (const childNode of node.children) {
+          if (output) break;
+          walker(childNode, [...path, breadcrumb])
+        }
+      }
+    };
+
+    walker(this)
+    return output
+  }
+
+  filterDeep(predicate: (node: SingleNode, path?: PathBreadcrumb[]) => boolean) {
+    let output: SingleNode[] | null = []
+    function walker(node: SingleNode, path: PathBreadcrumb[] = []) {
+      if (!node) return
+
+      const breadcrumb: PathBreadcrumb = {
+        name: node.name,
+        id: node.id
+      }
+
+      if (predicate(node, [...path, breadcrumb])) {
+        output.push(node)
+      }
+
+      if (node.children && node.children.length > 0) {
+        for (const childNode of node.children) {
+          walker(childNode, [...path, breadcrumb])
+        }
+      }
+    };
+
+    walker(this)
+    return output
+  }
+
+
+  text(): string[] {
+    const textNodes: (SingleNode & Text)[]  = []
+
+    this.walk((node) => {
+      if (isTextNode(node)) {
+        textNodes.push(node)
+      }
+    })
+
+    return textNodes.map(node => node.characters)
   }
 }

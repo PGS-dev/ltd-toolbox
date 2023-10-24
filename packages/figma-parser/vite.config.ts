@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import { builtinModules,  } from 'module'
 import dts from "vite-plugin-dts";
 import {splitVendorChunkPlugin} from 'vite'
+import pkg from './package.json' assert { type: 'json'}
 
 const rollupGlobals = Object.fromEntries(builtinModules.map(module => [`node:${module}`, module]))
 
@@ -20,7 +21,7 @@ export default defineConfig({
       },
     },
     rollupOptions: {
-      external: [...builtinModules, 'picomatch'],
+      external: [...builtinModules, pkg.dependencies, /node_modules/],
       output: {
         preserveModulesRoot: './src/',
         preserveModules: true,

@@ -81,6 +81,16 @@ export class NodeCollection {
     return new NodeCollection(out, this.parent)
   }
 
+  map<T = any>(callback: CallbackFunction<T>): T[]  {
+    let out: T[] = []
+
+    for (let i = 0; i <= this.length - 1; i++) {
+      out.push(callback(this[i], i, this))
+    }
+
+    return out
+  }
+
   each(callback: CallbackFunction): void {
     for (let i = 0; i <= this.length - 1; i++) {
       callback(this[i], i, this)

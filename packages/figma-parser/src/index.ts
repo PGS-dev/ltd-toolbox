@@ -6,5 +6,7 @@ export * from './plugins/styles/index.ts'
 
 export * from './plugins/document/index.ts'
 
+export * from './plugins/markdown/index.ts'
+
 export * from './plugins/styles/transformers/design-tokens/index.ts'
 
