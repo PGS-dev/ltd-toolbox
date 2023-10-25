@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "start": "yarn vite build --watch",
-    "build": "yarn vite build"
+    "build": "yarn vite build",
+    "lint": "eslint ./src --ext ts --report-unused-disable-directives --max-warnings 0",
+    "format": "yarn prettier ./src/ --write"
   },
   "files": [
     "./dist/*"

@@ -1,8 +1,14 @@
-import { NodeCollection } from './node-collection.js'
-import type { Node, NodeType } from '../../full-figma-types.js'
-import { Text } from '../../full-figma-types.js'
-import { FigmaId, GlobSearchNodes, hasChildren, isTextNode, PathBreadcrumb } from './types.js'
-import pm from 'picomatch'
+import { NodeCollection } from "./node-collection.js";
+import type { Node, NodeType } from "../../full-figma-types.js";
+import { Text } from "../../full-figma-types.js";
+import {
+  FigmaId,
+  GlobSearchNodes,
+  hasChildren,
+  isTextNode,
+  PathBreadcrumb,
+} from "./types.js";
+import pm from "picomatch";
 
 export class SingleNode {
   id: FigmaId;
@@ -12,9 +18,9 @@ export class SingleNode {
 
   constructor(node: Node | SingleNode) {
     if (node instanceof SingleNode) return node;
-    Object.assign(this, node)
+    Object.assign(this, node);
     if (hasChildren(node)) {
-      this.children = new NodeCollection(node.children, this)
+      this.children = new NodeCollection(node.children, this);
     }
   }
 
@@ -23,114 +29,115 @@ export class SingleNode {
       children: this.children.length,
       id: this.id,
       name: this.name,
-      type: this.type
-    })
+      type: this.type,
+    });
   }
 
   toString() {
-    return this.name
+    return this.name;
   }
 
-  glob(...paths: string[]): GlobSearchNodes[]
+  glob(...paths: string[]): GlobSearchNodes[];
   glob(paths: string | string[]): GlobSearchNodes[] {
-    const pathsArray = Array.isArray(paths) ? paths : [paths]
-    const lowerCasePaths = pathsArray.map(p => p.toLowerCase())
-    const matcher = pm(lowerCasePaths)
+    const pathsArray = Array.isArray(paths) ? paths : [paths];
+    const lowerCasePaths = pathsArray.map((p) => p.toLowerCase());
+    const matcher = pm(lowerCasePaths);
     const output: GlobSearchNodes[] = [];
 
     this.walk((node, path) => {
-      const nodePath = path.map(path => path.name.toLowerCase()).join('/')
+      const nodePath = path.map((path) => path.name.toLowerCase()).join("/");
 
       if (matcher(nodePath)) {
-        output.push({path, node})
+        output.push({ path, node });
       }
-    })
+    });
 
-    return output
+    return output;
   }
 
   walk(callback: (node: SingleNode, path: PathBreadcrumb[]) => void) {
     function walker(node: SingleNode, path: PathBreadcrumb[] = []) {
-      if (!node) return
+      if (!node) return;
 
       const breadcrumb: PathBreadcrumb = {
         name: node.name,
-        id: node.id
-      }
+        id: node.id,
+      };
 
-      callback(node, [...path, breadcrumb])
+      callback(node, [...path, breadcrumb]);
 
       if (node.children && node.children.length > 0) {
         node.children.each((node: SingleNode) =>
-          walker(node, [...path, breadcrumb])
+          walker(node, [...path, breadcrumb]),
         );
       }
-    };
+    }
 
     walker(this);
   }
 
   findDeep(predicate: (node: SingleNode, path?: PathBreadcrumb[]) => boolean) {
-    let output: SingleNode | null = null
+    let output: SingleNode | null = null;
     function walker(node: SingleNode, path: PathBreadcrumb[] = []) {
-      if (!node) return
+      if (!node) return;
 
       const breadcrumb: PathBreadcrumb = {
         name: node.name,
-        id: node.id
-      }
+        id: node.id,
+      };
 
       if (predicate(node, [...path, breadcrumb])) {
-          output = node
+        output = node;
       }
 
       if (node.children && node.children.length > 0) {
         for (const childNode of node.children) {
           if (output) break;
-          walker(childNode, [...path, breadcrumb])
+          walker(childNode, [...path, breadcrumb]);
         }
       }
-    };
+    }
 
-    walker(this)
-    return output
+    walker(this);
+    return output;
   }
 
-  filterDeep(predicate: (node: SingleNode, path?: PathBreadcrumb[]) => boolean) {
-    let output: SingleNode[] | null = []
+  filterDeep(
+    predicate: (node: SingleNode, path?: PathBreadcrumb[]) => boolean,
+  ) {
+    const output: SingleNode[] | null = [];
     function walker(node: SingleNode, path: PathBreadcrumb[] = []) {
-      if (!node) return
+      if (!node) return;
 
       const breadcrumb: PathBreadcrumb = {
         name: node.name,
-        id: node.id
-      }
+        id: node.id,
+      };
 
       if (predicate(node, [...path, breadcrumb])) {
-        output.push(node)
+        output.push(node);
       }
 
       if (node.children && node.children.length > 0) {
         for (const childNode of node.children) {
-          walker(childNode, [...path, breadcrumb])
+          walker(childNode, [...path, breadcrumb]);
         }
       }
-    };
+    }
 
-    walker(this)
-    return output
+    walker(this);
+    return output;
   }
 
-
   text(): string[] {
-    const textNodes: (SingleNode & Text)[]  = []
+    const textNodes: (SingleNode & Text)[] = [];
 
     this.walk((node) => {
       if (isTextNode(node)) {
-        textNodes.push(node)
+        textNodes.push(node);
       }
-    })
+    });
 
-    return textNodes.map(node => node.characters)
+    return textNodes.map((node) => node.characters);
   }
 }

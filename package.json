@@ -5,8 +5,11 @@
   "description": "Set of tools that help with Design systems",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "yarn workspaces run build"
+    "build": "yarn workspaces run build",
+    "release:canary": "yarn lerna publish --canary",
+    "release:pre": "yarn lerna publish --conventional-prerelease",
+    "release": "yarn lerna publish --conventional-graduate",
+    "postinstall": "yarn husky install"
   },
   "workspaces": [
     "packages/ts-runner",
@@ -18,10 +21,15 @@
     "email": "devhajduk@gmail.com"
   },
   "license": "ISC",
-  "dependencies": {
-    "@types/node": "^20.5.7"
-  },
   "devDependencies": {
-    "lerna": "^7.4.1"
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@types/node": "^20.5.7",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "eslint": "^8.45.0",
+    "husky": "^8.0.3",
+    "lerna": "^7.4.1",
+    "prettier": "^3.0.3"
   }
 }

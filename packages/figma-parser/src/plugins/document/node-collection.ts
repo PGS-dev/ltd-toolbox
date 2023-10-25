@@ -1,111 +1,118 @@
-import { Node } from '../../full-figma-types.js'
-import { CallbackFunction, FigmaId, PathBreadcrumb } from './types.js'
-import { SingleNode } from './single-node.js'
+import { Node } from "../../full-figma-types.js";
+import { CallbackFunction, FigmaId, PathBreadcrumb } from "./types.js";
+import { SingleNode } from "./single-node.js";
 
 export class NodeCollection {
   public readonly length: number = 0;
   public readonly parent: SingleNode;
 
-  [i: number]: SingleNode
+  [i: number]: SingleNode;
 
-  constructor(nodes: Node[] | ReadonlyArray<Node> | SingleNode[], parent: SingleNode) {
-    let length = 0
+  constructor(
+    nodes: Node[] | ReadonlyArray<Node> | SingleNode[],
+    parent: SingleNode,
+  ) {
+    let length = 0;
 
     nodes.forEach((node, index) => {
-      this[index] = node instanceof SingleNode ? node : new SingleNode(node)
-      length++
-    })
+      this[index] = node instanceof SingleNode ? node : new SingleNode(node);
+      length++;
+    });
 
-    this.parent = parent
-    this.length = length
+    this.parent = parent;
+    this.length = length;
   }
 
   table(): void {
-    const lines = Array.from(this).map((node, index) => ({
+    const lines = Array.from(this).map((node) => ({
       name: node?.name,
       id: node?.id,
-      type: node?.type
-    }))
+      type: node?.type,
+    }));
 
-    console.table(lines)
+    console.table(lines);
   }
 
   toString() {
-    const out: string[] = []
+    const out: string[] = [];
     for (let i = 0; i <= this.length - 1; i++) {
-      out.push(this[i].toString())
+      out.push(this[i].toString());
     }
-    return out.join(', ')
+    return out.join(", ");
   }
 
   at(index: number) {
-    if (index > 0 && index > this.length - 1) throw new Error(`Maximum index for this collection is ${this.length - 1}`)
-    if (index < 0 && index < -this.length) throw new Error(`Minimum index for this collection is ${-this.length}`)
+    if (index > 0 && index > this.length - 1)
+      throw new Error(
+        `Maximum index for this collection is ${this.length - 1}`,
+      );
+    if (index < 0 && index < -this.length)
+      throw new Error(`Minimum index for this collection is ${-this.length}`);
 
     if (index < 0) {
-      return this[this.length + index]
+      return this[this.length + index];
     }
 
-    return this[index]
+    return this[index];
   }
 
   get(predicate: CallbackFunction<boolean>): SingleNode {
     for (let i = 0; i <= this.length - 1; i++) {
       if (predicate(this[i], i, this)) {
-        return this[i]
+        return this[i];
       }
     }
   }
 
   id(id: FigmaId | string): SingleNode {
-    return this.get((node: SingleNode) => node.id === id)
+    return this.get((node: SingleNode) => node.id === id);
   }
 
   name(name: string, caseInsensitive = false): SingleNode {
     return this.get((node: SingleNode) => {
       if (caseInsensitive) {
-        return node.name.toLowerCase() === name.toLowerCase()
+        return node.name.toLowerCase() === name.toLowerCase();
       }
-      return node.name === name
-    })
+      return node.name === name;
+    });
   }
 
   filter(predicate: CallbackFunction<boolean>) {
-    let out: SingleNode[] = []
+    const out: SingleNode[] = [];
 
     for (let i = 0; i <= this.length - 1; i++) {
       if (predicate(this[i], i, this)) {
-        out.push(this[i])
+        out.push(this[i]);
       }
     }
-    return new NodeCollection(out, this.parent)
+    return new NodeCollection(out, this.parent);
   }
 
-  map<T = any>(callback: CallbackFunction<T>): T[]  {
-    let out: T[] = []
+  map<T = any>(callback: CallbackFunction<T>): T[] {
+    const out: T[] = [];
 
     for (let i = 0; i <= this.length - 1; i++) {
-      out.push(callback(this[i], i, this))
+      out.push(callback(this[i], i, this));
     }
 
-    return out
+    return out;
   }
 
   each(callback: CallbackFunction): void {
     for (let i = 0; i <= this.length - 1; i++) {
-      callback(this[i], i, this)
+      callback(this[i], i, this);
     }
   }
 
   walk(callback: (node: SingleNode, path: PathBreadcrumb[]) => void) {
     for (let i = 0; i <= this.length - 1; i++) {
-      this[i].walk(callback)
+      this[i].walk(callback);
     }
   }
 
-  * [Symbol.iterator]() {
+  *[Symbol.iterator]() {
     for (let i = 0; i <= this.length - 1; i++) {
-      yield this[i]
+      yield this[i];
     }
   }
 }

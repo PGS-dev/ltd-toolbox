@@ -1,17 +1,8 @@
 {
+  "extends": "../../shared-configs/tsconfig.json",
   "compilerOptions": {
-    "module": "NodeNext",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "target": "esnext",
-    "noImplicitAny": true,
-    "moduleResolution": "NodeNext",
-    "sourceMap": true,
-    "outDir": "dist",
     "baseUrl": ".",
-    "types": ["node"]
+    "outDir": "dist"
   },
   "include": [
     "./src"

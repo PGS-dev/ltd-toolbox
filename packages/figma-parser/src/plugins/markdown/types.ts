@@ -1,14 +1,14 @@
-import { SingleNode } from '../document/single-node.js'
-import { RootContent } from 'mdast'
-import { TypeStyle } from '../../full-figma-types.js'
+import { SingleNode } from "../document/single-node.js";
+import { RootContent } from "mdast";
+import { TypeStyle } from "../../full-figma-types.js";
 
 export interface FetchContentPlugin {
-  test: (node: SingleNode) => boolean
-  transform: (node: SingleNode) => RootContent | RootContent[]
+  test: (node: SingleNode) => boolean;
+  transform: (node: SingleNode) => RootContent | RootContent[];
 }
 
-export type LetterTuples = [string, number]
+export type LetterTuples = [string, number];
 
 export interface TypeStyleTable {
-  [p: string]: TypeStyle
+  [p: string]: TypeStyle;
 }
