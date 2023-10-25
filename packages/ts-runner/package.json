@@ -1,6 +1,6 @@
 {
   "name": "@ltd-toolbox/ts-runner",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "bin": {
     "tsrun": "cli.js"
   },
