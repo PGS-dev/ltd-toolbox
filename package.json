@@ -15,12 +15,23 @@
     "packages/ts-runner",
     "packages/figma-parser"
   ],
-  "keywords": [],
+  "keywords": [
+    "design system",
+    "figma",
+    "parser",
+    "styles",
+    "text",
+    "LTD",
+    "ltd",
+    "libraries",
+    "tokens",
+    "documentation"
+  ],
   "author": {
     "name": "Jakub Hajduk",
     "email": "devhajduk@gmail.com"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",

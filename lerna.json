@@ -1,5 +1,21 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "version": "independent",
-  "npmClient": "yarn"
+  "npmClient": "yarn",
+  "yes": true,
+  "conventionalCommits": true,
+  "createRelease": "github",
+  "command": {
+    "version": {
+      "allowBranch": [
+        "main",
+        "next"
+      ]
+    },
+    "publish": {
+      "preid": "alpha",
+      "preDistTag": "alpha",
+      "distTag": "latest"
+    }
+  }
 }

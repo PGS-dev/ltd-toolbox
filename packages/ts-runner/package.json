@@ -1,12 +1,28 @@
 {
   "name": "@ltd-toolbox/ts-runner",
   "version": "0.0.0",
+  "keywords": [
+    "typescript",
+    "esbuild",
+    "tsx",
+    "dotenv",
+    "runner",
+    "execute",
+    "cli"
+  ],
+  "scripts": {
+    "build": "echo nothing to do here!"
+  },
   "bin": {
     "tsrun": "cli.js"
   },
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^16.3.1",
     "minimist": "^1.2.8",
     "tsx": "^3.12.7"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
