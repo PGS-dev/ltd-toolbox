@@ -1,11 +1,12 @@
 {
   "name": "ltd-toolbox",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": true,
   "description": "Set of tools that help with Design systems",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "yarn workspaces run build"
   },
   "workspaces": [
     "packages/ts-runner",
@@ -20,5 +21,7 @@
   "dependencies": {
     "@types/node": "^20.5.7"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "lerna": "^7.4.1"
+  }
 }

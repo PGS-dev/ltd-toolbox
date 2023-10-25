@@ -7,6 +7,7 @@
     "moduleResolution": "NodeNext",
     "allowImportingTsExtensions": true,
     "preserveSymlinks": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
     "baseUrl": ".",
     "lib": ["es2020"],
