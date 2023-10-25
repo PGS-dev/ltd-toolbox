@@ -1,7 +1,7 @@
-import { NodeCollection } from './node-collection.ts'
+import { NodeCollection } from './node-collection.js'
 import type { Node, NodeType } from '../../full-figma-types.js'
 import { Text } from '../../full-figma-types.js'
-import { FigmaId, GlobSearchNodes, hasChildren, isTextNode, PathBreadcrumb } from './types.ts'
+import { FigmaId, GlobSearchNodes, hasChildren, isTextNode, PathBreadcrumb } from './types.js'
 import pm from 'picomatch'
 
 export class SingleNode {

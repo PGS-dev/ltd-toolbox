@@ -1,11 +1,11 @@
 import type {
-  FigmaParserPluginInstance,
   FigmaParserPlugin,
   FigmaParserPluginConstructor,
-  FigmaPAT,
-  FigmaParserPluginFunction
-} from './types.d.ts'
-import { Document } from './plugins/document/index.ts'
+  FigmaParserPluginFunction,
+  FigmaParserPluginInstance,
+  FigmaPAT
+} from './types.d.js'
+import { Document } from './plugins/document/index.js'
 import { deepMerge } from './shared/deep-merge.js'
 
 export interface FigmaParserOptions {

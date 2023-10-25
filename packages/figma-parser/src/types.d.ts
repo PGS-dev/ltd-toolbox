@@ -1,5 +1,5 @@
 import './full-figma-types.d.ts'
-import { FigmaParser } from './parser.ts'
+import { FigmaParser } from './parser.js'
 
 export interface FigmaParserPlugin {
 }

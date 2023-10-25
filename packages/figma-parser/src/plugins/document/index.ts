@@ -1,7 +1,6 @@
-import { FigmaParser } from '../../parser.ts'
-import type { Document as FigmaDocument, FileResponse, Node, NodeType } from '../../full-figma-types.d.ts'
-import { NodeCollection } from './node-collection.ts'
-import { SingleNode } from './single-node.ts'
+import { FigmaParser } from '../../parser.js'
+import type { FileResponse } from '../../full-figma-types.d.js'
+import { SingleNode } from './single-node.js'
 
 export class Document {
   private host: FigmaParser

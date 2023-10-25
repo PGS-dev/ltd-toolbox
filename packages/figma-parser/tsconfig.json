@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
     "target": "esnext",
     "noImplicitAny": true,
     "moduleResolution": "NodeNext",

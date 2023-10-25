@@ -1,10 +1,8 @@
 import { SingleNode } from '../document/single-node.js'
-import { Paragraph, Parent } from 'mdast'
+import { Paragraph } from 'mdast'
 import { isTextNode } from '../document/types.js'
-import { combineSchema } from '../../shared/combine-schema.util.js'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import { TypeStyleTable } from './types.js'
-import { Children } from 'mdast-builder'
 
 export type LineType = 'ORDERED' | 'UNORDERED' | 'NONE' | 'LIST'
 

@@ -1,5 +1,5 @@
 import { SingleNode } from '../document/single-node.js'
-import { Data, Parent, Node, Root, RootContent } from 'mdast'
+import { RootContent } from 'mdast'
 import { TypeStyle } from '../../full-figma-types.js'
 
 export interface FetchContentPlugin {

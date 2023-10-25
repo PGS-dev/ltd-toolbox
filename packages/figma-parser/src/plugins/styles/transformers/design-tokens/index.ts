@@ -1,12 +1,12 @@
 import {
-  FigmaStyleDfeinition, FigmaStylesTransformer,
+  FigmaStyleDfeinition,
+  FigmaStylesTransformer,
   isEffectDefinition,
   isFillDefinition,
-  isTextDefinition,
-  isTextStyle
-} from '../../types.ts'
-import type { Effect, Paint, TypeStyle } from '../../../../full-figma-types.d.ts'
-import { rgbaToHexa } from '../../../../shared/rgba-to-hex.util.ts'
+  isTextDefinition
+} from '../../types.js'
+import type { Effect, Paint, TypeStyle } from '../../../../full-figma-types.d.js'
+import { rgbaToHexa } from '../../../../shared/rgba-to-hex.util.js'
 
 export interface TypographyTokenValue {
   fontFamily: string

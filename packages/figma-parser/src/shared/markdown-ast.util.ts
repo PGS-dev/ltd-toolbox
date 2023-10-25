@@ -1,10 +1,9 @@
 import { SingleNode } from '../plugins/document/single-node.js'
-import { root } from 'mdast-builder'
 import { isTextNode } from '../plugins/document/types.js'
 import { combineSchema } from './combine-schema.util.js'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import { getNodeDecoratedText, LineType } from '../plugins/markdown/utils.js'
-import { Parent, Root } from 'mdast'
+import { Root } from 'mdast'
 
 export const markdownAST = (...nodes: SingleNode[]): Root  => {
   if (!nodes.length) throw new Error('Expected SingleNodes.')

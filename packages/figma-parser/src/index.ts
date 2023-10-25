@@ -1,12 +1,12 @@
-export * from './parser.ts'
+export * from './parser.js'
 
-export * from './plugins/hard-cache/index.ts'
+export * from './plugins/hard-cache/index.js'
 
-export * from './plugins/styles/index.ts'
+export * from './plugins/styles/index.js'
 
-export * from './plugins/document/index.ts'
+export * from './plugins/document/index.js'
 
-export * from './plugins/markdown/index.ts'
+export * from './plugins/markdown/index.js'
 
-export * from './plugins/styles/transformers/design-tokens/index.ts'
+export * from './plugins/styles/transformers/design-tokens/index.js'
 

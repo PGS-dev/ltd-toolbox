@@ -1,17 +1,10 @@
-import { FigmaParser } from '../../parser.ts'
-import type { FigmaParserPlugin, FigmaParserPluginConstructor, FigmaPAT } from '../../types.d.ts'
-import {
-  FullStyleMetadata,
-  Node as FigmaNode,
-  FileStylesResponse,
-  FileNodesResponse,
-  VectorBase, BooleanOperation, Star, Line, Ellipse, RegularPolygon, Rectangle,
-  Text as FigmaText,
-  Effect, Paint, TypeStyle, StyleType
-} from '../../full-figma-types.ts'
+import { FigmaParser } from '../../parser.js'
+import type { FigmaParserPlugin } from '../../types.d.js'
+import { Effect, FileNodesResponse, FileStylesResponse, Paint, TypeStyle } from '../../full-figma-types.js'
 import {
   EffectStyle,
-  FigmaStyleDfeinition, FigmaStylesTransformer,
+  FigmaStyleDfeinition,
+  FigmaStylesTransformer,
   FillStyle,
   FullStyle,
   isEffectStyle,

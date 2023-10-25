@@ -1,17 +1,23 @@
-import { NodeCollection } from './node-collection.ts'
-import { SingleNode } from './single-node.ts'
+import { NodeCollection } from './node-collection.js'
+import { SingleNode } from './single-node.js'
 import type {
-  Node,
   BooleanOperation,
-  Canvas, Component, ComponentSet,
+  Canvas,
+  Component,
+  ComponentSet,
+  Document,
   Ellipse,
   Frame,
-  Group, Instance,
-  Line, NodeType, Rectangle,
-  RegularPolygon, Slice,
-  Star, Text,
-  Vector,
-  Document
+  Group,
+  Instance,
+  Line,
+  Node,
+  Rectangle,
+  RegularPolygon,
+  Slice,
+  Star,
+  Text,
+  Vector
 } from '../../full-figma-types.js'
 
 export interface PathBreadcrumb {
