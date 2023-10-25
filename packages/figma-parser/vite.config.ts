@@ -8,13 +8,14 @@ const rollupGlobals = Object.fromEntries(builtinModules.map(module => [`node:${m
 
 export default defineConfig({
   build: {
+    outDir: 'dist',
     emptyOutDir: true,
     manifest: true,
     minify: false,
     target: 'esnext',
     lib: {
       name: 'ltd-toolbox/figma-parser',
-      entry: './src/index.ts',
+      entry: './src',
       formats: ['es', 'cjs'],
       fileName: (format, filename) => {
         return `${filename}.${format === 'es' ? 'mjs' : 'cjs'}`
@@ -31,8 +32,7 @@ export default defineConfig({
   },
   plugins: [
     dts({
-      insertTypesEntry: true,
-      copyDtsFiles: true,
+      copyDtsFiles: true
     }),
   ]
 })
