@@ -98,8 +98,8 @@ export class Styles implements FigmaParserPlugin {
   }
 }
 
-declare module "../../parser.ts" {
-  interface FigmaParser {
+declare module "../../parser.js" {
+  export interface FigmaParser {
     styles(fileId: string): Promise<Styles>;
   }
 }

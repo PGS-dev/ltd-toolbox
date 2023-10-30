@@ -16,8 +16,8 @@ export class Document {
   }
 }
 
-declare module "../../parser.ts" {
-  interface FigmaParser {
+declare module "../../parser.js" {
+  export interface FigmaParser {
     document(fileId: string): Promise<SingleNode>;
   }
 }

@@ -1,5 +1,4 @@
 import type {
-  FigmaParserPlugin,
   FigmaParserPluginConstructor,
   FigmaParserPluginFunction,
   FigmaParserPluginInstance,
@@ -9,13 +8,15 @@ import { Document } from "./plugins/document/index.js";
 import { deepMerge } from "./shared/deep-merge.js";
 
 export interface FigmaParserOptions {
-  plugins: FigmaParserPluginConstructor[];
+  plugins: FigmaParserPluginInstance[];
 }
 
 export class FigmaParser {
-  plugins: FigmaParserPlugin[] = [];
+  plugins: FigmaParserPluginInstance[] = [];
+  defaultPlugins: FigmaParserPluginInstance[] = [Document]
+
   private options: FigmaParserOptions = {
-    plugins: [Document],
+    plugins: [],
   };
 
   constructor(
@@ -23,11 +24,11 @@ export class FigmaParser {
     userOptions?: Partial<FigmaParserOptions>,
   ) {
     if (!token)
-      throw new Error("You need to provide Personal Access Token for Figma.ś");
+      throw new Error("You need to provide Personal Access Token for Figma.");
 
     this.options = deepMerge(this.options, userOptions);
 
-    this.options.plugins.forEach((plugin) => this.use(plugin));
+    [...this.options.plugins, ...this.defaultPlugins].forEach((plugin) => this.use(plugin));
   }
 
   async request<Response = object>(
@@ -68,7 +69,7 @@ export class FigmaParser {
         pluginInstance = (plugin as FigmaParserPluginFunction)(this);
       }
 
-      this.plugins.push(pluginInstance);
+      this.plugins.push(pluginInstance as FigmaParserPluginInstance);
     });
   }
 }

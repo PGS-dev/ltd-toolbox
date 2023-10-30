@@ -63,8 +63,8 @@ export class HardCache implements FigmaParserPlugin {
   }
 }
 
-declare module "../../parser.ts" {
-  interface FigmaParserOptions {
+declare module "../../parser.js" {
+  export interface FigmaParserOptions {
     hardCache?: boolean;
     cacheDir?: string;
   }
