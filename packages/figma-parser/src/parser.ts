@@ -28,7 +28,7 @@ export class FigmaParser {
 
     this.options = deepMerge(this.options, userOptions);
 
-    [...this.options.plugins, ...this.defaultPlugins].forEach((plugin) => this.use(plugin));
+    [...this.options.plugins, ...this.defaultPlugins].forEach((plugin) => this.loadPlugin(plugin));
   }
 
   async request<Response = object>(
@@ -54,7 +54,7 @@ export class FigmaParser {
       });
   }
 
-  use(...plugins: FigmaParserPluginInstance[]) {
+  private loadPlugin(...plugins: FigmaParserPluginInstance[]) {
     plugins.forEach((plugin) => {
       let pluginInstance;
 
