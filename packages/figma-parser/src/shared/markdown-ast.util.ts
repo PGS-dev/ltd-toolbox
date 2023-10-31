@@ -1,8 +1,8 @@
-import { SingleNode } from '../plugins/document/single-node.ts';
-import { isTextNode } from '../plugins/document/types.ts';
-import { combineSchema } from './combine-schema.util.ts';
+import { SingleNode } from '../plugins/document/single-node';
+import { isTextNode } from '../plugins/document/types';
+import { combineSchema } from './combine-schema.util';
 import { fromMarkdown } from "mdast-util-from-markdown";
-import { getNodeDecoratedText, LineType } from '../plugins/markdown/utils.ts';
+import { getNodeDecoratedText, LineType } from '../plugins/markdown/utils';
 import { Root } from "mdast";
 
 export const markdownAST = (...nodes: SingleNode[]): Root => {

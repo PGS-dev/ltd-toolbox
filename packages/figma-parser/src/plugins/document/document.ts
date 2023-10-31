@@ -1,8 +1,8 @@
-import { FigmaParser } from '../../parser.ts';
-import type { FileResponse } from '../../full-figma-types.d.ts';
-import { SingleNode } from './single-node.ts';
+import { FigmaParser } from '../../parser';
+import type { FileResponse } from '../../full-figma-types';
+import { SingleNode } from './single-node';
 
-export class Document {
+export class DocumentPlugin {
   private host: FigmaParser;
 
   constructor(host: FigmaParser) {

@@ -1,12 +1,12 @@
-import { FigmaParser } from '../../parser.ts';
-import type { FigmaParserPlugin } from "../../types.ts";
+import { FigmaParser } from '../../parser';
+import { FigmaParserPlugin } from '../../types';
 import {
   Effect,
   FileNodesResponse,
   FileStylesResponse, Node,
   Paint,
   TypeStyle
-} from '../../full-figma-types.ts'
+} from '../../full-figma-types'
 import {
   EffectStyle,
   FigmaStyleDfeinition,
@@ -17,10 +17,10 @@ import {
   isFillStyle,
   isTextStyle,
   TextStyle,
-} from './types.ts';
-import { DesignTokens } from './transformers/design-tokens/index.ts';
+} from './types';
+import { DesignTokens } from './transformers/design-tokens/index';
 
-export class Styles implements FigmaParserPlugin {
+export class StylesPlugin implements FigmaParserPlugin {
   private host: FigmaParser;
   private stylesData: FullStyle[] = [];
 
@@ -100,6 +100,6 @@ export class Styles implements FigmaParserPlugin {
 
 declare module "../../parser.js" {
   export interface FigmaParser {
-    styles(fileId: string): Promise<Styles>;
+    styles(fileId: string): Promise<StylesPlugin>;
   }
 }

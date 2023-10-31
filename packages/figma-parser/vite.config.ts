@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import { builtinModules,  } from 'module'
 import dts from "vite-plugin-dts";
 import {splitVendorChunkPlugin} from 'vite'
+// @ts-ignore
 import pkg from './package.json'
 
 const rollupGlobals = Object.fromEntries(builtinModules.map(module => [`node:${module}`, module]))
@@ -21,6 +22,7 @@ export default defineConfig({
       },
     },
     rollupOptions: {
+      plugins: [dts()],
       external: [...builtinModules, pkg.dependencies, /node_modules/],
       output: {
         preserveModulesRoot: './src/',
@@ -30,9 +32,6 @@ export default defineConfig({
     }
   },
   plugins: [
-    dts({
-      copyDtsFiles: true,
-      clearPureImport: true
-    }),
+    dts()
   ]
 })

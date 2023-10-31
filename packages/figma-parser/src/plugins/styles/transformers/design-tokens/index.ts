@@ -4,13 +4,13 @@ import {
   isEffectDefinition,
   isFillDefinition,
   isTextDefinition,
-} from '../../types.ts';
+} from '../../types';
 import type {
   Effect,
   Paint,
   TypeStyle,
-} from '../../../../full-figma-types.d.ts';
-import { rgbaToHexa } from '../../../../shared/rgba-to-hex.util.ts';
+} from '../../../../full-figma-types';
+import { rgbaToHexa } from '../../../../shared/rgba-to-hex.util';
 
 export interface TypographyTokenValue {
   fontFamily: string;

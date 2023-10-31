@@ -3,9 +3,9 @@ import type {
   FigmaParserPluginFunction,
   FigmaParserPluginInstance,
   FigmaPAT,
-} from './types.d.ts';
-import { Document } from './plugins/document/index.ts';
-import { deepMerge } from './shared/deep-merge.ts';
+} from './types';
+import { DocumentPlugin } from './plugins/document/index';
+import { deepMerge } from './shared/deep-merge';
 
 export interface FigmaParserOptions {
   plugins: FigmaParserPluginInstance[];
@@ -13,7 +13,7 @@ export interface FigmaParserOptions {
 
 export class FigmaParser {
   plugins: FigmaParserPluginInstance[] = [];
-  defaultPlugins: FigmaParserPluginInstance[] = [Document]
+  defaultPlugins: FigmaParserPluginInstance[] = [DocumentPlugin]
 
   private options: FigmaParserOptions = {
     plugins: [],

@@ -1,13 +1,13 @@
-import { NodeCollection } from './node-collection.ts';
-import type { Node, NodeType } from '../../full-figma-types.ts';
-import { Text } from '../../full-figma-types.ts';
+import { NodeCollection } from './node-collection';
+import type { Node, NodeType } from '../../full-figma-types';
+import { Text } from '../../full-figma-types';
 import {
   FigmaId,
   GlobSearchNodes,
   hasChildren,
   isTextNode,
   PathBreadcrumb,
-} from './types.ts';
+} from './types';
 import pm from "picomatch";
 
 export class SingleNode {

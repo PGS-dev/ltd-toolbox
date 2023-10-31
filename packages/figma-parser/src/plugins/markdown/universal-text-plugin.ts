@@ -1,6 +1,6 @@
-import { isTextNode, SingleTextNode } from '../document/types.ts';
-import { FetchContentPlugin } from './types.ts';
-import { markdownAST } from '../../shared/markdown-ast.util.ts';
+import { isTextNode, SingleTextNode } from '../document/types';
+import { FetchContentPlugin } from './types';
+import { markdownAST } from '../../shared/markdown-ast.util';
 
 export const universalTextPlugin: FetchContentPlugin = {
   test: (node) => !!node.findDeep(isTextNode),

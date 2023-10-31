@@ -1,6 +1,6 @@
-import { Node } from '../../full-figma-types.ts';
-import { CallbackFunction, FigmaId, PathBreadcrumb } from './types.ts';
-import { SingleNode } from './single-node.ts';
+import { Node } from '../../full-figma-types';
+import { CallbackFunction, FigmaId, PathBreadcrumb } from './types';
+import { SingleNode } from './single-node';
 
 export class NodeCollection {
   public readonly length: number = 0;

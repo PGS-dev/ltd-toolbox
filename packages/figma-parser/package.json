@@ -23,28 +23,6 @@
   "types": "./dist/index.d.ts",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
-    "./parser": {
-      "types": "./dist/parser.d.ts",
-      "import": "./dist/parser.mjs",
-      "require": "./dist/parser.cjs"
-    },
-    "./plugins/*": {
-      "types": "./dist/plugins/*/index.d.ts",
-      "import": "./dist/plugins/*/index.mjs",
-      "require": "./dist/plugins/*/index.cjs"
-    },
-    "./plugins/styles/transformsers/*": {
-      "types": "./dist/plugins/styles/transformsers/*/index.d.ts",
-      "import": "./dist/plugins/styles/transformsers/*/index.mjs",
-      "require": "./dist/plugins/styles/transformsers/*/index.cjs"
-    }
-  },
   "devDependencies": {
     "@types/node": "^20.8.0",
     "typescript": "^5.0.2",

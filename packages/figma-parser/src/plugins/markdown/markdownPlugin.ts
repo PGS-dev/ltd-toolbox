@@ -1,9 +1,8 @@
+import { SingleNode } from '../document/single-node'
+import { FigmaParser } from '../../parser'
+import { MarkdownProcessor } from './markdown-processor'
 
-import { SingleNode } from '../document/single-node.ts'
-import { FigmaParser } from '../../parser.ts'
-import { MarkdownProcessor } from './markdown-processor.ts'
-
-export class Markdown {
+export class MarkdownPlugin {
   constructor(private host: FigmaParser) {
     this.host.markdown = this.markdown.bind(this);
   }

@@ -4,7 +4,7 @@ This plugin allows to store request responses in cache.
 
 ```js
 const parser = new FigmaParser(TOKEN, {
-  plugins: [HardCache],
+  plugins: [HardCachePlugin],
 });
 
 const response = await parser.request("<fileId>");
@@ -16,6 +16,6 @@ console.log(response);
 
 ```js
 const parser = new FigmaParser(TOKEN, {
-  plugins: [Styles],
+  plugins: [StylesPlugin],
 });
 ```

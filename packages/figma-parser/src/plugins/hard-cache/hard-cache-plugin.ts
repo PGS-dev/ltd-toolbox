@@ -1,10 +1,10 @@
 import { join, resolve } from "path";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
-import { hashData } from '../../shared/create-hash.util.ts';
-import type { FigmaParserPlugin } from '../../types.d.ts';
-import { FigmaParser } from '../../parser.ts';
+import { hashData } from '../../shared/create-hash.util';
+import type { FigmaParserPlugin } from '../../types';
+import { FigmaParser } from '../../parser';
 
-export class HardCache implements FigmaParserPlugin {
+export class HardCachePlugin implements FigmaParserPlugin {
   host: FigmaParser;
 
   private directory = resolve("./.cache");
