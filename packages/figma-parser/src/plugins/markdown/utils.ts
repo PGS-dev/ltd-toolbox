@@ -1,8 +1,8 @@
-import { SingleNode } from "../document/single-node.js";
-import { Paragraph } from "mdast";
-import { isTextNode } from "../document/types.js";
-import { fromMarkdown } from "mdast-util-from-markdown";
-import { TypeStyleTable } from "./types.js";
+import { Paragraph } from 'mdast'
+import { fromMarkdown } from 'mdast-util-from-markdown'
+import { SingleNode } from '../document/single-node.ts'
+import { isTextNode } from '../document/types.ts'
+import { TypeStyleTable } from './types.ts'
 
 export type LineType = "ORDERED" | "UNORDERED" | "NONE" | "LIST";
 
@@ -12,13 +12,13 @@ export const styleOverrideMap = (table: TypeStyleTable) => {
       return [styleId, "***"];
     if (textStyle.fontWeight >= 700) return [styleId, "**"];
     if (textStyle.italic === true) return [styleId, "*"];
-  });
+  }).filter(Boolean) as [string, string][];
   styles.unshift(["0", ""]);
   return Object.fromEntries(styles);
 };
 
 export const getNodeDecoratedText = (node: SingleNode) => {
-  if (!isTextNode(node)) return;
+  if (!isTextNode(node)) throw new Error('Expected Text node!')
   const styleOverrides = node.characterStyleOverrides.concat(
     new Array(
       node.characters.length - node.characterStyleOverrides.length,
@@ -44,6 +44,7 @@ export const getNodeDecoratedText = (node: SingleNode) => {
 
 export const basicTextFormatToAst = (node: SingleNode): Paragraph => {
   const textNode = node.findDeep(isTextNode);
+  if (!textNode) throw new Error('Expected text nodes in given node!')
   const text = getNodeDecoratedText(textNode);
   const ast = fromMarkdown(text);
   return ast.children.at(0) as Paragraph;

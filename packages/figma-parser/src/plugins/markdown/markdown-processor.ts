@@ -1,10 +1,10 @@
-import { FigmaParserPlugin } from '../../types'
+import { FigmaParserPlugin } from '../../types.ts'
 import { SingleNode } from '../document/single-node.ts'
 import { isSingleNode } from '../document/types.ts'
 import { FetchContentPlugin } from './types.ts'
 import { Root, RootContent } from 'mdast'
 import { root } from 'mdast-builder'
-import { universalTextPlugin } from './text-content-plugins.ts'
+import { universalTextPlugin } from './universal-text-plugin.ts'
 import { toMarkdown } from 'mdast-util-to-markdown'
 
 export class MarkdownProcessor implements FigmaParserPlugin {

@@ -1,5 +1,5 @@
-import { NodeCollection } from "./node-collection.js";
-import { SingleNode } from "./single-node.js";
+import { NodeCollection } from './node-collection.ts';
+import { SingleNode } from './single-node.ts';
 import type {
   BooleanOperation,
   Canvas,
@@ -18,7 +18,7 @@ import type {
   Star,
   Text,
   Vector,
-} from "../../full-figma-types.js";
+} from '../../full-figma-types.ts';
 
 export interface PathBreadcrumb {
   name: string;

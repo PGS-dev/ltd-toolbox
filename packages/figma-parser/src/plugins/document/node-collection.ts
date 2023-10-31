@@ -1,6 +1,6 @@
-import { Node } from "../../full-figma-types.js";
-import { CallbackFunction, FigmaId, PathBreadcrumb } from "./types.js";
-import { SingleNode } from "./single-node.js";
+import { Node } from '../../full-figma-types.ts';
+import { CallbackFunction, FigmaId, PathBreadcrumb } from './types.ts';
+import { SingleNode } from './single-node.ts';
 
 export class NodeCollection {
   public readonly length: number = 0;
@@ -56,19 +56,20 @@ export class NodeCollection {
     return this[index];
   }
 
-  get(predicate: CallbackFunction<boolean>): SingleNode {
+  get(predicate: CallbackFunction<boolean>): SingleNode | undefined {
     for (let i = 0; i <= this.length - 1; i++) {
       if (predicate(this[i], i, this)) {
         return this[i];
       }
     }
+    return
   }
 
-  id(id: FigmaId | string): SingleNode {
+  id(id: FigmaId | string): SingleNode | undefined {
     return this.get((node: SingleNode) => node.id === id);
   }
 
-  name(name: string, caseInsensitive = false): SingleNode {
+  name(name: string, caseInsensitive = false): SingleNode | undefined {
     return this.get((node: SingleNode) => {
       if (caseInsensitive) {
         return node.name.toLowerCase() === name.toLowerCase();

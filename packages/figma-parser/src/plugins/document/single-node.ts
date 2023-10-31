@@ -1,20 +1,20 @@
-import { NodeCollection } from "./node-collection.js";
-import type { Node, NodeType } from "../../full-figma-types.js";
-import { Text } from "../../full-figma-types.js";
+import { NodeCollection } from './node-collection.ts';
+import type { Node, NodeType } from '../../full-figma-types.ts';
+import { Text } from '../../full-figma-types.ts';
 import {
   FigmaId,
   GlobSearchNodes,
   hasChildren,
   isTextNode,
   PathBreadcrumb,
-} from "./types.js";
+} from './types.ts';
 import pm from "picomatch";
 
 export class SingleNode {
-  id: FigmaId;
-  name: string;
-  children: NodeCollection;
-  type: NodeType | string;
+  id: FigmaId = ''
+  name: string = ''
+  children: NodeCollection = new NodeCollection([], this)
+  type: NodeType | string = '';
 
   constructor(node: Node | SingleNode) {
     if (node instanceof SingleNode) return node;
@@ -76,7 +76,7 @@ export class SingleNode {
     walker(this);
   }
 
-  findDeep(predicate: (node: SingleNode, path?: PathBreadcrumb[]) => boolean) {
+  findDeep(predicate: (node: SingleNode, path?: PathBreadcrumb[]) => boolean): SingleNode | null {
     let output: SingleNode | null = null;
     function walker(node: SingleNode, path: PathBreadcrumb[] = []) {
       if (!node) return;
@@ -105,7 +105,7 @@ export class SingleNode {
   filterDeep(
     predicate: (node: SingleNode, path?: PathBreadcrumb[]) => boolean,
   ) {
-    const output: SingleNode[] | null = [];
+    const output: SingleNode[] = [];
     function walker(node: SingleNode, path: PathBreadcrumb[] = []) {
       if (!node) return;
 

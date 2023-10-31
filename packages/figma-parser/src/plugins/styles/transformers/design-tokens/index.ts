@@ -4,13 +4,13 @@ import {
   isEffectDefinition,
   isFillDefinition,
   isTextDefinition,
-} from "../../types.js";
+} from '../../types.ts';
 import type {
   Effect,
   Paint,
   TypeStyle,
-} from "../../../../full-figma-types.d.js";
-import { rgbaToHexa } from "../../../../shared/rgba-to-hex.util.js";
+} from '../../../../full-figma-types.d.ts';
+import { rgbaToHexa } from '../../../../shared/rgba-to-hex.util.ts';
 
 export interface TypographyTokenValue {
   fontFamily: string;
@@ -86,6 +86,7 @@ export interface DesignTokensFormat {
 }
 
 const gradientTransform = (style: Paint) => {
+  if (!style || !style.gradientStops) throw new Error('Expected Paint style with gradientStops definitions!')
   return style.gradientStops.map((stop) => ({
     color: rgbaToHexa(stop.color),
     position: stop.position,
@@ -93,6 +94,7 @@ const gradientTransform = (style: Paint) => {
 };
 
 const solidTransform = (style: Paint) => {
+  if (!style || !style.color) throw new Error('Expected Paint style with solid color definition!')
   return rgbaToHexa(style.color);
 };
 
@@ -107,20 +109,23 @@ const typographyTransform = (style: TypeStyle) => {
 };
 
 const shadowTransform = (style: Effect[]) => {
-  return style
+  const shadowStyles = style
     .filter(
       (effect) =>
         effect.type === "DROP_SHADOW" || effect.type === "INNER_SHADOW",
     )
-    .map((effect) => {
-      return {
-        color: rgbaToHexa(effect.color),
-        offsetX: effect.offset.x,
-        offsetY: effect.offset.y,
-        blur: effect.radius,
-        spread: effect.spread,
-      };
-    });
+  if (!shadowStyles.length) throw new Error('Expected Shadow Effect definitions in given style!')
+
+  shadowStyles.map((effect) => {
+    const requiredEffect = effect as Required<Effect>
+    return {
+      color: rgbaToHexa(requiredEffect.color),
+      offsetX: requiredEffect.offset.x,
+      offsetY: requiredEffect.offset.y,
+      blur: requiredEffect.radius,
+      spread: requiredEffect.spread,
+    };
+  });
 };
 
 export const DesignTokens = (deep: boolean = false): FigmaStylesTransformer => {
@@ -171,12 +176,12 @@ export const DesignTokens = (deep: boolean = false): FigmaStylesTransformer => {
           },
         ];
       }
-    });
+    }).filter(Boolean) as [string, DesignToken][];
 
     if (deep) {
       const output = {};
 
-      stylesArray.forEach(([name, value]: [string, any]) => {
+      stylesArray.forEach(([name, value]) => {
         const path = name.split("/");
         path.reduce((acc: any, key: string, i: number) => {
           if (acc[key] === undefined) acc[key] = {};

@@ -10,7 +10,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    manifest: true,
     minify: false,
     target: 'esnext',
     lib: {
@@ -32,7 +31,8 @@ export default defineConfig({
   },
   plugins: [
     dts({
-      copyDtsFiles: true
+      copyDtsFiles: true,
+      clearPureImport: true
     }),
   ]
 })

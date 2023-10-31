@@ -7,7 +7,7 @@ import {
   Text as FigmaText,
   TypeStyle,
   VectorBase,
-} from "../../full-figma-types.js";
+} from '../../full-figma-types.ts';
 
 export const isFillStyle = (node: FullStyle): node is FillStyle =>
   node.styleMeta.style_type === "FILL";
@@ -64,5 +64,5 @@ export interface FigmaStyleDfeinition {
   name: string;
   type: StyleType;
   nodeId: string;
-  definition: Paint[] | TypeStyle | Effect[] | object | null;
+  definition: Paint[] | TypeStyle | Effect[] | object | null
 }
