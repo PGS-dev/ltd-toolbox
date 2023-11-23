@@ -77,8 +77,8 @@ export class StylesPlugin implements FigmaParserPlugin {
     }));
   }
 
-  designTokens() {
-    return this.transform(DesignTokens);
+  designTokens(deep = false) {
+    return this.transform(DesignTokens(deep));
   }
 
   transform(...transformers: FigmaStylesTransformer[]) {

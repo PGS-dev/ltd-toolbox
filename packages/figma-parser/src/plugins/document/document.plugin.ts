@@ -16,7 +16,7 @@ export class DocumentPlugin {
   }
 }
 
-declare module "../../parser.js" {
+declare module "../../parser" {
   export interface FigmaParser {
     document(fileId: string): Promise<SingleNode>;
   }

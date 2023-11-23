@@ -1,1 +1,1 @@
-export { HardCachePlugin } from './hard-cache-plugin.js'
+export { HardCachePlugin } from './hard-cache.plugin'
