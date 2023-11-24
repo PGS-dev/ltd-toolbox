@@ -21,7 +21,7 @@ export class FigmaParser {
 
   constructor(
     private token: FigmaPAT,
-    userOptions?: Partial<FigmaParserOptions>,
+    userOptions: Partial<FigmaParserOptions> = {},
   ) {
     if (!token)
       throw new Error("You need to provide Personal Access Token for Figma.");

@@ -20,7 +20,7 @@ export interface TypographyTokenValue {
   lineHeight: number;
 }
 
-export interface ShadowTokenPosition {
+export interface GradientStop {
   color: string;
   position: number;
 }
@@ -37,7 +37,7 @@ export interface ShadowStop {
 
 export type ShadowTokenValue = ShadowStop[];
 
-export type GradientTokenValue = ShadowTokenPosition[];
+export type GradientTokenValue = GradientStop[];
 
 export interface DesignToken {
   $type: "typography" | "color" | "shadow" | "gradient";
@@ -95,7 +95,11 @@ const gradientTransform = (style: Paint) => {
 
 const solidTransform = (style: Paint) => {
   if (!style || !style.color) throw new Error('Expected Paint style with solid color definition!')
-  return rgbaToHexa(style.color);
+  const colorValue = {
+    ...style.color,
+    a: style.opacity
+  }
+  return rgbaToHexa(colorValue);
 };
 
 const typographyTransform = (style: TypeStyle) => {
@@ -104,7 +108,7 @@ const typographyTransform = (style: TypeStyle) => {
     fontSize: style.fontSize,
     fontWeight: style.fontWeight,
     letterSpacing: style.letterSpacing,
-    lineHeight: style.lineHeightPercent,
+    lineHeight: style.lineHeightPx,
   };
 };
 
@@ -116,7 +120,7 @@ const shadowTransform = (style: Effect[]) => {
     )
   if (!shadowStyles.length) throw new Error('Expected Shadow Effect definitions in given style!')
 
-  shadowStyles.map((effect) => {
+  return shadowStyles.map((effect) => {
     const requiredEffect = effect as Required<Effect>
     return {
       color: rgbaToHexa(requiredEffect.color),
@@ -128,8 +132,8 @@ const shadowTransform = (style: Effect[]) => {
   });
 };
 
-export const DesignTokens = (deep: boolean = false): FigmaStylesTransformer => {
-  return (input: FigmaStyleDfeinition[]): DesignTokensFormat => {
+export const DesignTokens = (deep: boolean = false): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormat> => {
+  return (input: FigmaStyleDfeinition[]) => {
     const stylesArray = input.map((definition) => {
       if (
         isFillDefinition(definition) &&

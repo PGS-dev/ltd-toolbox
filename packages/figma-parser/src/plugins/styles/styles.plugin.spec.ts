@@ -1,21 +1,12 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest'
-import { MOCKED_STYLES_DATA } from './tests/fixtures'
 import { StylesPlugin } from './styles.plugin'
-
-const parserMock = {
-  request: vi.fn()
-} as any
+import { stylesPluginMockFactory } from './tests/styles-plugin-mock'
 
 describe('Styles Plugin', () => {
   let plugin: StylesPlugin;
 
   beforeEach(() => {
-    plugin = new StylesPlugin(parserMock)
-
-    plugin.styles = vi.fn().mockImplementation( async () => {
-      plugin.stylesData = MOCKED_STYLES_DATA
-      return plugin
-    })
+    plugin = stylesPluginMockFactory()
   })
 
   describe('Design Tokens', () => {

@@ -1,9 +1,9 @@
-import { FigmaParser, FigmaParserOptions } from './parser.js'
+import { FigmaParser, FigmaParserOptions } from './parser'
 import { HardCachePlugin } from './plugins/hard-cache/index'
 import { DocumentPlugin } from './plugins/document/index'
 import { StylesPlugin } from './plugins/styles/index'
 import { MarkdownPlugin } from './plugins/markdown/index'
-import { FigmaPAT } from './types.js'
+import { FigmaPAT } from './types'
 
 export default function(token: FigmaPAT, options: FigmaParserOptions) {
   return new FigmaParser(token, {

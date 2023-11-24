@@ -1,4 +1,6 @@
-export const MOCKED_STYLES_DATA = [
+import { FullStyle } from '../types'
+
+export const STYLES_DATA_FIXTURE: FullStyle[] = [
   {
     "styleMeta": {
       "key": "R4ND0MK3Y",
@@ -60,6 +62,7 @@ export const MOCKED_STYLES_DATA = [
         "fontFamily": "Arial",
         "fontPostScriptName": "Arial Bold",
         "fontWeight": 700,
+        // @ts-expect-error - mistyping
         "textAutoResize": "WIDTH_AND_HEIGHT",
         "fontSize": 24,
         "textAlignHorizontal": "LEFT",
@@ -140,6 +143,7 @@ export const MOCKED_STYLES_DATA = [
             "b": 1,
             "a": 1
           },
+          // @ts-expect-error - boundVariables is a new thing
           "boundVariables": {
             "color": {
               "type": "VARIABLE_ALIAS",
@@ -226,6 +230,7 @@ export const MOCKED_STYLES_DATA = [
           },
           "radius": 8,
           "spread": -4,
+          // @ts-expect-error - new feature
           "showShadowBehindNode": true
         },
         {
@@ -244,6 +249,7 @@ export const MOCKED_STYLES_DATA = [
           },
           "radius": 24,
           "spread": -4,
+          // @ts-expect-error - new feature
           "showShadowBehindNode": true
         }
       ]
@@ -321,6 +327,7 @@ export const MOCKED_STYLES_DATA = [
           },
           "radius": 0,
           "spread": 4,
+          // @ts-expect-error - new feature
           "showShadowBehindNode": false
         }
       ]

@@ -5,7 +5,7 @@ export * from './plugins/document'
 export * from './plugins/styles'
 export * from './plugins/markdown'
 
-export * from './parser-with-plugins.js'
+export * from './parser-with-plugins'
 
 
 
