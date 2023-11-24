@@ -5,7 +5,7 @@
     "target": "esnext",
     "noImplicitAny": true,
     "moduleResolution": "NodeNext",
-    "allowImportingTsExtensions": true,
+    "allowImportingTsExtensions": false,
     "preserveSymlinks": true,
     "resolveJsonModule": true,
     "sourceMap": true,

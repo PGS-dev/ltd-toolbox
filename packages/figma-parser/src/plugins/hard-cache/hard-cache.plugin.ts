@@ -14,10 +14,6 @@ export class HardCachePlugin implements FigmaParserPlugin {
 
     this.directory = (this.host as any)?.options?.cacheDir || this.directory;
 
-    if (!existsSync(this.directory)) {
-      mkdirSync(this.directory, { recursive: true });
-    }
-
     this.originalRequest = this.host.request.bind(this.host);
     this.host.request = this.request.bind(this);
   }
@@ -59,6 +55,9 @@ export class HardCachePlugin implements FigmaParserPlugin {
 
   set(data: any, content: string) {
     const file = this.cacheFile(data);
+    if (!existsSync(this.directory)) {
+      mkdirSync(this.directory, { recursive: true });
+    }
     writeFileSync(file, content, "utf-8");
   }
 }
