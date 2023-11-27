@@ -1,11 +1,13 @@
 export { FigmaParser } from "./parser";
 export * as FigmaTypes from './types';
 
+export { ParserFactory } from './parser-with-plugins'
+
 export { MarkdownPlugin } from './plugins/markdown/markdown.plugin'
 export { universalTextPlugin }  from './plugins/markdown/universal-text-plugin'
 export type { FetchContentPlugin }  from './plugins/markdown/types'
 
-export { ParserFactory } from './parser-with-plugins'
+export { HardCachePlugin } from './plugins/hard-cache/hard-cache.plugin'
 
 export { StylesPlugin } from './plugins/styles/styles.plugin'
 export { DesignTokens } from './plugins/styles/transformers/design-tokens/index'
@@ -20,8 +22,6 @@ export type { DesignTokensFormat, DesignToken, TypographyTokenValue,
   GradientToken,
   GradientTokenValue } from './plugins/styles/transformers/design-tokens/index'
 
-
-export { HardCachePlugin } from './plugins/hard-cache/hard-cache.plugin'
 
 export { DocumentPlugin } from './plugins/document/document.plugin'
 export { SingleNode } from './plugins/document/single-node'
