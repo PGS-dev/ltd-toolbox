@@ -9,7 +9,17 @@ export { ParserFactory } from './parser-with-plugins'
 
 export { StylesPlugin } from './plugins/styles/styles.plugin'
 export { DesignTokens } from './plugins/styles/transformers/design-tokens/index'
-export type { DesignTokensFormat, DesignToken } from './plugins/styles/transformers/design-tokens/index'
+export type { DesignTokensFormat, DesignToken, TypographyTokenValue,
+  GradientStop,
+  ShadowStop,
+  ShadowTokenValue,
+  ColorToken,
+  ColorTokenValue,
+  TypographyToken,
+  ShadowToken,
+  GradientToken,
+  GradientTokenValue } from './plugins/styles/transformers/design-tokens/index'
+
 
 export { HardCachePlugin } from './plugins/hard-cache/hard-cache.plugin'
 
