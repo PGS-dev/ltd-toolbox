@@ -5,7 +5,7 @@ import { StylesPlugin } from './plugins/styles/index'
 import { MarkdownPlugin } from './plugins/markdown/index'
 import { FigmaPAT } from './types'
 
-export default function(token: FigmaPAT, options: FigmaParserOptions) {
+export function ParserFactory (token: FigmaPAT, options: FigmaParserOptions) {
   return new FigmaParser(token, {
     ...options,
     plugins: [ DocumentPlugin, StylesPlugin, MarkdownPlugin, HardCachePlugin ]

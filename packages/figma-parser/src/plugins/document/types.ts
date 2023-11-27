@@ -25,14 +25,14 @@ export interface PathBreadcrumb {
   id: string;
 }
 
-export type FigmaId = `${number}:${number}` | string;
+export type FigmaNodeId = `${number}:${number}` | string;
 
 export const hasChildren = <T = Node>(
   node: any,
 ): node is Node & { children: ReadonlyArray<T> } =>
   node && "children" in node && node.children.length > 0;
 
-export const isFigmaId = (value: any): value is FigmaId =>
+export const isFigmaNodeId = (value: any): value is FigmaNodeId =>
   /\d+:\d+/.test(value);
 
 export const nodeTypes = [

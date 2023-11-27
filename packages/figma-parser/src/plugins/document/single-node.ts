@@ -2,7 +2,7 @@ import { NodeCollection } from './node-collection';
 import type { Node, NodeType } from '../../full-figma-types';
 import { Text } from '../../full-figma-types';
 import {
-  FigmaId,
+  FigmaNodeId,
   GlobSearchNodes,
   hasChildren,
   isTextNode,
@@ -11,7 +11,7 @@ import {
 import pm from "picomatch";
 
 export class SingleNode {
-  id: FigmaId = ''
+  id: FigmaNodeId = ''
   name: string = ''
   children: NodeCollection = new NodeCollection([], this)
   type: NodeType | string = '';

@@ -12,6 +12,7 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     minify: false,
+    sourcemap: true,
     target: 'esnext',
     lib: {
       name: 'ltd-toolbox/figma-parser',
@@ -22,7 +23,6 @@ export default defineConfig({
       },
     },
     rollupOptions: {
-      plugins: [dts()],
       external: [...builtinModules, pkg.dependencies, /node_modules/],
       output: {
         preserveModulesRoot: './src/',
@@ -32,6 +32,9 @@ export default defineConfig({
     }
   },
   plugins: [
-    dts({rollupTypes: true})
+    dts({
+      include: ['./src/**/*.ts', './src/**/*.d.ts'],
+      exclude: ['./src/**/*.spec.ts']
+    })
   ]
 })

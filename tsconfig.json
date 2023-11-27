@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "target": "esnext",
     "noImplicitAny": true,
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "Node",
     "allowImportingTsExtensions": false,
     "preserveSymlinks": true,
     "resolveJsonModule": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "module": "NodeNext",
     "lib": ["es2020"],
     "types": ["node"],
     "paths": {

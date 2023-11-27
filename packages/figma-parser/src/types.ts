@@ -1,5 +1,5 @@
 export * from './full-figma-types';
-import { FigmaParser } from './parser';
+import type { FigmaParser } from './parser';
 
 export interface FigmaParserPlugin {}
 

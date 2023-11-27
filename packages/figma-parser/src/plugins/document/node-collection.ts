@@ -1,5 +1,5 @@
 import { Node } from '../../full-figma-types';
-import { CallbackFunction, FigmaId, PathBreadcrumb } from './types';
+import { CallbackFunction, FigmaNodeId, PathBreadcrumb } from './types';
 import { SingleNode } from './single-node';
 
 export class NodeCollection {
@@ -65,7 +65,7 @@ export class NodeCollection {
     return
   }
 
-  id(id: FigmaId | string): SingleNode | undefined {
+  id(id: FigmaNodeId | string): SingleNode | undefined {
     return this.get((node: SingleNode) => node.id === id);
   }
 
