@@ -19,7 +19,7 @@
     "format": "yarn prettier ./src/ --write"
   },
   "files": [
-    "*"
+    "./dist/"
   ],
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",

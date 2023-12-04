@@ -19,7 +19,7 @@ export const rgbaToHexa = (rgba: {
   return (
     "#" +
     hexify(rgba.r) +
-    hexify(rgba.b) +
+    hexify(rgba.g) +
     hexify(rgba.b) +
     (rgba.a ? hexify(rgba.a) : "")
   );

@@ -189,7 +189,14 @@ export const DesignTokens = (deep: boolean = false): FigmaStylesTransformer<Figm
         const path = name.split("/");
         path.reduce((acc: any, key: string, i: number) => {
           if (acc[key] === undefined) acc[key] = {};
-          if (i === path.length - 1) acc[key] = value;
+
+          if (i === path.length - 1) {
+            acc[key] = {
+              ...acc[key],
+              ...value
+            };
+          }
+
           return acc[key];
         }, output);
       });
