@@ -13,12 +13,6 @@
     "baseUrl": ".",
     "module": "NodeNext",
     "lib": ["es2020"],
-    "types": ["node"],
-    "paths": {
-      "*": [
-        "node_modules/*",
-        "packages/*"
-      ]
-    }
+    "types": ["node"]
   }
 }

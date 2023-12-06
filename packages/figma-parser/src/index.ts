@@ -1,7 +1,9 @@
 export { FigmaParser } from "./parser";
-export * as FigmaTypes from './types';
-
 export { ParserFactory } from './parser-with-plugins'
+
+import * as FigmaTypes from './types';
+export { FigmaTypes }
+
 
 export { MarkdownPlugin } from './plugins/markdown/markdown.plugin'
 export { universalTextPlugin }  from './plugins/markdown/universal-text-plugin'

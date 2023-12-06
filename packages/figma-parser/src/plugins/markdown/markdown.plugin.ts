@@ -11,9 +11,3 @@ export class MarkdownPlugin {
     return new MarkdownProcessor(node)
   }
 }
-
-declare module "../../parser" {
-  export interface FigmaParser {
-    markdown(node: SingleNode): MarkdownProcessor;
-  }
-}

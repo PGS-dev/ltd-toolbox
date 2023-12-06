@@ -61,10 +61,3 @@ export class HardCachePlugin implements FigmaParserPlugin {
     writeFileSync(file, content, "utf-8");
   }
 }
-
-declare module "../../parser" {
-  export interface FigmaParserOptions {
-    hardCache?: boolean;
-    cacheDir?: string;
-  }
-}

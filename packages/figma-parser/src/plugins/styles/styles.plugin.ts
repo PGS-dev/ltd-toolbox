@@ -102,9 +102,3 @@ export class StylesPlugin implements FigmaParserPlugin {
     return null;
   }
 }
-
-declare module "../../parser" {
-  export interface FigmaParser {
-    styles(fileId: string): Promise<StylesPlugin>;
-  }
-}

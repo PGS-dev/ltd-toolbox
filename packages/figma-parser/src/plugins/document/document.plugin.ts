@@ -15,9 +15,3 @@ export class DocumentPlugin {
     return new SingleNode(file.document);
   }
 }
-
-declare module "../../parser" {
-  export interface FigmaParser {
-    document(fileId: string): Promise<SingleNode>;
-  }
-}
