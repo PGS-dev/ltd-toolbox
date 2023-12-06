@@ -4,10 +4,12 @@ export { ParserFactory } from './parser-with-plugins'
 import * as FigmaTypes from './types';
 export { FigmaTypes }
 
-
-export { MarkdownPlugin } from './plugins/markdown/markdown.plugin'
-export { universalTextPlugin }  from './plugins/markdown/universal-text-plugin'
-export type { FetchContentPlugin }  from './plugins/markdown/types'
+// decode-named-character-reference dependency of one of mdast plugins causes errors
+// by introducing unnecesary document.createElement() calls.
+// This plugin is temporary disabled.
+// export { MarkdownPlugin } from './plugins/markdown/markdown.plugin'
+// export { universalTextPlugin }  from './plugins/markdown/universal-text-plugin'
+// export type { FetchContentPlugin }  from './plugins/markdown/types'
 
 export { HardCachePlugin } from './plugins/hard-cache/hard-cache.plugin'
 
