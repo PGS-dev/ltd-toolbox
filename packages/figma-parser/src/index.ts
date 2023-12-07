@@ -1,5 +1,5 @@
 export { FigmaParser } from './parser';
-export { ParserFactory } from './parser-with-plugins';
+export { parserFactory } from './parser-with-plugins';
 export { FigmaTypes };
 
 import * as FigmaTypes from './types';
