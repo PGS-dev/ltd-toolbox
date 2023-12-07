@@ -1,8 +1,8 @@
-export { FigmaParser } from "./parser";
-export { ParserFactory } from './parser-with-plugins'
+export { FigmaParser } from './parser';
+export { ParserFactory } from './parser-with-plugins';
+export { FigmaTypes };
 
 import * as FigmaTypes from './types';
-export { FigmaTypes }
 
 // decode-named-character-reference dependency of one of mdast plugins causes errors
 // by introducing unnecesary document.createElement() calls.
@@ -11,54 +11,66 @@ export { FigmaTypes }
 // export { universalTextPlugin }  from './plugins/markdown/universal-text-plugin'
 // export type { FetchContentPlugin }  from './plugins/markdown/types'
 
-export { HardCachePlugin } from './plugins/hard-cache/hard-cache.plugin'
+export { HardCachePlugin } from './plugins/hard-cache/hard-cache.plugin';
 
-export { StylesPlugin } from './plugins/styles/styles.plugin'
-export { DesignTokens } from './plugins/styles/transformers/design-tokens/index'
-export type { DesignTokensFormat, DesignToken, TypographyTokenValue,
-  GradientStop,
-  ShadowStop,
-  ShadowTokenValue,
+export { StylesPlugin } from './plugins/styles/styles.plugin';
+export { DesignTokens } from './plugins/styles/transformers/design-tokens/index';
+export type {
   ColorToken,
   ColorTokenValue,
-  TypographyToken,
-  ShadowToken,
+  DesignToken,
+  DesignTokensFormat,
+  GradientStop,
   GradientToken,
-  GradientTokenValue } from './plugins/styles/transformers/design-tokens/index'
+  GradientTokenValue,
+  ShadowStop,
+  ShadowToken,
+  ShadowTokenValue,
+  TypographyToken,
+  TypographyTokenValue,
+} from './plugins/styles/transformers/design-tokens/index';
 
-
-export { DocumentPlugin } from './plugins/document/document.plugin'
-export { SingleNode } from './plugins/document/single-node'
-export { NodeCollection } from './plugins/document/node-collection'
-export { nodeTypes, hasChildren, isFigmaNodeId, isSingleNode, isNode, isDocumentNode,
-  isCanvasNode,
-  isFrameNode,
-  isGroupNode,
-  isVectorNode,
+export { DocumentPlugin } from './plugins/document/document.plugin';
+export { NodeCollection } from './plugins/document/node-collection';
+export { SingleNode } from './plugins/document/single-node';
+export {
+  hasChildren,
   isBooleanOperationNode,
-  isStarNode,
-  isLineNode,
-  isEllipseNode,
-  isRegularPolygonNode,
-  isRectangleNode,
-  isTextNode,
-  isSliceNode,
+  isCanvasNode,
   isComponentNode,
   isComponentSetNode,
-  isInstanceNode } from './plugins/document/types'
-export type { SingleDocumentNode,
-  SingleCanvasNode,
-  SingleFrameNode,
-  SingleGroupNode,
-  SingleVectorNode,
+  isDocumentNode,
+  isEllipseNode,
+  isFigmaNodeId,
+  isFrameNode,
+  isGroupNode,
+  isInstanceNode,
+  isLineNode,
+  isNode,
+  isRectangleNode,
+  isRegularPolygonNode,
+  isSingleNode,
+  isSliceNode,
+  isStarNode,
+  isTextNode,
+  isVectorNode,
+  nodeTypes,
+} from './plugins/document/types';
+export type {
   SingleBooleanOperationNode,
-  SingleStarNode,
-  SingleLineNode,
-  SingleEllipseNode,
-  SingleRegularPolygonNode,
-  SingleRectangleNode,
-  SingleTextNode,
-  SingleSliceNode,
+  SingleCanvasNode,
   SingleComponentNode,
   SingleComponentSetNode,
-  SingleInstanceNode  } from './plugins/document/types'
+  SingleDocumentNode,
+  SingleEllipseNode,
+  SingleFrameNode,
+  SingleGroupNode,
+  SingleInstanceNode,
+  SingleLineNode,
+  SingleRectangleNode,
+  SingleRegularPolygonNode,
+  SingleSliceNode,
+  SingleStarNode,
+  SingleTextNode,
+  SingleVectorNode,
+} from './plugins/document/types';

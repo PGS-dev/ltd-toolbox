@@ -1,6 +1,6 @@
-import { SingleNode } from '../document/single-node'
-import { FigmaParser } from '../../parser'
-import { MarkdownProcessor } from './markdown-processor'
+import { FigmaParser } from '../../parser';
+import { SingleNode } from '../document/single-node';
+import { MarkdownProcessor } from './markdown-processor';
 
 export class MarkdownPlugin {
   constructor(private host: FigmaParser) {
@@ -8,6 +8,6 @@ export class MarkdownPlugin {
   }
 
   markdown(node: SingleNode): MarkdownProcessor {
-    return new MarkdownProcessor(node)
+    return new MarkdownProcessor(node);
   }
 }

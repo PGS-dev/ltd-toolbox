@@ -6,7 +6,7 @@ Plugin for traversing Figma document
 (async () => {
   const parser = new FigmaParser(TOKEN);
 
-  const documentNode = await parser.document("<fileId>");
+  const documentNode = await parser.document('<fileId>');
 })();
 ```
 
@@ -33,9 +33,7 @@ get nodes by glob pattern using layer names. Pattern is case insensitive.
 ```javascript
 const canvasNodes = [];
 
-const udageExamplesTitles = documentNode.glob(
-  "documentation/usage/examples/**/title",
-);
+const udageExamplesTitles = documentNode.glob('documentation/usage/examples/**/title');
 ```
 
 ### `walk`
@@ -116,7 +114,7 @@ const iconNode = documentNode.children.get((node) => {});
 Gets node by its id.
 
 ```javascript
-const descriptionNode = documentNode.children.id("123:456");
+const descriptionNode = documentNode.children.id('123:456');
 ```
 
 ### `name`
@@ -124,7 +122,7 @@ const descriptionNode = documentNode.children.id("123:456");
 Gets node by its name.
 
 ```javascript
-const titleNode = documentNode.children.name("Section title");
+const titleNode = documentNode.children.name('Section title');
 ```
 
 ### `filter`
@@ -132,9 +130,7 @@ const titleNode = documentNode.children.name("Section title");
 filter nodes by predicate function and return new NodeCollection.
 
 ```javascript
-const frameNodes = documentNode.children.filter(
-  (node) => node.type === "FRAME",
-);
+const frameNodes = documentNode.children.filter((node) => node.type === 'FRAME');
 ```
 
 ### `each`

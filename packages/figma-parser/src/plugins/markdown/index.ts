@@ -1,4 +1,4 @@
-export { MarkdownPlugin } from './markdown.plugin'
-export { MarkdownProcessor } from './markdown-processor'
-export { universalTextPlugin } from './universal-text-plugin'
-export * from './types'
+export { MarkdownProcessor } from './markdown-processor';
+export { MarkdownPlugin } from './markdown.plugin';
+export * from './types';
+export { universalTextPlugin } from './universal-text-plugin';

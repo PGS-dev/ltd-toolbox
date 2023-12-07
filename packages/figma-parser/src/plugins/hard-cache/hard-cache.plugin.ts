@@ -1,13 +1,13 @@
-import { join, resolve } from "path";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { join, resolve } from 'path';
+import { FigmaParser } from '../../parser';
 import { hashData } from '../../shared/create-hash.util';
 import type { FigmaParserPlugin } from '../../types';
-import { FigmaParser } from '../../parser';
 
 export class HardCachePlugin implements FigmaParserPlugin {
   host: FigmaParser;
 
-  private directory = resolve("./.cache");
+  private directory = resolve('./.cache');
 
   constructor(host: FigmaParser) {
     this.host = host;
@@ -18,15 +18,9 @@ export class HardCachePlugin implements FigmaParserPlugin {
     this.host.request = this.request.bind(this);
   }
 
-  originalRequest: <Response = object>(
-    path: string,
-    params?: Record<string, string>,
-  ) => Promise<Response>;
+  originalRequest: <Response = object>(path: string, params?: Record<string, string>) => Promise<Response>;
 
-  async request<Response = object>(
-    path: string,
-    params?: Record<string, string>,
-  ): Promise<Response> {
+  async request<Response = object>(path: string, params?: Record<string, string>): Promise<Response> {
     const cached = this.get({ path, params });
     if (cached && this.host.options.hardCache) {
       return JSON.parse(cached) as Response;
@@ -48,7 +42,7 @@ export class HardCachePlugin implements FigmaParserPlugin {
   get(data: object) {
     const file = this.cacheFile(data);
     if (existsSync(file)) {
-      return readFileSync(file, "utf-8");
+      return readFileSync(file, 'utf-8');
     }
     return false;
   }
@@ -58,6 +52,6 @@ export class HardCachePlugin implements FigmaParserPlugin {
     if (!existsSync(this.directory)) {
       mkdirSync(this.directory, { recursive: true });
     }
-    writeFileSync(file, content, "utf-8");
+    writeFileSync(file, content, 'utf-8');
   }
 }

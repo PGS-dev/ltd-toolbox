@@ -11,8 +11,9 @@
     "cli"
   ],
   "scripts": {
+    "build": "echo nothing to do here!",
     "lint": "eslint cli.js --report-unused-disable-directives --max-warnings 0",
-    "build": "echo nothing to do here!"
+    "format": "yarn prettier cli.js --write"
   },
   "bin": {
     "tsrun": "cli.js"

@@ -23,110 +23,65 @@ export interface Global {
 /**
  * Styles can be one of the following types
  */
-export declare type StyleType = "FILL" | "TEXT" | "EFFECT" | "GRID";
+export declare type StyleType = 'FILL' | 'TEXT' | 'EFFECT' | 'GRID';
 /**
  * the above styles can be used in the following ways
  */
-export declare type StyleKeyType =
-  | "fill"
-  | "stroke"
-  | "effect"
-  | "grid"
-  | "text"
-  | "background";
+export declare type StyleKeyType = 'fill' | 'stroke' | 'effect' | 'grid' | 'text' | 'background';
 export declare type StylesObject = {
   [key in StyleKeyType]: Record<key, string>;
 }[StyleKeyType];
-export declare type ScaleMode = "FILL" | "FIT" | "TILE" | "STRETCH";
-export declare type PaintTypeSolid = "SOLID";
-export declare type PaintTypeGraident =
-  | "GRADIENT_LINEAR"
-  | "GRADIENT_RADIAL"
-  | "GRADIENT_ANGULAR"
-  | "GRADIENT_DIAMOND";
-export declare type PaintTypeImage = "IMAGE" | "EMOJI";
-export declare type TextType = "TEXT";
-export declare type PaintType =
-  | PaintTypeSolid
-  | PaintTypeGraident
-  | PaintTypeImage;
+export declare type ScaleMode = 'FILL' | 'FIT' | 'TILE' | 'STRETCH';
+export declare type PaintTypeSolid = 'SOLID';
+export declare type PaintTypeGraident = 'GRADIENT_LINEAR' | 'GRADIENT_RADIAL' | 'GRADIENT_ANGULAR' | 'GRADIENT_DIAMOND';
+export declare type PaintTypeImage = 'IMAGE' | 'EMOJI';
+export declare type TextType = 'TEXT';
+export declare type PaintType = PaintTypeSolid | PaintTypeGraident | PaintTypeImage;
 /**
  * how the layer blends with layers below
  */
 export declare type BlendMode =
-  | "PASS_THROUGH" /** (Only applicable to objects with children) */
-  | "NORMAL"
+  | 'PASS_THROUGH' /** (Only applicable to objects with children) */
+  | 'NORMAL'
   /** Darken: */
-  | "DARKEN"
-  | "MULTIPLY"
-  | "LINEAR_BURN"
-  | "COLOR_BURN"
+  | 'DARKEN'
+  | 'MULTIPLY'
+  | 'LINEAR_BURN'
+  | 'COLOR_BURN'
   /** Lighten: */
-  | "LIGHTEN"
-  | "SCREEN"
-  | "LINEAR_DODGE"
-  | "COLOR_DODGE"
+  | 'LIGHTEN'
+  | 'SCREEN'
+  | 'LINEAR_DODGE'
+  | 'COLOR_DODGE'
   /** Contrast: */
-  | "OVERLAY"
-  | "SOFT_LIGHT"
-  | "HARD_LIGHT"
+  | 'OVERLAY'
+  | 'SOFT_LIGHT'
+  | 'HARD_LIGHT'
   /** Inversion: */
-  | "DIFFERENCE"
-  | "EXCLUSION"
+  | 'DIFFERENCE'
+  | 'EXCLUSION'
   /** Component: */
-  | "HUE"
-  | "SATURATION"
-  | "COLOR"
-  | "LUMINOSITY";
+  | 'HUE'
+  | 'SATURATION'
+  | 'COLOR'
+  | 'LUMINOSITY';
 export declare type EasingType =
-  | "EASE_IN" /** Ease in with an animation curve similar to CSS ease-in */
-  | "EASE_OUT" /** Ease out with an animation curve similar to CSS ease-out */
-  | "EASE_IN_AND_OUT"; /** Ease in and then out with an animation curve similar to CSS ease-in-out */
-export declare type RoleType = "viewer" | "editor" | "owner";
-export declare type NodeType =
-  | "DOCUMENT"
-  | "CANVAS"
-  | "FRAME"
-  | "GROUP"
-  | "VECTOR"
-  | "BOOLEAN_OPERATION"
-  | "STAR"
-  | "LINE"
-  | "ELLIPSE"
-  | "REGULAR_POLYGON"
-  | "RECTANGLE"
-  | "TEXT"
-  | "SLICE"
-  | "COMPONENT"
-  | "COMPONENT_SET"
-  | "INSTANCE";
-export declare type Node =
-  | Document
-  | Canvas
-  | Frame
-  | Group
-  | Vector
-  | BooleanOperation
-  | Star
-  | Line
-  | Ellipse
-  | RegularPolygon
-  | Rectangle
-  | Text
-  | Slice
-  | Component
-  | ComponentSet
-  | Instance;
+  | 'EASE_IN' /** Ease in with an animation curve similar to CSS ease-in */
+  | 'EASE_OUT' /** Ease out with an animation curve similar to CSS ease-out */
+  | 'EASE_IN_AND_OUT'; /** Ease in and then out with an animation curve similar to CSS ease-in-out */
+export declare type RoleType = 'viewer' | 'editor' | 'owner';
+export declare type NodeType = 'DOCUMENT' | 'CANVAS' | 'FRAME' | 'GROUP' | 'VECTOR' | 'BOOLEAN_OPERATION' | 'STAR' | 'LINE' | 'ELLIPSE' | 'REGULAR_POLYGON' | 'RECTANGLE' | 'TEXT' | 'SLICE' | 'COMPONENT' | 'COMPONENT_SET' | 'INSTANCE';
+export declare type Node = Document | Canvas | Frame | Group | Vector | BooleanOperation | Star | Line | Ellipse | RegularPolygon | Rectangle | Text | Slice | Component | ComponentSet | Instance;
 /** Node Properties */
 /** The root node */
 export interface Document extends Global {
-  readonly type: "DOCUMENT";
+  readonly type: 'DOCUMENT';
   /** An array of canvases attached to the document */
   readonly children: ReadonlyArray<Node>;
 }
 /** Represents a single page */
 export interface Canvas extends Global {
-  readonly type: "CANVAS";
+  readonly type: 'CANVAS';
   /** An array of top level layers on the canvas */
   readonly children: ReadonlyArray<Node>;
   /** Background color of the canvas */
@@ -161,7 +116,7 @@ export interface FrameBase extends Global {
    * "OUTSIDE": stroke drawn outside the shape boundary
    * "CENTER": stroke drawn centered along the shape boundary
    */
-  readonly strokeAlign: "INSIDE" | "OUTSIDE" | "CENTER";
+  readonly strokeAlign: 'INSIDE' | 'OUTSIDE' | 'CENTER';
   /**
    * Radius of each corner of the frame if a single radius is set for all
    * corners
@@ -243,22 +198,22 @@ export interface FrameBase extends Global {
    * Whether this layer uses auto-layout to position its children.
    * @default NONE
    */
-  readonly layoutMode?: "NONE" | "HORIZONTAL" | "VERTICAL";
+  readonly layoutMode?: 'NONE' | 'HORIZONTAL' | 'VERTICAL';
   /**
    * Whether the counter axis has a fixed length (determined by the user)
    * or an automatic length (determined by the layout engine).
    * This property is only applicable for auto-layout frames
    * @default AUTO
    */
-  readonly primaryAxisSizingMode?: "FIXED" | "AUTO";
+  readonly primaryAxisSizingMode?: 'FIXED' | 'AUTO';
   /**
    * When autolayout is enabled
    */
-  readonly primaryAxisAlignItems?: "MIN" | "CENTER" | "MAX" | "SPACE_BETWEEN";
+  readonly primaryAxisAlignItems?: 'MIN' | 'CENTER' | 'MAX' | 'SPACE_BETWEEN';
   /**
    * When autolayout is enabled
    */
-  readonly counterAxisAlignItems?: "MIN" | "CENTER" | "MAX";
+  readonly counterAxisAlignItems?: 'MIN' | 'CENTER' | 'MAX';
   /**
    * When autolayout is enabled
    */
@@ -286,7 +241,7 @@ export interface FrameBase extends Global {
    * This property is only applicable for auto-layout frames.
    * @default 0
    */
-  readonly counterAxisSizingMode?: "FIXED" | "AUTO";
+  readonly counterAxisSizingMode?: 'FIXED' | 'AUTO';
   /**
    * The horizontal padding between the borders of the frame and its
    * children. This property is only applicable for auto-layout frames.
@@ -337,11 +292,11 @@ export interface FrameBase extends Global {
 }
 /** A node of fixed size containing other nodes */
 export interface Frame extends FrameBase {
-  readonly type: "FRAME";
+  readonly type: 'FRAME';
 }
 /** A logical grouping of nodes */
 export interface Group extends FrameBase {
-  readonly type: "GROUP";
+  readonly type: 'GROUP';
 }
 export interface VectorBase extends Global {
   /**
@@ -438,7 +393,7 @@ export interface VectorBase extends Global {
    * "OUTSIDE": draw stroke outside the shape boundary
    * "CENTER": draw stroke centered along the shape boundary
    */
-  readonly strokeAlign: "INSIDE" | "OUTSIDE" | "CENTER";
+  readonly strokeAlign: 'INSIDE' | 'OUTSIDE' | 'CENTER';
   /**
    * Styles this node uses from the global `styles`
    */
@@ -446,38 +401,38 @@ export interface VectorBase extends Global {
 }
 /** A vector network, consisting of vertices and edges */
 export interface Vector extends VectorBase {
-  readonly type: "VECTOR";
+  readonly type: 'VECTOR';
 }
 /** A group that has a boolean operation applied to it */
 export interface BooleanOperation extends VectorBase {
-  readonly type: "BOOLEAN_OPERATION";
+  readonly type: 'BOOLEAN_OPERATION';
   /**
    * A string enum with value of "UNION", "INTERSECT", "SUBTRACT", or "EXCLUDE"
    * indicating the type of boolean operation applied
    */
-  readonly booleanOperation: "UNION" | "INTERSECT" | "SUBTRACT" | "EXCLUDE";
+  readonly booleanOperation: 'UNION' | 'INTERSECT' | 'SUBTRACT' | 'EXCLUDE';
   /** An array of nodes that are being boolean operated on */
   readonly children: ReadonlyArray<Node>;
 }
 /** A regular star shape */
 export interface Star extends VectorBase {
-  readonly type: "STAR";
+  readonly type: 'STAR';
 }
 /** A straight line */
 export interface Line extends VectorBase {
-  readonly type: "LINE";
+  readonly type: 'LINE';
 }
 /** An ellipse */
 export interface Ellipse extends VectorBase {
-  readonly type: "ELLIPSE";
+  readonly type: 'ELLIPSE';
 }
 /** A regular n-sided polygon */
 export interface RegularPolygon extends VectorBase {
-  readonly type: "REGULAR_POLYGON";
+  readonly type: 'REGULAR_POLYGON';
 }
 /** A rectangle */
 export interface Rectangle extends VectorBase {
-  readonly type: "RECTANGLE";
+  readonly type: 'RECTANGLE';
   /** Radius of each corner of the rectangle if a single radius is set for all corners */
   readonly cornerRadius?: number;
   /** Array of length 4 of the radius of each corner of the rectangle, starting in the top left and proceeding clockwise */
@@ -487,7 +442,7 @@ export interface Rectangle extends VectorBase {
 // ORDERED Text is an ordered list (numbered)
 // UNORDERED: Text is an unordered list (bulleted)
 // NONE: Text is plain text and not part of any list
-export type LineType = "ORDERED" | "UNORDERED" | "NONE"
+export type LineType = 'ORDERED' | 'UNORDERED' | 'NONE';
 
 /** A text box */
 export interface Text extends VectorBase {
@@ -512,15 +467,15 @@ export interface Text extends VectorBase {
   /**
    * An array with the same number of elements as lines in the text node, where lines are delimited by newline or paragraph separator characters. Each element in the array corresponds to the list type of a specific line. List types are represented as string enums with one of these possible values:
    */
-  readonly lineTypes: LineType[]
+  readonly lineTypes: LineType[];
   /**
    * An array with the same number of elements as lines in the text node, where lines are delimited by newline or paragraph separator characters. Each element in the array corresponds to the indentation level of a specific line.
    */
-  lineIndentations: number[]
+  lineIndentations: number[];
 }
 /** A rectangular region of the canvas that can be exported */
 export interface Slice extends Global {
-  readonly type: "SLICE";
+  readonly type: 'SLICE';
   /** An array of export settings representing images to export from this node */
   readonly exportSettings: ReadonlyArray<ExportSetting>;
   /** Bounding box of the node in absolute space coordinates */
@@ -542,18 +497,18 @@ export interface Slice extends Global {
 }
 /** A node that can have instances created of it that share the same properties */
 export interface Component extends FrameBase {
-  readonly type: "COMPONENT";
+  readonly type: 'COMPONENT';
 }
 /** A node that can have multiple component variations */
 export interface ComponentSet extends FrameBase {
-  readonly type: "COMPONENT_SET";
+  readonly type: 'COMPONENT_SET';
 }
 /**
  * An instance of a component, changes to the component result in the same
  * changes applied to the instance
  */
 export interface Instance extends FrameBase {
-  readonly type: "INSTANCE";
+  readonly type: 'INSTANCE';
   /**
    * ID of component that this instance came from, refers to components
    * table (see endpoints section below)
@@ -576,7 +531,7 @@ export interface ExportSetting {
   /** File suffix to append to all filenames */
   readonly suffix: string;
   /** Image type, string enum */
-  readonly format: "JPG" | "PNG" | "SVG" | "PDF";
+  readonly format: 'JPG' | 'PNG' | 'SVG' | 'PDF';
   /** Constraint that determines sizing of exported asset */
   readonly constraint: Constraint;
 }
@@ -588,7 +543,7 @@ export interface Constraint {
    * "WIDTH": Scale proportionally and set width to value
    * "HEIGHT": Scale proportionally and set height to value
    */
-  readonly type: "SCALE" | "WIDTH" | "HEIGHT";
+  readonly type: 'SCALE' | 'WIDTH' | 'HEIGHT';
   /** See type property for effect of this field */
   readonly value: number;
 }
@@ -613,7 +568,7 @@ export interface LayoutConstraint {
    * "TOP_BOTTOM": Both top and bottom of node are constrained relative to containing frame (node stretches with frame)
    * "SCALE": Node scales vertically with containing frame
    */
-  readonly vertical: "TOP" | "BOTTOM" | "CENTER" | "TOP_BOTTOM" | "SCALE";
+  readonly vertical: 'TOP' | 'BOTTOM' | 'CENTER' | 'TOP_BOTTOM' | 'SCALE';
   /**
    * Horizontal constraint as an enum
    * "LEFT": Node is laid out relative to left of the containing frame
@@ -622,7 +577,7 @@ export interface LayoutConstraint {
    * "LEFT_RIGHT": Both left and right of node are constrained relative to containing frame (node stretches with frame)
    * "SCALE": Node scales horizontally with containing frame
    */
-  readonly horizontal: "LEFT" | "RIGHT" | "CENTER" | "LEFT_RIGHT" | "SCALE";
+  readonly horizontal: 'LEFT' | 'RIGHT' | 'CENTER' | 'LEFT_RIGHT' | 'SCALE';
 }
 /** Guides to align and place objects within a frame */
 export interface LayoutGrid {
@@ -632,7 +587,7 @@ export interface LayoutGrid {
    * "ROWS": Horizontal grid
    * "GRID": Square grid
    */
-  readonly pattern: "COLUMNS" | "ROWS" | "GRID";
+  readonly pattern: 'COLUMNS' | 'ROWS' | 'GRID';
   /** Width of column grid or height of row grid or square grid spacing */
   readonly sectionSize: number;
   /** Is the grid currently visible? */
@@ -645,7 +600,7 @@ export interface LayoutGrid {
    * "MAX": Grid starts at the right or bottom of the frame
    * "CENTER": Grid is center aligned
    */
-  readonly alignment: "MIN" | "MAX" | "CENTER";
+  readonly alignment: 'MIN' | 'MAX' | 'CENTER';
   /** Spacing in between columns and rows */
   readonly gutterSize: number;
   /** Spacing before the first column or row */
@@ -656,11 +611,7 @@ export interface LayoutGrid {
 /** A visual effect such as a shadow or blur */
 export interface Effect {
   /** Type of effect as a string enum */
-  readonly type:
-    | "INNER_SHADOW"
-    | "DROP_SHADOW"
-    | "LAYER_BLUR"
-    | "BACKGROUND_BLUR";
+  readonly type: 'INNER_SHADOW' | 'DROP_SHADOW' | 'LAYER_BLUR' | 'BACKGROUND_BLUR';
   /** Is the effect active? */
   readonly visible: boolean;
   /** Radius of the blur effect (applies to shadows as well) */
@@ -736,7 +687,7 @@ export interface Path {
   /** A sequence of path commands in SVG notation */
   readonly path: string;
   /** Winding rule for the path */
-  readonly windingRule: "EVENODD" | "NONZERO";
+  readonly windingRule: 'EVENODD' | 'NONZERO';
 }
 export declare type Transform = ReadonlyArray<ReadonlyArray<number>>;
 /** A 2d vector */
@@ -770,9 +721,9 @@ export interface TypeStyle {
   /** Font size in px */
   readonly fontSize: number;
   /** Horizontal text alignment as string enum */
-  readonly textAlignHorizontal: "LEFT" | "RIGHT" | "CENTER" | "JUSTIFIED";
+  readonly textAlignHorizontal: 'LEFT' | 'RIGHT' | 'CENTER' | 'JUSTIFIED';
   /** Vertical text alignment as string enum */
-  readonly textAlignVertical: "TOP" | "CENTER" | "BOTTOM";
+  readonly textAlignVertical: 'TOP' | 'CENTER' | 'BOTTOM';
   /** Space between characters in px */
   readonly letterSpacing: number;
   /** Paints applied to characters */
@@ -782,11 +733,11 @@ export interface TypeStyle {
   /** Line height as a percentage of normal line height */
   readonly lineHeightPercent: number;
   /** The unit of the line height value specified by the user. */
-  readonly lineHeightUnit: "PIXELS" | "FONT_SIZE_%" | "INTRINSIC_%";
+  readonly lineHeightUnit: 'PIXELS' | 'FONT_SIZE_%' | 'INTRINSIC_%';
   /** Text casing applied to the node, default is the original casing */
-  readonly textCase?: "UPPER" | "LOWER" | "TITLE";
+  readonly textCase?: 'UPPER' | 'LOWER' | 'TITLE';
   /** Text decoration applied to the node, default is none */
-  readonly textDecoration?: "STRIKETHROUGH" | "UNDERLINE";
+  readonly textDecoration?: 'STRIKETHROUGH' | 'UNDERLINE';
   /** Line height as a percentage of the font size. Only returned when lineHeightPercent is not 100. */
   readonly lineHeightPercentFontSize?: number;
 }

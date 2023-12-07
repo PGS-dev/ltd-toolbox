@@ -1,5 +1,5 @@
-import { FigmaParser } from '../../parser';
 import type { FileResponse } from '../../full-figma-types';
+import { FigmaParser } from '../../parser';
 import { SingleNode } from './single-node';
 
 export class DocumentPlugin {

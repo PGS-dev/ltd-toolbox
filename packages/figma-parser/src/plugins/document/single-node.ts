@@ -1,19 +1,13 @@
-import { NodeCollection } from './node-collection';
+import pm from 'picomatch';
 import type { Node, NodeType } from '../../full-figma-types';
 import { Text } from '../../full-figma-types';
-import {
-  FigmaNodeId,
-  GlobSearchNodes,
-  hasChildren,
-  isTextNode,
-  PathBreadcrumb,
-} from './types';
-import pm from "picomatch";
+import { NodeCollection } from './node-collection';
+import { FigmaNodeId, GlobSearchNodes, PathBreadcrumb, hasChildren, isTextNode } from './types';
 
 export class SingleNode {
-  id: FigmaNodeId = ''
-  name: string = ''
-  children: NodeCollection = new NodeCollection([], this)
+  id: FigmaNodeId = '';
+  name: string = '';
+  children: NodeCollection = new NodeCollection([], this);
   type: NodeType | string = '';
 
   constructor(node: Node | SingleNode) {
@@ -45,7 +39,7 @@ export class SingleNode {
     const output: GlobSearchNodes[] = [];
 
     this.walk((node, path) => {
-      const nodePath = path.map((path) => path.name.toLowerCase()).join("/");
+      const nodePath = path.map((path) => path.name.toLowerCase()).join('/');
 
       if (matcher(nodePath)) {
         output.push({ path, node });
@@ -67,9 +61,7 @@ export class SingleNode {
       callback(node, [...path, breadcrumb]);
 
       if (node.children && node.children.length > 0) {
-        node.children.each((node: SingleNode) =>
-          walker(node, [...path, breadcrumb]),
-        );
+        node.children.each((node: SingleNode) => walker(node, [...path, breadcrumb]));
       }
     }
 
@@ -102,9 +94,7 @@ export class SingleNode {
     return output;
   }
 
-  filterDeep(
-    predicate: (node: SingleNode, path?: PathBreadcrumb[]) => boolean,
-  ) {
+  filterDeep(predicate: (node: SingleNode, path?: PathBreadcrumb[]) => boolean) {
     const output: SingleNode[] = [];
     function walker(node: SingleNode, path: PathBreadcrumb[] = []) {
       if (!node) return;

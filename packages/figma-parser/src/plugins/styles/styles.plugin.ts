@@ -1,30 +1,78 @@
+import { Effect, FileNodesResponse, FileStylesResponse, Node, Paint, TypeStyle } from '../../full-figma-types';
 import { FigmaParser } from '../../parser';
 import { FigmaParserPlugin } from '../../types';
-import {
-  Effect,
-  FileNodesResponse,
-  FileStylesResponse, Node,
-  Paint,
-  TypeStyle
-} from '../../full-figma-types'
-import {
-  EffectStyle,
-  FigmaStyleDfeinition,
-  FigmaStylesTransformer,
-  FillStyle,
-  FullStyle,
-  isEffectStyle,
-  isFillStyle,
-  isTextStyle,
-  TextStyle,
-} from './types';
-import { DesignTokens, DesignTokensFormat } from './transformers/design-tokens/index'
+import { DesignTokens, DesignTokensFormat } from './transformers/design-tokens/index';
+import { EffectStyle, FigmaStyleDfeinition, FigmaStylesTransformer, FillStyle, FullStyle, TextStyle, isEffectStyle, isFillStyle, isTextStyle } from './types';
 
-
-type Prev<T extends number> = [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62][T];
+type Prev<T extends number> = [
+  -1,
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52,
+  53,
+  54,
+  55,
+  56,
+  57,
+  58,
+  59,
+  60,
+  61,
+  62,
+][T];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Last<original extends any[]> = original[Prev<(original extends { length: infer L } ? L : never)>]
+type Last<original extends any[]> = original[Prev<original extends { length: infer L } ? L : never>];
 
 export class StylesPlugin implements FigmaParserPlugin {
   private host: FigmaParser;
@@ -38,16 +86,12 @@ export class StylesPlugin implements FigmaParserPlugin {
   async styles(fileId: string) {
     if (!fileId) throw new Error('Expected fileId.');
     const stylesUrl = `files/${fileId}/styles`;
-    const fileStyles = await this.host
-      .request<FileStylesResponse>(stylesUrl)
-      .then((response) => response?.meta?.styles);
+    const fileStyles = await this.host.request<FileStylesResponse>(stylesUrl).then((response) => response?.meta?.styles);
 
-    const nodeIds = fileStyles?.map((style) => style.node_id).join(",");
+    const nodeIds = fileStyles?.map((style) => style.node_id).join(',');
 
     const nodesUrl = `files/${fileId}/nodes`;
-    const fileNodes = await this.host
-      .request<FileNodesResponse>(nodesUrl, { ids: nodeIds })
-      .then((response) => response.nodes);
+    const fileNodes = await this.host.request<FileNodesResponse>(nodesUrl, { ids: nodeIds }).then((response) => response.nodes);
 
     this.stylesData = fileStyles.map((style) => ({
       styleMeta: style,
@@ -58,7 +102,7 @@ export class StylesPlugin implements FigmaParserPlugin {
   }
 
   private getFillStyle(style: FillStyle): Readonly<Paint[]> {
-    if (!isFillStyle(style)) throw new Error('Expected FillStyle!')
+    if (!isFillStyle(style)) throw new Error('Expected FillStyle!');
 
     return style.nodeData.fills;
   }
@@ -69,7 +113,7 @@ export class StylesPlugin implements FigmaParserPlugin {
   }
 
   private getEffectStyle(style: EffectStyle): Readonly<Effect[]> {
-    if (!isEffectStyle(style)) throw new Error('Expected EffectStyle!')
+    if (!isEffectStyle(style)) throw new Error('Expected EffectStyle!');
 
     return style.nodeData.effects;
   }
@@ -89,10 +133,7 @@ export class StylesPlugin implements FigmaParserPlugin {
 
   transform<Transformers extends FigmaStylesTransformer[]>(...transformers: Transformers): ReturnType<Last<Transformers>> | FigmaStyleDfeinition[] {
     if (transformers.length === 0) return this.definitions();
-    return transformers.reduce(
-      (acc, transformer) => transformer(acc),
-      this.definitions(),
-    );
+    return transformers.reduce((acc, transformer) => transformer(acc), this.definitions());
   }
 
   private getStyle(style: FullStyle) {

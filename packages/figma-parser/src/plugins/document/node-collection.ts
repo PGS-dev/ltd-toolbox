@@ -1,6 +1,6 @@
 import { Node } from '../../full-figma-types';
-import { CallbackFunction, FigmaNodeId, PathBreadcrumb } from './types';
 import { SingleNode } from './single-node';
+import { CallbackFunction, FigmaNodeId, PathBreadcrumb } from './types';
 
 export class NodeCollection {
   public readonly length: number = 0;
@@ -8,10 +8,7 @@ export class NodeCollection {
 
   [i: number]: SingleNode;
 
-  constructor(
-    nodes: Node[] | ReadonlyArray<Node> | SingleNode[],
-    parent: SingleNode,
-  ) {
+  constructor(nodes: Node[] | ReadonlyArray<Node> | SingleNode[], parent: SingleNode) {
     let length = 0;
 
     nodes.forEach((node, index) => {
@@ -38,16 +35,12 @@ export class NodeCollection {
     for (let i = 0; i <= this.length - 1; i++) {
       out.push(this[i].toString());
     }
-    return out.join(", ");
+    return out.join(', ');
   }
 
   at(index: number) {
-    if (index > 0 && index > this.length - 1)
-      throw new Error(
-        `Maximum index for this collection is ${this.length - 1}`,
-      );
-    if (index < 0 && index < -this.length)
-      throw new Error(`Minimum index for this collection is ${-this.length}`);
+    if (index > 0 && index > this.length - 1) throw new Error(`Maximum index for this collection is ${this.length - 1}`);
+    if (index < 0 && index < -this.length) throw new Error(`Minimum index for this collection is ${-this.length}`);
 
     if (index < 0) {
       return this[this.length + index];
@@ -62,7 +55,7 @@ export class NodeCollection {
         return this[i];
       }
     }
-    return
+    return;
   }
 
   id(id: FigmaNodeId | string): SingleNode | undefined {

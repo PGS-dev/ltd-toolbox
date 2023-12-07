@@ -7,7 +7,7 @@ const parser = new FigmaParser(TOKEN, {
   plugins: [HardCachePlugin],
 });
 
-const response = await parser.request("<fileId>");
+const response = await parser.request('<fileId>');
 
 console.log(response);
 ```
