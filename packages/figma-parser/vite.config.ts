@@ -1,10 +1,9 @@
-import { relative } from 'node:path'
-import {splitVendorChunkPlugin, defineConfig } from 'vite'
+import { appendFile, readFile } from 'fs/promises'
 import { builtinModules } from 'module'
-import dts from "vite-plugin-dts";
+import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
 // @ts-ignore
 import pkg from './package.json'
-import { appendFile, readFile } from "fs/promises";
 
 // const rollupGlobals = Object.fromEntries(builtinModules.map(module => [`node:${module}`, module]))
 
@@ -13,7 +12,7 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     minify: false,
-    sourcemap: 'inline',
+    sourcemap: true,
     target: 'node16',
     lib: {
       name: 'ltd-toolbox/figma-parser',
