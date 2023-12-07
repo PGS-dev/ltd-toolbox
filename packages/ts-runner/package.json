@@ -13,7 +13,8 @@
   "scripts": {
     "build": "echo nothing to do here!",
     "lint": "eslint cli.js --report-unused-disable-directives --max-warnings 0",
-    "format": "yarn prettier cli.js --write"
+    "format": "yarn prettier cli.js --write",
+    "codecheck": "yarn lint && yarn prettier cli.js --check"
   },
   "bin": {
     "tsrun": "cli.js"

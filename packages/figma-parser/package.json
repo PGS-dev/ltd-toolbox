@@ -16,7 +16,8 @@
     "build": "yarn vite build",
     "test": "yarn vitest",
     "lint": "eslint ./src --ext ts --report-unused-disable-directives --max-warnings 0",
-    "format": "yarn prettier ./src/ --write"
+    "format": "yarn prettier ./src/ --write",
+    "codecheck": "tsc --noEmit && yarn lint && yarn prettier ./src --check"
   },
   "files": [
     "./dist/"
@@ -29,7 +30,8 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.9",
     "vite-plugin-dts": "^3.6.0",
-    "vitest": "^0.34.6"
+    "vitest": "^0.34.6",
+    "wsrun": "^5.2.4"
   },
   "dependencies": {
     "@types/mdast": "^4.0.1",

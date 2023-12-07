@@ -1,0 +1,37 @@
+name: Lint code
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopenned
+    branches:
+      - main
+      - next
+    workflow_dispatch:
+
+jobs:
+  codecheck-and-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Set Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install --immutable
+
+      - name: Linting, code style and format checks
+        run: yarn codecheck
+
+      - name: Tests
+        run: yarn test

@@ -9,7 +9,9 @@
     "release:canary": "yarn lerna publish --canary",
     "release:pre": "yarn lerna publish --conventional-prerelease",
     "release": "yarn lerna publish --conventional-graduate",
-    "postinstall": "yarn husky install"
+    "postinstall": "yarn husky install",
+    "test": "yarn wsrun -l --exclude-missing test --run",
+    "codecheck": "yarn wsrun -l --exclude-missing codecheck"
   },
   "workspaces": [
     "packages/ts-runner",
