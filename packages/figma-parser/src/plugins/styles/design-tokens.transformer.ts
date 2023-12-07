@@ -62,8 +62,12 @@ export const isTypographyToken = (token: DesignToken): token is TypographyToken 
 
 export const isGradientToken = (token: DesignToken): token is GradientToken => token.$type === 'gradient';
 
-export interface DesignTokensFormat {
-  [k: string]: DesignToken | DesignTokensFormat;
+export interface DesignTokensFormatFlat {
+  [k: string]: DesignToken;
+}
+
+export interface DesignTokensFormatDeep {
+  [k: string]: DesignTokensFormatDeep;
 }
 
 const gradientTransform = (style: Paint) => {
@@ -109,7 +113,9 @@ const shadowTransform = (style: Effect[]) => {
   });
 };
 
-export const DesignTokens = (deep: boolean = false): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormat> => {
+export function DesignTokens (deep: true): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormatDeep>;
+export function DesignTokens (deep: false): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormatFlat>;
+export function DesignTokens (deep: boolean = false): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormatFlat | DesignTokensFormatDeep> {
   return (input: FigmaStyleDfeinition[]) => {
     const stylesArray = input
       .map((definition) => {
