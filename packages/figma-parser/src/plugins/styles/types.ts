@@ -39,9 +39,9 @@ export const isEffectDefinition = (
 ): definition is FigmaStyleDfeinition & { definition: Effect[] } =>
   definition.type === "EFFECT";
 
-export type FigmaStylesTransformer<Input = any, Output = any> = (
-  input: Input,
-) => Output;
+// Temporary type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type FigmaStylesTransformer<Input = any, Output = any> = (input: Input) => Output;
 
 export type FullStyle = {
   styleMeta: FullStyleMetadata;

@@ -1,5 +1,7 @@
 type ArrayElement<A> = A extends readonly (infer T)[] ? T : never;
 
+// Need help with typing this util
+
 export const combineSchema = <InputData extends { [k: string]: unknown[] }>(
   combineSchema: InputData,
 ): { [k in keyof InputData]: ArrayElement<InputData[k]> }[] => {
@@ -11,13 +13,16 @@ export const combineSchema = <InputData extends { [k: string]: unknown[] }>(
     throw new Error("All collections in schema must be equal length!");
 
   const entries = Object.entries(combineSchema);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const output: any[] = [];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   entries.forEach(([key, collection]: [string, any[]]) => {
-    collection.forEach((node: any, index: number) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    collection.forEach((value: any, index: number) => {
       output[index] = {
         ...output[index],
-        [key]: node,
+        [key]: value,
       };
     });
   });

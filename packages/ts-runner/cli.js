@@ -3,9 +3,8 @@
 const { dirname, join, resolve }  = require('path');
 const { existsSync } = require ("fs");
 const { config } = require('dotenv');
-const { pathToFileURL, fileURLToPath } = require('url');
+const { pathToFileURL } = require('url');
 const { spawn } = require('child_process');
-const { createRequire } = require('module');
 const minimist = require('minimist')
 
 const args = minimist(process.argv.slice(2))
@@ -24,7 +23,6 @@ const closestFile = (filename, path = process.cwd()) => {
 };
 
 const rootPackageJson = closestFile('package.json', dirname(require.main.path))
-const localPackageJson = closestFile('package.json')
 
 // Load env variables
 

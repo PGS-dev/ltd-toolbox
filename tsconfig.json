@@ -1,18 +1,26 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "composite": true,
     "target": "esnext",
-    "noImplicitAny": true,
-    "moduleResolution": "Node",
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "ESNext"],
+    "module": "ES2020",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+
+    "allowJs": true,
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
     "allowImportingTsExtensions": false,
-    "preserveSymlinks": true,
     "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
     "sourceMap": true,
-    "baseUrl": ".",
-    "module": "NodeNext",
-    "lib": ["es2020"],
+
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
     "types": ["node"]
   }
 }

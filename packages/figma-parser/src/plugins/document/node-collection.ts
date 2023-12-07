@@ -89,8 +89,8 @@ export class NodeCollection {
     return new NodeCollection(out, this.parent);
   }
 
-  map<T = any>(callback: CallbackFunction<T>): T[] {
-    const out: T[] = [];
+  map<Output>(callback: (node: SingleNode, index?: number, collection?: NodeCollection) => Output): Output[] {
+    const out: Output[] = [];
 
     for (let i = 0; i <= this.length - 1; i++) {
       out.push(callback(this[i], i, this));

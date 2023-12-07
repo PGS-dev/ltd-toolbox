@@ -1,11 +1,13 @@
 {
-  "extends": "../../shared-configs/tsconfig.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "outDir": "dist",
   },
   "include": [
     "src/**/*",
     "testing-utils/**/*"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
   ]
 }

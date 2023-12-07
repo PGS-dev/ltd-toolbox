@@ -187,7 +187,7 @@ export const DesignTokens = (deep: boolean = false): FigmaStylesTransformer<Figm
 
       stylesArray.forEach(([name, value]) => {
         const path = name.split("/");
-        path.reduce((acc: any, key: string, i: number) => {
+        path.reduce((acc: Record<string, object>, key: string, i: number) => {
           if (acc[key] === undefined) acc[key] = {};
 
           if (i === path.length - 1) {

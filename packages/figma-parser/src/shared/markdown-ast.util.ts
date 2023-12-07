@@ -2,7 +2,7 @@ import { SingleNode } from '../plugins/document/single-node';
 import { isTextNode } from '../plugins/document/types';
 import { combineSchema } from './combine-schema.util';
 import { fromMarkdown } from "mdast-util-from-markdown";
-import { getNodeDecoratedText, LineType } from '../plugins/markdown/utils';
+import { getNodeDecoratedText } from '../plugins/markdown/utils';
 import { Root } from "mdast";
 
 export const markdownAST = (...nodes: SingleNode[]): Root => {
@@ -12,8 +12,8 @@ export const markdownAST = (...nodes: SingleNode[]): Root => {
     if (!isTextNode(node)) return;
 
     const lines = combineSchema({
-      indent: (node as any).lineIndentations as number[],
-      type: (node as any).lineTypes as LineType[],
+      indent: node.lineIndentations,
+      type: node.lineTypes,
       text: getNodeDecoratedText(node)?.split("\n") || [],
     });
 

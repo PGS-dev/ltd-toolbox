@@ -12,7 +12,7 @@ export class HardCachePlugin implements FigmaParserPlugin {
   constructor(host: FigmaParser) {
     this.host = host;
 
-    this.directory = (this.host as any)?.options?.cacheDir || this.directory;
+    this.directory = this.host?.options?.cacheDir || this.directory;
 
     this.originalRequest = this.host.request.bind(this.host);
     this.host.request = this.request.bind(this);
@@ -20,32 +20,32 @@ export class HardCachePlugin implements FigmaParserPlugin {
 
   originalRequest: <Response = object>(
     path: string,
-    params?: object,
+    params?: Record<string, string>,
   ) => Promise<Response>;
 
   async request<Response = object>(
     path: string,
-    params?: object,
+    params?: Record<string, string>,
   ): Promise<Response> {
     const cached = this.get({ path, params });
-    if (cached && (this.host as any).options.hardCache) {
+    if (cached && this.host.options.hardCache) {
       return JSON.parse(cached) as Response;
     }
     const data = await this.originalRequest(path, params);
 
-    if ((this.host as any).options.hardCache) {
+    if (this.host.options.hardCache) {
       this.set({ path, params }, JSON.stringify(data, null, 2));
     }
 
     return data as Response;
   }
 
-  cacheFile(data: any) {
+  cacheFile(data: object) {
     const filename = hashData(JSON.stringify(data));
     return join(this.directory, `${filename}.cache`);
   }
 
-  get(data: any) {
+  get(data: object) {
     const file = this.cacheFile(data);
     if (existsSync(file)) {
       return readFileSync(file, "utf-8");
@@ -53,7 +53,7 @@ export class HardCachePlugin implements FigmaParserPlugin {
     return false;
   }
 
-  set(data: any, content: string) {
+  set(data: object, content: string) {
     const file = this.cacheFile(data);
     if (!existsSync(this.directory)) {
       mkdirSync(this.directory, { recursive: true });

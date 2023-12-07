@@ -15,7 +15,7 @@ export class FigmaParser {
   plugins: FigmaParserPluginInstance[] = [];
   defaultPlugins: FigmaParserPluginInstance[] = [DocumentPlugin]
 
-  private options: FigmaParserOptions = {
+  readonly options: FigmaParserOptions = {
     plugins: [],
   };
 
@@ -26,14 +26,14 @@ export class FigmaParser {
     if (!token)
       throw new Error("You need to provide Personal Access Token for Figma.");
 
-    this.options = deepMerge(this.options, userOptions);
+    this.options = deepMerge(this.options, userOptions) as FigmaParserOptions;
 
     [...this.options.plugins, ...this.defaultPlugins].forEach((plugin) => this.loadPlugin(plugin));
   }
 
   async request<Response = object>(
     path: string,
-    params?: object,
+    params?: Record<string, string>,
   ): Promise<Response> {
     let url = `https://api.figma.com/v1/${path}`;
     const headers = new Headers({
@@ -41,7 +41,7 @@ export class FigmaParser {
     });
 
     if (params && Object.keys(params).length > 0) {
-      url += "?" + new URLSearchParams(params as any).toString();
+      url += "?" + new URLSearchParams(params).toString();
     }
 
     return fetch(url, { headers })

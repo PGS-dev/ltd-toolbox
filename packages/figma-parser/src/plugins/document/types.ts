@@ -27,12 +27,9 @@ export interface PathBreadcrumb {
 
 export type FigmaNodeId = `${number}:${number}` | string;
 
-export const hasChildren = <T = Node>(
-  node: any,
-): node is Node & { children: ReadonlyArray<T> } =>
-  node && "children" in node && node.children.length > 0;
+export const hasChildren = <T = Node>(node: object): node is Node & { children: ReadonlyArray<T> } => !!node && "children" in node && Array.isArray(node.children) && node.children.length > 0;
 
-export const isFigmaNodeId = (value: any): value is FigmaNodeId =>
+export const isFigmaNodeId = (value: string): value is FigmaNodeId =>
   /\d+:\d+/.test(value);
 
 export const nodeTypes = [
@@ -54,17 +51,17 @@ export const nodeTypes = [
   "INSTANCE",
 ];
 
-export const isNode = (value: any): value is Node => {
+export const isNode = (value: object): value is Node => {
   if (!value) return false;
   return (
     "id" in value &&
     "name" in value &&
     "type" in value &&
-    nodeTypes.includes(value.type)
+    nodeTypes.includes(value.type as string)
   );
 };
 
-export const isSingleNode = (value: any): value is Node => {
+export const isSingleNode = (value: unknown): value is Node => {
   if (!value) return false;
   return value instanceof SingleNode;
 };

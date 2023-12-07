@@ -1,3 +1,4 @@
+/* eslint-disable */
 //
 // (C) to https://github.com/jemgold
 //
@@ -482,6 +483,12 @@ export interface Rectangle extends VectorBase {
   /** Array of length 4 of the radius of each corner of the rectangle, starting in the top left and proceeding clockwise */
   readonly rectangleCornerRadii?: readonly [number, number, number, number];
 }
+
+// ORDERED Text is an ordered list (numbered)
+// UNORDERED: Text is an unordered list (bulleted)
+// NONE: Text is plain text and not part of any list
+export type LineType = "ORDERED" | "UNORDERED" | "NONE"
+
 /** A text box */
 export interface Text extends VectorBase {
   readonly type: TextType;
@@ -502,6 +509,14 @@ export interface Text extends VectorBase {
   readonly styleOverrideTable: {
     readonly [index: number]: TypeStyle;
   };
+  /**
+   * An array with the same number of elements as lines in the text node, where lines are delimited by newline or paragraph separator characters. Each element in the array corresponds to the list type of a specific line. List types are represented as string enums with one of these possible values:
+   */
+  readonly lineTypes: LineType[]
+  /**
+   * An array with the same number of elements as lines in the text node, where lines are delimited by newline or paragraph separator characters. Each element in the array corresponds to the indentation level of a specific line.
+   */
+  lineIndentations: number[]
 }
 /** A rectangular region of the canvas that can be exported */
 export interface Slice extends Global {
