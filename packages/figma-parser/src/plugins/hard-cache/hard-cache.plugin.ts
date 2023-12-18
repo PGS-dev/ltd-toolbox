@@ -1,10 +1,9 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { join, resolve } from 'path';
-import { FigmaParser } from '../../parser';
+import { FigmaParser } from '../../parser/parser';
 import { hashData } from '../../shared/create-hash.util';
-import type { FigmaParserPlugin } from '../../types';
 
-export class HardCachePlugin implements FigmaParserPlugin {
+export class HardCachePlugin {
   host: FigmaParser;
 
   private directory = resolve('./.cache');
@@ -53,5 +52,12 @@ export class HardCachePlugin implements FigmaParserPlugin {
       mkdirSync(this.directory, { recursive: true });
     }
     writeFileSync(file, content, 'utf-8');
+  }
+}
+
+declare module '../../parser/parser' {
+  export interface FigmaParserOptions {
+    hardCache?: boolean;
+    cacheDir?: string;
   }
 }

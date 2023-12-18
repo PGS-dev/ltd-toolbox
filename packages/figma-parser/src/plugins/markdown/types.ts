@@ -1,6 +1,6 @@
 import { RootContent } from 'mdast';
 import { TypeStyle } from '../../full-figma-types';
-import { SingleNode } from '../document/single-node';
+import { SingleNode } from '../../parser/single-node';
 
 export interface FetchContentPlugin {
   test: (node: SingleNode) => boolean;

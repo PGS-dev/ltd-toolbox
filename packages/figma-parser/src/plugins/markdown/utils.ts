@@ -1,7 +1,7 @@
 import { Paragraph } from 'mdast';
 import { fromMarkdown } from 'mdast-util-from-markdown';
-import { SingleNode } from '../document/single-node';
-import { isTextNode } from '../document/types';
+import { SingleNode } from '../../parser/single-node';
+import { isTextNode } from '../../parser/types';
 import { TypeStyleTable } from './types';
 
 export type LineType = 'ORDERED' | 'UNORDERED' | 'NONE' | 'LIST';

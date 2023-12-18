@@ -1,17 +1,24 @@
-import { DocumentPlugin } from './plugins/document/index';
-import { deepMerge } from './shared/deep-merge';
-import type { FigmaParserPluginConstructor, FigmaParserPluginFunction, FigmaParserPluginInstance, FigmaPAT } from './types';
+import { FileResponse } from '../full-figma-types';
+import { deepMerge } from '../shared/deep-merge';
+import { SingleNode } from './single-node';
+import { FigmaParserPlugin, FigmaParserPluginConstructor, FigmaParserPluginFunction, NodeCollectionMixin, NodeMixin } from './types';
+
+export type FigmaPAT = string;
+// export type FigmaPAT = `figd_${string}`
 
 export interface FigmaParserOptions {
-  plugins: FigmaParserPluginInstance[];
+  plugins: FigmaParserPlugin[];
+  nodeMixins: NodeMixin[];
+  nodeCollectionMixins: NodeCollectionMixin[];
 }
 
 export class FigmaParser {
-  plugins: FigmaParserPluginInstance[] = [];
-  defaultPlugins: FigmaParserPluginInstance[] = [DocumentPlugin];
+  plugins: FigmaParserPlugin[] = [];
 
   readonly options: FigmaParserOptions = {
     plugins: [],
+    nodeMixins: [],
+    nodeCollectionMixins: [],
   };
 
   constructor(
@@ -22,7 +29,7 @@ export class FigmaParser {
 
     this.options = deepMerge(this.options, userOptions) as FigmaParserOptions;
 
-    [...this.options.plugins, ...this.defaultPlugins].forEach((plugin) => this.loadPlugin(plugin));
+    this.options.plugins.forEach((plugin) => this.loadPlugin(plugin));
   }
 
   async request<Response = object>(path: string, params?: Record<string, string>): Promise<Response> {
@@ -45,7 +52,7 @@ export class FigmaParser {
       });
   }
 
-  private loadPlugin(...plugins: FigmaParserPluginInstance[]) {
+  private loadPlugin(...plugins: FigmaParserPlugin[]) {
     plugins.forEach((plugin) => {
       let pluginInstance;
 
@@ -57,8 +64,14 @@ export class FigmaParser {
         pluginInstance = (plugin as FigmaParserPluginFunction)(this);
       }
 
-      this.plugins.push(pluginInstance as FigmaParserPluginInstance);
+      this.plugins.push(pluginInstance as FigmaParserPlugin);
     });
+  }
+
+  async document(fileId: string): Promise<SingleNode> {
+    const file: FileResponse = await this.request(`files/${fileId}`);
+    const nodeCtor = this.options.nodeMixins.reduce((wrapped, mixin) => mixin(wrapped), SingleNode);
+    return new nodeCtor(file.document, this.options.nodeMixins, this.options.nodeCollectionMixins);
   }
 }
 

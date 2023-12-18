@@ -1,21 +1,31 @@
 import pm from 'picomatch';
-import type { Node, NodeType } from '../../full-figma-types';
-import { Text } from '../../full-figma-types';
+import { Node, NodeType } from '../full-figma-types';
 import { NodeCollection } from './node-collection';
-import { FigmaNodeId, GlobSearchNodes, PathBreadcrumb, hasChildren, isTextNode } from './types';
+import { FigmaNodeId, GlobSearchNodes, NodeCollectionMixin, NodeMixin, PathBreadcrumb, SingleTextNode, hasChildren, isTextNode } from './types';
 
 export class SingleNode {
   id: FigmaNodeId = '';
   name: string = '';
-  children: NodeCollection = new NodeCollection([], this);
+  children!: NodeCollection;
   type: NodeType | string = '';
 
-  constructor(node: Node | SingleNode) {
+  constructor(
+    node: Node | SingleNode,
+    private nodeMixins: NodeMixin[] = [],
+    private nodeCollectionMixins: NodeCollectionMixin[] = []
+  ) {
     if (node instanceof SingleNode) return node;
     Object.assign(this, node);
-    if (hasChildren(node)) {
-      this.children = new NodeCollection(node.children, this);
+
+    const collectionCtor = nodeCollectionMixins.reduce((wrapped, mixin) => mixin(wrapped), NodeCollection);
+
+    if (hasChildren<Node>(node)) {
+      this.children = new collectionCtor(node.children, this, this.nodeMixins, this.nodeCollectionMixins);
     }
+  }
+
+  hasMixin(mixin: NodeMixin): this is SingleNode & typeof mixin {
+    return this.nodeMixins.includes(mixin);
   }
 
   table() {
@@ -120,7 +130,7 @@ export class SingleNode {
   }
 
   text(): string[] {
-    const textNodes: (SingleNode & Text)[] = [];
+    const textNodes: SingleTextNode[] = [];
 
     this.walk((node) => {
       if (isTextNode(node)) {
