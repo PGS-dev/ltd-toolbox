@@ -11,8 +11,8 @@ export interface FigmaParserPluginConstructor<Return extends FigmaParserPluginFe
   new (host: FigmaParser): Return;
 }
 export type FigmaParserPlugin = FigmaParserPluginConstructor | FigmaParserPluginFunction;
-export type NodeMixin = <Base extends Constructor<SingleNode>>(nodeClass: Base) => Base & Constructor<any>
-export type NodeCollectionMixin = <Base extends Constructor<NodeCollection>>(collectionClass: Base) => Base & Constructor<any>
+export type NodeMixin = <Base extends Constructor<SingleNode>>(nodeClass: Base) => Base & Constructor<unknown>;
+export type NodeCollectionMixin = <Base extends Constructor<NodeCollection>>(collectionClass: Base) => Base & Constructor<unknown>;
 
 // Document and node types
 export interface PathBreadcrumb {

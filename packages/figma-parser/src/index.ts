@@ -1,4 +1,3 @@
-export { ParserFactory } from './parser-with-plugins';
 export { FigmaParser } from './parser/parser';
 export { FigmaTypes };
 
@@ -10,8 +9,6 @@ import * as FigmaTypes from './types';
 // export { MarkdownPlugin } from './plugins/markdown/markdown.plugin'
 // export { universalTextPlugin }  from './plugins/markdown/universal-text-plugin'
 // export type { FetchContentPlugin }  from './plugins/markdown/types'
-
-export { HardCachePlugin } from './plugins/hard-cache/hard-cache.plugin';
 
 export { StylesPlugin } from './plugins/styles/styles.plugin';
 export { DesignTokens } from './plugins/styles/transformers/design-tokens/index';
