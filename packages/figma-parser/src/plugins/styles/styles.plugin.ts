@@ -1,6 +1,5 @@
 import { Effect, FileNodesResponse, FileStylesResponse, Node, Paint, TypeStyle } from '../../full-figma-types';
-import { FigmaParser } from '../../parser';
-import { FigmaParserPlugin } from '../../types';
+import { FigmaParser } from '../../parser/parser';
 import { DesignTokens, DesignTokensFormat } from './transformers/design-tokens/index';
 import { EffectStyle, FigmaStyleDfeinition, FigmaStylesTransformer, FillStyle, FullStyle, TextStyle, isEffectStyle, isFillStyle, isTextStyle } from './types';
 
@@ -74,7 +73,7 @@ type Prev<T extends number> = [
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Last<original extends any[]> = original[Prev<original extends { length: infer L } ? L : never>];
 
-export class StylesPlugin implements FigmaParserPlugin {
+export class StylesPlugin {
   private host: FigmaParser;
   private stylesData: FullStyle[] = [];
 
@@ -142,5 +141,11 @@ export class StylesPlugin implements FigmaParserPlugin {
     if (isEffectStyle(style)) return this.getEffectStyle(style);
 
     return null;
+  }
+}
+
+declare module '../../parser/parser' {
+  export interface FigmaParser {
+    styles(fileId: string): Promise<StylesPlugin>;
   }
 }

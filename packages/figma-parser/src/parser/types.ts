@@ -1,7 +1,20 @@
-import type { BooleanOperation, Canvas, Component, ComponentSet, Document, Ellipse, Frame, Group, Instance, Line, Node, Rectangle, RegularPolygon, Slice, Star, Text, Vector } from '../../full-figma-types';
+import { Constructor } from 'type-fest';
+import type { BooleanOperation, Canvas, Component, ComponentSet, Document, Ellipse, Frame, Group, Instance, Line, Node, Rectangle, RegularPolygon, Slice, Star, Text, Vector } from '../full-figma-types';
 import { NodeCollection } from './node-collection';
+import { FigmaParser } from './parser';
 import { SingleNode } from './single-node';
 
+// Parser Extensions
+export interface FigmaParserPluginFeatures {}
+export type FigmaParserPluginFunction = (host: FigmaParser) => FigmaParserPluginFeatures;
+export interface FigmaParserPluginConstructor<Return extends FigmaParserPluginFeatures = FigmaParserPluginFeatures> {
+  new (host: FigmaParser): Return;
+}
+export type FigmaParserPlugin = FigmaParserPluginConstructor | FigmaParserPluginFunction;
+export type NodeMixin = <Base extends Constructor<SingleNode>>(nodeClass: Base) => Base & Constructor<unknown>;
+export type NodeCollectionMixin = <Base extends Constructor<NodeCollection>>(collectionClass: Base) => Base & Constructor<unknown>;
+
+// Document and node types
 export interface PathBreadcrumb {
   name: string;
   id: string;
@@ -9,7 +22,7 @@ export interface PathBreadcrumb {
 
 export type FigmaNodeId = `${number}:${number}` | string;
 
-export const hasChildren = <T = Node>(node: object): node is Node & { children: ReadonlyArray<T> } => !!node && 'children' in node && Array.isArray(node.children) && node.children.length > 0;
+export const hasChildren = <T = Node>(node: object): node is Node & { children: T[] } => !!node && 'children' in node && Array.isArray(node.children) && node.children.length > 0;
 
 export const isFigmaNodeId = (value: string): value is FigmaNodeId => /\d+:\d+/.test(value);
 

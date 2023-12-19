@@ -1,5 +1,4 @@
-import { relative } from 'node:path'
-import {splitVendorChunkPlugin, defineConfig } from 'vite'
+import { defineConfig } from 'vite'
 import { builtinModules } from 'module'
 import dts from "vite-plugin-dts";
 // @ts-ignore
@@ -17,7 +16,12 @@ export default defineConfig({
     target: 'node16',
     lib: {
       name: 'ltd-toolbox/figma-parser',
-      entry: './src/',
+      entry: {
+        index: './src/index.ts',
+        parser: './src/parser.ts',
+        'styles-plugin': './src/plugins/styles/index.ts',
+        'hard-cache-plugin': './src/plugins/hard-cache/index.ts'
+      },
       formats: ['es', 'cjs'],
       fileName: (format, filename) => {
         return `${filename}.${format === 'es' ? 'mjs' : 'cjs'}`

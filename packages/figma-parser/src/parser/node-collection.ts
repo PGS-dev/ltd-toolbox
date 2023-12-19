@@ -1,6 +1,6 @@
-import { Node } from '../../full-figma-types';
+import { Node } from '../full-figma-types';
 import { SingleNode } from './single-node';
-import { CallbackFunction, FigmaNodeId, PathBreadcrumb } from './types';
+import { CallbackFunction, FigmaNodeId, NodeCollectionMixin, NodeMixin, PathBreadcrumb } from './types';
 
 export class NodeCollection {
   public readonly length: number = 0;
@@ -8,16 +8,26 @@ export class NodeCollection {
 
   [i: number]: SingleNode;
 
-  constructor(nodes: Node[] | ReadonlyArray<Node> | SingleNode[], parent: SingleNode) {
+  constructor(
+    nodes: Node[] | ReadonlyArray<Node> | SingleNode[],
+    parent: SingleNode,
+    private nodeMixins: NodeMixin[],
+    private nodeCollectionMixins: NodeCollectionMixin[] = []
+  ) {
     let length = 0;
 
     nodes.forEach((node, index) => {
-      this[index] = node instanceof SingleNode ? node : new SingleNode(node);
+      const nodeCtor = this.nodeMixins.reduce((wrapped, mixin) => mixin(wrapped), SingleNode);
+      this[index] = node instanceof SingleNode ? node : new nodeCtor(node, this.nodeMixins, this.nodeCollectionMixins);
       length++;
     });
 
     this.parent = parent;
     this.length = length;
+  }
+
+  hasMixin(mixin: NodeCollectionMixin): this is SingleNode & typeof mixin {
+    return this.nodeCollectionMixins.includes(mixin);
   }
 
   table(): void {
@@ -79,7 +89,7 @@ export class NodeCollection {
         out.push(this[i]);
       }
     }
-    return new NodeCollection(out, this.parent);
+    return new NodeCollection(out, this.parent, this.nodeMixins, this.nodeCollectionMixins);
   }
 
   map<Output>(callback: (node: SingleNode, index?: number, collection?: NodeCollection) => Output): Output[] {

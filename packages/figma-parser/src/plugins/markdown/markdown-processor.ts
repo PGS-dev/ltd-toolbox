@@ -1,19 +1,20 @@
 import { Root, RootContent } from 'mdast';
 import { root } from 'mdast-builder';
 import { toMarkdown } from 'mdast-util-to-markdown';
-import { FigmaParserPlugin } from '../../types';
-import { SingleNode } from '../document/single-node';
-import { isSingleNode } from '../document/types';
+import { SingleNode } from '../../parser/single-node';
+import { hasChildren, isSingleNode } from '../../parser/types';
 import { FetchContentPlugin } from './types';
 import { universalTextPlugin } from './universal-text-plugin';
 
-export class MarkdownProcessor implements FigmaParserPlugin {
+export class MarkdownProcessor {
   constructor(private node: SingleNode) {
     if (!isSingleNode(node)) throw new Error('Expected instance of SingleNode!');
   }
 
   toAST(plugins: FetchContentPlugin[] = []): Root {
     const nodes: Root = root() as Root;
+    if (!hasChildren(this.node)) return nodes;
+
     this.node.children.each((childNode) => {
       const plugin = [...plugins, universalTextPlugin].find((plugin) => plugin.test(childNode));
 

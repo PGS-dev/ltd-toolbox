@@ -1,5 +1,4 @@
-export { FigmaParser } from './parser';
-export { ParserFactory } from './parser-with-plugins';
+export { FigmaParser } from './parser/parser';
 export { FigmaTypes };
 
 import * as FigmaTypes from './types';
@@ -10,8 +9,6 @@ import * as FigmaTypes from './types';
 // export { MarkdownPlugin } from './plugins/markdown/markdown.plugin'
 // export { universalTextPlugin }  from './plugins/markdown/universal-text-plugin'
 // export type { FetchContentPlugin }  from './plugins/markdown/types'
-
-export { HardCachePlugin } from './plugins/hard-cache/hard-cache.plugin';
 
 export { StylesPlugin } from './plugins/styles/styles.plugin';
 export { DesignTokens } from './plugins/styles/transformers/design-tokens/index';
@@ -30,9 +27,8 @@ export type {
   TypographyTokenValue,
 } from './plugins/styles/transformers/design-tokens/index';
 
-export { DocumentPlugin } from './plugins/document/document.plugin';
-export { NodeCollection } from './plugins/document/node-collection';
-export { SingleNode } from './plugins/document/single-node';
+export { NodeCollection } from './parser/node-collection';
+export { SingleNode } from './parser/single-node';
 export {
   hasChildren,
   isBooleanOperationNode,
@@ -55,7 +51,7 @@ export {
   isTextNode,
   isVectorNode,
   nodeTypes,
-} from './plugins/document/types';
+} from './parser/types';
 export type {
   SingleBooleanOperationNode,
   SingleCanvasNode,
@@ -73,4 +69,4 @@ export type {
   SingleStarNode,
   SingleTextNode,
   SingleVectorNode,
-} from './plugins/document/types';
+} from './parser/types';
