@@ -1,6 +1,6 @@
-import type { Effect, Paint, TypeStyle } from '../../../../full-figma-types';
-import { rgbaToHexa } from '../../../../shared/rgba-to-hex.util';
-import { FigmaStyleDfeinition, FigmaStylesTransformer, isEffectDefinition, isFillDefinition, isTextDefinition } from '../../types';
+import { rgbaToHexa } from '../../shared/rgba-to-hex.util';
+import type { Effect, Paint, TypeStyle } from '../../types';
+import { FigmaStyleDfeinition, FigmaStylesTransformer, isEffectDefinition, isFillDefinition, isTextDefinition } from './types';
 
 export interface TypographyTokenValue {
   fontFamily: string;

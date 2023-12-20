@@ -1,5 +1,5 @@
 import { FigmaParser } from '../../parser/parser';
-import { SingleNode } from '../../parser/single-node';
+import { SingleNode } from '../nodes';
 import { MarkdownProcessor } from './markdown-processor';
 
 export class MarkdownPlugin {

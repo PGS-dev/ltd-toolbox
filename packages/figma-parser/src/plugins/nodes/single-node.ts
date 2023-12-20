@@ -1,5 +1,5 @@
 import pm from 'picomatch';
-import { Node, NodeType } from '../full-figma-types';
+import { Node, NodeType } from '../../types';
 import { NodeCollection } from './node-collection';
 import { FigmaNodeId, GlobSearchNodes, NodeCollectionMixin, NodeMixin, PathBreadcrumb, SingleTextNode, hasChildren, isTextNode } from './types';
 

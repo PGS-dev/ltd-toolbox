@@ -1,9 +1,9 @@
-import { FileResponse } from '../full-figma-types';
-import { deepMerge } from '../shared/deep-merge';
+import { NodeCollectionMixin, NodeMixin, NodesPlugin, SingleNode } from '../plugins/nodes';
+import { StylesPlugin } from '../plugins/styles';
+import { StylesProcessor } from '../plugins/styles/styles-processor';
 import { HardCache } from './hard-cache';
 import { loggerFactory } from './logger';
-import { SingleNode } from './single-node';
-import { FigmaParserPlugin, FigmaParserPluginConstructor, FigmaParserPluginFunction, NodeCollectionMixin, NodeMixin } from './types';
+import { FigmaParserPlugin, FigmaParserPluginConstructor, FigmaParserPluginFunction, FigmaParserPluginInterface } from './types';
 
 export type FigmaPAT = string;
 // export type FigmaPAT = `figd_${string}`
@@ -17,14 +17,19 @@ export interface FigmaParserOptions {
   cacheLifetime: number;
 }
 
+export interface FigmaRequestOptions {
+  path: string;
+  params: Record<string, string> | object;
+}
+
 const logger = loggerFactory('Figma Parser');
 
 export class FigmaParser {
-  plugins: FigmaParserPlugin[] = [];
+  plugins: Map<string, FigmaParserPluginInterface> = new Map();
   cache: HardCache;
 
   readonly options: FigmaParserOptions = {
-    plugins: [],
+    plugins: [NodesPlugin, StylesPlugin],
     nodeMixins: [],
     nodeCollectionMixins: [],
     hardCache: true,
@@ -38,7 +43,9 @@ export class FigmaParser {
   ) {
     if (!token) throw new Error('You need to provide Personal Access Token for Figma.');
 
-    this.options = deepMerge(this.options, userOptions) as FigmaParserOptions;
+    const defaultPlugins = this.options.plugins;
+    this.options = { ...this.options, ...userOptions } as FigmaParserOptions;
+    this.options.plugins = [...defaultPlugins, ...(userOptions?.plugins || [])];
 
     this.cache = new HardCache(this.options.cacheDir, this.options.cacheLifetime);
 
@@ -90,19 +97,21 @@ export class FigmaParser {
 
         pluginInstance = (plugin as FigmaParserPluginFunction)(this);
       }
+      const pluginName = pluginInstance.name || plugin.name;
 
-      this.plugins.push(pluginInstance as FigmaParserPlugin);
+      this.plugins.set(pluginName, pluginInstance);
     });
   }
 
-  async document(fileId: string): Promise<SingleNode> {
-    const file: FileResponse = await this.request(`files/${fileId}`);
-    const nodeCtor = this.options.nodeMixins.reduce((wrapped, mixin) => mixin(wrapped), SingleNode);
-    return new nodeCtor(file.document, this.options.nodeMixins, this.options.nodeCollectionMixins);
-  }
-}
+  async nodes(fileId: string): Promise<SingleNode> {
+    const plugin = this.plugins.get('nodes-plugin')! as ReturnType<typeof NodesPlugin>;
 
-export interface FigmaRequestOptions {
-  path: string;
-  params: Record<string, string> | object;
+    return plugin.nodes(fileId);
+  }
+
+  async styles(fileId: string): Promise<StylesProcessor> {
+    const plugin = this.plugins.get('styles-plugin')! as ReturnType<typeof StylesPlugin>;
+
+    return plugin.styles(fileId);
+  }
 }

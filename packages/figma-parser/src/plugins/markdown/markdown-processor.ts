@@ -1,8 +1,7 @@
 import { Root, RootContent } from 'mdast';
 import { root } from 'mdast-builder';
 import { toMarkdown } from 'mdast-util-to-markdown';
-import { SingleNode } from '../../parser/single-node';
-import { hasChildren, isSingleNode } from '../../parser/types';
+import { SingleNode, hasChildren, isSingleNode } from '../nodes';
 import { FetchContentPlugin } from './types';
 import { universalTextPlugin } from './universal-text-plugin';
 

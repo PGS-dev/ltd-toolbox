@@ -17,6 +17,7 @@ export class HardCache {
 
   isValid(data: object) {
     const file = this.cacheFile(data);
+    if (!existsSync(file)) return false;
     const cacheFileValid = Date.now() - statSync(file).birthtimeMs < this.lifetime;
     if (!cacheFileValid) {
       this.invalidate(data);
