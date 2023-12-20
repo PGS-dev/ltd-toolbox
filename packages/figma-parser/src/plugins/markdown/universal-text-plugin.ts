@@ -1,5 +1,5 @@
-import { isTextNode, SingleTextNode } from '../../parser/types';
 import { markdownAST } from '../../shared/markdown-ast.util';
+import { isTextNode, SingleTextNode } from '../nodes';
 import { FetchContentPlugin } from './types';
 
 export const universalTextPlugin: FetchContentPlugin = {

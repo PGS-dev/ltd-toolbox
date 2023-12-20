@@ -29,13 +29,13 @@ export default defineConfig({
     }
   },
   plugins: [
-    // dts({
-    //   rollupTypes: true,
-    //   include: ['./src/**/*.ts', './src/**/*.d.ts'],
-    //   copyDtsFiles: true,
-    //   entryRoot:'./src',
-    //   insertTypesEntry: true,
-    //   exclude: ['./src/**/*.spec.ts', './src/**/tests/**/*']
-    // })
+    dts({
+      rollupTypes: true,
+      include: ['./src/**/*.ts', './src/**/*.d.ts'],
+      copyDtsFiles: true,
+      entryRoot:'./src',
+      insertTypesEntry: true,
+      exclude: ['./src/**/*.spec.ts', './src/**/tests/**/*']
+    })
   ]
 })

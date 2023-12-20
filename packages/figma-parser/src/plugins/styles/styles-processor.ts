@@ -1,15 +1,6 @@
-import { Effect, FileNodesResponse, FullStyleMetadata, Last, Node, Paint, TypeStyle } from '../../types'
-import { DesignTokens, DesignTokensFormat } from './design-tokens.transformer'
-import {
-  EffectStyle,
-  FigmaStyleDfeinition, FigmaStylesTransformer,
-  FillStyle,
-  FullStyle,
-  isEffectStyle,
-  isFillStyle,
-  isTextStyle,
-  TextStyle
-} from './types'
+import { Effect, FileNodesResponse, FullStyleMetadata, Last, Node, Paint, TypeStyle } from '../../types';
+import { DesignTokens, DesignTokensFormat } from './design-tokens.transformer';
+import { EffectStyle, FigmaStyleDfeinition, FigmaStylesTransformer, FillStyle, FullStyle, TextStyle, isEffectStyle, isFillStyle, isTextStyle } from './types';
 
 export class StylesProcessor {
   private stylesData: FullStyle[] = [];

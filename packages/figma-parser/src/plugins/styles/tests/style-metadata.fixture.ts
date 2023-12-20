@@ -1,4 +1,4 @@
-import { FullStyleMetadata } from '../../../types'
+import { FullStyleMetadata } from '../../../types';
 
 export const STYLE_METADATA_FIXTURE: ReadonlyArray<FullStyleMetadata> = [
   {
@@ -14,9 +14,9 @@ export const STYLE_METADATA_FIXTURE: ReadonlyArray<FullStyleMetadata> = [
     user: {
       id: '31337',
       handle: 'Michael Scott',
-      img_url: 'https://example.com/user-thumbnail.svg'
+      img_url: 'https://example.com/user-thumbnail.svg',
     },
-    sort_position: '"U'
+    sort_position: '"U',
   },
   {
     key: 'R4ND0MK3Y',
@@ -31,9 +31,9 @@ export const STYLE_METADATA_FIXTURE: ReadonlyArray<FullStyleMetadata> = [
     user: {
       id: '31337',
       handle: 'Michael Scott',
-      img_url: 'https://example.com/user-thumbnail.svg'
+      img_url: 'https://example.com/user-thumbnail.svg',
     },
-    sort_position: '~gx'
+    sort_position: '~gx',
   },
   {
     key: 'R4ND0MK3Y',
@@ -48,9 +48,9 @@ export const STYLE_METADATA_FIXTURE: ReadonlyArray<FullStyleMetadata> = [
     user: {
       id: '31337',
       handle: 'Michael Scott',
-      img_url: 'https://example.com/user-thumbnail.svg'
+      img_url: 'https://example.com/user-thumbnail.svg',
     },
-    sort_position: '";'
+    sort_position: '";',
   },
   {
     key: 'R4ND0MK3Y',
@@ -65,8 +65,8 @@ export const STYLE_METADATA_FIXTURE: ReadonlyArray<FullStyleMetadata> = [
     user: {
       id: '31337',
       handle: 'Michael Scott',
-      img_url: 'https://example.com/user-thumbnail.svg'
+      img_url: 'https://example.com/user-thumbnail.svg',
     },
-    sort_position: '"<'
-  }
-]
+    sort_position: '"<',
+  },
+];

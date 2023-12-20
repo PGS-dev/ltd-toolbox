@@ -1,18 +1,17 @@
-import { beforeEach, describe, expect, test, vi } from 'vitest'
-import { StylesProcessor } from './styles-processor'
-import { FILE_NODES_FIXTURE } from './tests/file-nodes.fixture'
-import { STYLE_METADATA_FIXTURE } from './tests/style-metadata.fixture'
+import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { StylesProcessor } from './styles-processor';
+import { FILE_NODES_FIXTURE } from './tests/file-nodes.fixture';
+import { STYLE_METADATA_FIXTURE } from './tests/style-metadata.fixture';
 
 describe('Styles Processor', () => {
   let stylesProcessor: StylesProcessor;
 
   beforeEach(() => {
-    stylesProcessor = new StylesProcessor(STYLE_METADATA_FIXTURE, FILE_NODES_FIXTURE)
+    stylesProcessor = new StylesProcessor(STYLE_METADATA_FIXTURE, FILE_NODES_FIXTURE);
   });
 
   describe('Design Tokens', () => {
     test('Should generate design tokens object', async () => {
-
       const designTokens = stylesProcessor.designTokens();
 
       expect(designTokens).toBeTypeOf('object');

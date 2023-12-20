@@ -1,6 +1,7 @@
-import { Node } from '../types';
+import { CallbackFunction } from '../../parser';
+import { Node } from '../../types';
 import { SingleNode } from './single-node';
-import { CallbackFunction, FigmaNodeId, NodeCollectionMixin, NodeMixin, PathBreadcrumb } from './types';
+import { FigmaNodeId, NodeCollectionMixin, NodeMixin, PathBreadcrumb } from './types';
 
 export class NodeCollection {
   public readonly length: number = 0;
@@ -102,7 +103,7 @@ export class NodeCollection {
     return out;
   }
 
-  each(callback: CallbackFunction): void {
+  each(callback: CallbackFunction<void>): void {
     for (let i = 0; i <= this.length - 1; i++) {
       callback(this[i], i, this);
     }
