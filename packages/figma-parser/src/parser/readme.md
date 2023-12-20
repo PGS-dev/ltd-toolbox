@@ -6,7 +6,7 @@ Plugin for traversing Figma document
 (async () => {
   const parser = new FigmaParser(TOKEN);
 
-  const documentNode = await parser.document('<fileId>');
+  const documentNode = await parser.nodes('<fileId>');
 })();
 ```
 

@@ -1,4 +1,4 @@
-import { Node } from '../full-figma-types';
+import { Node } from '../types';
 import { SingleNode } from './single-node';
 import { CallbackFunction, FigmaNodeId, NodeCollectionMixin, NodeMixin, PathBreadcrumb } from './types';
 

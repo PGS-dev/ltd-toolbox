@@ -1,5 +1,5 @@
 import { RootContent } from 'mdast';
-import { TypeStyle } from '../../full-figma-types';
+import { TypeStyle } from '../../types';
 import { SingleNode } from '../../parser/single-node';
 
 export interface FetchContentPlugin {

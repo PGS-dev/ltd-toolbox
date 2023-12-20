@@ -1,4 +1,4 @@
-import { Effect, Node as FigmaNode, Text as FigmaText, FullStyleMetadata, Paint, StyleType, TypeStyle, VectorBase } from '../../full-figma-types';
+import { Effect, Node as FigmaNode, Text as FigmaText, FullStyleMetadata, Paint, StyleType, TypeStyle, VectorBase } from '../../types';
 
 export const isFillStyle = (node: FullStyle): node is FillStyle => node.styleMeta.style_type === 'FILL';
 

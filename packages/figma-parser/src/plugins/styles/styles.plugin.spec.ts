@@ -1,9 +1,9 @@
-import { beforeEach, describe, expect, test, vi } from 'vitest';
-import { StylesPlugin } from './styles.plugin';
-import { stylesPluginMockFactory } from './tests/styles-plugin-mock';
+import { beforeEach, describe, expect, test, vi } from 'vitest'
+import { StylesProcessor } from './styles.plugin'
+import { stylesPluginMockFactory } from './tests/styles-plugin-mock'
 
 describe('Styles Plugin', () => {
-  let plugin: StylesPlugin;
+  let plugin: StylesProcessor;
 
   beforeEach(() => {
     plugin = stylesPluginMockFactory();

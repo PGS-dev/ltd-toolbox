@@ -1,3 +1,3 @@
-export { StylesPlugin } from './styles.plugin';
-export * from './transformers/design-tokens/index';
+export * from './styles.plugin';
+export * from './design-tokens.transformer';
 export * from './types';

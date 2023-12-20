@@ -20,7 +20,7 @@
     "codecheck": "tsc --noEmit && yarn lint && yarn prettier ./src --check"
   },
   "files": [
-    "./dist/"
+    "dist"
   ],
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
@@ -50,5 +50,17 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./types": {
+      "require": "./dist/types.cjs",
+      "import": "./dist/types.mjs",
+      "types": "./dist/types.d.ts"
+    }
   }
 }

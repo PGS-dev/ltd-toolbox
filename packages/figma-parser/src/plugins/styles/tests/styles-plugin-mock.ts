@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import { StylesPlugin } from '../styles.plugin';
+import { StylesProcessor } from '../styles.plugin';
 import { STYLES_DATA_FIXTURE } from './style-data.fixture';
 
 const parserMock = {
@@ -7,7 +7,7 @@ const parserMock = {
 } as any;
 
 export const stylesPluginMockFactory = () => {
-  const plugin = new StylesPlugin(parserMock);
+  const plugin = new StylesProcessor(parserMock);
 
   plugin.styles = vi.fn().mockImplementation(async () => {
     // @ts-expect-error - stylesData is private property

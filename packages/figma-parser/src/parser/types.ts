@@ -1,13 +1,34 @@
-import { Constructor } from 'type-fest';
-import type { BooleanOperation, Canvas, Component, ComponentSet, Document, Ellipse, Frame, Group, Instance, Line, Node, Rectangle, RegularPolygon, Slice, Star, Text, Vector } from '../full-figma-types';
-import { NodeCollection } from './node-collection';
-import { FigmaParser } from './parser';
-import { SingleNode } from './single-node';
+import { Constructor } from 'type-fest'
+import type {
+  BooleanOperation,
+  Canvas,
+  Component,
+  ComponentSet,
+  Document,
+  Ellipse,
+  Frame,
+  Group,
+  Instance,
+  Line,
+  Node,
+  Rectangle,
+  RegularPolygon,
+  Slice,
+  Star,
+  Text,
+  Vector
+} from '../types'
+import { NodeCollection } from './node-collection'
+import { FigmaParser } from './parser'
+import { SingleNode } from './single-node'
 
 // Parser Extensions
-export interface FigmaParserPluginFeatures {}
-export type FigmaParserPluginFunction = (host: FigmaParser) => FigmaParserPluginFeatures;
-export interface FigmaParserPluginConstructor<Return extends FigmaParserPluginFeatures = FigmaParserPluginFeatures> {
+type AnyFeature = { [k: string | symbol]: unknown }
+export type FigmaParserPluginInterface<T extends AnyFeature = any> = {
+  name: string,
+} & T
+export type FigmaParserPluginFunction = (host: FigmaParser) => FigmaParserPluginInterface;
+export interface FigmaParserPluginConstructor<Return extends FigmaParserPluginInterface = FigmaParserPluginInterface> {
   new (host: FigmaParser): Return;
 }
 export type FigmaParserPlugin = FigmaParserPluginConstructor | FigmaParserPluginFunction;

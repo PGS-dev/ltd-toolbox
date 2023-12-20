@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
-import { DEFINITIONS_FIXTURE } from '../../tests/definitions.fixture';
-import { STYLES_DATA_FIXTURE } from '../../tests/style-data.fixture';
-import { ColorTokenValue, DesignTokens, GradientStop, GradientTokenValue, ShadowStop, ShadowTokenValue, TypographyTokenValue } from './index';
+import { DEFINITIONS_FIXTURE } from './tests/definitions.fixture';
+import { STYLES_DATA_FIXTURE } from './tests/style-data.fixture';
+import { ColorTokenValue, DesignTokens, GradientStop, GradientTokenValue, ShadowStop, ShadowTokenValue, TypographyTokenValue } from './design-tokens.transformer';
 
 describe('Design Tokens Transformer', () => {
   test.todo('Should generate nested object if deep option is set to true', async () => {});
