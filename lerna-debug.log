@@ -1,0 +1,20 @@
+59 error Error: Command failed with exit code 1: git commit -F /private/var/folders/35/ydz6c80x26b5rh38fnq6drxr0000gp/T/b9dde373-1c8b-4ae5-a4f0-84a4d0c88dbd/lerna-commit.txt
+59 error $ /Users/jhajduk/Documents/work/ltd-toolbox/node_modules/.bin/commitlint --edit .git/COMMIT_EDITMSG
+59 error ⧗   input: chore(release): publish version %v
+59 error
+59 error  - @ltd-toolbox/figma-parser@0.1.0-alpha.0
+59 error  - @ltd-toolbox/ts-runner@0.1.0-alpha.0
+59 error ✖   scope must be one of [foundations, components, docs, root] [scope-enum]
+59 error
+59 error ✖   found 1 problems, 0 warnings
+59 error ⓘ   Get help: https://github.com/conventional-changelog/commitlint/#what-is-commitlint
+59 error
+59 error error Command failed with exit code 1.
+59 error info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+59 error husky - commit-msg hook exited with code 1 (error)
+59 error     at makeError (/Users/jhajduk/Documents/work/ltd-toolbox/node_modules/execa/lib/error.js:60:11)
+59 error     at handlePromise (/Users/jhajduk/Documents/work/ltd-toolbox/node_modules/execa/index.js:118:26)
+59 error     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+59 error     at async VersionCommand.gitCommitAndTagVersionForUpdates (/Users/jhajduk/Documents/work/ltd-toolbox/node_modules/lerna/dist/index.js:8369:11)
+59 error     at async VersionCommand.commitAndTagUpdates (/Users/jhajduk/Documents/work/ltd-toolbox/node_modules/lerna/dist/index.js:8351:18)
+59 error     at async Promise.all (index 0)
