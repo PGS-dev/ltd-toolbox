@@ -9,12 +9,13 @@
       "allowBranch": [
         "main",
         "next"
-      ]
+      ],
+      "message": "chore(release): publish version %v"
     },
     "publish": {
       "preid": "alpha",
       "preDistTag": "alpha",
-      "distTag": "latest"
+      "distTag": "latest",
     }
   }
 }
