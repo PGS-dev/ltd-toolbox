@@ -4,7 +4,6 @@
   "npmClient": "yarn",
   "yes": true,
   "conventionalCommits": true,
-  "createRelease": "github",
   "command": {
     "version": {
       "allowBranch": [
