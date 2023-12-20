@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { DEFINITIONS_FIXTURE } from './tests/definitions.fixture';
-import { STYLES_DATA_FIXTURE } from './tests/style-data.fixture';
 import { ColorTokenValue, DesignTokens, GradientStop, GradientTokenValue, ShadowStop, ShadowTokenValue, TypographyTokenValue } from './design-tokens.transformer';
+import { STYLE_METADATA_FIXTURE } from './tests/style-metadata.fixture'
 
 describe('Design Tokens Transformer', () => {
   test.todo('Should generate nested object if deep option is set to true', async () => {});
@@ -19,9 +19,7 @@ describe('Design Tokens Transformer', () => {
         const output = DesignTokens()(DEFINITIONS_FIXTURE);
         const alphaHexValue = output['color/token']['$value'] as ColorTokenValue;
 
-        const definition = STYLES_DATA_FIXTURE.find((e) => e.styleMeta.name === 'color/token')!;
-        // @ts-expect-error - yes, there is an opacity property.
-        const fillOpacity = definition.nodeData.fills[0].opacity;
+        const fillOpacity = 0.5 // ( FILE_NODES_FIXTURE['1171:10749'].document.fills[0].opacity )
         const hexOpacity = Math.round(fillOpacity * 255)
           .toString(16)
           .padStart(2, '0');

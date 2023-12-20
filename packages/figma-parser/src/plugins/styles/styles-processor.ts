@@ -12,7 +12,6 @@ import {
 } from './types'
 
 export class StylesProcessor {
-  name = 'styles-plugin'
   private stylesData: FullStyle[] = [];
 
   constructor(fileStyles: ReadonlyArray<FullStyleMetadata>, fileNodes: FileNodesResponse['nodes']) {
@@ -30,6 +29,7 @@ export class StylesProcessor {
 
   private getTextStyle(style: TextStyle): Readonly<TypeStyle> {
     if (!isTextStyle(style)) throw new Error('Expected TextStyle!');
+
     return style.nodeData.style;
   }
 
