@@ -1,5 +1,6 @@
+import { DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../../shared/design-tokens-format.types';
 import { Effect, FileNodesResponse, FullStyleMetadata, Last, Node, Paint, TypeStyle } from '../../types';
-import { DesignTokens, DesignTokensFormat } from './design-tokens.transformer';
+import { DesignTokens } from './design-tokens.transformer';
 import { EffectStyle, FigmaStyleDfeinition, FigmaStylesTransformer, FillStyle, FullStyle, TextStyle, isEffectStyle, isFillStyle, isTextStyle } from './types';
 
 export class StylesProcessor {
@@ -47,10 +48,15 @@ export class StylesProcessor {
     }));
   }
 
-  designTokens(deep = false): DesignTokensFormat {
-    return this.transform(DesignTokens(deep)) as DesignTokensFormat;
+  designTokens(): DesignTokensFormatFlat;
+  designTokens(deep: true): DesignTokensFormatDeep;
+  designTokens(deep: false): DesignTokensFormatFlat;
+  designTokens(deep?: boolean): DesignTokensFormat {
+    return this.transform(DesignTokens(deep));
   }
 
+  transform(): FigmaStyleDfeinition[];
+  transform<Transformers extends FigmaStylesTransformer[]>(...transformers: Transformers): ReturnType<Last<Transformers>>;
   transform<Transformers extends FigmaStylesTransformer[]>(...transformers: Transformers): ReturnType<Last<Transformers>> | FigmaStyleDfeinition[] {
     if (transformers.length === 0) return this.definitions();
     return transformers.reduce((acc, transformer) => transformer(acc), this.definitions());

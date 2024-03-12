@@ -14,3 +14,5 @@ export * from './types';
 export default function (token: FigmaPAT, options?: Partial<FigmaParserOptions>) {
   return new FigmaParser(token, options) as FigmaParser;
 }
+
+export { VariablesPlugin } from './plugins/variables/variables.plugin';

@@ -1,70 +1,8 @@
+import { DesignToken, DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../../shared/design-tokens-format.types';
+import { entriesToDeepObject } from '../../shared/entriesToDeepObject.util';
 import { rgbaToHexa } from '../../shared/rgba-to-hex.util';
 import type { Effect, Paint, TypeStyle } from '../../types';
 import { FigmaStyleDfeinition, FigmaStylesTransformer, isEffectDefinition, isFillDefinition, isTextDefinition } from './types';
-
-export interface TypographyTokenValue {
-  fontFamily: string;
-  fontSize: number;
-  fontWeight: number;
-  letterSpacing: number;
-  lineHeight: number;
-}
-
-export interface GradientStop {
-  color: string;
-  position: number;
-}
-
-export type ColorTokenValue = `#${string}`;
-
-export interface ShadowStop {
-  color: string;
-  offsetX: number;
-  offsetY: number;
-  blur: number;
-  spread: number;
-}
-
-export type ShadowTokenValue = ShadowStop[];
-
-export type GradientTokenValue = GradientStop[];
-
-export interface DesignToken {
-  $type: 'typography' | 'color' | 'shadow' | 'gradient';
-  $value: TypographyTokenValue | ColorTokenValue | GradientTokenValue | ShadowTokenValue;
-}
-
-export interface ColorToken extends DesignToken {
-  $type: 'color';
-  $value: ColorTokenValue;
-}
-
-export interface TypographyToken extends DesignToken {
-  $type: 'typography';
-  $value: TypographyTokenValue;
-}
-
-export interface ShadowToken extends DesignToken {
-  $type: 'shadow';
-  $value: ShadowTokenValue;
-}
-
-export interface GradientToken extends DesignToken {
-  $type: 'gradient';
-  $value: GradientTokenValue;
-}
-
-export const isShadowToken = (token: DesignToken): token is GradientToken => token.$type === 'shadow';
-
-export const isColorToken = (token: DesignToken): token is ColorToken => token.$type === 'color';
-
-export const isTypographyToken = (token: DesignToken): token is TypographyToken => token.$type === 'typography';
-
-export const isGradientToken = (token: DesignToken): token is GradientToken => token.$type === 'gradient';
-
-export interface DesignTokensFormat {
-  [k: string]: DesignToken | DesignTokensFormat;
-}
 
 const gradientTransform = (style: Paint) => {
   if (!style || !style.gradientStops) throw new Error('Expected Paint style with gradientStops definitions!');
@@ -109,13 +47,18 @@ const shadowTransform = (style: Effect[]) => {
   });
 };
 
-export const DesignTokens = (deep: boolean = false): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormat> => {
+export function DesignTokens(): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormatFlat>;
+export function DesignTokens(deep: true): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormatDeep>;
+export function DesignTokens(deep: false): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormatFlat>;
+export function DesignTokens(deep?: boolean): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormat>;
+export function DesignTokens(deep: boolean = false): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormat> {
   return (input: FigmaStyleDfeinition[]) => {
     const stylesArray = input
       .map((definition) => {
+        const tokenName = definition.name.replaceAll('/', '.').replaceAll(' ', '-');
         if (isFillDefinition(definition) && definition.definition[0].type === 'SOLID') {
           return [
-            definition.name,
+            tokenName,
             {
               $type: 'color',
               $value: solidTransform(definition.definition[0]),
@@ -125,7 +68,7 @@ export const DesignTokens = (deep: boolean = false): FigmaStylesTransformer<Figm
 
         if (isFillDefinition(definition) && definition.definition[0].type === 'GRADIENT_LINEAR') {
           return [
-            definition.name,
+            tokenName,
             {
               $type: 'gradient',
               $value: gradientTransform(definition.definition[0]),
@@ -135,7 +78,7 @@ export const DesignTokens = (deep: boolean = false): FigmaStylesTransformer<Figm
 
         if (isTextDefinition(definition)) {
           return [
-            definition.name,
+            tokenName,
             {
               $type: 'typography',
               $value: typographyTransform(definition.definition),
@@ -145,7 +88,7 @@ export const DesignTokens = (deep: boolean = false): FigmaStylesTransformer<Figm
 
         if (isEffectDefinition(definition)) {
           return [
-            definition.name,
+            tokenName,
             {
               $type: 'shadow',
               $value: shadowTransform(definition.definition),
@@ -156,26 +99,9 @@ export const DesignTokens = (deep: boolean = false): FigmaStylesTransformer<Figm
       .filter(Boolean) as [string, DesignToken][];
 
     if (deep) {
-      const output = {};
-
-      stylesArray.forEach(([name, value]) => {
-        const path = name.split('/');
-        path.reduce((acc: Record<string, object>, key: string, i: number) => {
-          if (acc[key] === undefined) acc[key] = {};
-
-          if (i === path.length - 1) {
-            acc[key] = {
-              ...acc[key],
-              ...value,
-            };
-          }
-
-          return acc[key];
-        }, output);
-      });
-
-      return output;
+      entriesToDeepObject(stylesArray);
     }
+
     return Object.fromEntries(stylesArray);
   };
-};
+}

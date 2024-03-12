@@ -26,7 +26,9 @@
   "types": "./dist/index.d.ts",
   "module": "./dist/index.mjs",
   "devDependencies": {
+    "@types/mdast": "^4.0.1",
     "@types/node": "^20.8.0",
+    "@types/picomatch": "^2.3.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.9",
     "vite-plugin-dts": "^3.6.0",
@@ -34,9 +36,7 @@
     "wsrun": "^5.2.4"
   },
   "dependencies": {
-    "@types/mdast": "^4.0.1",
-    "@types/node": "^20.7.1",
-    "@types/picomatch": "^2.3.2",
+    "@figma/rest-api-spec": "^0.10.0",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
     "flat": "^6.0.1",
@@ -45,7 +45,7 @@
     "mdast-util-to-markdown": "^2.1.0",
     "picomatch": "^2.3.1",
     "remark": "^15.0.1",
-    "type-fest": "^4.8.3",
+    "type-fest": "^4.12.0",
     "unist-builder": "^4.0.0"
   },
   "publishConfig": {

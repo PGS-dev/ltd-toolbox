@@ -1,6 +1,8 @@
 import { NodeCollectionMixin, NodeMixin, NodesPlugin, SingleNode } from '../plugins/nodes';
 import { StylesPlugin } from '../plugins/styles';
 import { StylesProcessor } from '../plugins/styles/styles-processor';
+import { CollectionsSet } from '../plugins/variables/collections-set';
+import { VariablesPlugin } from '../plugins/variables/variables.plugin';
 import { HardCache } from './hard-cache';
 import { loggerFactory } from './logger';
 import { FigmaParserPlugin, FigmaParserPluginConstructor, FigmaParserPluginFunction, FigmaParserPluginInterface } from './types';
@@ -29,7 +31,7 @@ export class FigmaParser {
   cache: HardCache;
 
   readonly options: FigmaParserOptions = {
-    plugins: [NodesPlugin, StylesPlugin],
+    plugins: [NodesPlugin, StylesPlugin, VariablesPlugin],
     nodeMixins: [],
     nodeCollectionMixins: [],
     hardCache: true,
@@ -113,5 +115,11 @@ export class FigmaParser {
     const plugin = this.plugins.get('styles-plugin')! as ReturnType<typeof StylesPlugin>;
 
     return plugin.styles(fileId);
+  }
+
+  async variables(fileId: string, published: boolean = true): Promise<CollectionsSet> {
+    const plugin = this.plugins.get('variables-plugin')! as ReturnType<typeof VariablesPlugin>;
+
+    return plugin.variables(fileId, published);
   }
 }
