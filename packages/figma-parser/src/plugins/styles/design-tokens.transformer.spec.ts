@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
-import { ColorTokenValue, DesignTokens, GradientStop, GradientTokenValue, ShadowStop, ShadowTokenValue, TypographyTokenValue } from './design-tokens.transformer';
+import { ColorTokenValue, GradientStop, GradientTokenValue, ShadowStop, ShadowTokenValue, TypographyTokenValue } from '../../shared/design-tokens-format.types';
+import { DesignTokens } from './design-tokens.transformer';
 import { DEFINITIONS_FIXTURE } from './tests/definitions.fixture';
 
 describe('Design Tokens Transformer', () => {
@@ -10,13 +11,13 @@ describe('Design Tokens Transformer', () => {
     describe('Solid Color Token', () => {
       test('Should transform solid color definition', async () => {
         const output = DesignTokens()(DEFINITIONS_FIXTURE);
-        const colorToken = output['color/token']['$value'];
+        const colorToken = output['color.token']['$value'];
         expect(colorToken).toBeTypeOf('string');
       });
 
       test('Should take alpha value from parent definition', async () => {
         const output = DesignTokens()(DEFINITIONS_FIXTURE);
-        const alphaHexValue = output['color/token']['$value'] as ColorTokenValue;
+        const alphaHexValue = output['color.token']['$value'] as ColorTokenValue;
 
         const fillOpacity = 0.5; // ( FILE_NODES_FIXTURE['1171:10749'].document.fills[0].opacity )
         const hexOpacity = Math.round(fillOpacity * 255)
@@ -36,7 +37,7 @@ describe('Design Tokens Transformer', () => {
 
         const designTokens = DesignTokens();
         const output = designTokens(DEFINITIONS_FIXTURE);
-        const gradientToken = output['gradient/token']['$value'] as GradientTokenValue;
+        const gradientToken = output['gradient.token']['$value'] as GradientTokenValue;
 
         gradientToken.forEach((gradientStop: GradientStop) => expect(gradientStop).toMatchSchema(valueSchema));
       });
@@ -53,7 +54,7 @@ describe('Design Tokens Transformer', () => {
         };
 
         const output = DesignTokens()(DEFINITIONS_FIXTURE);
-        const shadowToken = output['shadow/token']['$value'] as ShadowTokenValue;
+        const shadowToken = output['shadow.token']['$value'] as ShadowTokenValue;
 
         shadowToken.forEach((shadow: ShadowStop) => expect(shadow).toMatchSchema(valueSchema));
       });
@@ -70,7 +71,7 @@ describe('Design Tokens Transformer', () => {
         };
 
         const output = DesignTokens()(DEFINITIONS_FIXTURE);
-        const textToken = output['text/token']['$value'] as TypographyTokenValue;
+        const textToken = output['text.token']['$value'] as TypographyTokenValue;
 
         expect(textToken).toMatchSchema(valueSchema);
       });

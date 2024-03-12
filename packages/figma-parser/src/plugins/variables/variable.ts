@@ -1,69 +1,65 @@
-import { Color } from '../../full-figma-types'
-import { CodeSyntax, Variable, VariableAlias, VariableCollection, VariableScope } from './types'
-import { FigmaVariableCollection } from './variable-collection'
+import { LocalVariable, RGBA, VariableAlias, VariableCodeSyntax, VariableScope } from '@figma/rest-api-spec';
+import { FigmaLocalVariableCollection } from './variable-collection';
 
-export class FigmaVariable {
-  constructor(private original: Variable, public collection: FigmaVariableCollection) {
-  }
+export const isVariableAlias = (value: unknown): value is VariableAlias => !!value && typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS';
 
-  table() {
-    console.table(this.original)
-  }
+class Data implements LocalVariable {
+  constructor(public raw: LocalVariable) {}
 
   /**
    * The unique identifier of this variable.
    */
   get id(): string {
-    return this.original.id;
+    return this.raw.id;
   }
 
   /**
    * The name of this variable.
    */
   get name(): string {
-    return this.original.name;
+    return this.raw.name;
   }
 
   /**
    * The key of the variable.
    */
   get key(): string {
-    return this.original.key;
+    return this.raw.key;
   }
 
   /**
    * The id of the variable collection that contains this variable.
    */
   get variableCollectionId(): string {
-    return this.original.variableCollectionId;
+    return this.raw.variableCollectionId;
   }
 
   /**
    * The resolved type of the variable.
    */
-  get resolvedType(): "BOOLEAN" | "FLOAT" | "STRING" | "COLOR" {
-    return this.original.resolvedType;
+  get resolvedType(): 'BOOLEAN' | 'FLOAT' | 'STRING' | 'COLOR' {
+    return this.raw.resolvedType;
   }
 
   /**
    * The values for each mode of this variable.
    */
-  get valuesByMode(): Record<string, boolean | number | string | Color | VariableAlias> {
-    return this.original.valuesByMode;
+  get valuesByMode(): Record<string, boolean | number | string | RGBA | VariableAlias> {
+    return this.raw.valuesByMode;
   }
 
   /**
    * Whether the variable is remote.
    */
   get remote(): boolean {
-    return this.original.remote;
+    return this.raw.remote;
   }
 
   /**
    * Description of this variable.
    */
   get description(): string {
-    return this.original.description;
+    return this.raw.description;
   }
 
   /**
@@ -71,7 +67,7 @@ export class FigmaVariable {
    * If the parent VariableCollection is marked as hiddenFromPublishing, then this variable will also be hidden from publishing via the UI. hiddenFromPublishing is independently toggled for a variable and collection. However, both must be true for a given variable to be publishable.
    */
   get hiddenFromPublishing(): boolean {
-    return this.original.hiddenFromPublishing;
+    return this.raw.hiddenFromPublishing;
   }
 
   /**
@@ -80,15 +76,74 @@ export class FigmaVariable {
    * Setting scopes for a variable does not prevent that variable from being bound in other scopes (for example, via the Plugin API). This only limits the variables that are shown in pickers within the Figma UI.
    */
   get scopes(): VariableScope[] {
-    return this.original.scopes;
+    return this.raw.scopes;
   }
 
   /**
    * Code syntax definitions for this variable. Code syntax allows you to represent variables in code using platform-specific names, and will appear in Dev Mode's code snippets when inspecting elements using the variable.
    */
-  get codeSyntaxVariable(): CodeSyntax {
-    return this.original.codeSyntaxVariable;
+  get codeSyntax(): VariableCodeSyntax {
+    return this.raw.codeSyntax;
   }
-
 }
 
+export class FigmaLocalVariable extends Data {
+  constructor(
+    public raw: LocalVariable,
+    public collection: FigmaLocalVariableCollection
+  ) {
+    super(raw);
+  }
+
+  table() {
+    console.table(this.raw);
+  }
+
+  hasValueForMode(name: string) {
+    return !!this.valueByMode(name);
+  }
+
+  valueByMode(modeName?: string) {
+    if (!modeName) return this.defaultValue();
+
+    const modeId = this.collection.getModeId(modeName);
+
+    if (!modeId) return this.defaultValue();
+
+    return this.raw.valuesByMode[modeId];
+  }
+
+  defaultValue() {
+    return this.valuesByMode[this.collection.defaultModeId];
+  }
+
+  resolveAliasValueForMode(alias: VariableAlias, name: string): string | number | boolean | RGBA {
+    const aliassedVariable = this.collection.setRef.getVariableById(alias.id);
+
+    const value = aliassedVariable.valueByMode(name);
+
+    if (!isVariableAlias(value)) return value;
+
+    return aliassedVariable.resolveAliasValueForMode(value as VariableAlias, name);
+  }
+
+  resolveValue(name: string): string | number | boolean | RGBA {
+    const value = this.valueByMode(name);
+
+    if (isVariableAlias(value)) return this.resolveAliasValueForMode(value, name);
+
+    return value;
+  }
+
+  value(name: string): string | number | boolean | RGBA {
+    const value = this.valueByMode(name);
+
+    if (isVariableAlias(value)) {
+      const aliasedVariable = this.collection.setRef.getVariableById(value.id);
+
+      return `{${aliasedVariable.name.replaceAll('/', '.')}}`;
+    }
+
+    return value;
+  }
+}
