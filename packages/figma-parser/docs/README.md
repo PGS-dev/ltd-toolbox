@@ -1,3 +1,5 @@
+@ltd-toolbox/figma-parser / [Modules](modules.md)
+
 # Figma Parser: A toolkit for the Figma REST API
 
 Welcome to Figma Parser, your go-to toolkit for effortlessly navigating and extracting data from the Figma REST API. This comprehensive suite of tools is designed to simplify your workflow, enabling you to focus on creating rather than on parsing complexities.
