@@ -9,7 +9,10 @@ export class NodeCollection {
 
   [i: number]: SingleNode;
 
-  constructor(nodes: Node[] | ReadonlyArray<Node> | SingleNode[], public readonly parent?: SingleNode) {
+  constructor(
+    nodes: Node[] | ReadonlyArray<Node> | SingleNode[],
+    public readonly parent?: SingleNode
+  ) {
     let length = 0;
 
     nodes.forEach((node, index) => {

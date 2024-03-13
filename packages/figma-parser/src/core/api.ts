@@ -1,17 +1,27 @@
 import { HardCache } from './hard-cache';
 import { loggerFactory } from './logger';
 
+/**
+ * Figma Personal Access Token format.
+ */
 export type FigmaPAT = `figd_${string}`;
 
 export interface FigmaParserOptions {
-  hardCache?: boolean;
-  cacheDir?: string;
+  /**
+   * Whether cache should be used
+   * @default false
+   */
+  cache: boolean;
+  /**
+   * Directory to store cached files
+   * @default .cache
+   */
+  cacheDir: string;
+  /**
+   * Defines how long cache should live. Cache file creation time is used, therefore it counts since first matching request.
+   * @default 8 hours (1000 * 60 * 60 * 8)
+   */
   cacheLifetime: number;
-}
-
-export interface FigmaRequestOptions {
-  path: string;
-  params: Record<string, string> | object;
 }
 
 const logger = loggerFactory('Figma Parser');
@@ -20,8 +30,8 @@ class FigmaApi implements FigmaApiInterface {
   cache: HardCache;
 
   readonly options: FigmaParserOptions = {
-    hardCache: true,
-    cacheDir: './cache',
+    cache: false,
+    cacheDir: './.cache',
     cacheLifetime: 1000 * 60 * 60 * 8, // 8 hours
   };
 
@@ -36,9 +46,13 @@ class FigmaApi implements FigmaApiInterface {
 
   async request<Response = object>(path: string, params?: Record<string, string>): Promise<Response> {
     const cached = this.cache.get({ path, params });
-    if (cached && this.options.hardCache) {
+    if (cached && this.options.cache) {
       logger.info('(Using cache)', `Found cached request. Retrieving from cache.`);
-      return (await Promise.resolve(JSON.parse(cached))) as Response;
+      return Promise.resolve(JSON.parse(cached)) as Response;
+    }
+
+    if (cached && this.options.cache === false) {
+      this.cache.invalidate({ path, params });
     }
 
     let url = `https://api.figma.com/v1/${path}`;
@@ -60,7 +74,7 @@ class FigmaApi implements FigmaApiInterface {
         return response.json() as Response;
       });
 
-    if (this.options.hardCache) {
+    if (this.options.cache) {
       logger.info('(Using cache)', `Caching request.`);
       this.cache.set({ path, params }, JSON.stringify(data, null, 2));
     }
@@ -72,5 +86,5 @@ class FigmaApi implements FigmaApiInterface {
 export const figmaApi = (token: FigmaPAT, options?: Partial<FigmaParserOptions>) => new FigmaApi(token, options);
 
 export interface FigmaApiInterface {
-  request<Response = object>(path: string, params?: Record<string, string>): Promise<Response>
+  request<Response = object>(path: string, params?: Record<string, string>): Promise<Response>;
 }

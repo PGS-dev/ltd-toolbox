@@ -1,1 +1,1 @@
-export * from './get-variables'
+export * from './get-variables';
