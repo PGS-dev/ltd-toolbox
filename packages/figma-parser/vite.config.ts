@@ -1,6 +1,8 @@
+import { copyFileSync } from 'node:fs'
 import { defineConfig } from 'vite'
 import { builtinModules } from 'module'
 import dts from "vite-plugin-dts";
+import fg from 'fast-glob';
 
 export default defineConfig({
   build: {
@@ -13,29 +15,38 @@ export default defineConfig({
       name: 'ltd-toolbox/figma-parser',
       entry: {
         index: './src/index.ts',
-        parser: './src/parser/index.ts',
-        types: './src/types.ts'
+        api: './src/core/api.ts',
+        document: './src/document/get-document.ts',
+        styles: './src/styles/get-styles.ts',
+        variables: './src/variables/get-variables.ts'
       },
       formats: ['es', 'cjs'],
       fileName: (format, filename) => {
-        return `${filename}.${format === 'es' ? 'mjs' : 'cjs'}`
+        return `${filename}.${format === 'es' ? 'js' : 'cjs'}`
       },
     },
     rollupOptions: {
       external: [...builtinModules],
       output: {
-        exports: 'named'
+        exports: 'named',
+        preserveModules: true,
+        preserveModulesRoot: './src/'
       }
     }
   },
   plugins: [
     dts({
+      insertTypesEntry: true,
       rollupTypes: true,
       include: ['./src/**/*.ts', './src/**/*.d.ts'],
       copyDtsFiles: true,
       entryRoot:'./src',
-      insertTypesEntry: true,
-      exclude: ['./src/**/*.spec.ts', './src/**/tests/**/*']
+      exclude: ['./src/**/*.spec.ts', './src/**/tests/**/*'],
+      afterBuild() {
+        fg.sync('./dist/*.d.ts').forEach(file => {
+          copyFileSync(file, file.replace('.d.ts', '.d.cts'))
+        })
+      }
     })
   ]
 })
