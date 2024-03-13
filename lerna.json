@@ -14,7 +14,7 @@
     },
     "publish": {
       "preid": "alpha",
-      "preDistTag": "alpha",
+      "preDistTag": "next",
       "distTag": "latest",
     }
   }
