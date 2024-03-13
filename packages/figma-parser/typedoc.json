@@ -1,0 +1,14 @@
+{
+  "entryPoints": [
+    "src/core/api.ts",
+    "src/document/index.ts",
+    "src/styles/index.ts",
+    "src/variables/index.ts",
+    "src/dev.ts"
+  ],
+  "out": "docs",
+  "cleanOutputDir": true,
+  "excludePrivate": true,
+  "includeVersion": true,
+  "plugin": ["typedoc-plugin-markdown"]
+}

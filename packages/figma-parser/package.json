@@ -13,14 +13,15 @@
   ],
   "scripts": {
     "start": "yarn vite build --watch",
-    "build": "yarn vite build",
+    "build": "yarn vite build && yarn typedoc",
     "test": "yarn vitest",
     "lint": "eslint ./src --ext ts --report-unused-disable-directives --max-warnings 0",
     "format": "yarn prettier ./src/ --write",
     "codecheck": "tsc --noEmit && yarn lint && yarn prettier ./src --check"
   },
   "files": [
-    "dist"
+    "dist",
+    "docs"
   ],
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
@@ -29,6 +30,8 @@
     "@types/mdast": "^4.0.1",
     "@types/node": "^20.8.0",
     "@types/picomatch": "^2.3.2",
+    "typedoc": "^0.25.12",
+    "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.9",
     "vite-plugin-dts": "^3.6.0",

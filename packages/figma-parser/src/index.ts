@@ -2,8 +2,8 @@ export * from './types';
 
 export * from './core/api';
 
-export * from './styles/get-styles';
+export * from './styles/index';
 
-export * from './document/get-document';
+export * from './document/index';
 
-export * from './variables/get-variables';
+export * from './variables/index';
