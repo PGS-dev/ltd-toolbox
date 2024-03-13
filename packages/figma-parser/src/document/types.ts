@@ -17,12 +17,7 @@ import type {
   TextNode,
   VectorNode,
 } from '@figma/rest-api-spec';
-import { Constructor } from 'type-fest';
-import { NodeCollection } from './node-collection';
 import { SingleNode } from './single-node';
-
-export type NodeMixin = <Base extends Constructor<SingleNode>>(nodeClass: Base) => Base & Constructor<unknown>;
-export type NodeCollectionMixin = <Base extends Constructor<NodeCollection>>(collectionClass: Base) => Base & Constructor<unknown>;
 
 export interface PathBreadcrumb {
   name: string;

@@ -63,7 +63,7 @@ export class SingleNode {
       callback(node, [...path, breadcrumb]);
 
       if (node.children && node.children.length > 0) {
-        node.children.each((node: SingleNode) => walker(node, [...path, breadcrumb]));
+        node.children.forEach((node: SingleNode) => walker(node, [...path, breadcrumb]));
       }
     }
 
@@ -118,7 +118,7 @@ export class SingleNode {
     }
 
     walker(this);
-    return output;
+    return new NodeCollection(output);
   }
 
   text(): string[] {

@@ -16,7 +16,7 @@ export interface FigmaRequestOptions {
 
 const logger = loggerFactory('Figma Parser');
 
-class FigmaApi {
+class FigmaApi implements FigmaApiInterface {
   cache: HardCache;
 
   readonly options: FigmaParserOptions = {
@@ -71,4 +71,6 @@ class FigmaApi {
 
 export const figmaApi = (token: FigmaPAT, options?: Partial<FigmaParserOptions>) => new FigmaApi(token, options);
 
-export type FigmaApiInterface = FigmaApi;
+export interface FigmaApiInterface {
+  request<Response = object>(path: string, params?: Record<string, string>): Promise<Response>
+}

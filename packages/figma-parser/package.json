@@ -72,6 +72,16 @@
         "default": "./dist/index.cjs"
       }
     },
+    "./dev": {
+      "import": {
+        "types": "./dist/dev.d.ts",
+        "default": "./dist/dev.js"
+      },
+      "require": {
+        "types": "./dist/dev.d.cts",
+        "default": "./dist/dev.cjs"
+      }
+    },
     "./api": {
       "import": {
         "types": "./dist/api.d.ts",

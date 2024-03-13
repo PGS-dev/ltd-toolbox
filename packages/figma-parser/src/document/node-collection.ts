@@ -6,11 +6,10 @@ type CallbackFunction<T = void> = (node: SingleNode, index?: number, collection?
 
 export class NodeCollection {
   public readonly length: number = 0;
-  public readonly parent: SingleNode;
 
   [i: number]: SingleNode;
 
-  constructor(nodes: Node[] | ReadonlyArray<Node> | SingleNode[], parent: SingleNode) {
+  constructor(nodes: Node[] | ReadonlyArray<Node> | SingleNode[], public readonly parent?: SingleNode) {
     let length = 0;
 
     nodes.forEach((node, index) => {
@@ -18,7 +17,6 @@ export class NodeCollection {
       length++;
     });
 
-    this.parent = parent;
     this.length = length;
   }
 
@@ -94,7 +92,7 @@ export class NodeCollection {
     return out;
   }
 
-  each(callback: CallbackFunction<void>): void {
+  forEach(callback: CallbackFunction<void>): void {
     for (let i = 0; i <= this.length - 1; i++) {
       callback(this[i], i, this);
     }

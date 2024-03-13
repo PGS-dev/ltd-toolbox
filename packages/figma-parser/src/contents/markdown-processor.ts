@@ -15,7 +15,7 @@ export class MarkdownProcessor {
     const nodes: Root = root() as Root;
     if (!hasChildren(this.node)) return nodes;
 
-    this.node.children.each((childNode) => {
+    this.node.children.forEach((childNode) => {
       const plugin = [...plugins, universalTextPlugin].find((plugin) => plugin.test(childNode));
 
       if (!plugin) return;

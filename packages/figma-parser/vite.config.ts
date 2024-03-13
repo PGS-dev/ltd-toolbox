@@ -15,6 +15,7 @@ export default defineConfig({
       name: 'ltd-toolbox/figma-parser',
       entry: {
         index: './src/index.ts',
+        dev: './src/dev.ts',
         api: './src/core/api.ts',
         document: './src/document/get-document.ts',
         styles: './src/styles/get-styles.ts',

@@ -1,76 +1,102 @@
-# Figma Parser
+# Figma Parser: A toolkit for the Figma REST API
 
-Tool for parsing and traversing through figma files. 
-
-## Plugins
-You can use multiple different plugins with Figma Parser, for example:
-
-- [HardCache](./src/plugins/hard-cache/readme.md) - Caches File requests for better performance. 
-- [Document](./src/plugins/document/readme.md) - **default** - allows for traversing Figma document using convinient API
-- [Styles](./src/plugins/styles/readme.md) - Fetches and parses Style information from Figma document. It also can export these information using [W3C Desgin Tokens Format](https://tr.designtokens.org/format/) for known styles.
-- [Markdown](./src/plugins/markdown/readme.md) - Converts fetched text to plain markdown or markdown AST. Supports plugins for building own transformers. 
-
+Welcome to Figma Parser, your go-to toolkit for effortlessly navigating and extracting data from the Figma REST API. This comprehensive suite of tools is designed to simplify your workflow, enabling you to focus on creating rather than on parsing complexities.
 
 ## Quick start
 
-Default export with all plugins loaded by default:
+Jumpstart your project with Figma Parser using this straightforward guide:
 
 ```typescript
-import figmaParser from '@ltd-toolbox/figma-parser'
+import { figmaApi, getDocument } from '@ltd-toolbox/figma-parser'
 
 (async () => {
-  const parser = figmaParser(TOKEN)
+  // Initialize the Figma API with your Personal Access Token
+  const api = figmaApi(FIGMA_PAT_TOKEN)
+
+  // Retrieve and parse your Figma document with ease
+  const document = await getDocument(api, 'FIGMAFILEID')
   
-  const styles = parser.styles(stylesFileId)
-  const tokens = styles.designTokens()
-  
-  const docsFile = parser.document(documentationFileId)
-  const docsNode = docsFile.find(node => node.name === 'Documentation')
-  const docsMarkdown = parser.markdown(docsNode).toMarkdown();
+  // Conveniently display a table of all nodes within your document
+  document.children.table()
 })()
 ```
 
-## Plugin Architecture
+## Modular architecture
 
-Figma Parser has its plugin architecture. You can run FigmaParser with plugins loaded by default, or with your own.
+Figma Parser is crafted with a modular approach at its core. This design philosophy ensures that you can seamlessly integrate your own custom tools or enhance the existing ones to suit your specific needs, making it a highly versatile toolkit for developers.
 
-(More on [plugins](./src/plugins/readme.md) page)
+### `figmaApi` - core utility
 
 ```typescript
-import { FigmaParser } from '@ltd-toolbox/figma-parser'
+import { figmaApi } from '@ltd-toolbox/figma-parser'
+```
 
-class CustomPlugin {
-  constructor(private host: FigmaParser) {
-    this.host.hello = this.hello.bind(this)
-  }
+At the heart of Figma Parser is the `figmaApi` utility. This essential tool not only facilitates caching to optimize performance but also simplifies HTTP requests by managing authentication for you. Should you require more advanced functionality or encounter any issues, you're free to substitute it with your implementation, provided it adheres to our straightforward `FigmaApiInterface`:
 
-  hello(person: string = 'world') {
-    if (this.host?.options?.displayHello) {
-      console.log(`Hello ${person}!`)
-    }
-  }
-
+```typescript
+export interface FigmaApiInterface {
+  request<Response = object>(path: string, params?: Record<string, string>): Promise<Response>
 }
+```
+Certainly, here are the rephrased sections to match the updated documentation style:
 
-declare module "@ltd-toolbox/figma-parser" {
-  // Extend main parser interface with new method 
-  interface FigmaParser {
-    hello(content: string): void;
-  }
+### `getDocument` - navigating Figma documents with ease
 
-  // Extend main parser confing options with new property
-  interface FigmaParserOptions {
-    displayHello: boolean;
-  }
+```typescript
+import { getDocument } from '@ltd-toolbox/figma-parser'
+import { getDocument } from '@ltd-toolbox/figma-parser/document'
+```
+
+Dive deep into the structure of your Figma documents with the `getDocument` utility. This tool is your gateway to efficiently traversing the Figma document tree, empowering you to pinpoint and select the nodes you need with precision. Whether you prefer to navigate through methodical functions or harness the flexibility of **glob patterns**, the `getDocument` utility ensures you have the capabilities at your fingertips. Explore our API for more detailed guidance.
+
+### `getStyles` - extracting styles with precision
+
+```typescript
+import { getStyles } from '@ltd-toolbox/figma-parser'
+import { getStyles } from '@ltd-toolbox/figma-parser/styles'
+```
+
+The `getStyles` feature is your solution to accessing published style information from any specified Figma file. Utilize this tool to peruse through styles or to create design tokens in the standardized [Design Tokens Format](https://design-tokens.github.io/community-group/format/). This functionality not only simplifies the process of understanding style applications but also enhances your ability to implement consistent design principles across your projects.
+
+### `getVariables` - leveraging variables for advanced customization
+
+> NOTE: Accessing the variables endpoint requires an enterprise plan.
+
+```typescript
+import { getVariables } from '@ltd-toolbox/figma-parser'
+import { getVariables } from '@ltd-toolbox/figma-parser/variables'
+```
+
+Unlock the full potential of Figma's customization capabilities with the `getVariables` function. This advanced feature fetches all local variables from your Figma file, allowing you to navigate, resolve aliases, or determine final values and modes with unparalleled ease. Moreover, it facilitates the generation of design token definitions adhering to the [Design Tokens Format](https://design-tokens.github.io/community-group/format/), providing a structured and efficient approach to managing your design systems.
+
+## Creating custom tools
+
+Creating custom tools is as simple as crafting an asynchronous function that utilizes the `figmaApi` and any additional parameters you deem necessary.
+
+```typescript
+import { FigmaApiInterface } from '@ltd-toolbox/figma-parser'
+import { GetFileResponse } from '@figma/rest-api-spec'
+
+export async function getImages(api: FigmaApiInterface, fileId: string, imagePrefix = 'img:') {
+  const file = await api.request<GetFileResponse>(`files/${fileId}`);
+
+  return node.filterDeep((node) => node.name.startsWith(imagePrefix))
 }
+```
 
+Using your custom tools is equally straightforward:
+
+```typescript
+import { figmaApi } from '@ltd-toolbox/figma-parser'
+import { getImages } from './tools/get-images'
 
 (async () => {
-  const parser = new FigmaParser(TOKEN, {
-    plugins: [CustomPlugin],
-    displayHello: true
-  })
+  const api = figmaApi(TOKEN, { hardCache: true })
+  
+  const images = await getImages(api, 'FIGMAFILEID', '[image]')
 
-  parser.hello('You')
+  console.log(images)
 })()
 ```
+
+Embrace the power of Figma Parser to elevate your Design Systems to another level. Whether you're extending functionality with custom tools or leveraging the robust capabilities of Figma Parser, this toolkit is here to streamline your interaction with the Figma REST API.
