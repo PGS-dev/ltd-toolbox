@@ -2,7 +2,7 @@ import { DropShadowEffect, Effect, GradientPaint, InnerShadowEffect, SolidPaint,
 import { DesignToken, DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../shared/design-tokens-format.types';
 import { entriesToDeepObject } from '../shared/entriesToDeepObject.util';
 import { rgbaToHexa } from '../shared/rgba-to-hex.util';
-import { FigmaStyleDfeinition, FigmaStylesTransformer, isEffectDefinition, isFillDefinition, isTextDefinition } from './types';
+import { FigmaStyleDefinition, FigmaStylesTransformer, isEffectDefinition, isFillDefinition, isTextDefinition } from './types';
 
 const gradientTransform = (style: GradientPaint) => {
   if (!style || !style.gradientStops) throw new Error('Expected Paint style with gradientStops definitions!');
@@ -47,12 +47,12 @@ const shadowTransform = (style: Effect[]) => {
   });
 };
 
-export function DesignTokens(): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormatFlat>;
-export function DesignTokens(deep: true): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormatDeep>;
-export function DesignTokens(deep: false): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormatFlat>;
-export function DesignTokens(deep?: boolean): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormat>;
-export function DesignTokens(deep: boolean = false): FigmaStylesTransformer<FigmaStyleDfeinition[], DesignTokensFormat> {
-  return (input: FigmaStyleDfeinition[]) => {
+export function DesignTokens(): FigmaStylesTransformer<FigmaStyleDefinition[], DesignTokensFormatFlat>;
+export function DesignTokens(deep: true): FigmaStylesTransformer<FigmaStyleDefinition[], DesignTokensFormatDeep>;
+export function DesignTokens(deep: false): FigmaStylesTransformer<FigmaStyleDefinition[], DesignTokensFormatFlat>;
+export function DesignTokens(deep?: boolean): FigmaStylesTransformer<FigmaStyleDefinition[], DesignTokensFormat>;
+export function DesignTokens(deep: boolean = false): FigmaStylesTransformer<FigmaStyleDefinition[], DesignTokensFormat> {
+  return (input: FigmaStyleDefinition[]) => {
     const stylesArray = input
       .map((definition) => {
         const tokenName = definition.name.replaceAll('/', '.').replaceAll(' ', '-');

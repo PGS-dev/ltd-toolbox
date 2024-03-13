@@ -1,6 +1,6 @@
-import { FigmaStyleDfeinition } from '../types';
+import { FigmaStyleDefinition } from '../types';
 
-export const DEFINITIONS_FIXTURE: FigmaStyleDfeinition[] = [
+export const DEFINITIONS_FIXTURE: FigmaStyleDefinition[] = [
   {
     name: 'text/token',
     type: 'TEXT',

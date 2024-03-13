@@ -10,11 +10,11 @@ export const isShadowEffect = (effect: Effect): effect is Effect => effect.type 
 
 export const isBlurEffect = (effect: Effect): effect is Effect => effect.type === 'LAYER_BLUR' || effect.type === 'BACKGROUND_BLUR';
 
-export const isFillDefinition = (definition: FigmaStyleDfeinition): definition is FigmaStyleDfeinition & { definition: Paint[] } => definition.type === 'FILL';
+export const isFillDefinition = (definition: FigmaStyleDefinition): definition is FigmaStyleDefinition & { definition: Paint[] } => definition.type === 'FILL';
 
-export const isTextDefinition = (definition: FigmaStyleDfeinition): definition is FigmaStyleDfeinition & { definition: TypeStyle } => definition.type === 'TEXT';
+export const isTextDefinition = (definition: FigmaStyleDefinition): definition is FigmaStyleDefinition & { definition: TypeStyle } => definition.type === 'TEXT';
 
-export const isEffectDefinition = (definition: FigmaStyleDfeinition): definition is FigmaStyleDfeinition & { definition: Effect[] } => definition.type === 'EFFECT';
+export const isEffectDefinition = (definition: FigmaStyleDefinition): definition is FigmaStyleDefinition & { definition: Effect[] } => definition.type === 'EFFECT';
 
 // Temporary type
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,7 +37,7 @@ export type EffectStyle = FullStyle & {
   nodeData: VectorNode;
 };
 
-export interface FigmaStyleDfeinition {
+export interface FigmaStyleDefinition {
   name: string;
   type: StyleType;
   nodeId: string;

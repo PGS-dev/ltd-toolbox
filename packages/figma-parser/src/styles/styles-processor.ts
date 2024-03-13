@@ -2,7 +2,7 @@ import { Effect, GetFileNodesResponse, Paint, PublishedStyle, TypeStyle } from '
 import { DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../shared/design-tokens-format.types';
 import { Last } from '../types';
 import { DesignTokens } from './design-tokens.transformer';
-import { EffectStyle, FigmaStyleDfeinition, FigmaStylesTransformer, FillStyle, FullStyle, TextStyle, isEffectStyle, isFillStyle, isTextStyle } from './types';
+import { EffectStyle, FigmaStyleDefinition, FigmaStylesTransformer, FillStyle, FullStyle, TextStyle, isEffectStyle, isFillStyle, isTextStyle } from './types';
 
 export class StylesProcessor {
   private stylesData: FullStyle[] = [];
@@ -40,7 +40,10 @@ export class StylesProcessor {
     return null;
   }
 
-  definitions(): FigmaStyleDfeinition[] {
+  /**
+   * Converts Figma styles into a standardized array of style definitions, each including the style's name, type, node ID, and specific style properties (e.g., fills, text style, effects) as applicable.
+   */
+  definitions(): FigmaStyleDefinition[] {
     return this.stylesData.map((style) => ({
       name: style.styleMeta.name,
       type: style.styleMeta.style_type,
@@ -49,6 +52,9 @@ export class StylesProcessor {
     }));
   }
 
+  /**
+   * Generates design tokens from the Figma styles. This method can return either a flat or deep structure of design tokens based on the provided argument.
+   */
   designTokens(): DesignTokensFormatFlat;
   designTokens(deep: true): DesignTokensFormatDeep;
   designTokens(deep: false): DesignTokensFormatFlat;
@@ -56,9 +62,12 @@ export class StylesProcessor {
     return this.transform(DesignTokens(deep));
   }
 
-  transform(): FigmaStyleDfeinition[];
+  /**
+   * Transforms the Figma styles into another format or structure by applying one or more specified transformation functions. If no transformers are provided, it returns the default style definitions.
+   */
+  transform(): FigmaStyleDefinition[];
   transform<Transformers extends FigmaStylesTransformer[]>(...transformers: Transformers): ReturnType<Last<Transformers>>;
-  transform<Transformers extends FigmaStylesTransformer[]>(...transformers: Transformers): ReturnType<Last<Transformers>> | FigmaStyleDfeinition[] {
+  transform<Transformers extends FigmaStylesTransformer[]>(...transformers: Transformers): ReturnType<Last<Transformers>> | FigmaStyleDefinition[] {
     if (transformers.length === 0) return this.definitions();
     return transformers.reduce((acc, transformer) => transformer(acc), this.definitions());
   }

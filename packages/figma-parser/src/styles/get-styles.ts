@@ -2,6 +2,9 @@ import { GetFileNodesResponse, GetFileStylesResponse } from '@figma/rest-api-spe
 import { FigmaApiInterface } from '../core/api';
 import { StylesProcessor } from './styles-processor';
 
+/**
+ * Asynchronously fetches and processes styles from a specified Figma file.
+ */
 export async function getStyles(host: FigmaApiInterface, fileId: string) {
   if (!fileId) throw new Error('Expected fileId.');
   const stylesUrl = `files/${fileId}/styles`;

@@ -5,12 +5,18 @@ import { FigmaNodeId, GlobSearchNodes, hasChildren, isTextNode, PathBreadcrumb, 
 
 type NodeType = Node['type'];
 
+/**
+ * Represents a single node in a Figma file, providing utilities for navigation, search, and data extraction.
+ */
 export class SingleNode {
   id: FigmaNodeId = '';
   name: string = '';
   children!: NodeCollection;
   type: NodeType | string = '';
 
+  /**
+   * Constructs a SingleNode instance from a Figma Node object or an existing SingleNode instance.
+   */
   constructor(node: Node | SingleNode) {
     if (node instanceof SingleNode) return node;
     Object.assign(this, node);
@@ -20,6 +26,9 @@ export class SingleNode {
     }
   }
 
+  /**
+   * Prints a table in the console with information about the node, including its children count, id, name, and type.
+   */
   table() {
     console.table({
       children: this.children.length,
@@ -29,10 +38,16 @@ export class SingleNode {
     });
   }
 
+  /**
+   * Returns the name of the node as a string representation.
+   */
   toString() {
     return this.name;
   }
 
+  /**
+   * Finds nodes that match given glob patterns.
+   */
   glob(...paths: string[]): GlobSearchNodes[];
   glob(paths: string | string[]): GlobSearchNodes[] {
     const pathsArray = Array.isArray(paths) ? paths : [paths];
@@ -51,6 +66,9 @@ export class SingleNode {
     return output;
   }
 
+  /**
+   * Walks through the node tree, executing a callback for each node.
+   */
   walk(callback: (node: SingleNode, path: PathBreadcrumb[]) => void) {
     function walker(node: SingleNode, path: PathBreadcrumb[] = []) {
       if (!node) return;
@@ -70,6 +88,9 @@ export class SingleNode {
     walker(this);
   }
 
+  /**
+   * Finds the first node deep in the tree that matches the given predicate.
+   */
   findDeep(predicate: (node: SingleNode, path?: PathBreadcrumb[]) => boolean): SingleNode | null {
     let output: SingleNode | null = null;
     function walker(node: SingleNode, path: PathBreadcrumb[] = []) {
@@ -96,6 +117,9 @@ export class SingleNode {
     return output;
   }
 
+  /**
+   * Filters nodes deep in the tree that match the given predicate.
+   */
   filterDeep(predicate: (node: SingleNode, path?: PathBreadcrumb[]) => boolean) {
     const output: SingleNode[] = [];
     function walker(node: SingleNode, path: PathBreadcrumb[] = []) {
@@ -121,6 +145,9 @@ export class SingleNode {
     return new NodeCollection(output);
   }
 
+  /**
+   * Collects and returns the text from all text nodes deep in the tree.
+   */
   text(): string[] {
     const textNodes: SingleTextNode[] = [];
 
