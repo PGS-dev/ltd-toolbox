@@ -25,10 +25,10 @@ export type ShadowTokenValue = ShadowStop[];
 
 export type GradientTokenValue = GradientStop[];
 
-export type DesignTokenType = 'unknown' | 'typography' | 'color' | 'shadow' | 'gradient' | 'number' | 'dimension';
+export type DesignTokenType = DesignToken['$type'];
 
 export interface DesignTokenBase {
-  $type: DesignTokenType;
+  $type: string;
   $description?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   $value: any;
