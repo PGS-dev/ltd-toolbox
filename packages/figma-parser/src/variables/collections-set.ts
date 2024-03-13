@@ -23,6 +23,9 @@ export class CollectionsSet {
     this.length = length;
   }
 
+  /**
+   * Prints a table in the console listing the name, ID, type, and hiddenFromPublishing status of each collection in the set.
+   */
   table(): void {
     const lines = Array.from(this).map((collection) => ({
       name: collection?.name,
@@ -34,10 +37,17 @@ export class CollectionsSet {
     console.table(lines);
   }
 
+  /**
+   * Retrieves a collection by its name.
+   */
   getByName(name: string) {
     return this.find((collection) => collection.name === name);
   }
 
+  /**
+   * Retrieves a variable by its ID from any collection within the set.
+   * Throws an error if no variable with the given ID is found.
+   */
   getVariableById(id: string) {
     for (let i = 0; i <= this.length - 1; i++) {
       const variable = this[i].find((variable) => variable.id === id);
@@ -47,6 +57,9 @@ export class CollectionsSet {
     throw new Error(`Couldn't find variable with id: ${id}`);
   }
 
+  /**
+   * Finds the first collection in the set that satisfies the provided testing function.
+   */
   find(predicate: (item: FigmaLocalVariableCollection, index: number, collection: CollectionsSet) => boolean): FigmaLocalVariableCollection | undefined {
     for (let i = 0; i <= this.length - 1; i++) {
       if (predicate(this[i], i, this)) {
@@ -56,6 +69,9 @@ export class CollectionsSet {
     return;
   }
 
+  /**
+   * Creates a new array with all collections that pass the test implemented by the provided function.
+   */
   filter(predicate: (item: FigmaLocalVariableCollection, index: number, collection: typeof this) => boolean): FigmaLocalVariableCollection[] {
     const out: FigmaLocalVariableCollection[] = [];
 
@@ -67,7 +83,9 @@ export class CollectionsSet {
 
     return out;
   }
-
+  /**
+   * Creates an array of results by calling a provided function on every collection in the set.
+   */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   map<T = any>(callback: (item: FigmaLocalVariableCollection, index: number, collection: typeof this) => T): T[] {
     const out: T[] = [];
@@ -79,6 +97,10 @@ export class CollectionsSet {
     return out;
   }
 
+  /**
+   * Retrieves the collection at a specified index, supporting positive and negative indexing.
+   * Throws an error if the index is out of bounds.
+   */
   at(index: number) {
     if (index > 0 && index > this.length - 1) throw new Error(`Maximum index for this collection is ${this.length - 1}`);
     if (index < 0 && index < -this.length) throw new Error(`Minimum index for this collection is ${-this.length}`);
@@ -90,6 +112,9 @@ export class CollectionsSet {
     return this[index];
   }
 
+  /**
+   * Executes a provided function once for each collection in the set.
+   */
   forEach(callback: (item: FigmaLocalVariableCollection, index: number, collection: typeof this) => void): void {
     for (let i = 0; i <= this.length - 1; i++) {
       callback(this[i], i, this);

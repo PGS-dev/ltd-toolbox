@@ -86,12 +86,18 @@ export class FigmaLocalVariableCollection extends Data {
     this.length = length;
   }
 
+  /**
+   * Adds a variable to the collection. If the variable is not already an instance of FigmaLocalVariable, it is converted.
+   */
   push(variable: LocalVariable | FigmaLocalVariable) {
     const localVariable = variable instanceof FigmaLocalVariable ? variable.raw : variable;
     this[this.length] = new FigmaLocalVariable(localVariable, this);
     this.length++;
   }
 
+  /**
+   * Displays a table in the console listing properties of each variable in the collection, including name, ID, type, and hiddenFromPublishing status.
+   */
   table() {
     const lines = Array.from(this).map((variable) => ({
       name: variable.id,
@@ -103,14 +109,23 @@ export class FigmaLocalVariableCollection extends Data {
     console.table(lines);
   }
 
+  /**
+   * Checks if a mode by the given name exists within the collection.
+   */
   modeExists(modeName: string) {
     return !!this.raw.modes.find(({ name }) => name === modeName);
   }
 
+  /**
+   * Retrieves the mode ID for a given mode name. If the name is not found, returns the default mode ID.
+   */
   getModeId(name?: string) {
     return this.raw.modes.find((mode) => mode.name === name)?.modeId || this.raw.defaultModeId;
   }
 
+  /**
+   * Generates design tokens for a given mode. This method can produce tokens in a flat or deep format, based on user options.
+   */
   designTokensByMode(mode: string): DesignTokensFormatFlat;
   designTokensByMode(mode: string, userOptions: { deep: false }): DesignTokensFormatFlat;
   designTokensByMode(mode: string, userOptions: { deep: true }): DesignTokensFormatDeep;
@@ -144,6 +159,9 @@ export class FigmaLocalVariableCollection extends Data {
     return Object.fromEntries(output);
   }
 
+  /**
+   * Finds the first variable that satisfies the provided testing function.
+   */
   find(predicate: (item: FigmaLocalVariable, index: number, collection: typeof this) => boolean): FigmaLocalVariable | undefined {
     for (let i = 0; i <= this.length - 1; i++) {
       if (predicate(this[i], i, this)) {
@@ -153,6 +171,9 @@ export class FigmaLocalVariableCollection extends Data {
     return;
   }
 
+  /**
+   * Creates a new variable collection containing all variables that match the predicate test.
+   */
   filter(predicate: (item: FigmaLocalVariable, index: number, collection: FigmaLocalVariableCollection) => boolean): FigmaLocalVariableCollection {
     const out: FigmaLocalVariable[] = [];
 
@@ -165,6 +186,9 @@ export class FigmaLocalVariableCollection extends Data {
     return new FigmaLocalVariableCollection(this.raw, this.setRef, out);
   }
 
+  /**
+   * Transforms the collection of variables into an array of a specified type based on a transformation function.
+   */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   map<T = any>(callback: (item: FigmaLocalVariable, index: number, collection: FigmaLocalVariableCollection) => T): T[] {
     const out: T[] = [];
@@ -176,6 +200,9 @@ export class FigmaLocalVariableCollection extends Data {
     return out;
   }
 
+  /**
+   * Retrieves the variable at a specified index within the collection.
+   */
   at(index: number) {
     if (index > 0 && index > this.length - 1) throw new Error(`Maximum index for this collection is ${this.length - 1}`);
     if (index < 0 && index < -this.length) throw new Error(`Minimum index for this collection is ${-this.length}`);
@@ -187,6 +214,9 @@ export class FigmaLocalVariableCollection extends Data {
     return this[index];
   }
 
+  /**
+   * Executes a provided function once for each variable in the collection.
+   */
   forEach(callback: (item: FigmaLocalVariable, index: number, collection: FigmaLocalVariableCollection) => void): void {
     for (let i = 0; i <= this.length - 1; i++) {
       callback(this[i], i, this);

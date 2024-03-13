@@ -95,14 +95,23 @@ export class FigmaLocalVariable extends Data {
     super(raw);
   }
 
+  /**
+   * Prints a table in the console that lists the properties of this variable, including id, name, key, and others.
+   */
   table() {
     console.table(this.raw);
   }
 
+  /**
+   * Determines if a specific mode has a defined value for this variable.
+   */
   hasValueForMode(name: string) {
     return !!this.valueByMode(name);
   }
 
+  /**
+   * Retrieves the value of the variable for a specified mode. If no mode is specified, it returns the default value.
+   */
   valueByMode(modeName?: string) {
     if (!modeName) return this.defaultValue();
 
@@ -113,10 +122,16 @@ export class FigmaLocalVariable extends Data {
     return this.raw.valuesByMode[modeId];
   }
 
+  /**
+   * Gets the default value of the variable, which is the value for the collection's default mode.
+   */
   defaultValue() {
     return this.valuesByMode[this.collection.defaultModeId];
   }
 
+  /**
+   * Resolves the final value of an alias for a given mode, recursively resolving nested aliases if necessary.
+   */
   resolveAliasValueForMode(alias: VariableAlias, name: string): string | number | boolean | RGBA {
     const aliassedVariable = this.collection.setRef.getVariableById(alias.id);
 
@@ -127,6 +142,9 @@ export class FigmaLocalVariable extends Data {
     return aliassedVariable.resolveAliasValueForMode(value as VariableAlias, name);
   }
 
+  /**
+   * Resolves the value of the variable for a given mode, taking into account potential aliases.
+   */
   resolveValue(name: string): string | number | boolean | RGBA {
     const value = this.valueByMode(name);
 
@@ -135,6 +153,9 @@ export class FigmaLocalVariable extends Data {
     return value;
   }
 
+  /**
+   * Retrieves the value of the variable for a specified mode, formatting it as a reference string if it's an alias.
+   */
   value(name: string): string | number | boolean | RGBA {
     const value = this.valueByMode(name);
 
