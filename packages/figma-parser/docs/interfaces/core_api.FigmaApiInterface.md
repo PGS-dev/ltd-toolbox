@@ -35,4 +35,4 @@
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:75
+packages/figma-parser/src/core/api.ts:89

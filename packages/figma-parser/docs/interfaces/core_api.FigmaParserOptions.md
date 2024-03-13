@@ -8,19 +8,45 @@
 
 ### Properties
 
+- [cache](core_api.FigmaParserOptions.md#cache)
 - [cacheDir](core_api.FigmaParserOptions.md#cachedir)
 - [cacheLifetime](core_api.FigmaParserOptions.md#cachelifetime)
-- [hardCache](core_api.FigmaParserOptions.md#hardcache)
 
 ## Properties
 
-### cacheDir
+### cache
 
-• `Optional` **cacheDir**: `string`
+• **cache**: `boolean`
+
+Whether cache should be used
+
+**`Default`**
+
+```ts
+false
+```
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:8
+packages/figma-parser/src/core/api.ts:14
+
+___
+
+### cacheDir
+
+• **cacheDir**: `string`
+
+Directory to store cached files
+
+**`Default`**
+
+```ts
+.cache
+```
+
+#### Defined in
+
+packages/figma-parser/src/core/api.ts:19
 
 ___
 
@@ -28,16 +54,14 @@ ___
 
 • **cacheLifetime**: `number`
 
-#### Defined in
+Defines how long cache should live. Cache file creation time is used, therefore it counts since first matching request.
 
-packages/figma-parser/src/core/api.ts:9
+**`Default`**
 
-___
-
-### hardCache
-
-• `Optional` **hardCache**: `boolean`
+```ts
+8 hours (1000 * 60 * 60 * 8)
+```
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:7
+packages/figma-parser/src/core/api.ts:24

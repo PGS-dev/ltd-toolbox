@@ -43,7 +43,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `nodes` | readonly `Node`[] \| `Node`[] \| [`SingleNode`](document.SingleNode.md)[] |
+| `nodes` | `Node`[] \| readonly `Node`[] \| [`SingleNode`](document.SingleNode.md)[] |
 | `parent?` | [`SingleNode`](document.SingleNode.md) |
 
 #### Returns
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/document/node-collection.ts:12
+packages/figma-parser/src/document/node-collection.ts:14
 
 ## Methods
 
@@ -86,7 +86,7 @@ packages/figma-parser/src/document/node-collection.ts:12
 
 #### Defined in
 
-packages/figma-parser/src/document/node-collection.ts:140
+packages/figma-parser/src/document/node-collection.ts:143
 
 ___
 
@@ -109,7 +109,7 @@ Throws an error if the index is out of bounds.
 
 #### Defined in
 
-packages/figma-parser/src/document/node-collection.ts:51
+packages/figma-parser/src/document/node-collection.ts:54
 
 ___
 
@@ -131,7 +131,7 @@ Creates a new NodeCollection with all nodes that pass the test implemented by th
 
 #### Defined in
 
-packages/figma-parser/src/document/node-collection.ts:99
+packages/figma-parser/src/document/node-collection.ts:102
 
 ___
 
@@ -153,7 +153,7 @@ Executes a provided function once for each node in the collection.
 
 #### Defined in
 
-packages/figma-parser/src/document/node-collection.ts:125
+packages/figma-parser/src/document/node-collection.ts:128
 
 ___
 
@@ -176,7 +176,7 @@ Returns the node if found, undefined otherwise.
 
 #### Defined in
 
-packages/figma-parser/src/document/node-collection.ts:66
+packages/figma-parser/src/document/node-collection.ts:69
 
 ___
 
@@ -199,7 +199,7 @@ Returns the node if found, undefined otherwise.
 
 #### Defined in
 
-packages/figma-parser/src/document/node-collection.ts:79
+packages/figma-parser/src/document/node-collection.ts:82
 
 ___
 
@@ -227,7 +227,7 @@ Creates an array of values by running each node in the collection through the ca
 
 #### Defined in
 
-packages/figma-parser/src/document/node-collection.ts:113
+packages/figma-parser/src/document/node-collection.ts:116
 
 ___
 
@@ -251,7 +251,7 @@ Returns the node if found, undefined otherwise.
 
 #### Defined in
 
-packages/figma-parser/src/document/node-collection.ts:87
+packages/figma-parser/src/document/node-collection.ts:90
 
 ___
 
@@ -267,7 +267,7 @@ Prints a table in the console listing the name, ID, and type of each node in the
 
 #### Defined in
 
-packages/figma-parser/src/document/node-collection.ts:26
+packages/figma-parser/src/document/node-collection.ts:29
 
 ___
 
@@ -283,7 +283,7 @@ Creates a string representation of the collection by joining the string represen
 
 #### Defined in
 
-packages/figma-parser/src/document/node-collection.ts:39
+packages/figma-parser/src/document/node-collection.ts:42
 
 ___
 
@@ -305,4 +305,4 @@ Recursively walks through each node and its children in the collection, executin
 
 #### Defined in
 
-packages/figma-parser/src/document/node-collection.ts:134
+packages/figma-parser/src/document/node-collection.ts:137

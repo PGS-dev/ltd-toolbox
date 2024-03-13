@@ -8,7 +8,6 @@
 
 - [FigmaApiInterface](../interfaces/core_api.FigmaApiInterface.md)
 - [FigmaParserOptions](../interfaces/core_api.FigmaParserOptions.md)
-- [FigmaRequestOptions](../interfaces/core_api.FigmaRequestOptions.md)
 
 ### Type Aliases
 
@@ -24,9 +23,11 @@
 
 Ƭ **FigmaPAT**: \`figd\_$\{string}\`
 
+Figma Personal Access Token format.
+
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:4
+packages/figma-parser/src/core/api.ts:7
 
 ## Functions
 
@@ -47,4 +48,4 @@ packages/figma-parser/src/core/api.ts:4
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:72
+packages/figma-parser/src/core/api.ts:86
