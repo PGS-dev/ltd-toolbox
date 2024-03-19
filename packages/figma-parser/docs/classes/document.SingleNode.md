@@ -1,10 +1,22 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.1](../README.md) / [Modules](../modules.md) / [document](../modules/document.md) / SingleNode
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.2](../README.md) / [Modules](../modules.md) / [document](../modules/document.md) / SingleNode
 
-# Class: SingleNode
+# Class: SingleNode\<T\>
 
 [document](../modules/document.md).SingleNode
 
 Represents a single node in a Figma file, providing utilities for navigation, search, and data extraction.
+
+## Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `Node` = `Node` |
+
+## Hierarchy
+
+- `AbstractNode`\<`T`\>
+
+  ↳ **`SingleNode`**
 
 ## Table of contents
 
@@ -15,15 +27,14 @@ Represents a single node in a Figma file, providing utilities for navigation, se
 ### Properties
 
 - [children](document.SingleNode.md#children)
-- [id](document.SingleNode.md#id)
-- [name](document.SingleNode.md#name)
-- [type](document.SingleNode.md#type)
+- [raw](document.SingleNode.md#raw)
 
 ### Methods
 
 - [filterDeep](document.SingleNode.md#filterdeep)
 - [findDeep](document.SingleNode.md#finddeep)
 - [glob](document.SingleNode.md#glob)
+- [mapDeep](document.SingleNode.md#mapdeep)
 - [table](document.SingleNode.md#table)
 - [text](document.SingleNode.md#text)
 - [toString](document.SingleNode.md#tostring)
@@ -33,69 +44,67 @@ Represents a single node in a Figma file, providing utilities for navigation, se
 
 ### constructor
 
-• **new SingleNode**(`node`): [`SingleNode`](document.SingleNode.md)
+• **new SingleNode**\<`T`\>(`raw`): [`SingleNode`](document.SingleNode.md)\<`T`\>
 
 Constructs a SingleNode instance from a Figma Node object or an existing SingleNode instance.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `Node` = `Node` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | `Node` \| [`SingleNode`](document.SingleNode.md) |
+| `raw` | `T` |
 
 #### Returns
 
-[`SingleNode`](document.SingleNode.md)
+[`SingleNode`](document.SingleNode.md)\<`T`\>
+
+#### Inherited from
+
+AbstractNode\<T\>.constructor
 
 #### Defined in
 
-packages/figma-parser/src/document/single-node.ts:20
+packages/figma-parser/src/shared/node.abstract.ts:17
 
 ## Properties
 
 ### children
 
-• **children**: [`NodeCollection`](document.NodeCollection.md)
+• **children**: [`SingleNode`](document.SingleNode.md)\<`T`\>[] = `[]`
+
+#### Inherited from
+
+AbstractNode.children
 
 #### Defined in
 
-packages/figma-parser/src/document/single-node.ts:14
+packages/figma-parser/src/shared/node.abstract.ts:12
 
 ___
 
-### id
+### raw
 
-• **id**: `string` = `''`
+• **raw**: `T`
 
-#### Defined in
+#### Inherited from
 
-packages/figma-parser/src/document/single-node.ts:12
-
-___
-
-### name
-
-• **name**: `string` = `''`
+AbstractNode.raw
 
 #### Defined in
 
-packages/figma-parser/src/document/single-node.ts:13
-
-___
-
-### type
-
-• **type**: `string` = `''`
-
-#### Defined in
-
-packages/figma-parser/src/document/single-node.ts:15
+packages/figma-parser/src/shared/node.abstract.ts:17
 
 ## Methods
 
 ### filterDeep
 
-▸ **filterDeep**(`predicate`): [`NodeCollection`](document.NodeCollection.md)
+▸ **filterDeep**(`predicate`): [`SingleNode`](document.SingleNode.md)\<`T`\>[]
 
 Filters nodes deep in the tree that match the given predicate.
 
@@ -103,21 +112,25 @@ Filters nodes deep in the tree that match the given predicate.
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | (`node`: [`SingleNode`](document.SingleNode.md), `path?`: [`PathBreadcrumb`](../interfaces/document.PathBreadcrumb.md)[]) => `boolean` |
+| `predicate` | (`node`: `this`, `path?`: [`PathBreadcrumb`](../interfaces/document.PathBreadcrumb.md)[]) => `boolean` |
 
 #### Returns
 
-[`NodeCollection`](document.NodeCollection.md)
+[`SingleNode`](document.SingleNode.md)\<`T`\>[]
+
+#### Inherited from
+
+AbstractNode.filterDeep
 
 #### Defined in
 
-packages/figma-parser/src/document/single-node.ts:123
+packages/figma-parser/src/shared/node.abstract.ts:104
 
 ___
 
 ### findDeep
 
-▸ **findDeep**(`predicate`): ``null`` \| [`SingleNode`](document.SingleNode.md)
+▸ **findDeep**(`predicate`): ``null`` \| [`SingleNode`](document.SingleNode.md)\<`T`\>
 
 Finds the first node deep in the tree that matches the given predicate.
 
@@ -125,15 +138,19 @@ Finds the first node deep in the tree that matches the given predicate.
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | (`node`: [`SingleNode`](document.SingleNode.md), `path?`: [`PathBreadcrumb`](../interfaces/document.PathBreadcrumb.md)[]) => `boolean` |
+| `predicate` | (`node`: `this`, `path?`: [`PathBreadcrumb`](../interfaces/document.PathBreadcrumb.md)[]) => `boolean` |
 
 #### Returns
 
-``null`` \| [`SingleNode`](document.SingleNode.md)
+``null`` \| [`SingleNode`](document.SingleNode.md)\<`T`\>
+
+#### Inherited from
+
+AbstractNode.findDeep
 
 #### Defined in
 
-packages/figma-parser/src/document/single-node.ts:94
+packages/figma-parser/src/shared/node.abstract.ts:89
 
 ___
 
@@ -153,9 +170,43 @@ Finds nodes that match given glob patterns.
 
 [`GlobSearchNodes`](../interfaces/document.GlobSearchNodes.md)[]
 
+#### Inherited from
+
+AbstractNode.glob
+
 #### Defined in
 
-packages/figma-parser/src/document/single-node.ts:51
+packages/figma-parser/src/shared/node.abstract.ts:45
+
+___
+
+### mapDeep
+
+▸ **mapDeep**\<`T`\>(`callback`): `WithChildren`\<`T`\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `unknown` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `callback` | (`node`: `this`) => `undefined` \| `WithChildren`\<`T`\> |
+
+#### Returns
+
+`WithChildren`\<`T`\>
+
+#### Inherited from
+
+AbstractNode.mapDeep
+
+#### Defined in
+
+packages/figma-parser/src/shared/node.abstract.ts:130
 
 ___
 
@@ -169,9 +220,13 @@ Prints a table in the console with information about the node, including its chi
 
 `void`
 
+#### Inherited from
+
+AbstractNode.table
+
 #### Defined in
 
-packages/figma-parser/src/document/single-node.ts:32
+packages/figma-parser/src/shared/node.abstract.ts:26
 
 ___
 
@@ -185,9 +240,13 @@ Collects and returns the text from all text nodes deep in the tree.
 
 `string`[]
 
+#### Inherited from
+
+AbstractNode.text
+
 #### Defined in
 
-packages/figma-parser/src/document/single-node.ts:151
+packages/figma-parser/src/shared/node.abstract.ts:118
 
 ___
 
@@ -201,9 +260,13 @@ Returns the name of the node as a string representation.
 
 `string`
 
+#### Inherited from
+
+AbstractNode.toString
+
 #### Defined in
 
-packages/figma-parser/src/document/single-node.ts:44
+packages/figma-parser/src/shared/node.abstract.ts:38
 
 ___
 
@@ -217,12 +280,16 @@ Walks through the node tree, executing a callback for each node.
 
 | Name | Type |
 | :------ | :------ |
-| `callback` | (`node`: [`SingleNode`](document.SingleNode.md), `path`: [`PathBreadcrumb`](../interfaces/document.PathBreadcrumb.md)[]) => `void` |
+| `callback` | (`node`: `this`, `path`: [`PathBreadcrumb`](../interfaces/document.PathBreadcrumb.md)[]) => `void` |
 
 #### Returns
 
 `void`
 
+#### Inherited from
+
+AbstractNode.walk
+
 #### Defined in
 
-packages/figma-parser/src/document/single-node.ts:72
+packages/figma-parser/src/shared/node.abstract.ts:66

@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.1](../README.md) / [Modules](../modules.md) / [dev](../modules/dev.md) / DesignTokensFormatDeep
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.2](../README.md) / [Modules](../modules.md) / [dev](../modules/dev.md) / DesignTokensFormatDeep
 
 # Interface: DesignTokensFormatDeep
 

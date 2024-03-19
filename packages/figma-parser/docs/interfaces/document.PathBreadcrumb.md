@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.1](../README.md) / [Modules](../modules.md) / [document](../modules/document.md) / PathBreadcrumb
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.2](../README.md) / [Modules](../modules.md) / [document](../modules/document.md) / PathBreadcrumb
 
 # Interface: PathBreadcrumb
 
@@ -19,7 +19,7 @@
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:24
+packages/figma-parser/src/document/types.ts:26
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:23
+packages/figma-parser/src/document/types.ts:25

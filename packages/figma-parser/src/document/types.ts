@@ -17,6 +17,8 @@ import type {
   TextNode,
   VectorNode,
 } from '@figma/rest-api-spec';
+import { AbstractNode } from '../shared/node.abstract';
+import { OnPurposeAny } from '../types';
 import { SingleNode } from './single-node';
 
 export interface PathBreadcrumb {
@@ -26,7 +28,7 @@ export interface PathBreadcrumb {
 
 export type FigmaNodeId = `${number}:${number}` | string;
 
-export const hasChildren = <T = Node>(node: object): node is Node & { children: T[] } => !!node && 'children' in node && Array.isArray(node.children) && node.children.length > 0;
+export const hasChildren = (node: Node): node is Node & { children: OnPurposeAny } => !!node && 'children' in node && Array.isArray(node.children) && node.children.length > 0;
 
 export const isFigmaNodeId = (value: string): value is FigmaNodeId => /\d+:\d+/.test(value);
 
@@ -47,36 +49,19 @@ export interface GlobSearchNodes {
   path: PathBreadcrumb[];
 }
 
-export type SingleDocumentNode = SingleNode & DocumentNode;
-export type SingleCanvasNode = SingleNode & CanvasNode;
-export type SingleFrameNode = SingleNode & FrameNode;
-export type SingleGroupNode = SingleNode & GroupNode;
-export type SingleVectorNode = SingleNode & VectorNode;
-export type SingleBooleanOperationNode = SingleNode & BooleanOperationNode;
-export type SingleStarNode = SingleNode & StarNode;
-export type SingleLineNode = SingleNode & LineNode;
-export type SingleEllipseNode = SingleNode & EllipseNode;
-export type SingleRegularPolygonNode = SingleNode & RegularPolygonNode;
-export type SingleRectangleNode = SingleNode & RectangleNode;
-export type SingleTextNode = SingleNode & TextNode;
-export type SingleSliceNode = SingleNode & SliceNode;
-export type SingleComponentNode = SingleNode & ComponentNode;
-export type SingleComponentSetNode = SingleNode & ComponentSetNode;
-export type SingleInstanceNode = SingleNode & InstanceNode;
-
-export const isDocumentNode = (node: SingleNode): node is SingleDocumentNode => node.type === 'DOCUMENT';
-export const isCanvasNode = (node: SingleNode): node is SingleCanvasNode => node.type === 'CANVAS';
-export const isFrameNode = (node: SingleNode): node is SingleFrameNode => node.type === 'FRAME';
-export const isGroupNode = (node: SingleNode): node is SingleGroupNode => node.type === 'GROUP';
-export const isVectorNode = (node: SingleNode): node is SingleVectorNode => node.type === 'VECTOR';
-export const isBooleanOperationNode = (node: SingleNode): node is SingleBooleanOperationNode => node.type === 'BOOLEAN_OPERATION';
-export const isStarNode = (node: SingleNode): node is SingleStarNode => node.type === 'STAR';
-export const isLineNode = (node: SingleNode): node is SingleLineNode => node.type === 'LINE';
-export const isEllipseNode = (node: SingleNode): node is SingleEllipseNode => node.type === 'ELLIPSE';
-export const isRegularPolygonNode = (node: SingleNode): node is SingleRegularPolygonNode => node.type === 'REGULAR_POLYGON';
-export const isRectangleNode = (node: SingleNode): node is SingleRectangleNode => node.type === 'RECTANGLE';
-export const isTextNode = (node: SingleNode): node is SingleTextNode => node.type === 'TEXT';
-export const isSliceNode = (node: SingleNode): node is SingleSliceNode => node.type === 'SLICE';
-export const isComponentNode = (node: SingleNode): node is SingleComponentNode => node.type === 'COMPONENT';
-export const isComponentSetNode = (node: SingleNode): node is SingleComponentSetNode => node.type === 'COMPONENT_SET';
-export const isInstanceNode = (node: SingleNode): node is SingleInstanceNode => node.type === 'INSTANCE';
+export const isDocumentNode = (node: AbstractNode): node is AbstractNode<DocumentNode> => !!node && node.raw.type === 'DOCUMENT';
+export const isCanvasNode = (node: AbstractNode): node is AbstractNode<CanvasNode> => !!node && node.raw.type === 'CANVAS';
+export const isFrameNode = (node: AbstractNode): node is AbstractNode<FrameNode> => !!node && node.raw.type === 'FRAME';
+export const isGroupNode = (node: AbstractNode): node is AbstractNode<GroupNode> => !!node && node.raw.type === 'GROUP';
+export const isVectorNode = (node: AbstractNode): node is AbstractNode<VectorNode> => !!node && node.raw.type === 'VECTOR';
+export const isBooleanOperationNode = (node: AbstractNode): node is AbstractNode<BooleanOperationNode> => !!node && node.raw.type === 'BOOLEAN_OPERATION';
+export const isStarNode = (node: AbstractNode): node is AbstractNode<StarNode> => !!node && node.raw.type === 'STAR';
+export const isLineNode = (node: AbstractNode): node is AbstractNode<LineNode> => !!node && node.raw.type === 'LINE';
+export const isEllipseNode = (node: AbstractNode): node is AbstractNode<EllipseNode> => !!node && node.raw.type === 'ELLIPSE';
+export const isRegularPolygonNode = (node: AbstractNode): node is AbstractNode<RegularPolygonNode> => !!node && node.raw.type === 'REGULAR_POLYGON';
+export const isRectangleNode = (node: AbstractNode): node is AbstractNode<RectangleNode> => !!node && node.raw.type === 'RECTANGLE';
+export const isTextNode = (node: AbstractNode): node is AbstractNode<TextNode> => !!node && node.raw.type === 'TEXT';
+export const isSliceNode = (node: AbstractNode): node is AbstractNode<SliceNode> => !!node && node.raw.type === 'SLICE';
+export const isComponentNode = (node: AbstractNode): node is AbstractNode<ComponentNode> => !!node && node.raw.type === 'COMPONENT';
+export const isComponentSetNode = (node: AbstractNode): node is AbstractNode<ComponentSetNode> => !!node && node.raw.type === 'COMPONENT_SET';
+export const isInstanceNode = (node: AbstractNode): node is AbstractNode<InstanceNode> => !!node && node.raw.type === 'INSTANCE';

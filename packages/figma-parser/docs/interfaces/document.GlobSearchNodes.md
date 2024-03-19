@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.1](../README.md) / [Modules](../modules.md) / [document](../modules/document.md) / GlobSearchNodes
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.2](../README.md) / [Modules](../modules.md) / [document](../modules/document.md) / GlobSearchNodes
 
 # Interface: GlobSearchNodes
 
@@ -15,11 +15,11 @@
 
 ### node
 
-• **node**: [`SingleNode`](../classes/document.SingleNode.md)
+• **node**: [`SingleNode`](../classes/document.SingleNode.md)\<`Node`\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:46
+packages/figma-parser/src/document/types.ts:48
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:47
+packages/figma-parser/src/document/types.ts:49
