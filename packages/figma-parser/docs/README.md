@@ -74,6 +74,17 @@ import { getVariables } from '@ltd-toolbox/figma-parser/variables'
 
 Unlock the full potential of Figma's customization capabilities with the `getVariables` function. This advanced feature fetches all local variables from your Figma file, allowing you to navigate, resolve aliases, or determine final values and modes with unparalleled ease. Moreover, it facilitates the generation of design token definitions adhering to the [Design Tokens Format](https://design-tokens.github.io/community-group/format/), providing a structured and efficient approach to managing your design systems.
 
+### `getContents` - rich content extraction
+
+```typescript
+import { getContents } from '@ltd-toolbox/figma-parser'
+import { getContents } from '@ltd-toolbox/figma-parser/contents'
+```
+
+Unlock the narrative within your Figma files with the `getContents` utility, a sophisticated tool designed to extract the textual content from your designs. This feature delves into your document's structure, retrieving text from layers and transforming it into an easy to process syntax tree.
+
+Whether you're aiming to document your design system, generate readable content, or create structured data from your Figma designs, `getContents` offers the flexibility and precision needed for detailed content extraction and transformation thanks to customizable getters for fine-tuned content retrieval.
+
 ## Creating custom tools
 
 Creating custom tools is as simple as crafting an asynchronous function that utilizes the `figmaApi` and any additional parameters you deem necessary.

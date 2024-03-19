@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.1](../README.md) / [Modules](../modules.md) / document
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.2](../README.md) / [Modules](../modules.md) / document
 
 # Module: document
 
@@ -6,7 +6,6 @@
 
 ### Classes
 
-- [NodeCollection](../classes/document.NodeCollection.md)
 - [SingleNode](../classes/document.SingleNode.md)
 
 ### Interfaces
@@ -17,22 +16,7 @@
 ### Type Aliases
 
 - [FigmaNodeId](document.md#figmanodeid)
-- [SingleBooleanOperationNode](document.md#singlebooleanoperationnode)
-- [SingleCanvasNode](document.md#singlecanvasnode)
-- [SingleComponentNode](document.md#singlecomponentnode)
-- [SingleComponentSetNode](document.md#singlecomponentsetnode)
-- [SingleDocumentNode](document.md#singledocumentnode)
-- [SingleEllipseNode](document.md#singleellipsenode)
-- [SingleFrameNode](document.md#singleframenode)
-- [SingleGroupNode](document.md#singlegroupnode)
-- [SingleInstanceNode](document.md#singleinstancenode)
-- [SingleLineNode](document.md#singlelinenode)
-- [SingleRectangleNode](document.md#singlerectanglenode)
-- [SingleRegularPolygonNode](document.md#singleregularpolygonnode)
-- [SingleSliceNode](document.md#singleslicenode)
-- [SingleStarNode](document.md#singlestarnode)
-- [SingleTextNode](document.md#singletextnode)
-- [SingleVectorNode](document.md#singlevectornode)
+- [WalkPredicate](document.md#walkpredicate)
 
 ### Variables
 
@@ -70,167 +54,32 @@
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:27
+packages/figma-parser/src/document/types.ts:29
 
 ___
 
-### SingleBooleanOperationNode
+### WalkPredicate
 
-Ƭ **SingleBooleanOperationNode**: [`SingleNode`](../classes/document.SingleNode.md) & `BooleanOperationNode`
+Ƭ **WalkPredicate**: (`node`: [`SingleNode`](../classes/document.SingleNode.md), `path`: [`PathBreadcrumb`](../interfaces/document.PathBreadcrumb.md)[]) => `void`
 
-#### Defined in
+#### Type declaration
 
-packages/figma-parser/src/document/types.ts:55
+▸ (`node`, `path`): `void`
 
-___
+##### Parameters
 
-### SingleCanvasNode
+| Name | Type |
+| :------ | :------ |
+| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `path` | [`PathBreadcrumb`](../interfaces/document.PathBreadcrumb.md)[] |
 
-Ƭ **SingleCanvasNode**: [`SingleNode`](../classes/document.SingleNode.md) & `CanvasNode`
+##### Returns
 
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:51
-
-___
-
-### SingleComponentNode
-
-Ƭ **SingleComponentNode**: [`SingleNode`](../classes/document.SingleNode.md) & `ComponentNode`
+`void`
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:63
-
-___
-
-### SingleComponentSetNode
-
-Ƭ **SingleComponentSetNode**: [`SingleNode`](../classes/document.SingleNode.md) & `ComponentSetNode`
-
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:64
-
-___
-
-### SingleDocumentNode
-
-Ƭ **SingleDocumentNode**: [`SingleNode`](../classes/document.SingleNode.md) & `DocumentNode`
-
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:50
-
-___
-
-### SingleEllipseNode
-
-Ƭ **SingleEllipseNode**: [`SingleNode`](../classes/document.SingleNode.md) & `EllipseNode`
-
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:58
-
-___
-
-### SingleFrameNode
-
-Ƭ **SingleFrameNode**: [`SingleNode`](../classes/document.SingleNode.md) & `FrameNode`
-
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:52
-
-___
-
-### SingleGroupNode
-
-Ƭ **SingleGroupNode**: [`SingleNode`](../classes/document.SingleNode.md) & `GroupNode`
-
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:53
-
-___
-
-### SingleInstanceNode
-
-Ƭ **SingleInstanceNode**: [`SingleNode`](../classes/document.SingleNode.md) & `InstanceNode`
-
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:65
-
-___
-
-### SingleLineNode
-
-Ƭ **SingleLineNode**: [`SingleNode`](../classes/document.SingleNode.md) & `LineNode`
-
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:57
-
-___
-
-### SingleRectangleNode
-
-Ƭ **SingleRectangleNode**: [`SingleNode`](../classes/document.SingleNode.md) & `RectangleNode`
-
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:60
-
-___
-
-### SingleRegularPolygonNode
-
-Ƭ **SingleRegularPolygonNode**: [`SingleNode`](../classes/document.SingleNode.md) & `RegularPolygonNode`
-
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:59
-
-___
-
-### SingleSliceNode
-
-Ƭ **SingleSliceNode**: [`SingleNode`](../classes/document.SingleNode.md) & `SliceNode`
-
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:62
-
-___
-
-### SingleStarNode
-
-Ƭ **SingleStarNode**: [`SingleNode`](../classes/document.SingleNode.md) & `StarNode`
-
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:56
-
-___
-
-### SingleTextNode
-
-Ƭ **SingleTextNode**: [`SingleNode`](../classes/document.SingleNode.md) & `TextNode`
-
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:61
-
-___
-
-### SingleVectorNode
-
-Ƭ **SingleVectorNode**: [`SingleNode`](../classes/document.SingleNode.md) & `VectorNode`
-
-#### Defined in
-
-packages/figma-parser/src/document/types.ts:54
+packages/figma-parser/src/document/single-node.ts:5
 
 ## Variables
 
@@ -240,13 +89,13 @@ packages/figma-parser/src/document/types.ts:54
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:33
+packages/figma-parser/src/document/types.ts:35
 
 ## Functions
 
 ### getDocument
 
-▸ **getDocument**(`host`, `fileId`): `Promise`\<[`SingleNode`](../classes/document.SingleNode.md)\>
+▸ **getDocument**(`host`, `fileId`): `Promise`\<[`SingleNode`](../classes/document.SingleNode.md)\<`DocumentNode`\>\>
 
 Asynchronously retrieves a Figma document by its file ID and wraps it in a SingleNode instance for easy manipulation and access.
 
@@ -259,7 +108,7 @@ Asynchronously retrieves a Figma document by its file ID and wraps it in a Singl
 
 #### Returns
 
-`Promise`\<[`SingleNode`](../classes/document.SingleNode.md)\>
+`Promise`\<[`SingleNode`](../classes/document.SingleNode.md)\<`DocumentNode`\>\>
 
 #### Defined in
 
@@ -269,19 +118,13 @@ ___
 
 ### hasChildren
 
-▸ **hasChildren**\<`T`\>(`node`): node is Node & Object
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | `Node` |
+▸ **hasChildren**(`node`): node is Node & Object
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | `object` |
+| `node` | `Node` |
 
 #### Returns
 
@@ -289,127 +132,127 @@ node is Node & Object
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:29
+packages/figma-parser/src/document/types.ts:31
 
 ___
 
 ### isBooleanOperationNode
 
-▸ **isBooleanOperationNode**(`node`): node is SingleBooleanOperationNode
+▸ **isBooleanOperationNode**(`node`): node is AbstractNode\<BooleanOperationNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleBooleanOperationNode
+node is AbstractNode\<BooleanOperationNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:72
+packages/figma-parser/src/document/types.ts:57
 
 ___
 
 ### isCanvasNode
 
-▸ **isCanvasNode**(`node`): node is SingleCanvasNode
+▸ **isCanvasNode**(`node`): node is AbstractNode\<CanvasNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleCanvasNode
+node is AbstractNode\<CanvasNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:68
+packages/figma-parser/src/document/types.ts:53
 
 ___
 
 ### isComponentNode
 
-▸ **isComponentNode**(`node`): node is SingleComponentNode
+▸ **isComponentNode**(`node`): node is AbstractNode\<ComponentNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleComponentNode
+node is AbstractNode\<ComponentNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:80
+packages/figma-parser/src/document/types.ts:65
 
 ___
 
 ### isComponentSetNode
 
-▸ **isComponentSetNode**(`node`): node is SingleComponentSetNode
+▸ **isComponentSetNode**(`node`): node is AbstractNode\<ComponentSetNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleComponentSetNode
+node is AbstractNode\<ComponentSetNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:81
+packages/figma-parser/src/document/types.ts:66
 
 ___
 
 ### isDocumentNode
 
-▸ **isDocumentNode**(`node`): node is SingleDocumentNode
+▸ **isDocumentNode**(`node`): node is AbstractNode\<DocumentNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleDocumentNode
+node is AbstractNode\<DocumentNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:67
+packages/figma-parser/src/document/types.ts:52
 
 ___
 
 ### isEllipseNode
 
-▸ **isEllipseNode**(`node`): node is SingleEllipseNode
+▸ **isEllipseNode**(`node`): node is AbstractNode\<EllipseNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleEllipseNode
+node is AbstractNode\<EllipseNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:75
+packages/figma-parser/src/document/types.ts:60
 
 ___
 
@@ -429,87 +272,87 @@ value is string
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:31
+packages/figma-parser/src/document/types.ts:33
 
 ___
 
 ### isFrameNode
 
-▸ **isFrameNode**(`node`): node is SingleFrameNode
+▸ **isFrameNode**(`node`): node is AbstractNode\<FrameNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleFrameNode
+node is AbstractNode\<FrameNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:69
+packages/figma-parser/src/document/types.ts:54
 
 ___
 
 ### isGroupNode
 
-▸ **isGroupNode**(`node`): node is SingleGroupNode
+▸ **isGroupNode**(`node`): node is AbstractNode\<GroupNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleGroupNode
+node is AbstractNode\<GroupNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:70
+packages/figma-parser/src/document/types.ts:55
 
 ___
 
 ### isInstanceNode
 
-▸ **isInstanceNode**(`node`): node is SingleInstanceNode
+▸ **isInstanceNode**(`node`): node is AbstractNode\<InstanceNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleInstanceNode
+node is AbstractNode\<InstanceNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:82
+packages/figma-parser/src/document/types.ts:67
 
 ___
 
 ### isLineNode
 
-▸ **isLineNode**(`node`): node is SingleLineNode
+▸ **isLineNode**(`node`): node is AbstractNode\<LineNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleLineNode
+node is AbstractNode\<LineNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:74
+packages/figma-parser/src/document/types.ts:59
 
 ___
 
@@ -529,47 +372,47 @@ value is Node
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:35
+packages/figma-parser/src/document/types.ts:37
 
 ___
 
 ### isRectangleNode
 
-▸ **isRectangleNode**(`node`): node is SingleRectangleNode
+▸ **isRectangleNode**(`node`): node is AbstractNode\<RectangleNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleRectangleNode
+node is AbstractNode\<RectangleNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:77
+packages/figma-parser/src/document/types.ts:62
 
 ___
 
 ### isRegularPolygonNode
 
-▸ **isRegularPolygonNode**(`node`): node is SingleRegularPolygonNode
+▸ **isRegularPolygonNode**(`node`): node is AbstractNode\<RegularPolygonNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleRegularPolygonNode
+node is AbstractNode\<RegularPolygonNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:76
+packages/figma-parser/src/document/types.ts:61
 
 ___
 
@@ -589,84 +432,84 @@ value is Node
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:40
+packages/figma-parser/src/document/types.ts:42
 
 ___
 
 ### isSliceNode
 
-▸ **isSliceNode**(`node`): node is SingleSliceNode
+▸ **isSliceNode**(`node`): node is AbstractNode\<SliceNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleSliceNode
+node is AbstractNode\<SliceNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:79
+packages/figma-parser/src/document/types.ts:64
 
 ___
 
 ### isStarNode
 
-▸ **isStarNode**(`node`): node is SingleStarNode
+▸ **isStarNode**(`node`): node is AbstractNode\<StarNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleStarNode
+node is AbstractNode\<StarNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:73
+packages/figma-parser/src/document/types.ts:58
 
 ___
 
 ### isTextNode
 
-▸ **isTextNode**(`node`): node is SingleTextNode
+▸ **isTextNode**(`node`): node is AbstractNode\<TextNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleTextNode
+node is AbstractNode\<TextNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:78
+packages/figma-parser/src/document/types.ts:63
 
 ___
 
 ### isVectorNode
 
-▸ **isVectorNode**(`node`): node is SingleVectorNode
+▸ **isVectorNode**(`node`): node is AbstractNode\<VectorNode\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`SingleNode`](../classes/document.SingleNode.md) |
+| `node` | `AbstractNode`\<`Node`\> |
 
 #### Returns
 
-node is SingleVectorNode
+node is AbstractNode\<VectorNode\>
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:71
+packages/figma-parser/src/document/types.ts:56

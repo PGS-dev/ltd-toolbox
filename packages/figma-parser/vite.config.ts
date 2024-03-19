@@ -19,7 +19,8 @@ export default defineConfig({
         api: './src/core/api.ts',
         document: './src/document/get-document.ts',
         styles: './src/styles/get-styles.ts',
-        variables: './src/variables/get-variables.ts'
+        variables: './src/variables/get-variables.ts',
+        contents: './src/contents/get-contents.ts'
       },
       formats: ['es', 'cjs'],
       fileName: (format, filename) => {

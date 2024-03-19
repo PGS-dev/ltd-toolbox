@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.1](../README.md) / [Modules](../modules.md) / dev
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.2](../README.md) / [Modules](../modules.md) / dev
 
 # Module: dev
 
@@ -13,26 +13,10 @@
 - [FillStyle](dev.md#fillstyle)
 - [FullStyle](dev.md#fullstyle)
 - [GlobSearchNodes](dev.md#globsearchnodes)
-- [NodeCollection](dev.md#nodecollection)
 - [PathBreadcrumb](dev.md#pathbreadcrumb)
-- [SingleBooleanOperationNode](dev.md#singlebooleanoperationnode)
-- [SingleCanvasNode](dev.md#singlecanvasnode)
-- [SingleComponentNode](dev.md#singlecomponentnode)
-- [SingleComponentSetNode](dev.md#singlecomponentsetnode)
-- [SingleDocumentNode](dev.md#singledocumentnode)
-- [SingleEllipseNode](dev.md#singleellipsenode)
-- [SingleFrameNode](dev.md#singleframenode)
-- [SingleGroupNode](dev.md#singlegroupnode)
-- [SingleInstanceNode](dev.md#singleinstancenode)
-- [SingleLineNode](dev.md#singlelinenode)
 - [SingleNode](dev.md#singlenode)
-- [SingleRectangleNode](dev.md#singlerectanglenode)
-- [SingleRegularPolygonNode](dev.md#singleregularpolygonnode)
-- [SingleSliceNode](dev.md#singleslicenode)
-- [SingleStarNode](dev.md#singlestarnode)
-- [SingleTextNode](dev.md#singletextnode)
-- [SingleVectorNode](dev.md#singlevectornode)
 - [TextStyle](dev.md#textstyle)
+- [WalkPredicate](dev.md#walkpredicate)
 - [hasChildren](dev.md#haschildren)
 - [isBlurEffect](dev.md#isblureffect)
 - [isBooleanOperationNode](dev.md#isbooleanoperationnode)
@@ -66,6 +50,7 @@
 ### Classes
 
 - [CollectionsSet](../classes/dev.CollectionsSet.md)
+- [ContentNode](../classes/dev.ContentNode.md)
 - [FigmaLocalVariable](../classes/dev.FigmaLocalVariable.md)
 - [FigmaLocalVariableCollection](../classes/dev.FigmaLocalVariableCollection.md)
 - [StylesProcessor](../classes/dev.StylesProcessor.md)
@@ -80,8 +65,11 @@
 - [GradientStop](../interfaces/dev.GradientStop.md)
 - [GradientToken](../interfaces/dev.GradientToken.md)
 - [NumberToken](../interfaces/dev.NumberToken.md)
+- [ParseTreeOptions](../interfaces/dev.ParseTreeOptions.md)
 - [ShadowStop](../interfaces/dev.ShadowStop.md)
 - [ShadowToken](../interfaces/dev.ShadowToken.md)
+- [TreeNode](../interfaces/dev.TreeNode.md)
+- [TypeStyleTable](../interfaces/dev.TypeStyleTable.md)
 - [TypographyToken](../interfaces/dev.TypographyToken.md)
 - [TypographyTokenValue](../interfaces/dev.TypographyTokenValue.md)
 
@@ -91,6 +79,9 @@
 - [DesignToken](dev.md#designtoken)
 - [DesignTokenType](dev.md#designtokentype)
 - [DesignTokensFormat](dev.md#designtokensformat)
+- [Getter](dev.md#getter)
+- [GetterGetFn](dev.md#gettergetfn)
+- [GetterTestFn](dev.md#gettertestfn)
 - [GradientTokenValue](dev.md#gradienttokenvalue)
 - [ShadowTokenValue](dev.md#shadowtokenvalue)
 
@@ -104,7 +95,9 @@
 - [deepMerge](dev.md#deepmerge)
 - [entriesToDeepObject](dev.md#entriestodeepobject)
 - [isColorToken](dev.md#iscolortoken)
+- [isEmptyObject](dev.md#isemptyobject)
 - [isGradientToken](dev.md#isgradienttoken)
+- [isObject](dev.md#isobject)
 - [isShadowToken](dev.md#isshadowtoken)
 - [isTypographyToken](dev.md#istypographytoken)
 - [isVariableAlias](dev.md#isvariablealias)
@@ -155,75 +148,9 @@ Re-exports [GlobSearchNodes](../interfaces/document.GlobSearchNodes.md)
 
 ___
 
-### NodeCollection
-
-Re-exports [NodeCollection](../classes/document.NodeCollection.md)
-
-___
-
 ### PathBreadcrumb
 
 Re-exports [PathBreadcrumb](../interfaces/document.PathBreadcrumb.md)
-
-___
-
-### SingleBooleanOperationNode
-
-Re-exports [SingleBooleanOperationNode](document.md#singlebooleanoperationnode)
-
-___
-
-### SingleCanvasNode
-
-Re-exports [SingleCanvasNode](document.md#singlecanvasnode)
-
-___
-
-### SingleComponentNode
-
-Re-exports [SingleComponentNode](document.md#singlecomponentnode)
-
-___
-
-### SingleComponentSetNode
-
-Re-exports [SingleComponentSetNode](document.md#singlecomponentsetnode)
-
-___
-
-### SingleDocumentNode
-
-Re-exports [SingleDocumentNode](document.md#singledocumentnode)
-
-___
-
-### SingleEllipseNode
-
-Re-exports [SingleEllipseNode](document.md#singleellipsenode)
-
-___
-
-### SingleFrameNode
-
-Re-exports [SingleFrameNode](document.md#singleframenode)
-
-___
-
-### SingleGroupNode
-
-Re-exports [SingleGroupNode](document.md#singlegroupnode)
-
-___
-
-### SingleInstanceNode
-
-Re-exports [SingleInstanceNode](document.md#singleinstancenode)
-
-___
-
-### SingleLineNode
-
-Re-exports [SingleLineNode](document.md#singlelinenode)
 
 ___
 
@@ -233,45 +160,15 @@ Re-exports [SingleNode](../classes/document.SingleNode.md)
 
 ___
 
-### SingleRectangleNode
-
-Re-exports [SingleRectangleNode](document.md#singlerectanglenode)
-
-___
-
-### SingleRegularPolygonNode
-
-Re-exports [SingleRegularPolygonNode](document.md#singleregularpolygonnode)
-
-___
-
-### SingleSliceNode
-
-Re-exports [SingleSliceNode](document.md#singleslicenode)
-
-___
-
-### SingleStarNode
-
-Re-exports [SingleStarNode](document.md#singlestarnode)
-
-___
-
-### SingleTextNode
-
-Re-exports [SingleTextNode](document.md#singletextnode)
-
-___
-
-### SingleVectorNode
-
-Re-exports [SingleVectorNode](document.md#singlevectornode)
-
-___
-
 ### TextStyle
 
 Re-exports [TextStyle](styles.md#textstyle)
+
+___
+
+### WalkPredicate
+
+Re-exports [WalkPredicate](document.md#walkpredicate)
 
 ___
 
@@ -489,6 +386,71 @@ packages/figma-parser/src/shared/design-tokens-format.types.ts:85
 
 ___
 
+### Getter
+
+Ƭ **Getter**: `Object`
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `get` | [`GetterGetFn`](dev.md#gettergetfn) | Getter function that gets the proper contents for current node if it passed the `test`. **`Example`** ```typescript const getter: Getter = { [...] get: (node: ContentNode) => ({ type: 'table-row' }) } ``` If you wish to parse the children on your own, you can return your own `children`, and parser will not overwrite it. **`Example`** ```typescript const getter: Getter = { [...] get: (node: ContentNode) => { const listItems: TreeNode[] = getListItems(node) return { type: 'unordered-list', children: listItems } } } ``` If you don't want to provide any children for the TreeNode, return `children: false`. This property will be removed from final tree. **`Example`** ```typescript const getter: Getter = { [...] get: (node: ContentNode) => { const listItems: TreeNode[] = getListItems(node) return { type: 'paragraph', data: node.getFormattedContent(), children: false } } } ``` |
+| `test` | [`GetterTestFn`](dev.md#gettertestfn) | Test function that determines if get method should be executed on current node. You can use it to perform the getter only on nodes that match certain rules. **`Example`** ```typescript const getter: Getter = { test: (node: ContentNode) => node.raw.type === 'INSTANCE' && node.raw.name === 'heading 1' [...] } ``` |
+
+#### Defined in
+
+packages/figma-parser/src/contents/types.ts:19
+
+___
+
+### GetterGetFn
+
+Ƭ **GetterGetFn**: (`node`: [`ContentNode`](../classes/dev.ContentNode.md)) => `Omit`\<[`TreeNode`](../interfaces/dev.TreeNode.md), ``"children"``\> & \{ `children?`: [`TreeNode`](../interfaces/dev.TreeNode.md)[] \| ``false``  }
+
+#### Type declaration
+
+▸ (`node`): `Omit`\<[`TreeNode`](../interfaces/dev.TreeNode.md), ``"children"``\> & \{ `children?`: [`TreeNode`](../interfaces/dev.TreeNode.md)[] \| ``false``  }
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `node` | [`ContentNode`](../classes/dev.ContentNode.md) |
+
+##### Returns
+
+`Omit`\<[`TreeNode`](../interfaces/dev.TreeNode.md), ``"children"``\> & \{ `children?`: [`TreeNode`](../interfaces/dev.TreeNode.md)[] \| ``false``  }
+
+#### Defined in
+
+packages/figma-parser/src/contents/types.ts:17
+
+___
+
+### GetterTestFn
+
+Ƭ **GetterTestFn**: (`node`: [`ContentNode`](../classes/dev.ContentNode.md)) => `boolean`
+
+#### Type declaration
+
+▸ (`node`): `boolean`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `node` | [`ContentNode`](../classes/dev.ContentNode.md) |
+
+##### Returns
+
+`boolean`
+
+#### Defined in
+
+packages/figma-parser/src/contents/types.ts:16
+
+___
+
 ### GradientTokenValue
 
 Ƭ **GradientTokenValue**: [`GradientStop`](../interfaces/dev.GradientStop.md)[]
@@ -569,7 +531,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/shared/deep-merge.ts:8
+packages/figma-parser/src/shared/deep.merge.ts:8
 
 ___
 
@@ -614,6 +576,26 @@ packages/figma-parser/src/shared/design-tokens-format.types.ts:71
 
 ___
 
+### isEmptyObject
+
+▸ **isEmptyObject**(`value`): value is Record\<string, never\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is Record\<string, never\>
+
+#### Defined in
+
+packages/figma-parser/src/shared/is-empty-object.util.ts:1
+
+___
+
 ### isGradientToken
 
 ▸ **isGradientToken**(`token`): token is GradientToken
@@ -631,6 +613,26 @@ token is GradientToken
 #### Defined in
 
 packages/figma-parser/src/shared/design-tokens-format.types.ts:75
+
+___
+
+### isObject
+
+▸ **isObject**(`value`): value is object
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is object
+
+#### Defined in
+
+packages/figma-parser/src/shared/is-object.util.ts:1
 
 ___
 

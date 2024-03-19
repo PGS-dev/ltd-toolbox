@@ -7,3 +7,5 @@ export * from './styles/index';
 export * from './document/index';
 
 export * from './variables/index';
+
+export * from './contents/get-contents';
