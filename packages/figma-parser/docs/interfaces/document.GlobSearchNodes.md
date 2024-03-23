@@ -19,7 +19,7 @@
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:48
+packages/figma-parser/src/document/types.ts:17
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/document/types.ts:49
+packages/figma-parser/src/document/types.ts:18

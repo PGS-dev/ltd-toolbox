@@ -10,6 +10,7 @@
 
 - [defaultGetter](dev.ParseTreeOptions.md#defaultgetter)
 - [omitEmpty](dev.ParseTreeOptions.md#omitempty)
+- [omitFauxNodes](dev.ParseTreeOptions.md#omitfauxnodes)
 
 ## Properties
 
@@ -32,7 +33,7 @@ You can use it for example to find all unkown nodes
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:104
+packages/figma-parser/src/contents/types.ts:103
 
 ___
 
@@ -51,4 +52,16 @@ true
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:90
+packages/figma-parser/src/contents/types.ts:85
+
+___
+
+### omitFauxNodes
+
+• **omitFauxNodes**: `boolean`
+
+Whether nodes that's only property is `children` should be skipped, or not.
+
+#### Defined in
+
+packages/figma-parser/src/contents/types.ts:89

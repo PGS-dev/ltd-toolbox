@@ -17,35 +17,15 @@
 - [SingleNode](dev.md#singlenode)
 - [TextStyle](dev.md#textstyle)
 - [WalkPredicate](dev.md#walkpredicate)
-- [hasChildren](dev.md#haschildren)
 - [isBlurEffect](dev.md#isblureffect)
-- [isBooleanOperationNode](dev.md#isbooleanoperationnode)
-- [isCanvasNode](dev.md#iscanvasnode)
-- [isComponentNode](dev.md#iscomponentnode)
-- [isComponentSetNode](dev.md#iscomponentsetnode)
-- [isDocumentNode](dev.md#isdocumentnode)
 - [isEffectDefinition](dev.md#iseffectdefinition)
 - [isEffectStyle](dev.md#iseffectstyle)
-- [isEllipseNode](dev.md#isellipsenode)
-- [isFigmaNodeId](dev.md#isfigmanodeid)
 - [isFillDefinition](dev.md#isfilldefinition)
 - [isFillStyle](dev.md#isfillstyle)
-- [isFrameNode](dev.md#isframenode)
-- [isGroupNode](dev.md#isgroupnode)
-- [isInstanceNode](dev.md#isinstancenode)
-- [isLineNode](dev.md#islinenode)
-- [isNode](dev.md#isnode)
-- [isRectangleNode](dev.md#isrectanglenode)
-- [isRegularPolygonNode](dev.md#isregularpolygonnode)
 - [isShadowEffect](dev.md#isshadoweffect)
 - [isSingleNode](dev.md#issinglenode)
-- [isSliceNode](dev.md#isslicenode)
-- [isStarNode](dev.md#isstarnode)
 - [isTextDefinition](dev.md#istextdefinition)
-- [isTextNode](dev.md#istextnode)
 - [isTextStyle](dev.md#istextstyle)
-- [isVectorNode](dev.md#isvectornode)
-- [nodeTypes](dev.md#nodetypes)
 
 ### Classes
 
@@ -68,7 +48,6 @@
 - [ParseTreeOptions](../interfaces/dev.ParseTreeOptions.md)
 - [ShadowStop](../interfaces/dev.ShadowStop.md)
 - [ShadowToken](../interfaces/dev.ShadowToken.md)
-- [TreeNode](../interfaces/dev.TreeNode.md)
 - [TypeStyleTable](../interfaces/dev.TypeStyleTable.md)
 - [TypographyToken](../interfaces/dev.TypographyToken.md)
 - [TypographyTokenValue](../interfaces/dev.TypographyTokenValue.md)
@@ -84,6 +63,7 @@
 - [GetterTestFn](dev.md#gettertestfn)
 - [GradientTokenValue](dev.md#gradienttokenvalue)
 - [ShadowTokenValue](dev.md#shadowtokenvalue)
+- [TreeNode](dev.md#treenode)
 
 ### Variables
 
@@ -96,6 +76,7 @@
 - [entriesToDeepObject](dev.md#entriestodeepobject)
 - [isColorToken](dev.md#iscolortoken)
 - [isEmptyObject](dev.md#isemptyobject)
+- [isFauxNode](dev.md#isfauxnode)
 - [isGradientToken](dev.md#isgradienttoken)
 - [isObject](dev.md#isobject)
 - [isShadowToken](dev.md#isshadowtoken)
@@ -172,45 +153,9 @@ Re-exports [WalkPredicate](document.md#walkpredicate)
 
 ___
 
-### hasChildren
-
-Re-exports [hasChildren](document.md#haschildren)
-
-___
-
 ### isBlurEffect
 
 Re-exports [isBlurEffect](styles.md#isblureffect)
-
-___
-
-### isBooleanOperationNode
-
-Re-exports [isBooleanOperationNode](document.md#isbooleanoperationnode)
-
-___
-
-### isCanvasNode
-
-Re-exports [isCanvasNode](document.md#iscanvasnode)
-
-___
-
-### isComponentNode
-
-Re-exports [isComponentNode](document.md#iscomponentnode)
-
-___
-
-### isComponentSetNode
-
-Re-exports [isComponentSetNode](document.md#iscomponentsetnode)
-
-___
-
-### isDocumentNode
-
-Re-exports [isDocumentNode](document.md#isdocumentnode)
 
 ___
 
@@ -226,18 +171,6 @@ Re-exports [isEffectStyle](styles.md#iseffectstyle)
 
 ___
 
-### isEllipseNode
-
-Re-exports [isEllipseNode](document.md#isellipsenode)
-
-___
-
-### isFigmaNodeId
-
-Re-exports [isFigmaNodeId](document.md#isfigmanodeid)
-
-___
-
 ### isFillDefinition
 
 Re-exports [isFillDefinition](styles.md#isfilldefinition)
@@ -247,48 +180,6 @@ ___
 ### isFillStyle
 
 Re-exports [isFillStyle](styles.md#isfillstyle)
-
-___
-
-### isFrameNode
-
-Re-exports [isFrameNode](document.md#isframenode)
-
-___
-
-### isGroupNode
-
-Re-exports [isGroupNode](document.md#isgroupnode)
-
-___
-
-### isInstanceNode
-
-Re-exports [isInstanceNode](document.md#isinstancenode)
-
-___
-
-### isLineNode
-
-Re-exports [isLineNode](document.md#islinenode)
-
-___
-
-### isNode
-
-Re-exports [isNode](document.md#isnode)
-
-___
-
-### isRectangleNode
-
-Re-exports [isRectangleNode](document.md#isrectanglenode)
-
-___
-
-### isRegularPolygonNode
-
-Re-exports [isRegularPolygonNode](document.md#isregularpolygonnode)
 
 ___
 
@@ -304,45 +195,15 @@ Re-exports [isSingleNode](document.md#issinglenode)
 
 ___
 
-### isSliceNode
-
-Re-exports [isSliceNode](document.md#isslicenode)
-
-___
-
-### isStarNode
-
-Re-exports [isStarNode](document.md#isstarnode)
-
-___
-
 ### isTextDefinition
 
 Re-exports [isTextDefinition](styles.md#istextdefinition)
 
 ___
 
-### isTextNode
-
-Re-exports [isTextNode](document.md#istextnode)
-
-___
-
 ### isTextStyle
 
 Re-exports [isTextStyle](styles.md#istextstyle)
-
-___
-
-### isVectorNode
-
-Re-exports [isVectorNode](document.md#isvectornode)
-
-___
-
-### nodeTypes
-
-Re-exports [nodeTypes](document.md#nodetypes)
 
 ## Type Aliases
 
@@ -399,17 +260,17 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:19
+packages/figma-parser/src/contents/types.ts:14
 
 ___
 
 ### GetterGetFn
 
-Ƭ **GetterGetFn**: (`node`: [`ContentNode`](../classes/dev.ContentNode.md)) => `Omit`\<[`TreeNode`](../interfaces/dev.TreeNode.md), ``"children"``\> & \{ `children?`: [`TreeNode`](../interfaces/dev.TreeNode.md)[] \| ``false``  }
+Ƭ **GetterGetFn**: (`node`: [`ContentNode`](../classes/dev.ContentNode.md)) => [`TreeNode`](dev.md#treenode) & \{ `children?`: [`TreeNode`](dev.md#treenode)[] \| ``false``  }
 
 #### Type declaration
 
-▸ (`node`): `Omit`\<[`TreeNode`](../interfaces/dev.TreeNode.md), ``"children"``\> & \{ `children?`: [`TreeNode`](../interfaces/dev.TreeNode.md)[] \| ``false``  }
+▸ (`node`): [`TreeNode`](dev.md#treenode) & \{ `children?`: [`TreeNode`](dev.md#treenode)[] \| ``false``  }
 
 ##### Parameters
 
@@ -419,11 +280,11 @@ ___
 
 ##### Returns
 
-`Omit`\<[`TreeNode`](../interfaces/dev.TreeNode.md), ``"children"``\> & \{ `children?`: [`TreeNode`](../interfaces/dev.TreeNode.md)[] \| ``false``  }
+[`TreeNode`](dev.md#treenode) & \{ `children?`: [`TreeNode`](dev.md#treenode)[] \| ``false``  }
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:17
+packages/figma-parser/src/contents/types.ts:12
 
 ___
 
@@ -447,7 +308,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:16
+packages/figma-parser/src/contents/types.ts:11
 
 ___
 
@@ -468,6 +329,16 @@ ___
 #### Defined in
 
 packages/figma-parser/src/shared/design-tokens-format.types.ts:24
+
+___
+
+### TreeNode
+
+Ƭ **TreeNode**: `Node` & \{ `children?`: `Node`[]  }
+
+#### Defined in
+
+packages/figma-parser/src/contents/types.ts:9
 
 ## Variables
 
@@ -593,6 +464,26 @@ value is Record\<string, never\>
 #### Defined in
 
 packages/figma-parser/src/shared/is-empty-object.util.ts:1
+
+___
+
+### isFauxNode
+
+▸ **isFauxNode**(`node`): node is Node & Object & Object
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `node` | [`TreeNode`](dev.md#treenode) |
+
+#### Returns
+
+node is Node & Object & Object
+
+#### Defined in
+
+packages/figma-parser/src/contents/content-node.ts:10
 
 ___
 
