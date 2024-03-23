@@ -1,20 +1,15 @@
 import { TypeStyle } from '@figma/rest-api-spec';
-import { OnPurposeAny } from '../types';
+import type { Node } from 'unist';
 import { ContentNode } from './content-node';
 
 export interface TypeStyleTable {
   [p: string]: TypeStyle;
 }
 
-export interface TreeNode {
-  type: string;
-  data?: OnPurposeAny;
-  children?: TreeNode[];
-  [k: string]: OnPurposeAny;
-}
+export type TreeNode = Node & { children?: Node[] };
 
 export type GetterTestFn = (node: ContentNode) => boolean;
-export type GetterGetFn = (node: ContentNode) => Omit<TreeNode, 'children'> & { children?: TreeNode[] | false };
+export type GetterGetFn = (node: ContentNode) => TreeNode & { children?: TreeNode[] | false };
 
 export type Getter = {
   /**
@@ -88,6 +83,10 @@ export interface ParseTreeOptions {
    * @default true
    */
   omitEmpty: boolean;
+  /**
+   * Whether nodes that's only property is `children` should be skipped, or not.
+   */
+  omitFauxNodes: boolean;
   /**
    * Default getter for nodes that don't pass the test of any of provided getters.
    * By default it returns an empty object, which then is ommited, when `omitEmpty` is set to true.

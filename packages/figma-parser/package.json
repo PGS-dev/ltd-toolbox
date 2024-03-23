@@ -27,9 +27,12 @@
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",
   "devDependencies": {
-    "@types/mdast": "^4.0.1",
+    "@figma/rest-api-spec": "^0.10.0",
     "@types/node": "^20.8.0",
     "@types/picomatch": "^2.3.2",
+    "@types/unist": "^3.0.2",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
     "typedoc": "^0.25.12",
     "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.0.2",
@@ -39,15 +42,8 @@
     "wsrun": "^5.2.4"
   },
   "dependencies": {
-    "@figma/rest-api-spec": "^0.10.0",
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.13.2",
-    "flat": "^6.0.1",
-    "mdast-builder": "^1.1.1",
-    "mdast-util-from-markdown": "^2.0.0",
-    "mdast-util-to-markdown": "^2.1.0",
+    "hastscript": "^9.0.0",
     "picomatch": "^2.3.1",
-    "remark": "^15.0.1",
     "type-fest": "^4.12.0",
     "unist-builder": "^4.0.0"
   },
@@ -123,6 +119,16 @@
       "require": {
         "types": "./dist/variables.d.cts",
         "default": "./dist/variables.cjs"
+      }
+    },
+    "./contents": {
+      "import": {
+        "types": "./dist/contents.d.ts",
+        "default": "./dist/contents.js"
+      },
+      "require": {
+        "types": "./dist/contents.d.cts",
+        "default": "./dist/contents.cjs"
       }
     }
   }
