@@ -1,22 +1,28 @@
-import { Node, TextNode } from '@figma/rest-api-spec';
+import { Node } from '@figma/rest-api-spec';
 import pm from 'picomatch';
-import { GlobSearchNodes, PathBreadcrumb, hasChildren, isTextNode } from '../document/types';
+import { GlobSearchNodes, PathBreadcrumb } from '../document/types';
 import { OnPurposeAny } from '../types';
+import { FigmaNodeMock, hasChildren } from './types';
 
 export type WithChildren<T> = T & { children?: T[] };
 
 /**
  * Represents a single node in a Figma file, providing utilities for navigation, search, and data extraction.
  */
-export abstract class AbstractNode<T extends Node = Node> {
+export class NodeBase<T extends Node = Node> extends FigmaNodeMock {
   children: this[] = [];
 
   /**
    * Constructs a SingleNode instance from a Figma Node object or an existing SingleNode instance.
    */
-  constructor(public raw: T) {
+  constructor(
+    public raw: T,
+    public parent?: NodeBase
+  ) {
+    super(raw);
+
     if (hasChildren(raw)) {
-      this.children = raw.children.map((rawChildNode: T) => new (this.constructor as OnPurposeAny)(rawChildNode));
+      this.children = raw.children.map((rawChildNode) => new (new.target as OnPurposeAny)(rawChildNode, this));
     }
   }
 
@@ -64,7 +70,7 @@ export abstract class AbstractNode<T extends Node = Node> {
    * Walks through the node tree, executing a callback for each node.
    */
   walk(callback: (node: this, path: PathBreadcrumb[]) => void): void;
-  walk<N extends AbstractNode<T> = this>(callback: (node: N, path: PathBreadcrumb[]) => void) {
+  walk<N extends NodeBase<T> = this>(callback: (node: N, path: PathBreadcrumb[]) => void) {
     function walker(node: N, path: PathBreadcrumb[] = []) {
       if (!node) return;
 
@@ -110,21 +116,6 @@ export abstract class AbstractNode<T extends Node = Node> {
     });
 
     return output;
-  }
-
-  /**
-   * Collects and returns the text from all text nodes deep in the tree.
-   */
-  text(): string[] {
-    const textNodes: AbstractNode<TextNode>[] = [];
-
-    this.walk((node) => {
-      if (isTextNode(node)) {
-        textNodes.push(node as AbstractNode<TextNode>);
-      }
-    });
-
-    return textNodes.map((node) => node.raw.characters);
   }
 
   mapDeep<T extends WithChildren<OnPurposeAny>>(callback: (node: this) => WithChildren<T> | undefined): WithChildren<T> {

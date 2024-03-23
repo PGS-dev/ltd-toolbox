@@ -1,20 +1,24 @@
 import { Node, TextNode } from '@figma/rest-api-spec';
-import { isTextNode } from '../document/types';
 import { combineSchema } from '../shared/combine-schema.util';
 import { isEmptyObject } from '../shared/is-empty-object.util';
 import { isObject } from '../shared/is-object.util';
-import { AbstractNode } from '../shared/node.abstract';
+import { NodeBase } from '../shared/node.abstract';
+import { isTextNode } from '../shared/types';
 import type { Getter, ParseTreeOptions, TreeNode } from './types';
 import { getNodeDecoratedText } from './utils';
 
-export class ContentNode<T extends Node = Node> extends AbstractNode<T> {
+export const isFauxNode = (node: TreeNode): node is TreeNode & { children: [TreeNode] } => {
+  return Object.keys(node).length === 1 && 'children' in node && node.children?.length === 1;
+};
+
+export class ContentNode<T extends Node = Node> extends NodeBase<T> {
   private defaultGetters: Getter[] = [
     {
       test: (node) => node.children.length === 0,
       get(node) {
         return {
           type: node.raw.type,
-          data: node.getRawContents(),
+          data: node.getRawChildrenText(),
         };
       },
     },
@@ -37,12 +41,14 @@ export class ContentNode<T extends Node = Node> extends AbstractNode<T> {
   async parseTree(options?: Partial<ParseTreeOptions>): Promise<TreeNode>;
   async parseTree(getters?: Getter[]): Promise<TreeNode>;
   async parseTree(getters?: Getter[], options?: Partial<ParseTreeOptions>): Promise<TreeNode>;
+  async parseTree(getters?: Getter[], options?: Partial<ParseTreeOptions>): Promise<TreeNode>;
   async parseTree(gettersOrOptions?: Getter[] | Partial<ParseTreeOptions>, userOptions: Partial<ParseTreeOptions> = {}): Promise<TreeNode> {
     const getters = Array.isArray(gettersOrOptions) ? gettersOrOptions : this.defaultGetters;
     const options = isObject(gettersOrOptions) ? (gettersOrOptions as ParseTreeOptions) : userOptions;
 
     const parseOptions: ParseTreeOptions = {
       omitEmpty: true,
+      omitFauxNodes: true,
       defaultGetter: () => ({}) as TreeNode,
       ...options,
     };
@@ -55,7 +61,7 @@ export class ContentNode<T extends Node = Node> extends AbstractNode<T> {
       return out as TreeNode;
     }
 
-    if (out?.children) return out as TreeNode;
+    if (out?.children && out?.children.length > 0) return out as TreeNode;
 
     if (this.children?.length > 0) {
       out.children = await Promise.all(this.children.map(async (childNode) => await childNode.parseTree(getters, options)));
@@ -69,17 +75,30 @@ export class ContentNode<T extends Node = Node> extends AbstractNode<T> {
       delete out.children;
     }
 
+    if (isFauxNode(out)) {
+      return out.children[0];
+    }
+
     return out as TreeNode;
+  }
+
+  /**
+   * Gets raw text without any formatting
+   */
+  getRawText() {
+    if (!isTextNode(this)) return;
+
+    return this.characters;
   }
 
   /**
    * Retrieves the concatenated raw text content of the node and its children, excluding any formatting.
    * Useful for extracting plain text from a node tree.
    */
-  getRawContents() {
+  getRawChildrenText() {
     const textNodes = Array.from(this.filterDeep(isTextNode)) as ContentNode<TextNode>[];
 
-    const contents = textNodes.map((node) => node.text()).filter(Boolean);
+    const contents = textNodes.map((node) => node.getRawText()).filter(Boolean);
 
     return contents.join(`\n\n`);
   }
@@ -88,7 +107,7 @@ export class ContentNode<T extends Node = Node> extends AbstractNode<T> {
    * Retrieves the text content of the node and its children, formatted according to `getFormattedText()`.
    * This method organizes text contents in a markdown-ish format, including basic styles and list formatting.
    */
-  getFormattedContents() {
+  getFormattedChildrenText() {
     const textNodes = Array.from(this.filterDeep(isTextNode)) as ContentNode<TextNode>[];
 
     const contents = textNodes.map((node) => node.getFormattedText()).filter(Boolean);
