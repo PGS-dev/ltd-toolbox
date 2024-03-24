@@ -13,8 +13,10 @@ Jumpstart your project with Figma Parser using this straightforward guide:
 import { figmaApi, getDocument } from '@ltd-toolbox/figma-parser'
 
 (async () => {
-  // Initialize the Figma API with your Personal Access Token
-  const api = figmaApi(FIGMA_PAT_TOKEN)
+  // Initialize the Figma API. It will fetch Figma token from FIGMA_PAT env variable
+  const api = figmaApi()
+  // Or initialize it with your token and options set explicitly
+  // const api = figmaApi(<token>, <options>)
 
   // Retrieve and parse your Figma document with ease
   const document = await getDocument(api, 'FIGMAFILEID')

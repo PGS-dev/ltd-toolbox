@@ -21,17 +21,59 @@
 
 ### FigmaPAT
 
-Ƭ **FigmaPAT**: \`figd\_$\{string}\`
+Ƭ **FigmaPAT**: \`figd\_$\{string}\` \| `string`
 
 Figma Personal Access Token format.
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:7
+packages/figma-parser/src/core/api.ts:8
 
 ## Functions
 
 ### figmaApi
+
+▸ **figmaApi**(): `FigmaApi`
+
+#### Returns
+
+`FigmaApi`
+
+#### Defined in
+
+packages/figma-parser/src/core/api.ts:87
+
+▸ **figmaApi**(`token`): `FigmaApi`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `token` | `string` |
+
+#### Returns
+
+`FigmaApi`
+
+#### Defined in
+
+packages/figma-parser/src/core/api.ts:88
+
+▸ **figmaApi**(`options`): `FigmaApi`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `options` | `Partial`\<[`FigmaParserOptions`](../interfaces/core_api.FigmaParserOptions.md)\> |
+
+#### Returns
+
+`FigmaApi`
+
+#### Defined in
+
+packages/figma-parser/src/core/api.ts:89
 
 ▸ **figmaApi**(`token`, `options?`): `FigmaApi`
 
@@ -39,7 +81,7 @@ packages/figma-parser/src/core/api.ts:7
 
 | Name | Type |
 | :------ | :------ |
-| `token` | \`figd\_$\{string}\` |
+| `token` | `string` |
 | `options?` | `Partial`\<[`FigmaParserOptions`](../interfaces/core_api.FigmaParserOptions.md)\> |
 
 #### Returns
@@ -48,4 +90,4 @@ packages/figma-parser/src/core/api.ts:7
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:86
+packages/figma-parser/src/core/api.ts:90
