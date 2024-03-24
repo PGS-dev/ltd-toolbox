@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.3](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.2...@ltd-toolbox/figma-parser@0.1.0-alpha.3) (2024-03-24)
+
+### Features
+
+- add contents plugin ([#12](https://github-devhajduk/PGS-dev/ltd-toolbox/issues/12)) ([7936a91](https://github-devhajduk/PGS-dev/ltd-toolbox/commit/7936a917de0415c0ab985fcdf18455ea5dd2e1f5))
+
 # [0.1.0-alpha.2](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.1...@ltd-toolbox/figma-parser@0.1.0-alpha.2) (2024-03-13)
 
 **Note:** Version bump only for package @ltd-toolbox/figma-parser
