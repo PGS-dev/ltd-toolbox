@@ -1,10 +1,11 @@
+import { isObject } from '../shared/is-object.util';
 import { HardCache } from './hard-cache';
 import { loggerFactory } from './logger';
 
 /**
  * Figma Personal Access Token format.
  */
-export type FigmaPAT = `figd_${string}`;
+export type FigmaPAT = `figd_${string}` | string;
 
 export interface FigmaParserOptions {
   /**
@@ -83,7 +84,26 @@ class FigmaApi implements FigmaApiInterface {
   }
 }
 
-export const figmaApi = (token: FigmaPAT, options?: Partial<FigmaParserOptions>) => new FigmaApi(token, options);
+export function figmaApi(): FigmaApi;
+export function figmaApi(token: FigmaPAT): FigmaApi;
+export function figmaApi(options: Partial<FigmaParserOptions>): FigmaApi;
+export function figmaApi(token: FigmaPAT, options?: Partial<FigmaParserOptions>): FigmaApi;
+export function figmaApi(tokenOrOptions?: FigmaPAT | Partial<FigmaParserOptions>, userOptions?: Partial<FigmaParserOptions>) {
+  let token: FigmaPAT = process.env.FIGMA_PAT as FigmaPAT;
+  let options: Partial<FigmaParserOptions> = userOptions || {};
+
+  if (typeof tokenOrOptions === 'string') {
+    token = tokenOrOptions;
+  }
+
+  if (isObject(tokenOrOptions)) {
+    options = tokenOrOptions;
+  }
+
+  if (!token) throw new Error(`Figma Token wasn't set explicitly if "figmaApi()", and there were no "FIGMA_PAT" in environment variables or .env files.`);
+
+  return new FigmaApi(token, options);
+}
 
 export interface FigmaApiInterface {
   request<Response = object>(path: string, params?: Record<string, string>): Promise<Response>;
