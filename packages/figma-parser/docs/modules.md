@@ -1,6 +1,6 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.2](README.md) / Modules
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.4](README.md) / Modules
 
-# @ltd-toolbox/figma-parser - v0.1.0-alpha.2
+# @ltd-toolbox/figma-parser - v0.1.0-alpha.4
 
 ## Table of contents
 

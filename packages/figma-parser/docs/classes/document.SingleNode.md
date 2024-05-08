@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.2](../README.md) / [Modules](../modules.md) / [document](../modules/document.md) / SingleNode
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.4](../README.md) / [Modules](../modules.md) / [document](../modules/document.md) / SingleNode
 
 # Class: SingleNode\<T\>
 
@@ -47,7 +47,6 @@ Represents a single node in a Figma file, providing utilities for navigation, se
 
 - [filterDeep](document.SingleNode.md#filterdeep)
 - [findDeep](document.SingleNode.md#finddeep)
-- [glob](document.SingleNode.md#glob)
 - [mapDeep](document.SingleNode.md#mapdeep)
 - [table](document.SingleNode.md#table)
 - [toString](document.SingleNode.md#tostring)
@@ -84,7 +83,7 @@ NodeBase\<T\>.constructor
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:18
+packages/figma-parser/src/shared/node.abstract.ts:17
 
 ## Properties
 
@@ -116,7 +115,7 @@ NodeBase.children
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:13
+packages/figma-parser/src/shared/node.abstract.ts:12
 
 ___
 
@@ -231,7 +230,7 @@ NodeBase.parent
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:20
+packages/figma-parser/src/shared/node.abstract.ts:19
 
 ___
 
@@ -262,7 +261,7 @@ NodeBase.raw
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:19
+packages/figma-parser/src/shared/node.abstract.ts:18
 
 ___
 
@@ -501,32 +500,6 @@ packages/figma-parser/src/shared/node.abstract.ts:95
 
 ___
 
-### glob
-
-▸ **glob**(`...paths`): [`GlobSearchNodes`](../interfaces/document.GlobSearchNodes.md)[]
-
-Finds nodes that match given glob patterns.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `...paths` | `string`[] |
-
-#### Returns
-
-[`GlobSearchNodes`](../interfaces/document.GlobSearchNodes.md)[]
-
-#### Inherited from
-
-NodeBase.glob
-
-#### Defined in
-
-packages/figma-parser/src/shared/node.abstract.ts:51
-
-___
-
 ### mapDeep
 
 ▸ **mapDeep**\<`T`\>(`callback`): `WithChildren`\<`T`\>
@@ -573,7 +546,7 @@ NodeBase.table
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:32
+packages/figma-parser/src/shared/node.abstract.ts:31
 
 ___
 
@@ -593,7 +566,7 @@ NodeBase.toString
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:44
+packages/figma-parser/src/shared/node.abstract.ts:43
 
 ___
 
