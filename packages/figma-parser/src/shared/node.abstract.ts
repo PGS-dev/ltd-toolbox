@@ -1,6 +1,5 @@
 import { Node } from '@figma/rest-api-spec';
-import pm from 'picomatch';
-import { GlobSearchNodes, PathBreadcrumb } from '../document/types';
+import { PathBreadcrumb } from '../document/types';
 import { OnPurposeAny } from '../types';
 import { FigmaNodeMock, hasChildren } from './types';
 
@@ -45,26 +44,27 @@ export class NodeBase<T extends Node = Node> extends FigmaNodeMock {
     return this.raw.name;
   }
 
-  /**
-   * Finds nodes that match given glob patterns.
-   */
-  glob(...paths: string[]): GlobSearchNodes[];
-  glob(paths: string | string[]): GlobSearchNodes[] {
-    const pathsArray = Array.isArray(paths) ? paths : [paths];
-    const lowerCasePaths = pathsArray.map((p) => p.toLowerCase());
-    const matcher = pm(lowerCasePaths);
-    const output: GlobSearchNodes[] = [];
-
-    this.walk((node, path) => {
-      const nodePath = path.map((path) => path.name.toLowerCase()).join('/');
-
-      if (matcher(nodePath)) {
-        output.push({ path, node });
-      }
-    });
-
-    return output;
-  }
+  // Method temporary unavailable, because of picomatch dependency issues.
+  // /**
+  //  * Finds nodes that match given glob patterns.
+  //  */
+  // glob(...paths: string[]): GlobSearchNodes[];
+  // glob(paths: string | string[]): GlobSearchNodes[] {
+  //   const pathsArray = Array.isArray(paths) ? paths : [paths];
+  //   const lowerCasePaths = pathsArray.map((p) => p.toLowerCase());
+  //   const matcher = pm(lowerCasePaths);
+  //   const output: GlobSearchNodes[] = [];
+  //
+  //   this.walk((node, path) => {
+  //     const nodePath = path.map((path) => path.name.toLowerCase()).join('/');
+  //
+  //     if (matcher(nodePath)) {
+  //       output.push({ path, node });
+  //     }
+  //   });
+  //
+  //   return output;
+  // }
 
   /**
    * Walks through the node tree, executing a callback for each node.
