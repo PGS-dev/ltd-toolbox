@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.5](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.4...@ltd-toolbox/figma-parser@0.1.0-alpha.5) (2024-05-08)
+
+### Bug Fixes
+
+- fix picomatch dependency issue ([49b6a48](https://github-devhajduk/PGS-dev/ltd-toolbox/commit/49b6a48e97b8a87c5fc87094df32d547ff2d7824))
+
 # [0.1.0-alpha.4](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.3...@ltd-toolbox/figma-parser@0.1.0-alpha.4) (2024-03-24)
 
 **Note:** Version bump only for package @ltd-toolbox/figma-parser
