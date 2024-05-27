@@ -1,7 +1,7 @@
 node_modules
 .idea
 .cache.cache
-.DS_Store
+.DS_Stor/.yarn
 
 .env.local
 /**/.env.local
