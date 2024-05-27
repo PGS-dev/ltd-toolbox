@@ -1,10 +1,13 @@
 node_modules
 .idea
 .cache.cache
-.DS_Stor/.yarn
+.DS_Store
+/.yarn
+
 
 .env.local
 /**/.env.local
+/**/yarn-error.log
 
 yarn-error.log
 dist
