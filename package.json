@@ -14,8 +14,7 @@
     "codecheck": "yarn wsrun -l --exclude-missing codecheck"
   },
   "workspaces": [
-    "packages/ts-runner",
-    "packages/figma-parser"
+    "packages/*"
   ],
   "keywords": [
     "design system",
