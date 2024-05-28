@@ -119,7 +119,7 @@ packages/figma-parser/src/styles/types.ts:32
 
 #### Defined in
 
-packages/figma-parser/src/styles/design-tokens.transformer.ts:51
+packages/figma-parser/src/styles/design-tokens.transformer.ts:52
 
 ▸ **DesignTokens**(`deep`): [`FigmaStylesTransformer`](styles.md#figmastylestransformer)\<[`FigmaStyleDefinition`](../interfaces/styles.FigmaStyleDefinition.md)[], [`DesignTokensFormatDeep`](../interfaces/dev.DesignTokensFormatDeep.md)\>
 
@@ -135,7 +135,7 @@ packages/figma-parser/src/styles/design-tokens.transformer.ts:51
 
 #### Defined in
 
-packages/figma-parser/src/styles/design-tokens.transformer.ts:52
+packages/figma-parser/src/styles/design-tokens.transformer.ts:53
 
 ▸ **DesignTokens**(`deep`): [`FigmaStylesTransformer`](styles.md#figmastylestransformer)\<[`FigmaStyleDefinition`](../interfaces/styles.FigmaStyleDefinition.md)[], [`DesignTokensFormatFlat`](../interfaces/dev.DesignTokensFormatFlat.md)\>
 
@@ -151,7 +151,7 @@ packages/figma-parser/src/styles/design-tokens.transformer.ts:52
 
 #### Defined in
 
-packages/figma-parser/src/styles/design-tokens.transformer.ts:53
+packages/figma-parser/src/styles/design-tokens.transformer.ts:54
 
 ▸ **DesignTokens**(`deep?`): [`FigmaStylesTransformer`](styles.md#figmastylestransformer)\<[`FigmaStyleDefinition`](../interfaces/styles.FigmaStyleDefinition.md)[], [`DesignTokensFormat`](dev.md#designtokensformat)\>
 
@@ -167,7 +167,7 @@ packages/figma-parser/src/styles/design-tokens.transformer.ts:53
 
 #### Defined in
 
-packages/figma-parser/src/styles/design-tokens.transformer.ts:54
+packages/figma-parser/src/styles/design-tokens.transformer.ts:55
 
 ___
 

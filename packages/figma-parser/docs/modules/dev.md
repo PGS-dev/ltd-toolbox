@@ -329,7 +329,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:19
+packages/figma-parser/src/contents/types.ts:20
 
 ___
 
@@ -353,7 +353,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:17
+packages/figma-parser/src/contents/types.ts:18
 
 ___
 
@@ -377,7 +377,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:16
+packages/figma-parser/src/contents/types.ts:17
 
 ___
 
@@ -387,7 +387,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:14
+packages/figma-parser/src/contents/types.ts:15
 
 ___
 
@@ -511,7 +511,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/shared/logger.ts:3
+packages/figma-parser/src/shared/logger.ts:4
 
 ___
 
@@ -532,7 +532,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/shared/logger.ts:12
+packages/figma-parser/src/shared/logger.ts:13
 
 ___
 
@@ -805,7 +805,7 @@ ___
 
 ### isEmbedNode
 
-▸ **isEmbedNode**(`node`): node is NodeBase\<EmbedNode\> & Object & IsLayerTrait
+▸ **isEmbedNode**(`node`): node is NodeBase\<EmbedNode\> & Object & IsLayerTrait & HasExportSettingsTrait
 
 #### Parameters
 
@@ -815,7 +815,7 @@ ___
 
 #### Returns
 
-node is NodeBase\<EmbedNode\> & Object & IsLayerTrait
+node is NodeBase\<EmbedNode\> & Object & IsLayerTrait & HasExportSettingsTrait
 
 #### Defined in
 
@@ -965,7 +965,7 @@ ___
 
 ### isLinkUnfurlNode
 
-▸ **isLinkUnfurlNode**(`node`): node is NodeBase\<LinkUnfurlNode\> & Object & IsLayerTrait
+▸ **isLinkUnfurlNode**(`node`): node is NodeBase\<LinkUnfurlNode\> & Object & IsLayerTrait & HasExportSettingsTrait
 
 #### Parameters
 
@@ -975,7 +975,7 @@ ___
 
 #### Returns
 
-node is NodeBase\<LinkUnfurlNode\> & Object & IsLayerTrait
+node is NodeBase\<LinkUnfurlNode\> & Object & IsLayerTrait & HasExportSettingsTrait
 
 #### Defined in
 

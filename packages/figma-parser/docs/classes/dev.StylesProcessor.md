@@ -35,7 +35,7 @@
 
 #### Defined in
 
-packages/figma-parser/src/styles/styles-processor.ts:11
+packages/figma-parser/src/styles/styles-processor.ts:12
 
 ## Methods
 
@@ -51,7 +51,7 @@ Converts Figma styles into a standardized array of style definitions, each inclu
 
 #### Defined in
 
-packages/figma-parser/src/styles/styles-processor.ts:47
+packages/figma-parser/src/styles/styles-processor.ts:48
 
 ___
 
@@ -67,7 +67,7 @@ Generates design tokens from the Figma styles. This method can return either a f
 
 #### Defined in
 
-packages/figma-parser/src/styles/styles-processor.ts:59
+packages/figma-parser/src/styles/styles-processor.ts:60
 
 ▸ **designTokens**(`deep`): [`DesignTokensFormatDeep`](../interfaces/dev.DesignTokensFormatDeep.md)
 
@@ -83,7 +83,7 @@ packages/figma-parser/src/styles/styles-processor.ts:59
 
 #### Defined in
 
-packages/figma-parser/src/styles/styles-processor.ts:60
+packages/figma-parser/src/styles/styles-processor.ts:61
 
 ▸ **designTokens**(`deep`): [`DesignTokensFormatFlat`](../interfaces/dev.DesignTokensFormatFlat.md)
 
@@ -99,7 +99,7 @@ packages/figma-parser/src/styles/styles-processor.ts:60
 
 #### Defined in
 
-packages/figma-parser/src/styles/styles-processor.ts:61
+packages/figma-parser/src/styles/styles-processor.ts:62
 
 ___
 
@@ -115,7 +115,7 @@ Transforms the Figma styles into another format or structure by applying one or 
 
 #### Defined in
 
-packages/figma-parser/src/styles/styles-processor.ts:69
+packages/figma-parser/src/styles/styles-processor.ts:70
 
 ▸ **transform**\<`Transformers`\>(`...transformers`): `ReturnType`\<`Last`\<`Transformers`\>\>
 
@@ -137,4 +137,4 @@ packages/figma-parser/src/styles/styles-processor.ts:69
 
 #### Defined in
 
-packages/figma-parser/src/styles/styles-processor.ts:70
+packages/figma-parser/src/styles/styles-processor.ts:71

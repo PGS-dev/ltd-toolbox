@@ -6,7 +6,7 @@
 
 ## Indexable
 
-▪ [k: `string`]: `any`
+▪ [k: `string`]: `OnPurposeAny`
 
 ## Table of contents
 
@@ -23,7 +23,7 @@
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:10
+packages/figma-parser/src/contents/types.ts:11
 
 ___
 
@@ -33,4 +33,4 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:9
+packages/figma-parser/src/contents/types.ts:10
