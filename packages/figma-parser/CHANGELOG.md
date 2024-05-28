@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.6](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.5...@ltd-toolbox/figma-parser@0.1.0-alpha.6) (2024-05-28)
+
+**Note:** Version bump only for package @ltd-toolbox/figma-parser
+
 # [0.1.0-alpha.5](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.4...@ltd-toolbox/figma-parser@0.1.0-alpha.5) (2024-05-08)
 
 ### Bug Fixes
