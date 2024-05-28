@@ -33,6 +33,7 @@
     "@types/unist": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
+    "pkgroll": "^2.1.1",
     "typedoc": "^0.25.12",
     "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.0.2",
@@ -83,52 +84,52 @@
     },
     "./api": {
       "import": {
-        "types": "./dist/api.d.ts",
-        "default": "./dist/api.js"
+        "types": "./dist/core/index.d.ts",
+        "default": "./dist/core/index.js"
       },
       "require": {
-        "types": "./dist/api.d.cts",
-        "default": "./dist/api.cjs"
+        "types": "./dist/core/index.d.cts",
+        "default": "./dist/core/index.cjs"
       }
     },
     "./document": {
       "import": {
-        "types": "./dist/document.d.ts",
-        "default": "./dist/document.js"
+        "types": "./dist/document/index.d.ts",
+        "default": "./dist/document/index.js"
       },
       "require": {
-        "types": "./dist/document.d.cts",
-        "default": "./dist/document.cjs"
+        "types": "./dist/document/index.d.cts",
+        "default": "./dist/document/index.cjs"
       }
     },
     "./styles": {
       "import": {
-        "types": "./dist/styles.d.ts",
-        "default": "./dist/styles.js"
+        "types": "./dist/styles/index.d.ts",
+        "default": "./dist/styles/index.js"
       },
       "require": {
-        "types": "./dist/styles.d.cts",
-        "default": "./dist/styles.cjs"
+        "types": "./dist/styles/index.d.cts",
+        "default": "./dist/styles/index.cjs"
       }
     },
     "./variables": {
       "import": {
-        "types": "./dist/variables.d.ts",
-        "default": "./dist/variables.js"
+        "types": "./dist/variables/index.d.ts",
+        "default": "./dist/variables/index.js"
       },
       "require": {
-        "types": "./dist/variables.d.cts",
-        "default": "./dist/variables.cjs"
+        "types": "./dist/variables/index.d.cts",
+        "default": "./dist/variables/index.cjs"
       }
     },
     "./contents": {
       "import": {
-        "types": "./dist/contents.d.ts",
-        "default": "./dist/contents.js"
+        "types": "./dist/contents/index.d.ts",
+        "default": "./dist/contents/index.js"
       },
       "require": {
-        "types": "./dist/contents.d.cts",
-        "default": "./dist/contents.cjs"
+        "types": "./dist/contents/index.d.cts",
+        "default": "./dist/contents/index.cjs"
       }
     }
   }
