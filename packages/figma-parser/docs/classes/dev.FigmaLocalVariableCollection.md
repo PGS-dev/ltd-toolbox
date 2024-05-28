@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.4](../README.md) / [Modules](../modules.md) / [dev](../modules/dev.md) / FigmaLocalVariableCollection
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.5](../README.md) / [Modules](../modules.md) / [dev](../modules/dev.md) / FigmaLocalVariableCollection
 
 # Class: FigmaLocalVariableCollection
 
@@ -74,7 +74,7 @@ Data.constructor
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:71
+packages/figma-parser/src/variables/variable-collection.ts:72
 
 ## Properties
 
@@ -84,7 +84,7 @@ packages/figma-parser/src/variables/variable-collection.ts:71
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:68
+packages/figma-parser/src/variables/variable-collection.ts:69
 
 ___
 
@@ -98,7 +98,7 @@ Data.raw
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:72
+packages/figma-parser/src/variables/variable-collection.ts:73
 
 ___
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:73
+packages/figma-parser/src/variables/variable-collection.ts:74
 
 ## Accessors
 
@@ -126,7 +126,7 @@ Data.defaultModeId
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:54
+packages/figma-parser/src/variables/variable-collection.ts:55
 
 ___
 
@@ -144,7 +144,7 @@ Data.hiddenFromPublishing
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:62
+packages/figma-parser/src/variables/variable-collection.ts:63
 
 ___
 
@@ -162,7 +162,7 @@ Data.id
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:42
+packages/figma-parser/src/variables/variable-collection.ts:43
 
 ___
 
@@ -180,7 +180,7 @@ Data.key
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:46
+packages/figma-parser/src/variables/variable-collection.ts:47
 
 ___
 
@@ -198,7 +198,7 @@ Data.modes
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:50
+packages/figma-parser/src/variables/variable-collection.ts:51
 
 ___
 
@@ -216,7 +216,7 @@ Data.name
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:38
+packages/figma-parser/src/variables/variable-collection.ts:39
 
 ___
 
@@ -234,7 +234,7 @@ Data.remote
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:58
+packages/figma-parser/src/variables/variable-collection.ts:59
 
 ## Methods
 
@@ -248,7 +248,7 @@ packages/figma-parser/src/variables/variable-collection.ts:58
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:226
+packages/figma-parser/src/variables/variable-collection.ts:227
 
 ___
 
@@ -270,7 +270,7 @@ Retrieves the variable at a specified index within the collection.
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:206
+packages/figma-parser/src/variables/variable-collection.ts:207
 
 ___
 
@@ -292,7 +292,7 @@ Generates design tokens for a given mode. This method can produce tokens in a fl
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:129
+packages/figma-parser/src/variables/variable-collection.ts:130
 
 ▸ **designTokensByMode**(`mode`, `userOptions`): [`DesignTokensFormatFlat`](../interfaces/dev.DesignTokensFormatFlat.md)
 
@@ -310,7 +310,7 @@ packages/figma-parser/src/variables/variable-collection.ts:129
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:130
+packages/figma-parser/src/variables/variable-collection.ts:131
 
 ▸ **designTokensByMode**(`mode`, `userOptions`): [`DesignTokensFormatDeep`](../interfaces/dev.DesignTokensFormatDeep.md)
 
@@ -328,7 +328,7 @@ packages/figma-parser/src/variables/variable-collection.ts:130
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:131
+packages/figma-parser/src/variables/variable-collection.ts:132
 
 ___
 
@@ -350,7 +350,7 @@ Creates a new variable collection containing all variables that match the predic
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:177
+packages/figma-parser/src/variables/variable-collection.ts:178
 
 ___
 
@@ -372,7 +372,7 @@ Finds the first variable that satisfies the provided testing function.
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:165
+packages/figma-parser/src/variables/variable-collection.ts:166
 
 ___
 
@@ -394,7 +394,7 @@ Executes a provided function once for each variable in the collection.
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:220
+packages/figma-parser/src/variables/variable-collection.ts:221
 
 ___
 
@@ -416,7 +416,7 @@ Retrieves the mode ID for a given mode name. If the name is not found, returns t
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:122
+packages/figma-parser/src/variables/variable-collection.ts:123
 
 ___
 
@@ -444,7 +444,7 @@ Transforms the collection of variables into an array of a specified type based o
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:193
+packages/figma-parser/src/variables/variable-collection.ts:194
 
 ___
 
@@ -466,7 +466,7 @@ Checks if a mode by the given name exists within the collection.
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:115
+packages/figma-parser/src/variables/variable-collection.ts:116
 
 ___
 
@@ -488,7 +488,7 @@ Adds a variable to the collection. If the variable is not already an instance of
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:92
+packages/figma-parser/src/variables/variable-collection.ts:93
 
 ___
 
@@ -504,4 +504,4 @@ Displays a table in the console listing properties of each variable in the colle
 
 #### Defined in
 
-packages/figma-parser/src/variables/variable-collection.ts:101
+packages/figma-parser/src/variables/variable-collection.ts:102

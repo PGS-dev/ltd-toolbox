@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.4](../README.md) / [Modules](../modules.md) / [dev](../modules/dev.md) / CollectionsSet
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.5](../README.md) / [Modules](../modules.md) / [dev](../modules/dev.md) / CollectionsSet
 
 # Class: CollectionsSet
 
@@ -49,7 +49,7 @@
 
 #### Defined in
 
-packages/figma-parser/src/variables/collections-set.ts:8
+packages/figma-parser/src/variables/collections-set.ts:9
 
 ## Properties
 
@@ -59,7 +59,7 @@ packages/figma-parser/src/variables/collections-set.ts:8
 
 #### Defined in
 
-packages/figma-parser/src/variables/collections-set.ts:5
+packages/figma-parser/src/variables/collections-set.ts:6
 
 ## Methods
 
@@ -73,7 +73,7 @@ packages/figma-parser/src/variables/collections-set.ts:5
 
 #### Defined in
 
-packages/figma-parser/src/variables/collections-set.ts:124
+packages/figma-parser/src/variables/collections-set.ts:125
 
 ___
 
@@ -96,7 +96,7 @@ Throws an error if the index is out of bounds.
 
 #### Defined in
 
-packages/figma-parser/src/variables/collections-set.ts:104
+packages/figma-parser/src/variables/collections-set.ts:105
 
 ___
 
@@ -118,7 +118,7 @@ Creates a new array with all collections that pass the test implemented by the p
 
 #### Defined in
 
-packages/figma-parser/src/variables/collections-set.ts:75
+packages/figma-parser/src/variables/collections-set.ts:76
 
 ___
 
@@ -140,7 +140,7 @@ Finds the first collection in the set that satisfies the provided testing functi
 
 #### Defined in
 
-packages/figma-parser/src/variables/collections-set.ts:63
+packages/figma-parser/src/variables/collections-set.ts:64
 
 ___
 
@@ -162,7 +162,7 @@ Executes a provided function once for each collection in the set.
 
 #### Defined in
 
-packages/figma-parser/src/variables/collections-set.ts:118
+packages/figma-parser/src/variables/collections-set.ts:119
 
 ___
 
@@ -184,7 +184,7 @@ Retrieves a collection by its name.
 
 #### Defined in
 
-packages/figma-parser/src/variables/collections-set.ts:43
+packages/figma-parser/src/variables/collections-set.ts:44
 
 ___
 
@@ -207,7 +207,7 @@ Throws an error if no variable with the given ID is found.
 
 #### Defined in
 
-packages/figma-parser/src/variables/collections-set.ts:51
+packages/figma-parser/src/variables/collections-set.ts:52
 
 ___
 
@@ -235,7 +235,7 @@ Creates an array of results by calling a provided function on every collection i
 
 #### Defined in
 
-packages/figma-parser/src/variables/collections-set.ts:90
+packages/figma-parser/src/variables/collections-set.ts:91
 
 ___
 
@@ -251,4 +251,4 @@ Prints a table in the console listing the name, ID, type, and hiddenFromPublishi
 
 #### Defined in
 
-packages/figma-parser/src/variables/collections-set.ts:29
+packages/figma-parser/src/variables/collections-set.ts:30

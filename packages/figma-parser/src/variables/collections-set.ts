@@ -1,4 +1,5 @@
 import { LocalVariable, LocalVariableCollection } from '@figma/rest-api-spec';
+import { GetVariablesError } from './get-variables.error'
 import { FigmaLocalVariableCollection } from './variable-collection';
 
 export class CollectionsSet {
@@ -54,7 +55,7 @@ export class CollectionsSet {
       if (variable) return variable;
     }
 
-    throw new Error(`Couldn't find variable with id: ${id}`);
+    throw new GetVariablesError(`Couldn't find variable with id: ${id}`);
   }
 
   /**
@@ -102,8 +103,8 @@ export class CollectionsSet {
    * Throws an error if the index is out of bounds.
    */
   at(index: number) {
-    if (index > 0 && index > this.length - 1) throw new Error(`Maximum index for this collection is ${this.length - 1}`);
-    if (index < 0 && index < -this.length) throw new Error(`Minimum index for this collection is ${-this.length}`);
+    if (index > 0 && index > this.length - 1) throw new GetVariablesError(`Maximum index for this collection is ${this.length - 1}`);
+    if (index < 0 && index < -this.length) throw new GetVariablesError(`Minimum index for this collection is ${-this.length}`);
 
     if (index < 0) {
       return this[this.length + index];

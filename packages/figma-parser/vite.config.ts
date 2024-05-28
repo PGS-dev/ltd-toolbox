@@ -28,7 +28,7 @@ export default defineConfig({
       },
     },
     rollupOptions: {
-      external: [...builtinModules],
+      external: [...builtinModules, 'hastscript'],
       output: {
         exports: 'named',
         preserveModules: true,

@@ -3,6 +3,7 @@ import { DesignToken, DesignTokenType, DesignTokensFormat, DesignTokensFormatDee
 import { entriesToDeepObject } from '../shared/entriesToDeepObject.util';
 import { rgbaToHexa } from '../shared/rgba-to-hex.util';
 import { CollectionsSet } from './collections-set';
+import { GetVariablesError } from './get-variables.error'
 import { FigmaLocalVariable } from './variable';
 
 const resolveTokenType = (variable: FigmaLocalVariable): DesignTokenType => {
@@ -204,8 +205,8 @@ export class FigmaLocalVariableCollection extends Data {
    * Retrieves the variable at a specified index within the collection.
    */
   at(index: number) {
-    if (index > 0 && index > this.length - 1) throw new Error(`Maximum index for this collection is ${this.length - 1}`);
-    if (index < 0 && index < -this.length) throw new Error(`Minimum index for this collection is ${-this.length}`);
+    if (index > 0 && index > this.length - 1) throw new GetVariablesError(`Maximum index for this collection is ${this.length - 1}`);
+    if (index < 0 && index < -this.length) throw new GetVariablesError(`Minimum index for this collection is ${-this.length}`);
 
     if (index < 0) {
       return this[this.length + index];

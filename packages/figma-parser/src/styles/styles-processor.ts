@@ -2,6 +2,7 @@ import { Effect, GetFileNodesResponse, Paint, PublishedStyle, TypeStyle } from '
 import { DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../shared/design-tokens-format.types';
 import { Last } from '../types';
 import { DesignTokens } from './design-tokens.transformer';
+import { GetStylesError } from './get-styles.error'
 import { EffectStyle, FigmaStyleDefinition, FigmaStylesTransformer, FillStyle, FullStyle, TextStyle, isEffectStyle, isFillStyle, isTextStyle } from './types';
 
 export class StylesProcessor {
@@ -15,19 +16,19 @@ export class StylesProcessor {
   }
 
   private getFillStyle(style: FillStyle): Readonly<Paint[]> {
-    if (!isFillStyle(style)) throw new Error('Expected FillStyle!');
+    if (!isFillStyle(style)) throw new GetStylesError('Expected FillStyle!');
 
     return style.nodeData.fills;
   }
 
   private getTextStyle(style: TextStyle): Readonly<TypeStyle> {
-    if (!isTextStyle(style)) throw new Error('Expected TextStyle!');
+    if (!isTextStyle(style)) throw new GetStylesError('Expected TextStyle!');
 
     return style.nodeData.style;
   }
 
   private getEffectStyle(style: EffectStyle): Readonly<Effect[]> {
-    if (!isEffectStyle(style)) throw new Error('Expected EffectStyle!');
+    if (!isEffectStyle(style)) throw new GetStylesError('Expected EffectStyle!');
 
     return style.nodeData.effects;
   }

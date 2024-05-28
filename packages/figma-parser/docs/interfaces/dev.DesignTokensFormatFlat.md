@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.4](../README.md) / [Modules](../modules.md) / [dev](../modules/dev.md) / DesignTokensFormatFlat
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.5](../README.md) / [Modules](../modules.md) / [dev](../modules/dev.md) / DesignTokensFormatFlat
 
 # Interface: DesignTokensFormatFlat
 

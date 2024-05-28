@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.4](../README.md) / [Modules](../modules.md) / [dev](../modules/dev.md) / ContentNode
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.5](../README.md) / [Modules](../modules.md) / [dev](../modules/dev.md) / ContentNode
 
 # Class: ContentNode\<T\>
 
@@ -602,7 +602,7 @@ ___
 
 ### parseTree
 
-▸ **parseTree**(`options?`): `Promise`\<[`TreeNode`](../modules/dev.md#treenode)\>
+▸ **parseTree**(`options?`): `Promise`\<[`GetterTreeNode`](../modules/dev.md#gettertreenode)\>
 
 Parses a Figma node tree, extracting content into a structured tree format. This method facilitates the transformation
 of Figma layers into document abstract syntax trees (AST), enabling conversion to various formats like Markdown or HTML.
@@ -617,13 +617,13 @@ therefore it may be processed with these utils.
 
 #### Returns
 
-`Promise`\<[`TreeNode`](../modules/dev.md#treenode)\>
+`Promise`\<[`GetterTreeNode`](../modules/dev.md#gettertreenode)\>
 
 #### Defined in
 
 packages/figma-parser/src/contents/content-node.ts:41
 
-▸ **parseTree**(`getters?`): `Promise`\<[`TreeNode`](../modules/dev.md#treenode)\>
+▸ **parseTree**(`getters?`): `Promise`\<[`GetterTreeNode`](../modules/dev.md#gettertreenode)\>
 
 #### Parameters
 
@@ -633,13 +633,13 @@ packages/figma-parser/src/contents/content-node.ts:41
 
 #### Returns
 
-`Promise`\<[`TreeNode`](../modules/dev.md#treenode)\>
+`Promise`\<[`GetterTreeNode`](../modules/dev.md#gettertreenode)\>
 
 #### Defined in
 
 packages/figma-parser/src/contents/content-node.ts:42
 
-▸ **parseTree**(`getters?`, `options?`): `Promise`\<[`TreeNode`](../modules/dev.md#treenode)\>
+▸ **parseTree**(`getters?`, `options?`): `Promise`\<[`GetterTreeNode`](../modules/dev.md#gettertreenode)\>
 
 #### Parameters
 
@@ -650,13 +650,13 @@ packages/figma-parser/src/contents/content-node.ts:42
 
 #### Returns
 
-`Promise`\<[`TreeNode`](../modules/dev.md#treenode)\>
+`Promise`\<[`GetterTreeNode`](../modules/dev.md#gettertreenode)\>
 
 #### Defined in
 
 packages/figma-parser/src/contents/content-node.ts:43
 
-▸ **parseTree**(`getters?`, `options?`): `Promise`\<[`TreeNode`](../modules/dev.md#treenode)\>
+▸ **parseTree**(`getters?`, `options?`): `Promise`\<[`GetterTreeNode`](../modules/dev.md#gettertreenode)\>
 
 #### Parameters
 
@@ -667,7 +667,7 @@ packages/figma-parser/src/contents/content-node.ts:43
 
 #### Returns
 
-`Promise`\<[`TreeNode`](../modules/dev.md#treenode)\>
+`Promise`\<[`GetterTreeNode`](../modules/dev.md#gettertreenode)\>
 
 #### Defined in
 

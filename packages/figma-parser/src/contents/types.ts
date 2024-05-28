@@ -1,15 +1,20 @@
 import { TypeStyle } from '@figma/rest-api-spec';
-import type { Node } from 'unist';
 import { ContentNode } from './content-node';
 
 export interface TypeStyleTable {
   [p: string]: TypeStyle;
 }
 
-export type TreeNode = Node & { children?: Node[] };
+export interface GetterNode {
+  type: string
+  data?: any
+  [k: string]: any
+}
+
+export type GetterTreeNode = GetterNode & { children?: GetterNode[] };
 
 export type GetterTestFn = (node: ContentNode) => boolean;
-export type GetterGetFn = (node: ContentNode) => TreeNode & { children?: TreeNode[] | false };
+export type GetterGetFn = (node: ContentNode) => GetterTreeNode & { children?: GetterTreeNode[] | false };
 
 export type Getter = {
   /**

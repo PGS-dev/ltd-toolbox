@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.4](../README.md) / [Modules](../modules.md) / document
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.5](../README.md) / [Modules](../modules.md) / document
 
 # Module: document
 
@@ -62,7 +62,7 @@ packages/figma-parser/src/document/single-node.ts:5
 
 ### getDocument
 
-▸ **getDocument**(`host`, `fileId`): `Promise`\<[`SingleNode`](../classes/document.SingleNode.md)\<`DocumentNode`\>\>
+▸ **getDocument**(`api`, `fileId`): `Promise`\<[`SingleNode`](../classes/document.SingleNode.md)\<`DocumentNode`\>\>
 
 Asynchronously retrieves a Figma document by its file ID and wraps it in a SingleNode instance for easy manipulation and access.
 
@@ -70,7 +70,7 @@ Asynchronously retrieves a Figma document by its file ID and wraps it in a Singl
 
 | Name | Type |
 | :------ | :------ |
-| `host` | [`FigmaApiInterface`](../interfaces/core_api.FigmaApiInterface.md) |
+| `api` | [`FigmaApiInterface`](../interfaces/dev.FigmaApiInterface.md) |
 | `fileId` | `string` |
 
 #### Returns

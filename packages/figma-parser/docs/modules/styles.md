@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.4](../README.md) / [Modules](../modules.md) / styles
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.5](../README.md) / [Modules](../modules.md) / styles
 
 # Module: styles
 
@@ -119,7 +119,7 @@ packages/figma-parser/src/styles/types.ts:32
 
 #### Defined in
 
-packages/figma-parser/src/styles/design-tokens.transformer.ts:50
+packages/figma-parser/src/styles/design-tokens.transformer.ts:51
 
 ▸ **DesignTokens**(`deep`): [`FigmaStylesTransformer`](styles.md#figmastylestransformer)\<[`FigmaStyleDefinition`](../interfaces/styles.FigmaStyleDefinition.md)[], [`DesignTokensFormatDeep`](../interfaces/dev.DesignTokensFormatDeep.md)\>
 
@@ -135,7 +135,7 @@ packages/figma-parser/src/styles/design-tokens.transformer.ts:50
 
 #### Defined in
 
-packages/figma-parser/src/styles/design-tokens.transformer.ts:51
+packages/figma-parser/src/styles/design-tokens.transformer.ts:52
 
 ▸ **DesignTokens**(`deep`): [`FigmaStylesTransformer`](styles.md#figmastylestransformer)\<[`FigmaStyleDefinition`](../interfaces/styles.FigmaStyleDefinition.md)[], [`DesignTokensFormatFlat`](../interfaces/dev.DesignTokensFormatFlat.md)\>
 
@@ -151,7 +151,7 @@ packages/figma-parser/src/styles/design-tokens.transformer.ts:51
 
 #### Defined in
 
-packages/figma-parser/src/styles/design-tokens.transformer.ts:52
+packages/figma-parser/src/styles/design-tokens.transformer.ts:53
 
 ▸ **DesignTokens**(`deep?`): [`FigmaStylesTransformer`](styles.md#figmastylestransformer)\<[`FigmaStyleDefinition`](../interfaces/styles.FigmaStyleDefinition.md)[], [`DesignTokensFormat`](dev.md#designtokensformat)\>
 
@@ -167,13 +167,13 @@ packages/figma-parser/src/styles/design-tokens.transformer.ts:52
 
 #### Defined in
 
-packages/figma-parser/src/styles/design-tokens.transformer.ts:53
+packages/figma-parser/src/styles/design-tokens.transformer.ts:54
 
 ___
 
 ### getStyles
 
-▸ **getStyles**(`host`, `fileId`): `Promise`\<[`StylesProcessor`](../classes/dev.StylesProcessor.md)\>
+▸ **getStyles**(`api`, `fileId`): `Promise`\<[`StylesProcessor`](../classes/dev.StylesProcessor.md)\>
 
 Asynchronously fetches and processes styles from a specified Figma file.
 
@@ -181,7 +181,7 @@ Asynchronously fetches and processes styles from a specified Figma file.
 
 | Name | Type |
 | :------ | :------ |
-| `host` | [`FigmaApiInterface`](../interfaces/core_api.FigmaApiInterface.md) |
+| `api` | [`FigmaApiInterface`](../interfaces/dev.FigmaApiInterface.md) |
 | `fileId` | `string` |
 
 #### Returns
@@ -190,7 +190,7 @@ Asynchronously fetches and processes styles from a specified Figma file.
 
 #### Defined in
 
-packages/figma-parser/src/styles/get-styles.ts:8
+packages/figma-parser/src/styles/get-styles.ts:23
 
 ___
 

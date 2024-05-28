@@ -42,6 +42,7 @@
     "wsrun": "^5.2.4"
   },
   "dependencies": {
+    "consola": "^3.2.3",
     "hastscript": "^9.0.0",
     "type-fest": "^4.12.0",
     "unist-builder": "^4.0.0"

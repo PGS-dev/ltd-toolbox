@@ -4,10 +4,10 @@ import { isEmptyObject } from '../shared/is-empty-object.util';
 import { isObject } from '../shared/is-object.util';
 import { NodeBase } from '../shared/node.abstract';
 import { isTextNode } from '../shared/types';
-import type { Getter, ParseTreeOptions, TreeNode } from './types';
+import type { Getter, ParseTreeOptions, GetterTreeNode } from './types';
 import { getNodeDecoratedText } from './utils';
 
-export const isFauxNode = (node: TreeNode): node is TreeNode & { children: [TreeNode] } => {
+export const isFauxNode = (node: GetterTreeNode): node is GetterTreeNode & { children: [GetterTreeNode] } => {
   return Object.keys(node).length === 1 && 'children' in node && node.children?.length === 1;
 };
 
@@ -38,18 +38,18 @@ export class ContentNode<T extends Node = Node> extends NodeBase<T> {
    * Returned type `TreeNode` is compliant with (unist's Node interface)[https://github.com/syntax-tree/unist?tab=readme-ov-file#node],
    * therefore it may be processed with these utils.
    */
-  async parseTree(options?: Partial<ParseTreeOptions>): Promise<TreeNode>;
-  async parseTree(getters?: Getter[]): Promise<TreeNode>;
-  async parseTree(getters?: Getter[], options?: Partial<ParseTreeOptions>): Promise<TreeNode>;
-  async parseTree(getters?: Getter[], options?: Partial<ParseTreeOptions>): Promise<TreeNode>;
-  async parseTree(gettersOrOptions?: Getter[] | Partial<ParseTreeOptions>, userOptions: Partial<ParseTreeOptions> = {}): Promise<TreeNode> {
+  async parseTree(options?: Partial<ParseTreeOptions>): Promise<GetterTreeNode>;
+  async parseTree(getters?: Getter[]): Promise<GetterTreeNode>;
+  async parseTree(getters?: Getter[], options?: Partial<ParseTreeOptions>): Promise<GetterTreeNode>;
+  async parseTree(getters?: Getter[], options?: Partial<ParseTreeOptions>): Promise<GetterTreeNode>;
+  async parseTree(gettersOrOptions?: Getter[] | Partial<ParseTreeOptions>, userOptions: Partial<ParseTreeOptions> = {}): Promise<GetterTreeNode> {
     const getters = Array.isArray(gettersOrOptions) ? gettersOrOptions : this.defaultGetters;
     const options = isObject(gettersOrOptions) ? (gettersOrOptions as ParseTreeOptions) : userOptions;
 
     const parseOptions: ParseTreeOptions = {
       omitEmpty: true,
       omitFauxNodes: true,
-      defaultGetter: () => ({}) as TreeNode,
+      defaultGetter: () => ({}) as GetterTreeNode,
       ...options,
     };
 
@@ -58,10 +58,10 @@ export class ContentNode<T extends Node = Node> extends NodeBase<T> {
 
     if (out && out.children === false) {
       delete out.children;
-      return out as TreeNode;
+      return out as GetterTreeNode;
     }
 
-    if (out?.children && out?.children.length > 0) return out as TreeNode;
+    if (out?.children && out?.children.length > 0) return out as GetterTreeNode;
 
     if (this.children?.length > 0) {
       out.children = await Promise.all(this.children.map(async (childNode) => await childNode.parseTree(getters, options)));
@@ -79,7 +79,7 @@ export class ContentNode<T extends Node = Node> extends NodeBase<T> {
       return out.children[0];
     }
 
-    return out as TreeNode;
+    return out as GetterTreeNode;
   }
 
   /**

@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.4](../README.md) / [Modules](../modules.md) / variables
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.5](../README.md) / [Modules](../modules.md) / variables
 
 # Module: variables
 
@@ -12,7 +12,7 @@
 
 ### getVariables
 
-▸ **getVariables**(`host`, `fileId`): `Promise`\<[`CollectionsSet`](../classes/dev.CollectionsSet.md)\>
+▸ **getVariables**(`api`, `fileId`): `Promise`\<[`CollectionsSet`](../classes/dev.CollectionsSet.md)\>
 
 Asynchronously fetches and constructs a set of local variable collections from a Figma file.
 This function queries the Figma API for local variables and their collections, then organizes these into a CollectionsSet instance for easy access and manipulation.
@@ -21,7 +21,7 @@ This function queries the Figma API for local variables and their collections, t
 
 | Name | Type |
 | :------ | :------ |
-| `host` | [`FigmaApiInterface`](../interfaces/core_api.FigmaApiInterface.md) |
+| `api` | [`FigmaApiInterface`](../interfaces/dev.FigmaApiInterface.md) |
 | `fileId` | `string` |
 
 #### Returns
@@ -30,4 +30,4 @@ This function queries the Figma API for local variables and their collections, t
 
 #### Defined in
 
-packages/figma-parser/src/variables/get-variables.ts:9
+packages/figma-parser/src/variables/get-variables.ts:31

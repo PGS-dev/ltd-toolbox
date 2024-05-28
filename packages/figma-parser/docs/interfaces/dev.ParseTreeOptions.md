@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.4](../README.md) / [Modules](../modules.md) / [dev](../modules/dev.md) / ParseTreeOptions
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.5](../README.md) / [Modules](../modules.md) / [dev](../modules/dev.md) / ParseTreeOptions
 
 # Interface: ParseTreeOptions
 
@@ -33,7 +33,7 @@ You can use it for example to find all unkown nodes
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:103
+packages/figma-parser/src/contents/types.ts:108
 
 ___
 
@@ -52,7 +52,7 @@ true
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:85
+packages/figma-parser/src/contents/types.ts:90
 
 ___
 
@@ -64,4 +64,4 @@ Whether nodes that's only property is `children` should be skipped, or not.
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:89
+packages/figma-parser/src/contents/types.ts:94

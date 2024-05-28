@@ -2,10 +2,11 @@ import { DropShadowEffect, Effect, GradientPaint, InnerShadowEffect, SolidPaint,
 import { DesignToken, DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../shared/design-tokens-format.types';
 import { entriesToDeepObject } from '../shared/entriesToDeepObject.util';
 import { rgbaToHexa } from '../shared/rgba-to-hex.util';
+import { GetStylesError } from './get-styles.error'
 import { FigmaStyleDefinition, FigmaStylesTransformer, isEffectDefinition, isFillDefinition, isTextDefinition } from './types';
 
 const gradientTransform = (style: GradientPaint) => {
-  if (!style || !style.gradientStops) throw new Error('Expected Paint style with gradientStops definitions!');
+  if (!style || !style.gradientStops) throw new GetStylesError('Expected Paint style with gradientStops definitions!');
   return style.gradientStops.map((stop) => ({
     color: rgbaToHexa(stop.color),
     position: stop.position,
@@ -13,7 +14,7 @@ const gradientTransform = (style: GradientPaint) => {
 };
 
 const solidTransform = (style: SolidPaint) => {
-  if (!style || !style.color) throw new Error('Expected Paint style with solid color definition!');
+  if (!style || !style.color) throw new GetStylesError('Expected Paint style with solid color definition!');
   const colorValue = {
     ...style.color,
     a: style.opacity,
@@ -33,7 +34,7 @@ const typographyTransform = (style: TypeStyle) => {
 
 const shadowTransform = (style: Effect[]) => {
   const shadowStyles = style.filter((effect) => effect.type === 'DROP_SHADOW' || effect.type === 'INNER_SHADOW') as (DropShadowEffect | InnerShadowEffect)[];
-  if (!shadowStyles.length) throw new Error('Expected Shadow Effect definitions in given style!');
+  if (!shadowStyles.length) throw new GetStylesError('Expected Shadow Effect definitions in given style!');
 
   return shadowStyles.map((effect) => {
     const requiredEffect = effect;

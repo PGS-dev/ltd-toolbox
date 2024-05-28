@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.4](../README.md) / [Modules](../modules.md) / [styles](../modules/styles.md) / FigmaStyleDefinition
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.5](../README.md) / [Modules](../modules.md) / [styles](../modules/styles.md) / FigmaStyleDefinition
 
 # Interface: FigmaStyleDefinition
 

@@ -1,33 +1,12 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.4](../README.md) / [Modules](../modules.md) / core/api
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.5](../README.md) / [Modules](../modules.md) / core/api
 
 # Module: core/api
 
 ## Table of contents
 
-### Interfaces
-
-- [FigmaApiInterface](../interfaces/core_api.FigmaApiInterface.md)
-- [FigmaParserOptions](../interfaces/core_api.FigmaParserOptions.md)
-
-### Type Aliases
-
-- [FigmaPAT](core_api.md#figmapat)
-
 ### Functions
 
 - [figmaApi](core_api.md#figmaapi)
-
-## Type Aliases
-
-### FigmaPAT
-
-Ƭ **FigmaPAT**: \`figd\_$\{string}\` \| `string`
-
-Figma Personal Access Token format.
-
-#### Defined in
-
-packages/figma-parser/src/core/api.ts:8
 
 ## Functions
 
@@ -41,7 +20,7 @@ packages/figma-parser/src/core/api.ts:8
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:87
+packages/figma-parser/src/core/api.ts:110
 
 ▸ **figmaApi**(`token`): `FigmaApi`
 
@@ -57,7 +36,7 @@ packages/figma-parser/src/core/api.ts:87
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:88
+packages/figma-parser/src/core/api.ts:111
 
 ▸ **figmaApi**(`options`): `FigmaApi`
 
@@ -65,7 +44,7 @@ packages/figma-parser/src/core/api.ts:88
 
 | Name | Type |
 | :------ | :------ |
-| `options` | `Partial`\<[`FigmaParserOptions`](../interfaces/core_api.FigmaParserOptions.md)\> |
+| `options` | `Partial`\<[`FigmaParserOptions`](../interfaces/dev.FigmaParserOptions.md)\> |
 
 #### Returns
 
@@ -73,7 +52,7 @@ packages/figma-parser/src/core/api.ts:88
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:89
+packages/figma-parser/src/core/api.ts:112
 
 ▸ **figmaApi**(`token`, `options?`): `FigmaApi`
 
@@ -82,7 +61,7 @@ packages/figma-parser/src/core/api.ts:89
 | Name | Type |
 | :------ | :------ |
 | `token` | `string` |
-| `options?` | `Partial`\<[`FigmaParserOptions`](../interfaces/core_api.FigmaParserOptions.md)\> |
+| `options?` | `Partial`\<[`FigmaParserOptions`](../interfaces/dev.FigmaParserOptions.md)\> |
 
 #### Returns
 
@@ -90,4 +69,4 @@ packages/figma-parser/src/core/api.ts:89
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:90
+packages/figma-parser/src/core/api.ts:113
