@@ -15,7 +15,7 @@
     "start": "yarn vite build --watch",
     "build": "yarn vite build && yarn typedoc",
     "test": "yarn vitest",
-    "lint": "eslint ./src --ext ts --report-unused-disable-directives --max-warnings 0",
+    "lint": "tsc && eslint ./src --ext ts --report-unused-disable-directives --max-warnings 0",
     "format": "yarn prettier ./src/ --write",
     "codecheck": "tsc --noEmit && yarn lint && yarn prettier ./src --check"
   },

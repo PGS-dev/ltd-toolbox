@@ -1,4 +1,4 @@
-import { Node, TextNode } from '@figma/rest-api-spec';
+import type { Node, TextNode } from '@figma/rest-api-spec';
 import { combineSchema } from '../shared/combine-schema.util';
 import { isEmptyObject } from '../shared/is-empty-object.util';
 import { isObject } from '../shared/is-object.util';

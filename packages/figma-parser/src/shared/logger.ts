@@ -1,4 +1,5 @@
-import { ConsolaInstance, ConsolaOptions, createConsola } from 'consola'
+import type { ConsolaInstance, ConsolaOptions } from 'consola'
+import { createConsola } from 'consola'
 
 export function createLogger(options?: Partial<ConsolaOptions>): ConsolaInstance {
   return createConsola({

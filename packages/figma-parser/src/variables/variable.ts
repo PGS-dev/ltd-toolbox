@@ -1,4 +1,4 @@
-import { LocalVariable, RGBA, VariableAlias, VariableCodeSyntax, VariableScope } from '@figma/rest-api-spec';
+import type { LocalVariable, RGBA, VariableAlias, VariableCodeSyntax, VariableScope } from '@figma/rest-api-spec';
 import { FigmaLocalVariableCollection } from './variable-collection';
 
 export const isVariableAlias = (value: unknown): value is VariableAlias => !!value && typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS';

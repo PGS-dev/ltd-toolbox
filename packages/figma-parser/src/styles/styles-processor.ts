@@ -1,9 +1,10 @@
-import { Effect, GetFileNodesResponse, Paint, PublishedStyle, TypeStyle } from '@figma/rest-api-spec';
-import { DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../shared/design-tokens-format.types';
-import { Last } from '../types';
+import type { Effect, GetFileNodesResponse, Paint, PublishedStyle, TypeStyle } from '@figma/rest-api-spec';
+import type { DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../shared/design-tokens-format.types';
+import type { Last } from '../types';
 import { DesignTokens } from './design-tokens.transformer';
 import { GetStylesError } from './get-styles.error'
-import { EffectStyle, FigmaStyleDefinition, FigmaStylesTransformer, FillStyle, FullStyle, TextStyle, isEffectStyle, isFillStyle, isTextStyle } from './types';
+import type { EffectStyle, FigmaStyleDefinition, FigmaStylesTransformer, FillStyle, FullStyle, TextStyle } from './types';
+import { isEffectStyle, isFillStyle, isTextStyle } from './types'
 
 export class StylesProcessor {
   private stylesData: FullStyle[] = [];

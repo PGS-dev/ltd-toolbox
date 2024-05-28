@@ -1,9 +1,10 @@
-import { DropShadowEffect, Effect, GradientPaint, InnerShadowEffect, SolidPaint, TypeStyle } from '@figma/rest-api-spec';
-import { DesignToken, DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../shared/design-tokens-format.types';
+import type { DropShadowEffect, Effect, GradientPaint, InnerShadowEffect, SolidPaint, TypeStyle } from '@figma/rest-api-spec';
+import type { DesignToken, DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../shared/design-tokens-format.types';
 import { entriesToDeepObject } from '../shared/entriesToDeepObject.util';
 import { rgbaToHexa } from '../shared/rgba-to-hex.util';
 import { GetStylesError } from './get-styles.error'
-import { FigmaStyleDefinition, FigmaStylesTransformer, isEffectDefinition, isFillDefinition, isTextDefinition } from './types';
+import type { FigmaStyleDefinition, FigmaStylesTransformer } from './types';
+import { isEffectDefinition, isFillDefinition, isTextDefinition } from './types'
 
 const gradientTransform = (style: GradientPaint) => {
   if (!style || !style.gradientStops) throw new GetStylesError('Expected Paint style with gradientStops definitions!');

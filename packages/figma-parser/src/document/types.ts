@@ -1,4 +1,4 @@
-import { Node } from '@figma/rest-api-spec';
+import type { Node } from '@figma/rest-api-spec';
 import { SingleNode } from './single-node';
 
 export interface PathBreadcrumb {

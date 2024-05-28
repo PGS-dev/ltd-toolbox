@@ -1,5 +1,5 @@
-import { LocalVariable, LocalVariableCollection, RGBA } from '@figma/rest-api-spec';
-import { DesignToken, DesignTokenType, DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../shared/design-tokens-format.types';
+import type { LocalVariable, LocalVariableCollection, RGBA } from '@figma/rest-api-spec';
+import type { DesignToken, DesignTokenType, DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../shared/design-tokens-format.types';
 import { entriesToDeepObject } from '../shared/entriesToDeepObject.util';
 import { rgbaToHexa } from '../shared/rgba-to-hex.util';
 import { CollectionsSet } from './collections-set';

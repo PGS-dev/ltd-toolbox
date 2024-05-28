@@ -1,4 +1,5 @@
-import { TypeStyle } from '@figma/rest-api-spec';
+import type { TypeStyle } from '@figma/rest-api-spec';
+import type { OnPurposeAny } from '../types'
 import { ContentNode } from './content-node';
 
 export interface TypeStyleTable {
@@ -7,8 +8,8 @@ export interface TypeStyleTable {
 
 export interface GetterNode {
   type: string
-  data?: any
-  [k: string]: any
+  data?: OnPurposeAny
+  [k: string]: OnPurposeAny
 }
 
 export type GetterTreeNode = GetterNode & { children?: GetterNode[] };

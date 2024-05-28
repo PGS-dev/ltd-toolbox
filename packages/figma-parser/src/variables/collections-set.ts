@@ -1,4 +1,4 @@
-import { LocalVariable, LocalVariableCollection } from '@figma/rest-api-spec';
+import type { LocalVariable, LocalVariableCollection } from '@figma/rest-api-spec';
 import { GetVariablesError } from './get-variables.error'
 import { FigmaLocalVariableCollection } from './variable-collection';
 

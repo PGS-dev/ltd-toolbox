@@ -1,5 +1,5 @@
-import { GetLocalVariablesResponse } from '@figma/rest-api-spec';
-import { ErrorDescriptions, FigmaApiInterface } from '../core/types'
+import type { GetLocalVariablesResponse } from '@figma/rest-api-spec';
+import type { ErrorDescriptions, FigmaApiInterface } from '../core/types'
 import { CollectionsSet } from './collections-set';
 
 const errorDescriptions: ErrorDescriptions = {

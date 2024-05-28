@@ -1,5 +1,5 @@
-import { GetFileResponse } from '@figma/rest-api-spec';
-import { ErrorDescriptions, FigmaApiInterface } from '../core/types'
+import type { GetFileResponse } from '@figma/rest-api-spec';
+import type { ErrorDescriptions, FigmaApiInterface } from '../core/types'
 import { ContentNode } from './content-node';
 
 const errorDescriptions: ErrorDescriptions = {

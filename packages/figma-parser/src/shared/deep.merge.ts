@@ -1,4 +1,4 @@
-import { MergeDeep } from 'type-fest';
+import type { MergeDeep } from 'type-fest';
 
 interface Obj {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

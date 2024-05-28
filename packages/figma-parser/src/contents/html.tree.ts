@@ -1,7 +1,7 @@
 import { h } from 'hastscript';
 import { isInstanceNode, isTextNode } from '../shared/types';
 import { ContentNode } from './content-node';
-import { Getter } from './types';
+import type { Getter } from './types';
 
 const getListItems = (node: ContentNode) => {
   let items: string[] = [];

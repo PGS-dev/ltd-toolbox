@@ -1,4 +1,4 @@
-import {
+import type {
   BooleanOperationNode,
   CanvasNode,
   ComponentNode,
@@ -27,7 +27,7 @@ import {
   WashiTapeNode,
   WidgetNode,
 } from '@figma/rest-api-spec';
-import { NodeBase } from './node.abstract';
+import type { NodeBase } from './node.abstract';
 
 export const isBooleanOperationNode = (node: NodeBase): node is NodeBase<BooleanOperationNode> & BooleanOperationNode => node.type === 'BOOLEAN_OPERATION';
 export const isComponentNode = (node: NodeBase): node is NodeBase<ComponentNode> & ComponentNode => node.type === 'COMPONENT';

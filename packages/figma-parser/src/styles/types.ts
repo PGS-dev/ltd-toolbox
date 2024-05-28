@@ -1,4 +1,4 @@
-import { Effect, Node, Paint, PublishedStyle, StyleType, TextNode, TypeStyle, VectorNode } from '@figma/rest-api-spec';
+import type { Effect, Node, Paint, PublishedStyle, StyleType, TextNode, TypeStyle, VectorNode } from '@figma/rest-api-spec';
 
 export const isFillStyle = (node: FullStyle): node is FillStyle => node.styleMeta.style_type === 'FILL';
 

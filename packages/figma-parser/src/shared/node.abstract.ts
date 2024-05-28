@@ -1,6 +1,6 @@
-import { Node } from '@figma/rest-api-spec';
-import { PathBreadcrumb } from '../document/types';
-import { OnPurposeAny } from '../types';
+import type { Node } from '@figma/rest-api-spec';
+import type { PathBreadcrumb } from '../document/types';
+import type { OnPurposeAny } from '../types';
 import { FigmaNodeMock, hasChildren } from './types';
 
 export type WithChildren<T> = T & { children?: T[] };
