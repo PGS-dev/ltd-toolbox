@@ -11,7 +11,6 @@
 - [cache](dev.FigmaParserOptions.md#cache)
 - [cacheDir](dev.FigmaParserOptions.md#cachedir)
 - [cacheLifetime](dev.FigmaParserOptions.md#cachelifetime)
-- [silent](dev.FigmaParserOptions.md#silent)
 
 ## Properties
 
@@ -66,15 +65,3 @@ Defines how long cache should live. Cache file creation time is used, therefore 
 #### Defined in
 
 packages/figma-parser/src/core/types.ts:23
-
-___
-
-### silent
-
-• **silent**: `boolean`
-
-Whether
-
-#### Defined in
-
-packages/figma-parser/src/core/types.ts:27

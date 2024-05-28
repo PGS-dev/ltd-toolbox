@@ -18,4 +18,4 @@
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:37
+packages/figma-parser/src/core/types.ts:33

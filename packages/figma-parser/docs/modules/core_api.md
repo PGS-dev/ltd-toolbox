@@ -20,7 +20,7 @@
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:110
+packages/figma-parser/src/core/api.ts:109
 
 ▸ **figmaApi**(`token`): `FigmaApi`
 
@@ -36,7 +36,7 @@ packages/figma-parser/src/core/api.ts:110
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:111
+packages/figma-parser/src/core/api.ts:110
 
 ▸ **figmaApi**(`options`): `FigmaApi`
 
@@ -52,7 +52,7 @@ packages/figma-parser/src/core/api.ts:111
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:112
+packages/figma-parser/src/core/api.ts:111
 
 ▸ **figmaApi**(`token`, `options?`): `FigmaApi`
 
@@ -69,4 +69,4 @@ packages/figma-parser/src/core/api.ts:112
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:113
+packages/figma-parser/src/core/api.ts:112

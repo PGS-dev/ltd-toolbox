@@ -290,7 +290,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:34
+packages/figma-parser/src/core/types.ts:30
 
 ___
 
@@ -300,7 +300,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:30
+packages/figma-parser/src/core/types.ts:26
 
 ___
 
@@ -421,7 +421,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:32
+packages/figma-parser/src/core/types.ts:28
 
 ___
 
@@ -511,7 +511,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/logger.ts:3
+packages/figma-parser/src/shared/logger.ts:3
 
 ___
 
@@ -532,7 +532,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/logger.ts:12
+packages/figma-parser/src/shared/logger.ts:12
 
 ___
 

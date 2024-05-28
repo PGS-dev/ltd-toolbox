@@ -36,7 +36,7 @@
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:42
+packages/figma-parser/src/core/types.ts:38
 
 ___
 
@@ -56,4 +56,4 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:41
+packages/figma-parser/src/core/types.ts:37
