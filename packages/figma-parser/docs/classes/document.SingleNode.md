@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.5](../README.md) / [Modules](../modules.md) / [document](../modules/document.md) / SingleNode
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.6](../README.md) / [Modules](../modules.md) / [document](../modules/document.md) / SingleNode
 
 # Class: SingleNode\<T\>
 
@@ -89,7 +89,7 @@ packages/figma-parser/src/shared/node.abstract.ts:17
 
 ### boundVariables
 
-• `Optional` **boundVariables**: `Readonly`\<`undefined` \| \{ `bottomLeftRadius?`: `VariableAlias` ; `bottomRightRadius?`: `VariableAlias` ; `characters?`: `VariableAlias` ; `componentProperties?`: \{ `[key: string]`: `VariableAlias`;  } ; `counterAxisSpacing?`: `VariableAlias` ; `effects?`: `VariableAlias`[] ; `fills?`: `VariableAlias`[] ; `fontFamily?`: `VariableAlias`[] ; `fontSize?`: `VariableAlias`[] ; `fontStyle?`: `VariableAlias`[] ; `fontWeight?`: `VariableAlias`[] ; `individualStrokeWeights?`: \{ `bottom?`: `VariableAlias` ; `left?`: `VariableAlias` ; `right?`: `VariableAlias` ; `top?`: `VariableAlias`  } ; `itemSpacing?`: `VariableAlias` ; `layoutGrids?`: `VariableAlias`[] ; `letterSpacing?`: `VariableAlias`[] ; `lineHeight?`: `VariableAlias`[] ; `maxHeight?`: `VariableAlias` ; `maxWidth?`: `VariableAlias` ; `minHeight?`: `VariableAlias` ; `minWidth?`: `VariableAlias` ; `opacity?`: `VariableAlias` ; `paddingBottom?`: `VariableAlias` ; `paddingLeft?`: `VariableAlias` ; `paddingRight?`: `VariableAlias` ; `paddingTop?`: `VariableAlias` ; `paragraphIndent?`: `VariableAlias`[] ; `paragraphSpacing?`: `VariableAlias`[] ; `size?`: \{ `x?`: `VariableAlias` ; `y?`: `VariableAlias`  } ; `strokes?`: `VariableAlias`[] ; `textRangeFills?`: `VariableAlias`[] ; `topLeftRadius?`: `VariableAlias` ; `topRightRadius?`: `VariableAlias` ; `visible?`: `VariableAlias`  }\>
+• `Optional` **boundVariables**: `Readonly`\<`undefined` \| \{ `bottomLeftRadius?`: `VariableAlias` ; `bottomRightRadius?`: `VariableAlias` ; `characters?`: `VariableAlias` ; `componentProperties?`: \{ `[key: string]`: `VariableAlias`;  } ; `counterAxisSpacing?`: `VariableAlias` ; `effects?`: `VariableAlias`[] ; `fills?`: `VariableAlias`[] ; `individualStrokeWeights?`: \{ `bottom?`: `VariableAlias` ; `left?`: `VariableAlias` ; `right?`: `VariableAlias` ; `top?`: `VariableAlias`  } ; `itemSpacing?`: `VariableAlias` ; `layoutGrids?`: `VariableAlias`[] ; `maxHeight?`: `VariableAlias` ; `maxWidth?`: `VariableAlias` ; `minHeight?`: `VariableAlias` ; `minWidth?`: `VariableAlias` ; `opacity?`: `VariableAlias` ; `paddingBottom?`: `VariableAlias` ; `paddingLeft?`: `VariableAlias` ; `paddingRight?`: `VariableAlias` ; `paddingTop?`: `VariableAlias` ; `size?`: \{ `x?`: `VariableAlias` ; `y?`: `VariableAlias`  } ; `strokes?`: `VariableAlias`[] ; `textRangeFills?`: `VariableAlias`[] ; `topLeftRadius?`: `VariableAlias` ; `topRightRadius?`: `VariableAlias` ; `visible?`: `VariableAlias`  }\>
 
 A mapping of field to the variables applied to this field. Most fields will only map to a single
 `VariableAlias`. However, for properties like `fills`, `strokes`, `size`, `componentProperties`,
@@ -101,7 +101,7 @@ NodeBase.boundVariables
 
 #### Defined in
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:68
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:68
 
 ___
 
@@ -133,7 +133,7 @@ NodeBase.componentPropertyReferences
 
 #### Defined in
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:49
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:49
 
 ___
 
@@ -150,7 +150,7 @@ NodeBase.explicitVariableModes
 
 #### Defined in
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:152
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:136
 
 ___
 
@@ -166,7 +166,7 @@ NodeBase.id
 
 #### Defined in
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:5
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:5
 
 ___
 
@@ -184,7 +184,7 @@ NodeBase.isFixed
 
 #### Defined in
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:32
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:32
 
 ___
 
@@ -200,7 +200,7 @@ NodeBase.locked
 
 #### Defined in
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:25
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:25
 
 ___
 
@@ -216,7 +216,7 @@ NodeBase.name
 
 #### Defined in
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:10
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:10
 
 ___
 
@@ -247,7 +247,7 @@ NodeBase.pluginData
 
 #### Defined in
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:55
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:55
 
 ___
 
@@ -277,13 +277,13 @@ NodeBase.rotation
 
 #### Defined in
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:42
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:42
 
 ___
 
 ### scrollBehavior
 
-• **scrollBehavior**: `Readonly`\<``"SCROLLS"`` \| ``"FIXED"`` \| ``"STICKY_SCROLLS"``\>
+• **scrollBehavior**: `Readonly`\<``"FIXED"`` \| ``"SCROLLS"`` \| ``"STICKY_SCROLLS"``\>
 
 How layer should be treated when the frame is resized
 
@@ -293,7 +293,7 @@ NodeBase.scrollBehavior
 
 #### Defined in
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:37
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:37
 
 ___
 
@@ -310,13 +310,13 @@ NodeBase.sharedPluginData
 
 #### Defined in
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:61
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:61
 
 ___
 
 ### type
 
-• **type**: `Readonly`\<``"VECTOR"`` \| ``"DOCUMENT"`` \| ``"CANVAS"`` \| ``"BOOLEAN_OPERATION"`` \| ``"SECTION"`` \| ``"FRAME"`` \| ``"GROUP"`` \| ``"COMPONENT"`` \| ``"COMPONENT_SET"`` \| ``"STAR"`` \| ``"LINE"`` \| ``"ELLIPSE"`` \| ``"REGULAR_POLYGON"`` \| ``"RECTANGLE"`` \| ``"TEXT"`` \| ``"TABLE"`` \| ``"TABLE_CELL"`` \| ``"SLICE"`` \| ``"INSTANCE"`` \| ``"EMBED"`` \| ``"LINK_UNFURL"`` \| ``"STICKY"`` \| ``"SHAPE_WITH_TEXT"`` \| ``"CONNECTOR"`` \| ``"WASHI_TAPE"`` \| ``"WIDGET"``\>
+• **type**: `Readonly`\<``"BOOLEAN_OPERATION"`` \| ``"COMPONENT"`` \| ``"COMPONENT_SET"`` \| ``"CONNECTOR"`` \| ``"ELLIPSE"`` \| ``"EMBED"`` \| ``"FRAME"`` \| ``"GROUP"`` \| ``"INSTANCE"`` \| ``"LINE"`` \| ``"LINK_UNFURL"`` \| ``"RECTANGLE"`` \| ``"REGULAR_POLYGON"`` \| ``"SECTION"`` \| ``"SHAPE_WITH_TEXT"`` \| ``"SLICE"`` \| ``"STAR"`` \| ``"STICKY"`` \| ``"TABLE"`` \| ``"TABLE_CELL"`` \| ``"TEXT"`` \| ``"VECTOR"`` \| ``"WASHI_TAPE"`` \| ``"WIDGET"`` \| ``"DOCUMENT"`` \| ``"CANVAS"``\>
 
 The type of this node, represented by the string literal "BOOLEAN_OPERATION"
 
@@ -326,109 +326,109 @@ NodeBase.type
 
 #### Defined in
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:789
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:772
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:839
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:822
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:847
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:830
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:1029
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:1010
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:876
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:859
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:971
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:954
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:825
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:808
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:832
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:815
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:937
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:920
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:869
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:852
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:979
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:961
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:892
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:875
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:885
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:868
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:809
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:792
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:1006
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:987
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:930
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:913
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:862
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:845
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:987
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:968
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:907
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:890
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:920
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:903
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:899
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:882
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:855
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:838
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:1084
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:1065
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:1091
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:1072
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:724
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:707
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:730
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:713
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:15
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:15
 
 ___
 
@@ -444,7 +444,7 @@ NodeBase.visible
 
 #### Defined in
 
-node_modules/@figma/rest-api-spec/dist/api_types.ts:20
+node_modules/@figma/rest-api-spec/dist/api_types.d.ts:20
 
 ## Methods
 

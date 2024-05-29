@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.5](../README.md) / [Modules](../modules.md) / dev
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.6](../README.md) / [Modules](../modules.md) / dev
 
 # Module: dev
 
@@ -805,7 +805,7 @@ ___
 
 ### isEmbedNode
 
-▸ **isEmbedNode**(`node`): node is NodeBase\<EmbedNode\> & Object & IsLayerTrait & HasExportSettingsTrait
+▸ **isEmbedNode**(`node`): node is NodeBase\<EmbedNode\> & Object & IsLayerTrait
 
 #### Parameters
 
@@ -815,7 +815,7 @@ ___
 
 #### Returns
 
-node is NodeBase\<EmbedNode\> & Object & IsLayerTrait & HasExportSettingsTrait
+node is NodeBase\<EmbedNode\> & Object & IsLayerTrait
 
 #### Defined in
 
@@ -965,7 +965,7 @@ ___
 
 ### isLinkUnfurlNode
 
-▸ **isLinkUnfurlNode**(`node`): node is NodeBase\<LinkUnfurlNode\> & Object & IsLayerTrait & HasExportSettingsTrait
+▸ **isLinkUnfurlNode**(`node`): node is NodeBase\<LinkUnfurlNode\> & Object & IsLayerTrait
 
 #### Parameters
 
@@ -975,7 +975,7 @@ ___
 
 #### Returns
 
-node is NodeBase\<LinkUnfurlNode\> & Object & IsLayerTrait & HasExportSettingsTrait
+node is NodeBase\<LinkUnfurlNode\> & Object & IsLayerTrait
 
 #### Defined in
 
