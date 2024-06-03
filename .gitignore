@@ -1,16 +1,17 @@
 node_modules
 .idea
-.cache.cache
+.cache
 .DS_Store
-/.yarn
-
 
 .env.local
-/**/.env.local
-/**/yarn-error.log
+packages/*/dist
+packages/test
 
 yarn-error.log
-dist
-
-# test package
-packages/test
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
