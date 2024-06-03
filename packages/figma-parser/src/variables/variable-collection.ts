@@ -1,9 +1,9 @@
 import type { LocalVariable, LocalVariableCollection, RGBA } from '@figma/rest-api-spec';
 import type { DesignToken, DesignTokenType, DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../shared/design-tokens-format.types';
-import { entriesToDeepObject } from '../shared/entriesToDeepObject.util';
+import { entriesToDeepObject } from '../shared/entries-to-deep-object.util';
 import { rgbaToHexa } from '../shared/rgba-to-hex.util';
-import { CollectionsSet } from './collections-set';
-import { GetVariablesError } from './get-variables.error'
+import type { CollectionsSet } from './collections-set';
+import { GetVariablesError } from './get-variables.error';
 import { FigmaLocalVariable } from './variable';
 
 const resolveTokenType = (variable: FigmaLocalVariable): DesignTokenType => {

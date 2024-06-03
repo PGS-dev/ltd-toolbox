@@ -4,7 +4,7 @@ import { isEmptyObject } from '../shared/is-empty-object.util';
 import { isObject } from '../shared/is-object.util';
 import { NodeBase } from '../shared/node.abstract';
 import { isTextNode } from '../shared/types';
-import type { Getter, ParseTreeOptions, GetterTreeNode } from './types';
+import type { Getter, GetterTreeNode, ParseTreeOptions } from './types';
 import { getNodeDecoratedText } from './utils';
 
 export const isFauxNode = (node: GetterTreeNode): node is GetterTreeNode & { children: [GetterTreeNode] } => {

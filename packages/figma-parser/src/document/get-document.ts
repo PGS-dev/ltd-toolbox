@@ -1,5 +1,5 @@
 import type { DocumentNode, GetFileResponse } from '@figma/rest-api-spec';
-import type { FigmaApiInterface } from '../core/types'
+import type { FigmaApiInterface } from '../core/types';
 import { SingleNode } from './single-node';
 
 /**

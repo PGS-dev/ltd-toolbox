@@ -1,15 +1,15 @@
-import { FigmaParserError } from '../shared/errors/figma-parser-error'
-import { isObject } from '../shared/is-object.util'
-import { createLogger } from '../shared/logger'
-import { HardCache } from './hard-cache'
-import { RequestError, requestLogger } from './request-error'
-import type { ErrorDescriptions, FigmaApiInterface, FigmaParserOptions, FigmaPAT, FigmaRequestOptions } from './types'
+import { FigmaParserError } from '../shared/errors/figma-parser-error';
+import { isObject } from '../shared/is-object.util';
+import { createLogger } from '../shared/logger';
+import { HardCache } from './hard-cache';
+import { RequestError, requestLogger } from './request-error';
+import type { ErrorDescriptions, FigmaApiInterface, FigmaPAT, FigmaParserOptions, FigmaRequestOptions } from './types';
 
 process.on('uncaughtException', (error: FigmaParserError) => {
-  const logger = error.logger || createLogger()
-  logger.error(error.message)
-  process.exit(1)
-})
+  const logger = error.logger || createLogger();
+  logger.error(error.message);
+  process.exit(1);
+});
 
 class FigmaApi implements FigmaApiInterface {
   cache: HardCache;
@@ -33,22 +33,22 @@ class FigmaApi implements FigmaApiInterface {
     400: 'Parameters are invalid or malformed. Please check the input formats. This error can also happen if the requested resources are too large to complete the request, which results in a timeout. Please reduce the number and size of objects requested.',
     404: 'The requested file or resource was not found.',
     429: 'In some cases API requests may be throttled or rate limited. Please wait a while before attempting the request again (typically a minute). Rate limiting is calculated on a per-user basis. If the caller is using an OAuth token, the rate limit is calculated based on the user associated with the token. You may alos consider using FrimgaParer cache.',
-    500: 'This most commonly occurs for very large image render requests, which may time out our server and return a 500. Please reduce the number and size of objects requested'
-  }
+    500: 'This most commonly occurs for very large image render requests, which may time out our server and return a 500. Please reduce the number and size of objects requested',
+  };
 
   withErrorDescriptions(descriptions: ErrorDescriptions) {
-    const newInstance = new FigmaApi(this.token, this.userOptions)
+    const newInstance = new FigmaApi(this.token, this.userOptions);
     newInstance.defaultErrorDescriptions = {
       ...newInstance.defaultErrorDescriptions,
-      ...descriptions
-    }
+      ...descriptions,
+    };
 
-    return newInstance
+    return newInstance;
   }
 
   async request<Response = object>(path: string, params?: Record<string, string>, requestOptions?: Partial<FigmaRequestOptions>): Promise<Response> {
     if (this.options.cache) {
-      requestLogger.info('Using cache.')
+      requestLogger.info('Using cache.');
     }
 
     let url = `https://api.figma.com/v1/${path}`;
@@ -76,26 +76,26 @@ class FigmaApi implements FigmaApiInterface {
 
     const errorDescriptions: ErrorDescriptions = {
       ...this.defaultErrorDescriptions,
-      ...requestOptions?.errorDescriptions
-    }
+      ...requestOptions?.errorDescriptions,
+    };
 
     const data = await fetch(url, { headers })
       .catch((e) => {
-        throw new FigmaParserError(e)
+        throw new FigmaParserError(e);
       })
       .then(function handleResponse(response) {
         if (!response.ok) {
-          let errorDescription = errorDescriptions[response.status]
+          let errorDescription = errorDescriptions[response.status];
           if (typeof errorDescription === 'function') {
-            errorDescription = errorDescription(response)
+            errorDescription = errorDescription(response);
           }
 
-          throw new RequestError(response.status, response.statusText, errorDescription)
+          throw new RequestError(response.status, response.statusText, errorDescription);
         }
 
-        requestLogger.success('Request finalized successfuly.')
+        requestLogger.success('Request finalized successfuly.');
         return response.json() as Response;
-      })
+      });
 
     if (this.options.cache) {
       requestLogger.info(`Request cached.`);

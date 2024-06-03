@@ -603,10 +603,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@figma/rest-api-spec@npm:^0.10.0":
+"@figma/rest-api-spec@npm:0.10.0":
   version: 0.10.0
   resolution: "@figma/rest-api-spec@npm:0.10.0"
   checksum: 10c0/0e11b9c00fe08b76d31aa5e0baf1d17deb607ee469e44b98c6cb38e46da46182ce4c93d73e185a72bf77835385d384b3db728865e2e2e5250a1ab25f06155187
+  languageName: node
+  linkType: hard
+
+"@figma/rest-api-spec@patch:@figma/rest-api-spec@npm%3A0.10.0#~/.yarn/patches/@figma-rest-api-spec-npm-0.10.0-287584738a.patch":
+  version: 0.10.0
+  resolution: "@figma/rest-api-spec@patch:@figma/rest-api-spec@npm%3A0.10.0#~/.yarn/patches/@figma-rest-api-spec-npm-0.10.0-287584738a.patch::version=0.10.0&hash=ad6bf6"
+  checksum: 10c0/1e3199d6095cb1e1841ab5f4cdb9741b8003669554df4e133ab31de0feb3bfdcb5d90c35664ea239136e7a026ed889432dc12bf11debe97fc8fab66258145251
   languageName: node
   linkType: hard
 
@@ -788,7 +795,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@ltd-toolbox/figma-parser@workspace:packages/figma-parser"
   dependencies:
-    "@figma/rest-api-spec": "npm:^0.10.0"
+    "@figma/rest-api-spec": "patch:@figma/rest-api-spec@npm%3A0.10.0#~/.yarn/patches/@figma-rest-api-spec-npm-0.10.0-287584738a.patch"
     "@types/node": "npm:^20.8.0"
     "@types/picomatch": "npm:^2.3.2"
     "@types/unist": "npm:^3.0.2"

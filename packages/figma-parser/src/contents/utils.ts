@@ -1,5 +1,5 @@
 import type { TextNode } from '@figma/rest-api-spec';
-import { ContentNode } from './content-node';
+import type { ContentNode } from './content-node';
 import type { TypeStyleTable } from './types';
 
 export type LineType = 'ORDERED' | 'UNORDERED' | 'NONE' | 'LIST';

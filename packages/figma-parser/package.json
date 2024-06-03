@@ -12,14 +12,14 @@
     "fetch"
   ],
   "scripts": {
-    "build": "yarn pkgroll build && yarn typedoc",
-    "test": "yarn vitest",
+    "build": "pkgroll build && typedoc",
+    "test": "vitest",
     "lint": "tsc && eslint ./src --ext ts --report-unused-disable-directives --max-warnings 0",
-    "format": "yarn prettier ./src/ --write",
+    "format": "prettier ./src/ --write",
     "codecheck": "tsc --noEmit && yarn lint && yarn prettier ./src --check"
   },
   "devDependencies": {
-    "@figma/rest-api-spec": "^0.10.0",
+    "@figma/rest-api-spec": "patch:@figma/rest-api-spec@npm%3A0.10.0#~/.yarn/patches/@figma-rest-api-spec-npm-0.10.0-287584738a.patch",
     "@types/node": "^20.8.0",
     "@types/picomatch": "^2.3.2",
     "@types/unist": "^3.0.2",
@@ -57,76 +57,6 @@
       "require": {
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
-      }
-    },
-    "./index": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
-      }
-    },
-    "./dev": {
-      "import": {
-        "types": "./dist/dev.d.ts",
-        "default": "./dist/dev.js"
-      },
-      "require": {
-        "types": "./dist/dev.d.cts",
-        "default": "./dist/dev.cjs"
-      }
-    },
-    "./core": {
-      "import": {
-        "types": "./dist/core/index.d.ts",
-        "default": "./dist/core/index.js"
-      },
-      "require": {
-        "types": "./dist/core/index.d.cts",
-        "default": "./dist/core/index.cjs"
-      }
-    },
-    "./document": {
-      "import": {
-        "types": "./dist/document/index.d.ts",
-        "default": "./dist/document/index.js"
-      },
-      "require": {
-        "types": "./dist/document/index.d.cts",
-        "default": "./dist/document/index.cjs"
-      }
-    },
-    "./styles": {
-      "import": {
-        "types": "./dist/styles/index.d.ts",
-        "default": "./dist/styles/index.js"
-      },
-      "require": {
-        "types": "./dist/styles/index.d.cts",
-        "default": "./dist/styles/index.cjs"
-      }
-    },
-    "./variables": {
-      "import": {
-        "types": "./dist/variables/index.d.ts",
-        "default": "./dist/variables/index.js"
-      },
-      "require": {
-        "types": "./dist/variables/index.d.cts",
-        "default": "./dist/variables/index.cjs"
-      }
-    },
-    "./contents": {
-      "import": {
-        "types": "./dist/contents/index.d.ts",
-        "default": "./dist/contents/index.js"
-      },
-      "require": {
-        "types": "./dist/contents/index.d.cts",
-        "default": "./dist/contents/index.cjs"
       }
     }
   }

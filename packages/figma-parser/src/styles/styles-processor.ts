@@ -2,9 +2,9 @@ import type { Effect, GetFileNodesResponse, Paint, PublishedStyle, TypeStyle } f
 import type { DesignTokensFormat, DesignTokensFormatDeep, DesignTokensFormatFlat } from '../shared/design-tokens-format.types';
 import type { Last } from '../types';
 import { DesignTokens } from './design-tokens.transformer';
-import { GetStylesError } from './get-styles.error'
+import { GetStylesError } from './get-styles.error';
 import type { EffectStyle, FigmaStyleDefinition, FigmaStylesTransformer, FillStyle, FullStyle, TextStyle } from './types';
-import { isEffectStyle, isFillStyle, isTextStyle } from './types'
+import { isEffectStyle, isFillStyle, isTextStyle } from './types';
 
 export class StylesProcessor {
   private stylesData: FullStyle[] = [];

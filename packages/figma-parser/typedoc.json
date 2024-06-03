@@ -1,10 +1,6 @@
 {
   "entryPoints": [
-    "src/core/api.ts",
-    "src/document/index.ts",
-    "src/styles/index.ts",
-    "src/variables/index.ts",
-    "src/dev.ts"
+    "src/index.ts"
   ],
   "out": "docs",
   "cleanOutputDir": true,

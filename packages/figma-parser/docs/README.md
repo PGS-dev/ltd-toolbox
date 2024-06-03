@@ -1,4 +1,4 @@
-@ltd-toolbox/figma-parser / [Modules](modules.md)
+@ltd-toolbox/figma-parser / [Exports](modules.md)
 
 # Figma Parser: A toolkit for the Figma REST API
 

@@ -1,4 +1,4 @@
-import type { ErrorResponsePayloadWithErrMessage, ErrorResponsePayloadWithErrorBoolean } from '@figma/rest-api-spec'
+import type { ErrorResponsePayloadWithErrMessage, ErrorResponsePayloadWithErrorBoolean } from '@figma/rest-api-spec';
 
 /**
  * Figma Personal Access Token format.
@@ -23,17 +23,17 @@ export interface FigmaParserOptions {
   cacheLifetime: number;
 }
 
-export type ErrorResponse = Partial<ErrorResponsePayloadWithErrMessage & ErrorResponsePayloadWithErrorBoolean & Response>
+export type ErrorResponse = Partial<ErrorResponsePayloadWithErrMessage & ErrorResponsePayloadWithErrorBoolean & Response>;
 
-export type RequestErrorFn = (response: ErrorResponse) => string
+export type RequestErrorFn = (response: ErrorResponse) => string;
 
-export type ErrorDescriptions = Record<number, string | RequestErrorFn>
+export type ErrorDescriptions = Record<number, string | RequestErrorFn>;
 
 export interface FigmaRequestOptions {
-  errorDescriptions: ErrorDescriptions
+  errorDescriptions: ErrorDescriptions;
 }
 
 export interface FigmaApiInterface {
-  withErrorDescriptions(descriptions: ErrorDescriptions): FigmaApiInterface
+  withErrorDescriptions(descriptions: ErrorDescriptions): FigmaApiInterface;
   request<Response = object>(path: string, params?: Record<string, string>): Promise<Response>;
 }

@@ -1,5 +1,5 @@
 import type { LocalVariable, LocalVariableCollection } from '@figma/rest-api-spec';
-import { GetVariablesError } from './get-variables.error'
+import { GetVariablesError } from './get-variables.error';
 import { FigmaLocalVariableCollection } from './variable-collection';
 
 export class CollectionsSet {
