@@ -11,5 +11,3 @@ export * from './styles/index';
 export * from './variables/index';
 
 export * from './types';
-
-export * from '@figma/rest-api-spec';

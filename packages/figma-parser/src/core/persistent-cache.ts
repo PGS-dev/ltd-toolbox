@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } 
 import { join, resolve } from 'path';
 import { hashData } from '../shared/create-hash.util';
 
-export class HardCache {
+export class PersistentCache {
   constructor(
     private directory: string = './.cache',
     private lifetime: number = 1000 * 60 * 60 * 8
@@ -10,33 +10,35 @@ export class HardCache {
     this.directory = resolve(directory);
   }
 
-  cacheFile(data: object) {
-    const filename = hashData(JSON.stringify(data));
+  cacheFile(path: string) {
+    const filename = hashData(path);
     return join(this.directory, `${filename}.cache`);
   }
 
-  isValid(data: object) {
-    const file = this.cacheFile(data);
+  isValid(path: string) {
+    const file = this.cacheFile(path);
     if (!existsSync(file)) return false;
     const cacheFileValid = Date.now() - statSync(file).birthtimeMs < this.lifetime;
     if (!cacheFileValid) {
-      this.invalidate(data);
+      this.invalidate(path);
     }
     return cacheFileValid;
   }
 
-  invalidate(data: object) {
-    const file = this.cacheFile(data);
+  invalidate(path: string) {
+    const file = this.cacheFile(path);
 
     if (existsSync(file)) {
       rmSync(file);
     }
+
+    return false;
   }
 
-  get(data: object) {
-    if (!this.isValid(data)) return false;
+  get(path: string) {
+    if (!this.isValid(path)) return false;
 
-    const file = this.cacheFile(data);
+    const file = this.cacheFile(path);
 
     if (existsSync(file)) {
       return readFileSync(file, 'utf-8');
@@ -45,13 +47,15 @@ export class HardCache {
     return false;
   }
 
-  set(data: object, content: string) {
-    const file = this.cacheFile(data);
+  set(path: string, content: string) {
+    const file = this.cacheFile(path);
 
     if (!existsSync(this.directory)) {
       mkdirSync(this.directory, { recursive: true });
     }
 
     writeFileSync(file, content, 'utf-8');
+
+    return content;
   }
 }

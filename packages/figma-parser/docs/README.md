@@ -42,7 +42,8 @@ At the heart of Figma Parser is the `figmaApi` utility. This essential tool not 
 
 ```typescript
 export interface FigmaApiInterface {
-  request<Response = object>(path: string, params?: Record<string, string>): Promise<Response>
+  withErrorDescriptions(descriptions: ErrorDescriptions): FigmaApiInterface;
+  request<Response = object>(path: string, params?: Record<string, string>): Promise<Response>;
 }
 ```
 Certainly, here are the rephrased sections to match the updated documentation style:
@@ -51,7 +52,6 @@ Certainly, here are the rephrased sections to match the updated documentation st
 
 ```typescript
 import { getDocument } from '@ltd-toolbox/figma-parser'
-import { getDocument } from '@ltd-toolbox/figma-parser/document'
 ```
 
 Dive deep into the structure of your Figma documents with the `getDocument` utility. This tool is your gateway to efficiently traversing the Figma document tree, empowering you to pinpoint and select the nodes you need with precision. Whether you prefer to navigate through methodical functions or harness the flexibility of **glob patterns**, the `getDocument` utility ensures you have the capabilities at your fingertips. Explore our API for more detailed guidance.
@@ -60,7 +60,6 @@ Dive deep into the structure of your Figma documents with the `getDocument` util
 
 ```typescript
 import { getStyles } from '@ltd-toolbox/figma-parser'
-import { getStyles } from '@ltd-toolbox/figma-parser/styles'
 ```
 
 The `getStyles` feature is your solution to accessing published style information from any specified Figma file. Utilize this tool to peruse through styles or to create design tokens in the standardized [Design Tokens Format](https://design-tokens.github.io/community-group/format/). This functionality not only simplifies the process of understanding style applications but also enhances your ability to implement consistent design principles across your projects.
@@ -71,16 +70,14 @@ The `getStyles` feature is your solution to accessing published style informatio
 
 ```typescript
 import { getVariables } from '@ltd-toolbox/figma-parser'
-import { getVariables } from '@ltd-toolbox/figma-parser/variables'
 ```
 
-Unlock the full potential of Figma's customization capabilities with the `getVariables` function. This advanced feature fetches all local variables from your Figma file, allowing you to navigate, resolve aliases, or determine final values and modes with unparalleled ease. Moreover, it facilitates the generation of design token definitions adhering to the [Design Tokens Format](https://design-tokens.github.io/community-group/format/), providing a structured and efficient approach to managing your design systems.
+Unlock the full potential of Figma's variables with the `getVariables` function. This feature fetches all local variables from your Figma file, allowing you to navigate, resolve aliases, or determine final values and modes with unparalleled ease. Moreover, it facilitates the generation of design token definitions adhering to the [Design Tokens Format](https://design-tokens.github.io/community-group/format/), providing a structured and efficient approach to managing your design systems.
 
 ### `getContents` - rich content extraction
 
 ```typescript
 import { getContents } from '@ltd-toolbox/figma-parser'
-import { getContents } from '@ltd-toolbox/figma-parser/contents'
 ```
 
 Unlock the narrative within your Figma files with the `getContents` utility, a sophisticated tool designed to extract the textual content from your designs. This feature delves into your document's structure, retrieving text from layers and transforming it into an easy to process syntax tree.

@@ -1,9 +1,11 @@
+import { isEmptyObject } from '../shared';
 import { FigmaParserError } from '../shared/errors/figma-parser-error';
 import { isObject } from '../shared/is-object.util';
 import { createLogger } from '../shared/logger';
-import { HardCache } from './hard-cache';
+import { InMemoryCache } from './in-memory-cache';
+import { PersistentCache } from './persistent-cache';
 import { RequestError, requestLogger } from './request-error';
-import type { ErrorDescriptions, FigmaApiInterface, FigmaPAT, FigmaParserOptions, FigmaRequestOptions } from './types';
+import type { ErrorDescriptions, FigmaApiInterface, FigmaPAT, FigmaParserOptions } from './types';
 
 process.on('uncaughtException', (error: FigmaParserError) => {
   const logger = error.logger || createLogger();
@@ -12,7 +14,8 @@ process.on('uncaughtException', (error: FigmaParserError) => {
 });
 
 class FigmaApi implements FigmaApiInterface {
-  cache: HardCache;
+  cache: PersistentCache;
+  softCache: InMemoryCache;
 
   readonly options: FigmaParserOptions = {
     cache: false,
@@ -22,70 +25,81 @@ class FigmaApi implements FigmaApiInterface {
 
   constructor(
     private token: FigmaPAT | string,
-    private userOptions: Partial<FigmaParserOptions> = {}
+    userOptions: Partial<FigmaParserOptions> = {}
   ) {
     if (!token) throw new FigmaParserError('You need to provide Personal Access Token for Figma.');
     this.options = { ...this.options, ...userOptions } as FigmaParserOptions;
-    this.cache = new HardCache(this.options.cacheDir, this.options.cacheLifetime);
+    this.cache = new PersistentCache(this.options.cacheDir, this.options.cacheLifetime);
+    this.softCache = new InMemoryCache();
   }
 
-  defaultErrorDescriptions: ErrorDescriptions = {
+  readonly defaultErrorDescriptions: ErrorDescriptions = {
     400: 'Parameters are invalid or malformed. Please check the input formats. This error can also happen if the requested resources are too large to complete the request, which results in a timeout. Please reduce the number and size of objects requested.',
     404: 'The requested file or resource was not found.',
     429: 'In some cases API requests may be throttled or rate limited. Please wait a while before attempting the request again (typically a minute). Rate limiting is calculated on a per-user basis. If the caller is using an OAuth token, the rate limit is calculated based on the user associated with the token. You may alos consider using FrimgaParer cache.',
     500: 'This most commonly occurs for very large image render requests, which may time out our server and return a 500. Please reduce the number and size of objects requested',
   };
 
-  withErrorDescriptions(descriptions: ErrorDescriptions) {
-    const newInstance = new FigmaApi(this.token, this.userOptions);
-    newInstance.defaultErrorDescriptions = {
-      ...newInstance.defaultErrorDescriptions,
+  errorDescriptions: ErrorDescriptions = {};
+
+  public withErrorDescriptions(descriptions: ErrorDescriptions) {
+    this.errorDescriptions = {
+      ...this.defaultErrorDescriptions,
       ...descriptions,
     };
 
-    return newInstance;
+    return this;
   }
 
-  async request<Response = object>(path: string, params?: Record<string, string>, requestOptions?: Partial<FigmaRequestOptions>): Promise<Response> {
-    if (this.options.cache) {
-      requestLogger.info('Using cache.');
+  private buildPath(path: string, params?: Record<string, string>) {
+    if (!params || isEmptyObject(params)) return path;
+
+    if (params && !isEmptyObject(params)) {
+      return path + '?' + new URLSearchParams(params).toString();
     }
+  }
 
-    let url = `https://api.figma.com/v1/${path}`;
-
-    requestLogger.start(`Requesting ${url}...`);
-
-    const cached = this.cache.get({ path, params });
+  private getFromPersistentCache(path: string) {
+    const cached = this.cache.get(path);
 
     if (cached && this.options.cache) {
       requestLogger.success(`Matching cached request found. Retrieving from cache.`);
-      return Promise.resolve(JSON.parse(cached)) as Response;
+      return JSON.parse(cached);
     }
 
-    if (cached && this.options.cache === false) {
-      this.cache.invalidate({ path, params });
+    if (cached && !this.options.cache) return this.cache.invalidate(path);
+
+    return false;
+  }
+
+  public async request<Response = object>(path: string, params?: Record<string, string>): Promise<Response> {
+    const pathWithParams = this.buildPath(path, params);
+    const requestUrl = `https://api.figma.com/v1/${pathWithParams}`;
+
+    const inMemoryCached = this.softCache.get(path);
+
+    if (inMemoryCached) {
+      return Promise.resolve(inMemoryCached) as Response;
     }
+
+    const persistentlyCached = this.getFromPersistentCache(path);
+    if (persistentlyCached) {
+      return Promise.resolve(persistentlyCached) as Response;
+    }
+
+    requestLogger.start(`Requesting ${requestUrl}...`);
 
     const headers = new Headers({
       'X-Figma-Token': this.token,
     });
 
-    if (params && Object.keys(params).length > 0) {
-      url += '?' + new URLSearchParams(params).toString();
-    }
-
-    const errorDescriptions: ErrorDescriptions = {
-      ...this.defaultErrorDescriptions,
-      ...requestOptions?.errorDescriptions,
-    };
-
-    const data = await fetch(url, { headers })
+    const data = await fetch(requestUrl, { headers })
       .catch((e) => {
         throw new FigmaParserError(e);
       })
-      .then(function handleResponse(response) {
+      .then((response) => {
         if (!response.ok) {
-          let errorDescription = errorDescriptions[response.status];
+          let errorDescription = this.errorDescriptions[response.status];
           if (typeof errorDescription === 'function') {
             errorDescription = errorDescription(response);
           }
@@ -97,9 +111,11 @@ class FigmaApi implements FigmaApiInterface {
         return response.json() as Response;
       });
 
+    this.softCache.set(path, JSON.stringify(data));
+
     if (this.options.cache) {
+      this.cache.set(path, JSON.stringify(data));
       requestLogger.info(`Request cached.`);
-      this.cache.set({ path, params }, JSON.stringify(data, null, 2));
     }
 
     return data as Response;
@@ -122,7 +138,7 @@ export function figmaApi(tokenOrOptions?: FigmaPAT | Partial<FigmaParserOptions>
     options = tokenOrOptions;
   }
 
-  if (!token) throw new FigmaParserError(`Figma token wasn't set explicitly if "figmaApi()". Neither "FIGMA_PAT" env var was found.`);
+  if (!token) throw new FigmaParserError(`Missing Figma Personal Access Token`, `Figma token wasn't set explicitly if "figmaApi()". Neither "FIGMA_PAT" env var was found.`);
 
   return new FigmaApi(token, options);
 }

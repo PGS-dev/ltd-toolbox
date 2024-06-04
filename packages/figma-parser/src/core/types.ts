@@ -29,11 +29,30 @@ export type RequestErrorFn = (response: ErrorResponse) => string;
 
 export type ErrorDescriptions = Record<number, string | RequestErrorFn>;
 
-export interface FigmaRequestOptions {
-  errorDescriptions: ErrorDescriptions;
-}
-
 export interface FigmaApiInterface {
+  /**
+   * Add custom error descriptions for error codes in form of an object.
+   *
+   * ```
+   * const api = figmaApi()
+   * const withMyOwnErrorDescriptions = api.withErrorDescriptions({
+   *   404: 'These are not the resources you are looking for...',
+   *   403: (response) => response.message || 'Unknown error'
+   * })
+   * ```
+   * @param descriptions
+   */
   withErrorDescriptions(descriptions: ErrorDescriptions): FigmaApiInterface;
+
+  /**
+   * Requests given resources with path and params.
+   *
+   * ```
+   * const api = figmaApi()
+   * const nodes == await api.request('/files/<FIGMAFILEID>/nodes', {ids: ['111:11', '111:12', depth: 1]})
+   * ```
+   * @param path
+   * @param params
+   */
   request<Response = object>(path: string, params?: Record<string, string>): Promise<Response>;
 }

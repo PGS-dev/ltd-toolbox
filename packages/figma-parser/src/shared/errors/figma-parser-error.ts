@@ -9,6 +9,6 @@ export class FigmaParserError extends Error {
   ) {
     super(message);
     this.name = this.constructor.name;
-    this.message = `${message} - ${this.cause}`;
+    this.message = `${message} \n ${this.cause} \n`;
   }
 }
