@@ -53,7 +53,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `raw` | [`LocalVariable`](../modules.md#localvariable) |
+| `raw` | `LocalVariable` |
 | `collection` | [`FigmaLocalVariableCollection`](FigmaLocalVariableCollection.md) |
 
 #### Returns
@@ -82,7 +82,7 @@ ___
 
 ### raw
 
-• **raw**: [`LocalVariable`](../modules.md#localvariable)
+• **raw**: `LocalVariable`
 
 #### Inherited from
 
@@ -96,13 +96,13 @@ packages/figma-parser/src/variables/variable.ts:92
 
 ### codeSyntax
 
-• `get` **codeSyntax**(): [`VariableCodeSyntax`](../modules.md#variablecodesyntax)
+• `get` **codeSyntax**(): `VariableCodeSyntax`
 
 Code syntax definitions for this variable. Code syntax allows you to represent variables in code using platform-specific names, and will appear in Dev Mode's code snippets when inspecting elements using the variable.
 
 #### Returns
 
-[`VariableCodeSyntax`](../modules.md#variablecodesyntax)
+`VariableCodeSyntax`
 
 #### Inherited from
 
@@ -257,7 +257,7 @@ ___
 
 ### scopes
 
-• `get` **scopes**(): [`VariableScope`](../modules.md#variablescope)[]
+• `get` **scopes**(): `VariableScope`[]
 
 An array of scopes in the UI where this variable is shown. Setting this property will show/hide this variable in the variable picker UI for different fields.
 
@@ -265,7 +265,7 @@ Setting scopes for a variable does not prevent that variable from being bound in
 
 #### Returns
 
-[`VariableScope`](../modules.md#variablescope)[]
+`VariableScope`[]
 
 #### Inherited from
 
@@ -279,13 +279,13 @@ ___
 
 ### valuesByMode
 
-• `get` **valuesByMode**(): `Record`\<`string`, `string` \| `number` \| `boolean` \| [`VariableAlias`](../modules.md#variablealias) \| [`RGBA`](../modules.md#rgba)\>
+• `get` **valuesByMode**(): `Record`\<`string`, `string` \| `number` \| `boolean` \| `VariableAlias` \| `RGBA`\>
 
 The values for each mode of this variable.
 
 #### Returns
 
-`Record`\<`string`, `string` \| `number` \| `boolean` \| [`VariableAlias`](../modules.md#variablealias) \| [`RGBA`](../modules.md#rgba)\>
+`Record`\<`string`, `string` \| `number` \| `boolean` \| `VariableAlias` \| `RGBA`\>
 
 #### Inherited from
 
@@ -319,13 +319,13 @@ packages/figma-parser/src/variables/variable.ts:33
 
 ### defaultValue
 
-▸ **defaultValue**(): `string` \| `number` \| `boolean` \| [`VariableAlias`](../modules.md#variablealias) \| [`RGBA`](../modules.md#rgba)
+▸ **defaultValue**(): `string` \| `number` \| `boolean` \| `VariableAlias` \| `RGBA`
 
 Gets the default value of the variable, which is the value for the collection's default mode.
 
 #### Returns
 
-`string` \| `number` \| `boolean` \| [`VariableAlias`](../modules.md#variablealias) \| [`RGBA`](../modules.md#rgba)
+`string` \| `number` \| `boolean` \| `VariableAlias` \| `RGBA`
 
 #### Defined in
 
@@ -357,7 +357,7 @@ ___
 
 ### resolveAliasValueForMode
 
-▸ **resolveAliasValueForMode**(`alias`, `name`): `string` \| `number` \| `boolean` \| [`RGBA`](../modules.md#rgba)
+▸ **resolveAliasValueForMode**(`alias`, `name`): `string` \| `number` \| `boolean` \| `RGBA`
 
 Resolves the final value of an alias for a given mode, recursively resolving nested aliases if necessary.
 
@@ -365,12 +365,12 @@ Resolves the final value of an alias for a given mode, recursively resolving nes
 
 | Name | Type |
 | :------ | :------ |
-| `alias` | [`VariableAlias`](../modules.md#variablealias) |
+| `alias` | `VariableAlias` |
 | `name` | `string` |
 
 #### Returns
 
-`string` \| `number` \| `boolean` \| [`RGBA`](../modules.md#rgba)
+`string` \| `number` \| `boolean` \| `RGBA`
 
 #### Defined in
 
@@ -380,7 +380,7 @@ ___
 
 ### resolveValue
 
-▸ **resolveValue**(`name`): `string` \| `number` \| `boolean` \| [`RGBA`](../modules.md#rgba)
+▸ **resolveValue**(`name`): `string` \| `number` \| `boolean` \| `RGBA`
 
 Resolves the value of the variable for a given mode, taking into account potential aliases.
 
@@ -392,7 +392,7 @@ Resolves the value of the variable for a given mode, taking into account potenti
 
 #### Returns
 
-`string` \| `number` \| `boolean` \| [`RGBA`](../modules.md#rgba)
+`string` \| `number` \| `boolean` \| `RGBA`
 
 #### Defined in
 
@@ -418,7 +418,7 @@ ___
 
 ### value
 
-▸ **value**(`name`): `string` \| `number` \| `boolean` \| [`RGBA`](../modules.md#rgba)
+▸ **value**(`name`): `string` \| `number` \| `boolean` \| `RGBA`
 
 Retrieves the value of the variable for a specified mode, formatting it as a reference string if it's an alias.
 
@@ -430,7 +430,7 @@ Retrieves the value of the variable for a specified mode, formatting it as a ref
 
 #### Returns
 
-`string` \| `number` \| `boolean` \| [`RGBA`](../modules.md#rgba)
+`string` \| `number` \| `boolean` \| `RGBA`
 
 #### Defined in
 
@@ -440,7 +440,7 @@ ___
 
 ### valueByMode
 
-▸ **valueByMode**(`modeName?`): `string` \| `number` \| `boolean` \| [`VariableAlias`](../modules.md#variablealias) \| [`RGBA`](../modules.md#rgba)
+▸ **valueByMode**(`modeName?`): `string` \| `number` \| `boolean` \| `VariableAlias` \| `RGBA`
 
 Retrieves the value of the variable for a specified mode. If no mode is specified, it returns the default value.
 
@@ -452,7 +452,7 @@ Retrieves the value of the variable for a specified mode. If no mode is specifie
 
 #### Returns
 
-`string` \| `number` \| `boolean` \| [`VariableAlias`](../modules.md#variablealias) \| [`RGBA`](../modules.md#rgba)
+`string` \| `number` \| `boolean` \| `VariableAlias` \| `RGBA`
 
 #### Defined in
 

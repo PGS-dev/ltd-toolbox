@@ -13,7 +13,7 @@
 
 ### node
 
-• **node**: [`SingleNode`](../classes/SingleNode.md)\<[`Node`](../modules.md#node)\>
+• **node**: [`SingleNode`](../classes/SingleNode.md)\<`Node`\>
 
 #### Defined in
 

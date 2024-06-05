@@ -1,5 +1,5 @@
 import type { Node } from '@figma/rest-api-spec';
-import { NodeBase } from '../shared/node.abstract';
+import { NodeBase } from '../shared/nodes/base.node';
 import type { PathBreadcrumb } from './types';
 
 export type WalkPredicate = (node: SingleNode, path: PathBreadcrumb[]) => void;

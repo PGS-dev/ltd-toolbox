@@ -6,11 +6,11 @@
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`Node`](../modules.md#node) = [`Node`](../modules.md#node) |
+| `T` | extends `Node` = `Node` |
 
 ## Hierarchy
 
-- `NodeBase`\<`T`\>
+- `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`, `this`\> & `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`, `this`\> & `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`, `this`\> & `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & (...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`, `this`\> & `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: ...) => ... & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`, `this`\> & `__class`\<(...`args`: `any`[]) => `__class`\<(...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`\> & (...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`, `this`\> & `__class`\<(...`args`: `any`[]) => `__class`\<typeof `NodeBase`\> & typeof `NodeBase`, `this`\> & `__class`\<typeof `NodeBase`, `this`\> & `NodeBase`\<`Node`, `this`\>
 
   ↳ **`ContentNode`**
 
@@ -41,15 +41,26 @@
 
 ### Methods
 
+- [child](ContentNode.md#child)
+- [childById](ContentNode.md#childbyid)
+- [childByName](ContentNode.md#childbyname)
+- [deepChild](ContentNode.md#deepchild)
 - [filterDeep](ContentNode.md#filterdeep)
+- [find](ContentNode.md#find)
 - [findDeep](ContentNode.md#finddeep)
+- [fitler](ContentNode.md#fitler)
+- [flat](ContentNode.md#flat)
 - [getFormattedChildrenText](ContentNode.md#getformattedchildrentext)
 - [getFormattedText](ContentNode.md#getformattedtext)
 - [getRawChildrenText](ContentNode.md#getrawchildrentext)
 - [getRawText](ContentNode.md#getrawtext)
+- [glob](ContentNode.md#glob)
+- [map](ContentNode.md#map)
 - [mapDeep](ContentNode.md#mapdeep)
 - [parseTree](ContentNode.md#parsetree)
+- [path](ContentNode.md#path)
 - [table](ContentNode.md#table)
+- [toArray](ContentNode.md#toarray)
 - [toString](ContentNode.md#tostring)
 - [walk](ContentNode.md#walk)
 
@@ -59,38 +70,36 @@
 
 • **new ContentNode**\<`T`\>(`raw`, `parent?`): [`ContentNode`](ContentNode.md)\<`T`\>
 
-Constructs a SingleNode instance from a Figma Node object or an existing SingleNode instance.
-
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`Node`](../modules.md#node) = [`Node`](../modules.md#node) |
+| `T` | extends `Node` = `Node` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `raw` | `T` |
-| `parent?` | `NodeBase`\<[`Node`](../modules.md#node)\> |
+| `parent?` | [`ContentNode`](ContentNode.md)\<`Node`\> |
 
 #### Returns
 
 [`ContentNode`](ContentNode.md)\<`T`\>
 
-#### Inherited from
+#### Overrides
 
-NodeBase\<T\>.constructor
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).constructor
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:17
+packages/figma-parser/src/contents/content-node.ts:29
 
 ## Properties
 
 ### boundVariables
 
-• `Optional` **boundVariables**: `Readonly`\<`undefined` \| \{ `bottomLeftRadius?`: [`VariableAlias`](../modules.md#variablealias) ; `bottomRightRadius?`: [`VariableAlias`](../modules.md#variablealias) ; `characters?`: [`VariableAlias`](../modules.md#variablealias) ; `componentProperties?`: \{ `[key: string]`: [`VariableAlias`](../modules.md#variablealias);  } ; `counterAxisSpacing?`: [`VariableAlias`](../modules.md#variablealias) ; `effects?`: [`VariableAlias`](../modules.md#variablealias)[] ; `fills?`: [`VariableAlias`](../modules.md#variablealias)[] ; `individualStrokeWeights?`: \{ `bottom?`: [`VariableAlias`](../modules.md#variablealias) ; `left?`: [`VariableAlias`](../modules.md#variablealias) ; `right?`: [`VariableAlias`](../modules.md#variablealias) ; `top?`: [`VariableAlias`](../modules.md#variablealias)  } ; `itemSpacing?`: [`VariableAlias`](../modules.md#variablealias) ; `layoutGrids?`: [`VariableAlias`](../modules.md#variablealias)[] ; `maxHeight?`: [`VariableAlias`](../modules.md#variablealias) ; `maxWidth?`: [`VariableAlias`](../modules.md#variablealias) ; `minHeight?`: [`VariableAlias`](../modules.md#variablealias) ; `minWidth?`: [`VariableAlias`](../modules.md#variablealias) ; `opacity?`: [`VariableAlias`](../modules.md#variablealias) ; `paddingBottom?`: [`VariableAlias`](../modules.md#variablealias) ; `paddingLeft?`: [`VariableAlias`](../modules.md#variablealias) ; `paddingRight?`: [`VariableAlias`](../modules.md#variablealias) ; `paddingTop?`: [`VariableAlias`](../modules.md#variablealias) ; `size?`: \{ `x?`: [`VariableAlias`](../modules.md#variablealias) ; `y?`: [`VariableAlias`](../modules.md#variablealias)  } ; `strokes?`: [`VariableAlias`](../modules.md#variablealias)[] ; `textRangeFills?`: [`VariableAlias`](../modules.md#variablealias)[] ; `topLeftRadius?`: [`VariableAlias`](../modules.md#variablealias) ; `topRightRadius?`: [`VariableAlias`](../modules.md#variablealias) ; `visible?`: [`VariableAlias`](../modules.md#variablealias)  }\>
+• `Optional` **boundVariables**: `Readonly`\<`undefined` \| \{ `bottomLeftRadius?`: `VariableAlias` ; `bottomRightRadius?`: `VariableAlias` ; `characters?`: `VariableAlias` ; `componentProperties?`: \{ `[key: string]`: `VariableAlias`;  } ; `counterAxisSpacing?`: `VariableAlias` ; `effects?`: `VariableAlias`[] ; `fills?`: `VariableAlias`[] ; `individualStrokeWeights?`: \{ `bottom?`: `VariableAlias` ; `left?`: `VariableAlias` ; `right?`: `VariableAlias` ; `top?`: `VariableAlias`  } ; `itemSpacing?`: `VariableAlias` ; `layoutGrids?`: `VariableAlias`[] ; `maxHeight?`: `VariableAlias` ; `maxWidth?`: `VariableAlias` ; `minHeight?`: `VariableAlias` ; `minWidth?`: `VariableAlias` ; `opacity?`: `VariableAlias` ; `paddingBottom?`: `VariableAlias` ; `paddingLeft?`: `VariableAlias` ; `paddingRight?`: `VariableAlias` ; `paddingTop?`: `VariableAlias` ; `size?`: \{ `x?`: `VariableAlias` ; `y?`: `VariableAlias`  } ; `strokes?`: `VariableAlias`[] ; `textRangeFills?`: `VariableAlias`[] ; `topLeftRadius?`: `VariableAlias` ; `topRightRadius?`: `VariableAlias` ; `visible?`: `VariableAlias`  }\>
 
 A mapping of field to the variables applied to this field. Most fields will only map to a single
 `VariableAlias`. However, for properties like `fills`, `strokes`, `size`, `componentProperties`,
@@ -98,7 +107,7 @@ and `textRangeFills`, it is possible to have multiple variables bound to the fie
 
 #### Inherited from
 
-NodeBase.boundVariables
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).boundVariables
 
 #### Defined in
 
@@ -112,11 +121,13 @@ ___
 
 #### Inherited from
 
-NodeBase.children
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).children
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:12
+packages/figma-parser/src/shared/nodes/parent.node.ts:6
+
+packages/figma-parser/src/shared/nodes/base.node.ts:14
 
 ___
 
@@ -130,7 +141,7 @@ corresponding component's or component set's componentPropertyDefinitions.
 
 #### Inherited from
 
-NodeBase.componentPropertyReferences
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).componentPropertyReferences
 
 #### Defined in
 
@@ -147,7 +158,7 @@ node.
 
 #### Inherited from
 
-NodeBase.explicitVariableModes
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).explicitVariableModes
 
 #### Defined in
 
@@ -163,7 +174,7 @@ A string uniquely identifying this node within the document.
 
 #### Inherited from
 
-NodeBase.id
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).id
 
 #### Defined in
 
@@ -181,7 +192,7 @@ Whether the layer is fixed while the parent is scrolling
 
 #### Inherited from
 
-NodeBase.isFixed
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).isFixed
 
 #### Defined in
 
@@ -197,7 +208,7 @@ If true, layer is locked and cannot be edited
 
 #### Inherited from
 
-NodeBase.locked
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).locked
 
 #### Defined in
 
@@ -213,7 +224,7 @@ The name given to the node by the user in the tool.
 
 #### Inherited from
 
-NodeBase.name
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).name
 
 #### Defined in
 
@@ -223,15 +234,15 @@ ___
 
 ### parent
 
-• `Optional` **parent**: `NodeBase`\<[`Node`](../modules.md#node)\>
+• `Optional` **parent**: [`ContentNode`](ContentNode.md)\<`Node`\>
 
 #### Inherited from
 
-NodeBase.parent
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).parent
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:19
+packages/figma-parser/src/contents/content-node.ts:29
 
 ___
 
@@ -244,7 +255,7 @@ Data written by plugins that is visible only to the plugin that wrote it. Requir
 
 #### Inherited from
 
-NodeBase.pluginData
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).pluginData
 
 #### Defined in
 
@@ -258,11 +269,11 @@ ___
 
 #### Inherited from
 
-NodeBase.raw
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).raw
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:18
+packages/figma-parser/src/contents/content-node.ts:29
 
 ___
 
@@ -274,7 +285,7 @@ The rotation of the node, if not 0.
 
 #### Inherited from
 
-NodeBase.rotation
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).rotation
 
 #### Defined in
 
@@ -290,7 +301,7 @@ How layer should be treated when the frame is resized
 
 #### Inherited from
 
-NodeBase.scrollBehavior
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).scrollBehavior
 
 #### Defined in
 
@@ -307,7 +318,7 @@ include the string "shared".
 
 #### Inherited from
 
-NodeBase.sharedPluginData
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).sharedPluginData
 
 #### Defined in
 
@@ -323,7 +334,7 @@ The type of this node, represented by the string literal "BOOLEAN_OPERATION"
 
 #### Inherited from
 
-NodeBase.type
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).type
 
 #### Defined in
 
@@ -441,7 +452,7 @@ Whether or not the node is visible on the canvas.
 
 #### Inherited from
 
-NodeBase.visible
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).visible
 
 #### Defined in
 
@@ -449,35 +460,178 @@ node_modules/@figma/rest-api-spec/dist/api_types.d.ts:20
 
 ## Methods
 
-### filterDeep
+### child
 
-▸ **filterDeep**(`predicate`): [`ContentNode`](ContentNode.md)\<`T`\>[]
+▸ **child**(`index`): `undefined` \| [`ContentNode`](ContentNode.md)\<`T`\>
 
-Filters nodes deep in the tree that match the given predicate.
+Returns child node by its index
+```
+const thirdChild = ndoe.child(3)
+```
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | (`node`: `this`, `path?`: [`PathBreadcrumb`](../interfaces/PathBreadcrumb.md)[]) => `boolean` |
+| `index` | `number` |
 
 #### Returns
 
-[`ContentNode`](ContentNode.md)\<`T`\>[]
+`undefined` \| [`ContentNode`](ContentNode.md)\<`T`\>
 
 #### Inherited from
 
-NodeBase.filterDeep
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).child
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:110
+packages/figma-parser/src/shared/nodes/node-mixins/traversable.mixin.ts:17
+
+___
+
+### childById
+
+▸ **childById**(`id`): `undefined` \| [`ContentNode`](ContentNode.md)\<`T`\>
+
+Returns child node witch matching id stored in "id" property
+```
+const specificLayer = node.childById('123:345');
+```
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `id` | `string` |
+
+#### Returns
+
+`undefined` \| [`ContentNode`](ContentNode.md)\<`T`\>
+
+#### Inherited from
+
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).childById
+
+#### Defined in
+
+packages/figma-parser/src/shared/nodes/node-mixins/traversable.mixin.ts:37
+
+___
+
+### childByName
+
+▸ **childByName**(`name`): `undefined` \| [`ContentNode`](ContentNode.md)\<`T`\>
+
+Returns first child node with matching name stored in "name" property
+```
+const title = node.childByName('Title');
+```
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `name` | `string` |
+
+#### Returns
+
+`undefined` \| [`ContentNode`](ContentNode.md)\<`T`\>
+
+#### Inherited from
+
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).childByName
+
+#### Defined in
+
+packages/figma-parser/src/shared/nodes/node-mixins/traversable.mixin.ts:27
+
+___
+
+### deepChild
+
+▸ **deepChild**(`...indexes`): `undefined` \| [`ContentNode`](ContentNode.md)\<`T`\>
+
+Returns deep child node using indexes of each another node.
+```
+
+const deepText = node.deepChild(0, 1, 0, 4)
+
+// equals to node.children[0].children[1].children[0].children[4]
+```
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `...indexes` | `number`[] |
+
+#### Returns
+
+`undefined` \| [`ContentNode`](ContentNode.md)\<`T`\>
+
+#### Inherited from
+
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).deepChild
+
+#### Defined in
+
+packages/figma-parser/src/shared/nodes/node-mixins/traversable.mixin.ts:51
+
+___
+
+### filterDeep
+
+▸ **filterDeep**(`predicate`): `RichParentNode` \| [`ContentNode`](ContentNode.md)\<`T`\> & `ParentInterface`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `predicate` | (`node`: `this`) => `boolean` |
+
+#### Returns
+
+`RichParentNode` \| [`ContentNode`](ContentNode.md)\<`T`\> & `ParentInterface`
+
+#### Inherited from
+
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).filterDeep
+
+#### Defined in
+
+packages/figma-parser/src/shared/nodes/node-mixins/filterable.mixin.ts:14
+
+___
+
+### find
+
+▸ **find**(`predicate`): `undefined` \| [`ContentNode`](ContentNode.md)\<`T`\>
+
+Finds the first node in node's children that matches the given predicate.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `predicate` | (`node`: `this`, `index`: `number`) => `boolean` |
+
+#### Returns
+
+`undefined` \| [`ContentNode`](ContentNode.md)\<`T`\>
+
+#### Inherited from
+
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).find
+
+#### Defined in
+
+packages/figma-parser/src/shared/nodes/node-mixins/searchable.mixin.ts:11
 
 ___
 
 ### findDeep
 
-▸ **findDeep**(`predicate`): ``null`` \| [`ContentNode`](ContentNode.md)\<`T`\>
+▸ **findDeep**(`predicate`): `undefined` \| [`ContentNode`](ContentNode.md)\<`T`\>
 
 Finds the first node deep in the tree that matches the given predicate.
 
@@ -485,19 +639,63 @@ Finds the first node deep in the tree that matches the given predicate.
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | (`node`: `this`, `path?`: [`PathBreadcrumb`](../interfaces/PathBreadcrumb.md)[]) => `boolean` |
+| `predicate` | (`node`: `this`) => `boolean` |
 
 #### Returns
 
-``null`` \| [`ContentNode`](ContentNode.md)\<`T`\>
+`undefined` \| [`ContentNode`](ContentNode.md)\<`T`\>
 
 #### Inherited from
 
-NodeBase.findDeep
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).findDeep
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:95
+packages/figma-parser/src/shared/nodes/node-mixins/searchable.mixin.ts:18
+
+___
+
+### fitler
+
+▸ **fitler**(`predicate`): `RichParentNode`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `predicate` | (`node`: `this`) => `boolean` |
+
+#### Returns
+
+`RichParentNode`
+
+#### Inherited from
+
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).fitler
+
+#### Defined in
+
+packages/figma-parser/src/shared/nodes/node-mixins/filterable.mixin.ts:8
+
+___
+
+### flat
+
+▸ **flat**(): `RichParentNode`
+
+Skips all RichParentNodes
+
+#### Returns
+
+`RichParentNode`
+
+#### Inherited from
+
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).flat
+
+#### Defined in
+
+packages/figma-parser/src/shared/nodes/node-mixins/flattable.mixin.ts:12
 
 ___
 
@@ -514,7 +712,7 @@ This method organizes text contents in a markdown-ish format, including basic st
 
 #### Defined in
 
-packages/figma-parser/src/contents/content-node.ts:110
+packages/figma-parser/src/contents/content-node.ts:129
 
 ___
 
@@ -531,7 +729,7 @@ italic, and lists. This method is designed for text nodes and will return undefi
 
 #### Defined in
 
-packages/figma-parser/src/contents/content-node.ts:122
+packages/figma-parser/src/contents/content-node.ts:142
 
 ___
 
@@ -548,7 +746,7 @@ Useful for extracting plain text from a node tree.
 
 #### Defined in
 
-packages/figma-parser/src/contents/content-node.ts:98
+packages/figma-parser/src/contents/content-node.ts:116
 
 ___
 
@@ -564,37 +762,91 @@ Gets raw text without any formatting
 
 #### Defined in
 
-packages/figma-parser/src/contents/content-node.ts:88
+packages/figma-parser/src/contents/content-node.ts:106
 
 ___
 
-### mapDeep
+### glob
 
-▸ **mapDeep**\<`T`\>(`callback`): `WithChildren`\<`T`\>
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `unknown` |
+▸ **glob**(`...paths`): `RichParentNode`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `callback` | (`node`: `this`) => `undefined` \| `WithChildren`\<`T`\> |
+| `...paths` | `string`[] |
 
 #### Returns
 
-`WithChildren`\<`T`\>
+`RichParentNode`
 
 #### Inherited from
 
-NodeBase.mapDeep
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).glob
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:121
+packages/figma-parser/src/shared/nodes/node-mixins/traversable.mixin.ts:58
+
+___
+
+### map
+
+▸ **map**\<`T`\>(`callback`): `T`[]
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `callback` | (`node`: `this`) => `undefined` \| `T` |
+
+#### Returns
+
+`T`[]
+
+#### Inherited from
+
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).map
+
+#### Defined in
+
+packages/figma-parser/src/shared/nodes/node-mixins/mappable.mixin.ts:9
+
+___
+
+### mapDeep
+
+▸ **mapDeep**\<`T`\>(`callback`): `RichParentNode`
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `ParentInterface` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `callback` | (`node`: `this`) => `T` |
+
+#### Returns
+
+`RichParentNode`
+
+#### Inherited from
+
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).mapDeep
+
+#### Defined in
+
+packages/figma-parser/src/shared/nodes/node-mixins/mappable.mixin.ts:13
 
 ___
 
@@ -619,7 +871,7 @@ therefore it may be processed with these utils.
 
 #### Defined in
 
-packages/figma-parser/src/contents/content-node.ts:41
+packages/figma-parser/src/contents/content-node.ts:59
 
 ▸ **parseTree**(`getters?`): `Promise`\<[`GetterTreeNode`](../modules.md#gettertreenode)\>
 
@@ -635,7 +887,7 @@ packages/figma-parser/src/contents/content-node.ts:41
 
 #### Defined in
 
-packages/figma-parser/src/contents/content-node.ts:42
+packages/figma-parser/src/contents/content-node.ts:60
 
 ▸ **parseTree**(`getters?`, `options?`): `Promise`\<[`GetterTreeNode`](../modules.md#gettertreenode)\>
 
@@ -652,7 +904,7 @@ packages/figma-parser/src/contents/content-node.ts:42
 
 #### Defined in
 
-packages/figma-parser/src/contents/content-node.ts:43
+packages/figma-parser/src/contents/content-node.ts:61
 
 ▸ **parseTree**(`getters?`, `options?`): `Promise`\<[`GetterTreeNode`](../modules.md#gettertreenode)\>
 
@@ -669,7 +921,31 @@ packages/figma-parser/src/contents/content-node.ts:43
 
 #### Defined in
 
-packages/figma-parser/src/contents/content-node.ts:44
+packages/figma-parser/src/contents/content-node.ts:62
+
+___
+
+### path
+
+▸ **path**(`prop?`): `string`[]
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `prop` | ``"type"`` \| ``"id"`` \| ``"name"`` \| ``"visible"`` \| ``"locked"`` \| ``"isFixed"`` \| ``"scrollBehavior"`` \| ``"rotation"`` \| ``"componentPropertyReferences"`` \| ``"pluginData"`` \| ``"sharedPluginData"`` \| ``"boundVariables"`` \| ``"explicitVariableModes"`` | `'name'` |
+
+#### Returns
+
+`string`[]
+
+#### Inherited from
+
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).path
+
+#### Defined in
+
+packages/figma-parser/src/shared/nodes/node-mixins/path.mixin.ts:9
 
 ___
 
@@ -685,11 +961,29 @@ Prints a table in the console with information about the node, including its chi
 
 #### Inherited from
 
-NodeBase.table
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).table
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:31
+packages/figma-parser/src/shared/nodes/base.node.ts:33
+
+___
+
+### toArray
+
+▸ **toArray**(): [`ContentNode`](ContentNode.md)\<`T`\>[]
+
+#### Returns
+
+[`ContentNode`](ContentNode.md)\<`T`\>[]
+
+#### Inherited from
+
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).toArray
+
+#### Defined in
+
+packages/figma-parser/src/shared/nodes/node-mixins/to-array.mixin.ts:7
 
 ___
 
@@ -697,7 +991,7 @@ ___
 
 ▸ **toString**(): `string`
 
-Returns the name of the node as a string representation.
+Returns a string representation of an object.
 
 #### Returns
 
@@ -705,11 +999,11 @@ Returns the name of the node as a string representation.
 
 #### Inherited from
 
-NodeBase.toString
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).toString
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:43
+node_modules/typescript/lib/lib.es5.d.ts:128
 
 ___
 
@@ -723,7 +1017,7 @@ Walks through the node tree, executing a callback for each node.
 
 | Name | Type |
 | :------ | :------ |
-| `callback` | (`node`: `this`, `path`: [`PathBreadcrumb`](../interfaces/PathBreadcrumb.md)[]) => `void` |
+| `callback` | (`node`: `this`) => `void` |
 
 #### Returns
 
@@ -731,8 +1025,8 @@ Walks through the node tree, executing a callback for each node.
 
 #### Inherited from
 
-NodeBase.walk
+WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))).walk
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:72
+packages/figma-parser/src/shared/nodes/node-mixins/walkable.mixin.ts:11

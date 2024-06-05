@@ -27,7 +27,8 @@ import type {
   WashiTapeNode,
   WidgetNode,
 } from '@figma/rest-api-spec';
-import type { NodeBase } from './node.abstract';
+import type { NodeBase } from './nodes/base.node';
+import type { ParentNode } from './nodes/parent.node';
 
 export const isBooleanOperationNode = (node: NodeBase): node is NodeBase<BooleanOperationNode> & BooleanOperationNode => node.type === 'BOOLEAN_OPERATION';
 export const isComponentNode = (node: NodeBase): node is NodeBase<ComponentNode> & ComponentNode => node.type === 'COMPONENT';
@@ -59,16 +60,7 @@ export const isCanvasNode = (node: NodeBase): node is NodeBase<CanvasNode> & Can
 export function hasChildren<T>(node: NodeBase): node is NodeBase & { children: T[] };
 export function hasChildren(node: NodeBase): node is NodeBase & { children: NodeBase[] };
 export function hasChildren(node: Node): node is Node & { children: Node[] };
-export function hasChildren(node: NodeBase | Node): boolean {
+export function hasChildren(node: ParentNode): node is ParentNode;
+export function hasChildren(node: NodeBase | Node | ParentNode | undefined): boolean {
   return !!node && 'children' in node && Array.isArray(node.children) && node.children.length > 0;
 }
-
-type NodeProperties = { [k in keyof Node]: Readonly<Node[k]> };
-
-class _FigmaNodeMock {
-  constructor(raw: Node) {
-    Object.assign(this, raw);
-  }
-}
-
-export const FigmaNodeMock = _FigmaNodeMock as new (raw: Node) => NodeProperties;

@@ -4,4 +4,4 @@
 
 ## Indexable
 
-▪ [p: `string`]: [`TypeStyle`](../modules.md#typestyle)
+▪ [p: `string`]: `TypeStyle`

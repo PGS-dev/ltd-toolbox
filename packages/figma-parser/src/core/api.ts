@@ -10,6 +10,7 @@ import type { ErrorDescriptions, FigmaApiInterface, FigmaPAT, FigmaParserOptions
 process.on('uncaughtException', (error: FigmaParserError) => {
   const logger = error.logger || createLogger();
   logger.error(error.message);
+  throw error;
   process.exit(1);
 });
 

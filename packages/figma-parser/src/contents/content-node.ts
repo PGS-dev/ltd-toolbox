@@ -2,7 +2,15 @@ import type { Node, TextNode } from '@figma/rest-api-spec';
 import { combineSchema } from '../shared/combine-schema.util';
 import { isEmptyObject } from '../shared/is-empty-object.util';
 import { isObject } from '../shared/is-object.util';
-import { NodeBase } from '../shared/node.abstract';
+import { NodeBase } from '../shared/nodes/base.node';
+import { Filterable } from '../shared/nodes/node-mixins/filterable.mixin';
+import { Flattable } from '../shared/nodes/node-mixins/flattable.mixin';
+import { Mappable } from '../shared/nodes/node-mixins/mappable.mixin';
+import { WithPath } from '../shared/nodes/node-mixins/path.mixin';
+import { Searchable } from '../shared/nodes/node-mixins/searchable.mixin';
+import { WithToArray } from '../shared/nodes/node-mixins/to-array.mixin';
+import { Traversable } from '../shared/nodes/node-mixins/traversable.mixin';
+import { Walkable } from '../shared/nodes/node-mixins/walkable.mixin';
 import { isTextNode } from '../shared/types';
 import type { Getter, GetterTreeNode, ParseTreeOptions } from './types';
 import { getNodeDecoratedText } from './utils';
@@ -11,7 +19,18 @@ export const isFauxNode = (node: GetterTreeNode): node is GetterTreeNode & { chi
   return Object.keys(node).length === 1 && 'children' in node && node.children?.length === 1;
 };
 
-export class ContentNode<T extends Node = Node> extends NodeBase<T> {
+export interface CurrentContext {
+  a?: number;
+}
+
+export class ContentNode<T extends Node = Node> extends WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))) {
+  constructor(
+    public raw: T,
+    public parent?: ContentNode
+  ) {
+    super(raw, parent);
+  }
+
   private defaultGetters: Getter[] = [
     {
       test: (node) => node.children.length === 0,
@@ -96,7 +115,8 @@ export class ContentNode<T extends Node = Node> extends NodeBase<T> {
    * Useful for extracting plain text from a node tree.
    */
   getRawChildrenText() {
-    const textNodes = Array.from(this.filterDeep(isTextNode)) as ContentNode<TextNode>[];
+    const filtered = this.filterDeep(isTextNode).flat();
+    const textNodes = Array.from(filtered.children) as ContentNode<TextNode>[];
 
     const contents = textNodes.map((node) => node.getRawText()).filter(Boolean);
 
@@ -108,7 +128,8 @@ export class ContentNode<T extends Node = Node> extends NodeBase<T> {
    * This method organizes text contents in a markdown-ish format, including basic styles and list formatting.
    */
   getFormattedChildrenText() {
-    const textNodes = Array.from(this.filterDeep(isTextNode)) as ContentNode<TextNode>[];
+    const filtered = this.filterDeep(isTextNode).flat();
+    const textNodes = Array.from(filtered.children) as ContentNode<TextNode>[];
 
     const contents = textNodes.map((node) => node.getFormattedText()).filter(Boolean);
 

@@ -8,7 +8,7 @@ Represents a single node in a Figma file, providing utilities for navigation, se
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`Node`](../modules.md#node) = [`Node`](../modules.md#node) |
+| `T` | extends `Node` = `Node` |
 
 ## Hierarchy
 
@@ -43,12 +43,8 @@ Represents a single node in a Figma file, providing utilities for navigation, se
 
 ### Methods
 
-- [filterDeep](SingleNode.md#filterdeep)
-- [findDeep](SingleNode.md#finddeep)
-- [mapDeep](SingleNode.md#mapdeep)
 - [table](SingleNode.md#table)
 - [toString](SingleNode.md#tostring)
-- [walk](SingleNode.md#walk)
 
 ## Constructors
 
@@ -62,14 +58,14 @@ Constructs a SingleNode instance from a Figma Node object or an existing SingleN
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`Node`](../modules.md#node) = [`Node`](../modules.md#node) |
+| `T` | extends `Node` = `Node` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `raw` | `T` |
-| `parent?` | `NodeBase`\<[`Node`](../modules.md#node)\> |
+| `parent?` | `NodeBase`\<`Node`\> |
 
 #### Returns
 
@@ -81,13 +77,13 @@ NodeBase\<T\>.constructor
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:17
+packages/figma-parser/src/shared/nodes/base.node.ts:19
 
 ## Properties
 
 ### boundVariables
 
-• `Optional` **boundVariables**: `Readonly`\<`undefined` \| \{ `bottomLeftRadius?`: [`VariableAlias`](../modules.md#variablealias) ; `bottomRightRadius?`: [`VariableAlias`](../modules.md#variablealias) ; `characters?`: [`VariableAlias`](../modules.md#variablealias) ; `componentProperties?`: \{ `[key: string]`: [`VariableAlias`](../modules.md#variablealias);  } ; `counterAxisSpacing?`: [`VariableAlias`](../modules.md#variablealias) ; `effects?`: [`VariableAlias`](../modules.md#variablealias)[] ; `fills?`: [`VariableAlias`](../modules.md#variablealias)[] ; `individualStrokeWeights?`: \{ `bottom?`: [`VariableAlias`](../modules.md#variablealias) ; `left?`: [`VariableAlias`](../modules.md#variablealias) ; `right?`: [`VariableAlias`](../modules.md#variablealias) ; `top?`: [`VariableAlias`](../modules.md#variablealias)  } ; `itemSpacing?`: [`VariableAlias`](../modules.md#variablealias) ; `layoutGrids?`: [`VariableAlias`](../modules.md#variablealias)[] ; `maxHeight?`: [`VariableAlias`](../modules.md#variablealias) ; `maxWidth?`: [`VariableAlias`](../modules.md#variablealias) ; `minHeight?`: [`VariableAlias`](../modules.md#variablealias) ; `minWidth?`: [`VariableAlias`](../modules.md#variablealias) ; `opacity?`: [`VariableAlias`](../modules.md#variablealias) ; `paddingBottom?`: [`VariableAlias`](../modules.md#variablealias) ; `paddingLeft?`: [`VariableAlias`](../modules.md#variablealias) ; `paddingRight?`: [`VariableAlias`](../modules.md#variablealias) ; `paddingTop?`: [`VariableAlias`](../modules.md#variablealias) ; `size?`: \{ `x?`: [`VariableAlias`](../modules.md#variablealias) ; `y?`: [`VariableAlias`](../modules.md#variablealias)  } ; `strokes?`: [`VariableAlias`](../modules.md#variablealias)[] ; `textRangeFills?`: [`VariableAlias`](../modules.md#variablealias)[] ; `topLeftRadius?`: [`VariableAlias`](../modules.md#variablealias) ; `topRightRadius?`: [`VariableAlias`](../modules.md#variablealias) ; `visible?`: [`VariableAlias`](../modules.md#variablealias)  }\>
+• `Optional` **boundVariables**: `Readonly`\<`undefined` \| \{ `bottomLeftRadius?`: `VariableAlias` ; `bottomRightRadius?`: `VariableAlias` ; `characters?`: `VariableAlias` ; `componentProperties?`: \{ `[key: string]`: `VariableAlias`;  } ; `counterAxisSpacing?`: `VariableAlias` ; `effects?`: `VariableAlias`[] ; `fills?`: `VariableAlias`[] ; `individualStrokeWeights?`: \{ `bottom?`: `VariableAlias` ; `left?`: `VariableAlias` ; `right?`: `VariableAlias` ; `top?`: `VariableAlias`  } ; `itemSpacing?`: `VariableAlias` ; `layoutGrids?`: `VariableAlias`[] ; `maxHeight?`: `VariableAlias` ; `maxWidth?`: `VariableAlias` ; `minHeight?`: `VariableAlias` ; `minWidth?`: `VariableAlias` ; `opacity?`: `VariableAlias` ; `paddingBottom?`: `VariableAlias` ; `paddingLeft?`: `VariableAlias` ; `paddingRight?`: `VariableAlias` ; `paddingTop?`: `VariableAlias` ; `size?`: \{ `x?`: `VariableAlias` ; `y?`: `VariableAlias`  } ; `strokes?`: `VariableAlias`[] ; `textRangeFills?`: `VariableAlias`[] ; `topLeftRadius?`: `VariableAlias` ; `topRightRadius?`: `VariableAlias` ; `visible?`: `VariableAlias`  }\>
 
 A mapping of field to the variables applied to this field. Most fields will only map to a single
 `VariableAlias`. However, for properties like `fills`, `strokes`, `size`, `componentProperties`,
@@ -113,7 +109,7 @@ NodeBase.children
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:12
+packages/figma-parser/src/shared/nodes/base.node.ts:14
 
 ___
 
@@ -220,7 +216,7 @@ ___
 
 ### parent
 
-• `Optional` **parent**: `NodeBase`\<[`Node`](../modules.md#node)\>
+• `Optional` **parent**: `NodeBase`\<`Node`\>
 
 #### Inherited from
 
@@ -228,7 +224,7 @@ NodeBase.parent
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:19
+packages/figma-parser/src/shared/nodes/base.node.ts:21
 
 ___
 
@@ -259,7 +255,7 @@ NodeBase.raw
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:18
+packages/figma-parser/src/shared/nodes/base.node.ts:20
 
 ___
 
@@ -446,88 +442,6 @@ node_modules/@figma/rest-api-spec/dist/api_types.d.ts:20
 
 ## Methods
 
-### filterDeep
-
-▸ **filterDeep**(`predicate`): [`SingleNode`](SingleNode.md)\<`T`\>[]
-
-Filters nodes deep in the tree that match the given predicate.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `predicate` | (`node`: `this`, `path?`: [`PathBreadcrumb`](../interfaces/PathBreadcrumb.md)[]) => `boolean` |
-
-#### Returns
-
-[`SingleNode`](SingleNode.md)\<`T`\>[]
-
-#### Inherited from
-
-NodeBase.filterDeep
-
-#### Defined in
-
-packages/figma-parser/src/shared/node.abstract.ts:110
-
-___
-
-### findDeep
-
-▸ **findDeep**(`predicate`): ``null`` \| [`SingleNode`](SingleNode.md)\<`T`\>
-
-Finds the first node deep in the tree that matches the given predicate.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `predicate` | (`node`: `this`, `path?`: [`PathBreadcrumb`](../interfaces/PathBreadcrumb.md)[]) => `boolean` |
-
-#### Returns
-
-``null`` \| [`SingleNode`](SingleNode.md)\<`T`\>
-
-#### Inherited from
-
-NodeBase.findDeep
-
-#### Defined in
-
-packages/figma-parser/src/shared/node.abstract.ts:95
-
-___
-
-### mapDeep
-
-▸ **mapDeep**\<`T`\>(`callback`): `WithChildren`\<`T`\>
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `unknown` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `callback` | (`node`: `this`) => `undefined` \| `WithChildren`\<`T`\> |
-
-#### Returns
-
-`WithChildren`\<`T`\>
-
-#### Inherited from
-
-NodeBase.mapDeep
-
-#### Defined in
-
-packages/figma-parser/src/shared/node.abstract.ts:121
-
-___
-
 ### table
 
 ▸ **table**(): `void`
@@ -544,7 +458,7 @@ NodeBase.table
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:31
+packages/figma-parser/src/shared/nodes/base.node.ts:33
 
 ___
 
@@ -564,30 +478,4 @@ NodeBase.toString
 
 #### Defined in
 
-packages/figma-parser/src/shared/node.abstract.ts:43
-
-___
-
-### walk
-
-▸ **walk**(`callback`): `void`
-
-Walks through the node tree, executing a callback for each node.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `callback` | (`node`: `this`, `path`: [`PathBreadcrumb`](../interfaces/PathBreadcrumb.md)[]) => `void` |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-NodeBase.walk
-
-#### Defined in
-
-packages/figma-parser/src/shared/node.abstract.ts:72
+packages/figma-parser/src/shared/nodes/base.node.ts:45

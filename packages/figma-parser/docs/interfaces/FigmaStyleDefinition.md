@@ -15,7 +15,7 @@
 
 ### definition
 
-• **definition**: ``null`` \| `object` \| [`Paint`](../modules.md#paint)[] \| [`Effect`](../modules.md#effect)[] \| [`TypeStyle`](../modules.md#typestyle)
+• **definition**: ``null`` \| `object` \| `Paint`[] \| `Effect`[] \| `TypeStyle`
 
 #### Defined in
 
@@ -45,7 +45,7 @@ ___
 
 ### type
 
-• **type**: [`StyleType`](../modules.md#styletype)
+• **type**: `StyleType`
 
 #### Defined in
 

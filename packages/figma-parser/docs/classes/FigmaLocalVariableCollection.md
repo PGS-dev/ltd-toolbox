@@ -58,9 +58,9 @@
 
 | Name | Type |
 | :------ | :------ |
-| `raw` | [`LocalVariableCollection`](../modules.md#localvariablecollection) |
+| `raw` | `LocalVariableCollection` |
 | `setRef` | [`CollectionsSet`](CollectionsSet.md) |
-| `variables?` | [`FigmaLocalVariable`](FigmaLocalVariable.md)[] \| [`LocalVariable`](../modules.md#localvariable)[] |
+| `variables?` | [`FigmaLocalVariable`](FigmaLocalVariable.md)[] \| `LocalVariable`[] |
 
 #### Returns
 
@@ -88,7 +88,7 @@ ___
 
 ### raw
 
-• `Readonly` **raw**: [`LocalVariableCollection`](../modules.md#localvariablecollection)
+• `Readonly` **raw**: `LocalVariableCollection`
 
 #### Inherited from
 
@@ -478,7 +478,7 @@ Adds a variable to the collection. If the variable is not already an instance of
 
 | Name | Type |
 | :------ | :------ |
-| `variable` | [`LocalVariable`](../modules.md#localvariable) \| [`FigmaLocalVariable`](FigmaLocalVariable.md) |
+| `variable` | `LocalVariable` \| [`FigmaLocalVariable`](FigmaLocalVariable.md) |
 
 #### Returns
 
