@@ -108,3 +108,64 @@ export interface ParseTreeOptions {
    */
   defaultGetter: GetterGetFn;
 }
+
+export interface ImageOptions {
+  /**
+   * A number between 0.01 and 4, the image scaling factor
+   */
+  scale: number;
+
+  /**
+   * A string enum for the image output format, can be jpg, png, svg, or pdf
+   */
+  format: 'jpg' | 'png' | 'svg' | 'pdf';
+
+  /**
+   * Whether text elements are rendered as outlines (vector paths) or as <text> elements in SVGs.
+   * Rendering text elements as outlines guarantees that the text looks exactly the same in the SVG as it does in the browser/inside Figma.
+   * Exporting as <text> allows text to be selectable inside SVGs and generally makes the SVG easier to read. However, this relies on the browser's rendering engine which can vary between browsers and/or operating systems. As such, visual accuracy is not guaranteed as the result could look different than in Figma.
+   * @default true
+   */
+  svg_outline_text: boolean;
+
+  /**
+   * Whether to include id attributes for all SVG elements. Adds the layer name to the id attribute of an svg element.
+   * @default false
+   */
+  svg_include_id: boolean;
+
+  /**
+   * Whether to include node id attributes for all SVG elements. Adds the node id to a data-node-id attribute of an svg element.
+   * @default false
+   */
+  svg_include_node_id: boolean;
+
+  /**
+   * Whether to simplify inside/outside strokes and use stroke attribute if possible instead of <mask>.
+   * @default true
+   */
+  svg_simplify_stroke: boolean;
+
+  /**
+   * Whether content that overlaps the node should be excluded from rendering. Passing false (i.e., rendering overlaps) may increase processing time, since more of the document must be included in rendering.
+   * @default true
+   */
+  contents_only: boolean;
+
+  /**
+   * Use the full dimensions of the node regardless of whether or not it is cropped or the space around it is empty. Use this to export text nodes without cropping.
+   * @default false
+   */
+  use_absolute_bounds: boolean;
+}
+
+export const defaultImageOptions: ImageOptions = {
+  scale: 1,
+  format: 'svg',
+  svg_outline_text: true,
+  svg_include_id: false,
+  svg_include_node_id: false,
+  svg_simplify_stroke: true,
+  contents_only: true,
+  use_absolute_bounds: false,
+};

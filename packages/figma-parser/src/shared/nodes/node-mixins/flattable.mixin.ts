@@ -4,17 +4,21 @@ import type { ParentNode } from '../parent.node';
 import { RichParentNode } from '../rich-parent.node';
 import type { Ctor } from '../types';
 
+export interface FlattableMixin<T> {
+  /**
+   * Flattens whole structure to a single `RichParentNode`, and skips all the other
+   * RichParentNodes so that only nodes with values are returned.
+   * ```
+   * const filteredNodes = node.filterDeep(node => node.type === 'TEXT')
+   * const textNodes = filteredNodes.flat()
+   * ```
+   */
+  flat(): T[];
+}
+
 export function Flattable<Base extends Ctor<ParentNode>>(BaseClass: Base) {
   return class extends BaseClass {
-    /**
-     * Flattens whole structure to a single `RichParentNode`, and skips all the other
-     * RichParentNodes so that only nodes with values are returned.
-     * ```
-     * const filteredNodes = node.filterDeep(node => node.type === 'TEXT')
-     * const textNodes = filteredNodes.flat()
-     * ```
-     */
-    flat(): RichParentNode {
+    flat() {
       const children: this[] = [];
 
       walk(this as OnPurposeAny, (node) => {
@@ -23,7 +27,7 @@ export function Flattable<Base extends Ctor<ParentNode>>(BaseClass: Base) {
         }
       });
 
-      return new RichParentNode({ children });
+      return children;
     }
   };
 }

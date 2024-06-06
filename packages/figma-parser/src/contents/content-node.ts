@@ -1,18 +1,20 @@
-import type { Node, TextNode } from '@figma/rest-api-spec';
+import type { GetImagesResponse, Node, TextNode } from '@figma/rest-api-spec';
+import type { FigmaApiInterface } from '../core';
 import { combineSchema } from '../shared/combine-schema.util';
+import { FigmaParserError } from '../shared/errors/figma-parser-error';
 import { isEmptyObject } from '../shared/is-empty-object.util';
 import { isObject } from '../shared/is-object.util';
 import { NodeBase } from '../shared/nodes/base.node';
-import { Filterable } from '../shared/nodes/node-mixins/filterable.mixin';
-import { Flattable } from '../shared/nodes/node-mixins/flattable.mixin';
-import { Mappable } from '../shared/nodes/node-mixins/mappable.mixin';
-import { WithPath } from '../shared/nodes/node-mixins/path.mixin';
-import { Searchable } from '../shared/nodes/node-mixins/searchable.mixin';
-import { WithToArray } from '../shared/nodes/node-mixins/to-array.mixin';
-import { Traversable } from '../shared/nodes/node-mixins/traversable.mixin';
-import { Walkable } from '../shared/nodes/node-mixins/walkable.mixin';
-import { isTextNode } from '../shared/types';
-import type { Getter, GetterTreeNode, ParseTreeOptions } from './types';
+import { Filterable, type FilterableMixin } from '../shared/nodes/node-mixins/filterable.mixin';
+import { Flattable, type FlattableMixin } from '../shared/nodes/node-mixins/flattable.mixin';
+import { Mappable, type MappableMixin } from '../shared/nodes/node-mixins/mappable.mixin';
+import { WithPath, type WithPathMixin } from '../shared/nodes/node-mixins/path.mixin';
+import { Searchable, type SearchableMixin } from '../shared/nodes/node-mixins/searchable.mixin';
+import { WithToArray, type WithToArrayMixin } from '../shared/nodes/node-mixins/to-array.mixin';
+import { Traversable, type TraversableMixin } from '../shared/nodes/node-mixins/traversable.mixin';
+import { Walkable, type WalkableMixin } from '../shared/nodes/node-mixins/walkable.mixin';
+import { hasChildren, isTextNode } from '../shared/types';
+import { defaultImageOptions, type Getter, type GetterTreeNode, type ImageOptions, type ParseTreeOptions } from './types';
 import { getNodeDecoratedText } from './utils';
 
 export const isFauxNode = (node: GetterTreeNode): node is GetterTreeNode & { children: [GetterTreeNode] } => {
@@ -20,15 +22,24 @@ export const isFauxNode = (node: GetterTreeNode): node is GetterTreeNode & { chi
 };
 
 export interface CurrentContext {
-  a?: number;
+  apiClient: FigmaApiInterface;
+  fileId: string;
 }
 
-export class ContentNode<T extends Node = Node> extends WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase)))))))) {
+export class ContentNode<T extends Node = Node>
+  extends WithPath(Traversable(WithToArray(Filterable(Flattable(Mappable(Searchable(Walkable(NodeBase))))))))
+  implements WithPathMixin<ContentNode>, TraversableMixin<ContentNode>, WithToArrayMixin<ContentNode>, FilterableMixin<ContentNode>, FlattableMixin<ContentNode>, MappableMixin, SearchableMixin<ContentNode>, WalkableMixin<T>
+{
   constructor(
     public raw: T,
-    public parent?: ContentNode
+    public parent?: ContentNode,
+    private currentContext?: CurrentContext
   ) {
     super(raw, parent);
+
+    if (hasChildren(raw)) {
+      this.children = raw.children.map((rawChildNode) => new ContentNode(rawChildNode, this, currentContext) as this);
+    }
   }
 
   private defaultGetters: Getter[] = [
@@ -164,5 +175,22 @@ export class ContentNode<T extends Node = Node> extends WithPath(Traversable(Wit
       .join('\n');
 
     return formattedText;
+  }
+
+  async getImageUrl(options?: Partial<ImageOptions>): Promise<string | undefined> {
+    if (!this.currentContext) return;
+    const api = this.currentContext.apiClient;
+    const fileId = this.currentContext.fileId;
+    const params = { ids: [this.id], ...defaultImageOptions, ...options };
+    const imagesResponse = await api.request<GetImagesResponse>(`images/${fileId}`, params).then((response) => response.images);
+
+    return imagesResponse[this.id]!;
+  }
+
+  async getImage(options?: Partial<ImageOptions>): Promise<Buffer> {
+    const imageUrl = await this.getImageUrl(options);
+    if (!imageUrl) throw new FigmaParserError(`Couldn't get image url!`);
+    const img = await fetch(imageUrl).then((r) => r.arrayBuffer());
+    return Buffer.from(img);
   }
 }

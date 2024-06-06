@@ -55,9 +55,7 @@ class FigmaApi implements FigmaApiInterface {
   private buildPath(path: string, params?: Record<string, string>) {
     if (!params || isEmptyObject(params)) return path;
 
-    if (params && !isEmptyObject(params)) {
-      return path + '?' + new URLSearchParams(params).toString();
-    }
+    return path + '?' + new URLSearchParams(params).toString();
   }
 
   private getFromPersistentCache(path: string) {
@@ -77,13 +75,13 @@ class FigmaApi implements FigmaApiInterface {
     const pathWithParams = this.buildPath(path, params);
     const requestUrl = `https://api.figma.com/v1/${pathWithParams}`;
 
-    const inMemoryCached = this.softCache.get(path);
+    const inMemoryCached = this.softCache.get(pathWithParams);
 
     if (inMemoryCached) {
       return Promise.resolve(inMemoryCached) as Response;
     }
 
-    const persistentlyCached = this.getFromPersistentCache(path);
+    const persistentlyCached = this.getFromPersistentCache(pathWithParams);
     if (persistentlyCached) {
       return Promise.resolve(persistentlyCached) as Response;
     }

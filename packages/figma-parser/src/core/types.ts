@@ -1,4 +1,5 @@
 import type { ErrorResponsePayloadWithErrMessage, ErrorResponsePayloadWithErrorBoolean } from '@figma/rest-api-spec';
+import type { OnPurposeAny } from '../types';
 
 /**
  * Figma Personal Access Token format.
@@ -54,5 +55,5 @@ export interface FigmaApiInterface {
    * @param path
    * @param params
    */
-  request<Response = object>(path: string, params?: Record<string, string>): Promise<Response>;
+  request<Response = object>(path: string, params?: Record<string, OnPurposeAny>): Promise<Response>;
 }
