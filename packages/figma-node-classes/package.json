@@ -1,0 +1,45 @@
+{
+  "name": "@ltd-toolbox/figma-node-classes",
+  "version": "0.0.0",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [],
+  "scripts": {
+    "build": "yarn pkgroll",
+    "update": "yarn tsx scripts/update-nodes.ts",
+    "format": "prettier ./src/ --write",
+    "postinstall": "yarn update"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "import": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
+    }
+  },
+  "devDependencies": {
+    "@readme/openapi-parser": "^2.6.0",
+    "@types/ejs": "^3",
+    "consola": "^3.2.3",
+    "ejs": "^3.1.10",
+    "openapi-types": "^12.1.3",
+    "pkgroll": "^2.1.1",
+    "prettier": "^3.3.1",
+    "tsx": "^4.13.2"
+  },
+  "dependencies": {
+    "@figma/rest-api-spec": "^0.15.0"
+  }
+}

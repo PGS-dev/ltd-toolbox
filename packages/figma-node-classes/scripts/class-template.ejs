@@ -1,0 +1,77 @@
+/* eslint-disable */
+// @ts-nocheck
+/**
+* This is generated file. Do not edit manually!
+* Generated on <%= time %>
+*/
+
+import type {
+    <%= imports.join(', ') %>,
+    <%= nodeKeys.map(key => `${key} as Raw${key}`).join(', ') %>,
+    Node as RawNode
+} from '@figma/rest-api-spec';
+
+export {
+<% for (const definition of definitions) { -%>
+  Raw<%= definition.name %>,<% -%>
+<% } %>
+  RawNode
+}
+
+export type AnyNode = <%= nodeKeys.join(' | ') %>
+
+type SubcanvasNode = <%= nodeKeys.filter(node => !['Document', 'Canvas'].includes(node)).join(' | ') %>
+
+<% for (const definition of definitions) { %>
+export class <%= definition.name %> { <% -%>
+
+  constructor(private raw: Raw<%= definition.name %>) {
+    Object.assign(this, raw)
+    if (raw.children && Array.isArray(raw.children)) {
+      this.children = raw.children.map(createNode);
+    }
+  }
+
+<% for (const member of definition.members) { %>
+<%
+    const type = member.typeRef || (Array.isArray(member.type) ? member.type?.join(' | ') : member.type)
+    const optional = member.optional ? '?' : ''
+-%>
+<%
+    if (member.description || member.deprecated) {
+    const lines = member.description.split('\n')
+    if (member.deprecated) lines.unshift(`@deprecated`)
+-%>
+  /**<% -%>
+<% for( const line of lines) { %>
+   * <%- line -%>
+<% } %>
+   */
+<% } -%>
+  <%= member.name %><%= optional %>: <%- type %>;
+<% } %>
+}
+<% } %>
+
+<% for (const definition of definitions) { %>
+export const is<%= definition.name %> = (node: AnyNode): node is <%= definition.name %> => node instanceof <%= definition.name %>;<% -%>
+<% } %>
+export const hasChildren = (node: AnyNode): node is <%= definitions.filter(def => def.hasChildren).map(def => def.name).join(' | ') %> => 'children' in node;
+
+const typeConstructorMap = {
+<% for( const definition of definitions) { %>
+    <%- definition.members.find(member => member.name === 'type').typeRef %>: <%= definition.name -%>,<% -%>
+<% } %>
+} as const
+
+export type NodeTypes = keyof typeof typeConstructorMap;
+
+export type NodeConstructors = (typeof typeConstructorMap)[NodeTypes];
+
+export type TypeOfRawNode<T extends RawNode> = T extends { type: infer R } ? R : never
+
+export type InstanceByRawNode< T extends RawNode> = T extends { type: infer R } ? InstanceType<(typeof typeConstructorMap)[R]> : never
+
+export function createNode<N extends RawNode>(node: N): InstanceByRawNode<N> {
+  return new typeConstructorMap[node.type](node);
+}
