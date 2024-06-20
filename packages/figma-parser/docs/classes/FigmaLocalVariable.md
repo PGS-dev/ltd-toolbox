@@ -279,13 +279,13 @@ ___
 
 ### valuesByMode
 
-• `get` **valuesByMode**(): `Record`\<`string`, `string` \| `number` \| `boolean` \| `VariableAlias` \| `RGBA`\>
+• `get` **valuesByMode**(): `Record`\<`string`, `string` \| `number` \| `boolean` \| `RGBA` \| `VariableAlias`\>
 
 The values for each mode of this variable.
 
 #### Returns
 
-`Record`\<`string`, `string` \| `number` \| `boolean` \| `VariableAlias` \| `RGBA`\>
+`Record`\<`string`, `string` \| `number` \| `boolean` \| `RGBA` \| `VariableAlias`\>
 
 #### Inherited from
 
@@ -319,13 +319,13 @@ packages/figma-parser/src/variables/variable.ts:33
 
 ### defaultValue
 
-▸ **defaultValue**(): `string` \| `number` \| `boolean` \| `VariableAlias` \| `RGBA`
+▸ **defaultValue**(): `string` \| `number` \| `boolean` \| `RGBA` \| `VariableAlias`
 
 Gets the default value of the variable, which is the value for the collection's default mode.
 
 #### Returns
 
-`string` \| `number` \| `boolean` \| `VariableAlias` \| `RGBA`
+`string` \| `number` \| `boolean` \| `RGBA` \| `VariableAlias`
 
 #### Defined in
 
@@ -440,7 +440,7 @@ ___
 
 ### valueByMode
 
-▸ **valueByMode**(`modeName?`): `string` \| `number` \| `boolean` \| `VariableAlias` \| `RGBA`
+▸ **valueByMode**(`modeName?`): `string` \| `number` \| `boolean` \| `RGBA` \| `VariableAlias`
 
 Retrieves the value of the variable for a specified mode. If no mode is specified, it returns the default value.
 
@@ -452,7 +452,7 @@ Retrieves the value of the variable for a specified mode. If no mode is specifie
 
 #### Returns
 
-`string` \| `number` \| `boolean` \| `VariableAlias` \| `RGBA`
+`string` \| `number` \| `boolean` \| `RGBA` \| `VariableAlias`
 
 #### Defined in
 

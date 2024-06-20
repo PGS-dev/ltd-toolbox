@@ -34,13 +34,17 @@ export interface FigmaApiInterface {
   /**
    * Add custom error descriptions for error codes in form of an object.
    *
-   * ```
+   *
+   * @example
+   * ```typescript
    * const api = figmaApi()
    * const withMyOwnErrorDescriptions = api.withErrorDescriptions({
    *   404: 'These are not the resources you are looking for...',
    *   403: (response) => response.message || 'Unknown error'
    * })
-   * ```
+   *
+   * @example
+   * ```typescript
    * @param descriptions
    */
   withErrorDescriptions(descriptions: ErrorDescriptions): FigmaApiInterface;
@@ -48,10 +52,14 @@ export interface FigmaApiInterface {
   /**
    * Requests given resources with path and params.
    *
-   * ```
+   *
+   * @example
+   * ```typescript
    * const api = figmaApi()
    * const nodes == await api.request('/files/<FIGMAFILEID>/nodes', {ids: ['111:11', '111:12', depth: 1]})
-   * ```
+   *
+   * @example
+   * ```typescript
    * @param path
    * @param params
    */

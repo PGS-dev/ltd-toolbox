@@ -1,6 +1,7 @@
-import type { GetFileResponse, Node } from '@figma/rest-api-spec';
+import type { GetFileResponse } from '@figma/rest-api-spec';
+import type { RawDocumentNode } from '@ltd-toolbox/figma-node-classes';
 import type { ErrorDescriptions, FigmaApiInterface } from '../core/types';
-import { ContentNode } from './content-node';
+import { createTree } from './content-node';
 
 const errorDescriptions: ErrorDescriptions = {
   403: `The developer / OAuth token is invalid or expired`,
@@ -9,7 +10,6 @@ const errorDescriptions: ErrorDescriptions = {
 
 export async function getContents(apiClient: FigmaApiInterface, fileId: string) {
   const file = await apiClient.withErrorDescriptions(errorDescriptions).request<GetFileResponse>(`files/${fileId}`);
-  const node = new ContentNode<Node>(file.document, undefined, { apiClient, fileId });
-
-  return node;
+  const doc = file.document as unknown as RawDocumentNode;
+  return createTree(doc);
 }

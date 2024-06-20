@@ -1,6 +1,5 @@
 import type { OnPurposeAny } from '../../../types';
 import { walk } from '../../walk.util';
-import type { ParentNode } from '../parent.node';
 import { RichParentNode } from '../rich-parent.node';
 import type { Ctor } from '../types';
 
@@ -8,7 +7,9 @@ export interface FlattableMixin<T> {
   /**
    * Flattens whole structure to a single `RichParentNode`, and skips all the other
    * RichParentNodes so that only nodes with values are returned.
-   * ```
+   *
+   * @example
+   * ```typescript
    * const filteredNodes = node.filterDeep(node => node.type === 'TEXT')
    * const textNodes = filteredNodes.flat()
    * ```
@@ -16,7 +17,7 @@ export interface FlattableMixin<T> {
   flat(): T[];
 }
 
-export function Flattable<Base extends Ctor<ParentNode>>(BaseClass: Base) {
+export function Flattable<Base extends Ctor>(BaseClass: Base) {
   return class extends BaseClass {
     flat() {
       const children: this[] = [];

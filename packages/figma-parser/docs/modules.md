@@ -7,7 +7,6 @@
 ### Classes
 
 - [CollectionsSet](classes/CollectionsSet.md)
-- [ContentNode](classes/ContentNode.md)
 - [FigmaLocalVariable](classes/FigmaLocalVariable.md)
 - [FigmaLocalVariableCollection](classes/FigmaLocalVariableCollection.md)
 - [SingleNode](classes/SingleNode.md)
@@ -27,7 +26,9 @@
 - [GlobSearchNodes](interfaces/GlobSearchNodes.md)
 - [GradientStop](interfaces/GradientStop.md)
 - [GradientToken](interfaces/GradientToken.md)
+- [ImageOptions](interfaces/ImageOptions.md)
 - [NumberToken](interfaces/NumberToken.md)
+- [ParsableMixin](interfaces/ParsableMixin.md)
 - [ParseTreeOptions](interfaces/ParseTreeOptions.md)
 - [PathBreadcrumb](interfaces/PathBreadcrumb.md)
 - [ShadowStop](interfaces/ShadowStop.md)
@@ -35,6 +36,8 @@
 - [TypeStyleTable](interfaces/TypeStyleTable.md)
 - [TypographyToken](interfaces/TypographyToken.md)
 - [TypographyTokenValue](interfaces/TypographyTokenValue.md)
+- [WithImageGettersMixin](interfaces/WithImageGettersMixin.md)
+- [WithTextGettersMixin](interfaces/WithTextGettersMixin.md)
 
 ### Type Aliases
 
@@ -62,10 +65,10 @@
 - [ShadowTokenValue](modules.md#shadowtokenvalue)
 - [TODO](modules.md#todo)
 - [TextStyle](modules.md#textstyle)
-- [WalkPredicate](modules.md#walkpredicate)
 
 ### Variables
 
+- [defaultImageOptions](modules.md#defaultimageoptions)
 - [htmlGetters](modules.md#htmlgetters)
 
 ### Functions
@@ -81,50 +84,24 @@
 - [getDocument](modules.md#getdocument)
 - [getStyles](modules.md#getstyles)
 - [getVariables](modules.md#getvariables)
-- [hasChildren](modules.md#haschildren)
+- [hasMethod](modules.md#hasmethod)
+- [hasProperty](modules.md#hasproperty)
 - [isBlurEffect](modules.md#isblureffect)
-- [isBooleanOperationNode](modules.md#isbooleanoperationnode)
-- [isCanvasNode](modules.md#iscanvasnode)
 - [isColorToken](modules.md#iscolortoken)
-- [isComponentNode](modules.md#iscomponentnode)
-- [isComponentSetNode](modules.md#iscomponentsetnode)
-- [isConnectorNode](modules.md#isconnectornode)
-- [isDocumentNode](modules.md#isdocumentnode)
 - [isEffectDefinition](modules.md#iseffectdefinition)
 - [isEffectStyle](modules.md#iseffectstyle)
-- [isEllipseNode](modules.md#isellipsenode)
-- [isEmbedNode](modules.md#isembednode)
 - [isEmptyObject](modules.md#isemptyobject)
-- [isFauxNode](modules.md#isfauxnode)
 - [isFillDefinition](modules.md#isfilldefinition)
 - [isFillStyle](modules.md#isfillstyle)
-- [isFrameNode](modules.md#isframenode)
 - [isGradientToken](modules.md#isgradienttoken)
-- [isGroupNode](modules.md#isgroupnode)
-- [isInstanceNode](modules.md#isinstancenode)
-- [isLineNode](modules.md#islinenode)
-- [isLinkUnfurlNode](modules.md#islinkunfurlnode)
 - [isObject](modules.md#isobject)
-- [isRectangleNode](modules.md#isrectanglenode)
-- [isRegularPolygonNode](modules.md#isregularpolygonnode)
-- [isSectionNode](modules.md#issectionnode)
 - [isShadowEffect](modules.md#isshadoweffect)
 - [isShadowToken](modules.md#isshadowtoken)
-- [isShapeWithTextNode](modules.md#isshapewithtextnode)
 - [isSingleNode](modules.md#issinglenode)
-- [isSliceNode](modules.md#isslicenode)
-- [isStarNode](modules.md#isstarnode)
-- [isStickyNode](modules.md#isstickynode)
-- [isTableCellNode](modules.md#istablecellnode)
-- [isTableNode](modules.md#istablenode)
 - [isTextDefinition](modules.md#istextdefinition)
-- [isTextNode](modules.md#istextnode)
 - [isTextStyle](modules.md#istextstyle)
 - [isTypographyToken](modules.md#istypographytoken)
 - [isVariableAlias](modules.md#isvariablealias)
-- [isVectorNode](modules.md#isvectornode)
-- [isWashiTapeNode](modules.md#iswashitapenode)
-- [isWidgetNode](modules.md#iswidgetnode)
 - [rgbaToHexa](modules.md#rgbatohexa)
 
 ## Type Aliases
@@ -185,7 +162,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:30
+packages/figma-parser/src/core/types.ts:31
 
 ___
 
@@ -195,7 +172,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:26
+packages/figma-parser/src/core/types.ts:27
 
 ___
 
@@ -217,7 +194,7 @@ Figma Personal Access Token format.
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:6
+packages/figma-parser/src/core/types.ts:7
 
 ___
 
@@ -287,28 +264,34 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `get` | [`GetterGetFn`](modules.md#gettergetfn) | Getter function that gets the proper contents for current node if it passed the `test`. **`Example`** ```typescript const getter: Getter = { [...] get: (node: ContentNode) => ({ type: 'table-row' }) } ``` If you wish to parse the children on your own, you can return your own `children`, and parser will not overwrite it. **`Example`** ```typescript const getter: Getter = { [...] get: (node: ContentNode) => { const listItems: TreeNode[] = getListItems(node) return { type: 'unordered-list', children: listItems } } } ``` If you don't want to provide any children for the TreeNode, return `children: false`. This property will be removed from final tree. **`Example`** ```typescript const getter: Getter = { [...] get: (node: ContentNode) => { const listItems: TreeNode[] = getListItems(node) return { type: 'paragraph', data: node.getFormattedContent(), children: false } } } ``` |
-| `test` | [`GetterTestFn`](modules.md#gettertestfn) | Test function that determines if get method should be executed on current node. You can use it to perform the getter only on nodes that match certain rules. **`Example`** ```typescript const getter: Getter = { test: (node: ContentNode) => node.raw.type === 'INSTANCE' && node.raw.name === 'heading 1' [...] } ``` |
+| `get` | [`GetterGetFn`](modules.md#gettergetfn) | Getter function specifies what kind of data needs to be fetched from node and how to get it. It is executed only if node passed getter's `test` predicate. **`Example`** ```ts ``` **`Example`** ```typescript const getter: Getter = { [...] get: (node) => ({ type: 'table-row' }) } @example ```typescript If you wish to parse the children on your own, you can return your own `children`, and parser will not overwrite it. **`Example`** ```ts ``` **`Example`** ```typescript const getter: Getter = { [...] get: (node) => { const listItems: TreeNode[] = getListItems(node) return { type: 'unordered-list', children: listItems } } } @example ```typescript If you don't want to provide any children for the TreeNode, return `children: false`. This property will be removed from final tree. **`Example`** ```ts ``` **`Example`** ```typescript const getter: Getter = { [...] get: (node) => { const listItems: TreeNode[] = getListItems(node) return { type: 'paragraph', data: node.getFormattedContent(), children: false } } } ``` |
+| `test` | [`GetterTestFn`](modules.md#gettertestfn) | Test function that determines if get method should be executed on current node. You can use it to perform the getter only on nodes that match certain rules. **`Example`** ```ts ``` **`Example`** ```typescript const getter: Getter = { test: (node) => node.raw.type === 'INSTANCE' && node.raw.name === 'heading 1' [...] } ``` |
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:20
+packages/figma-parser/src/contents/types.ts:22
 
 ___
 
 ### GetterGetFn
 
-Ƭ **GetterGetFn**: (`node`: [`ContentNode`](classes/ContentNode.md)) => [`GetterTreeNode`](modules.md#gettertreenode) & \{ `children?`: [`GetterTreeNode`](modules.md#gettertreenode)[] \| ``false``  }
+Ƭ **GetterGetFn**: \<Node\>(`node`: `Node`) => [`GetterTreeNode`](modules.md#gettertreenode) & \{ `children?`: [`GetterTreeNode`](modules.md#gettertreenode)[] \| ``false``  }
 
 #### Type declaration
 
-▸ (`node`): [`GetterTreeNode`](modules.md#gettertreenode) & \{ `children?`: [`GetterTreeNode`](modules.md#gettertreenode)[] \| ``false``  }
+▸ \<`Node`\>(`node`): [`GetterTreeNode`](modules.md#gettertreenode) & \{ `children?`: [`GetterTreeNode`](modules.md#gettertreenode)[] \| ``false``  }
+
+##### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Node` | extends `ParentInterface` & `AnyNode` |
 
 ##### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`ContentNode`](classes/ContentNode.md) |
+| `node` | `Node` |
 
 ##### Returns
 
@@ -316,23 +299,29 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:18
+packages/figma-parser/src/contents/types.ts:20
 
 ___
 
 ### GetterTestFn
 
-Ƭ **GetterTestFn**: (`node`: [`ContentNode`](classes/ContentNode.md)) => `boolean`
+Ƭ **GetterTestFn**: \<Node\>(`node`: `Node`) => `boolean`
 
 #### Type declaration
 
-▸ (`node`): `boolean`
+▸ \<`Node`\>(`node`): `boolean`
+
+##### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Node` | extends `ParentInterface` & `AnyNode` |
 
 ##### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | [`ContentNode`](classes/ContentNode.md) |
+| `node` | `Node` |
 
 ##### Returns
 
@@ -340,7 +329,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:17
+packages/figma-parser/src/contents/types.ts:19
 
 ___
 
@@ -350,7 +339,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:15
+packages/figma-parser/src/contents/types.ts:17
 
 ___
 
@@ -426,7 +415,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:28
+packages/figma-parser/src/core/types.ts:29
 
 ___
 
@@ -458,32 +447,17 @@ ___
 
 packages/figma-parser/src/styles/types.ts:32
 
-___
+## Variables
 
-### WalkPredicate
+### defaultImageOptions
 
-Ƭ **WalkPredicate**: (`node`: [`SingleNode`](classes/SingleNode.md), `path`: [`PathBreadcrumb`](interfaces/PathBreadcrumb.md)[]) => `void`
-
-#### Type declaration
-
-▸ (`node`, `path`): `void`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | [`SingleNode`](classes/SingleNode.md) |
-| `path` | [`PathBreadcrumb`](interfaces/PathBreadcrumb.md)[] |
-
-##### Returns
-
-`void`
+• `Const` **defaultImageOptions**: [`ImageOptions`](interfaces/ImageOptions.md)
 
 #### Defined in
 
-packages/figma-parser/src/document/single-node.ts:5
+packages/figma-parser/src/contents/types.ts:183
 
-## Variables
+___
 
 ### htmlGetters
 
@@ -491,7 +465,7 @@ packages/figma-parser/src/document/single-node.ts:5
 
 #### Defined in
 
-packages/figma-parser/src/contents/html.tree.ts:67
+packages/figma-parser/src/contents/html.tree.ts:68
 
 ## Functions
 
@@ -683,7 +657,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:126
+packages/figma-parser/src/core/api.ts:124
 
 ▸ **figmaApi**(`token`): `FigmaApi`
 
@@ -699,7 +673,7 @@ packages/figma-parser/src/core/api.ts:126
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:127
+packages/figma-parser/src/core/api.ts:125
 
 ▸ **figmaApi**(`options`): `FigmaApi`
 
@@ -715,7 +689,7 @@ packages/figma-parser/src/core/api.ts:127
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:128
+packages/figma-parser/src/core/api.ts:126
 
 ▸ **figmaApi**(`token`, `options?`): `FigmaApi`
 
@@ -732,28 +706,28 @@ packages/figma-parser/src/core/api.ts:128
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:129
+packages/figma-parser/src/core/api.ts:127
 
 ___
 
 ### getContents
 
-▸ **getContents**(`api`, `fileId`): `Promise`\<[`ContentNode`](classes/ContentNode.md)\<`DocumentNode`\>\>
+▸ **getContents**(`apiClient`, `fileId`): `Promise`\<`Tree`\<`Node`\>\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `api` | [`FigmaApiInterface`](interfaces/FigmaApiInterface.md) |
+| `apiClient` | [`FigmaApiInterface`](interfaces/FigmaApiInterface.md) |
 | `fileId` | `string` |
 
 #### Returns
 
-`Promise`\<[`ContentNode`](classes/ContentNode.md)\<`DocumentNode`\>\>
+`Promise`\<`Tree`\<`Node`\>\>
 
 #### Defined in
 
-packages/figma-parser/src/contents/get-contents.ts:10
+packages/figma-parser/src/contents/get-contents.ts:11
 
 ___
 
@@ -827,77 +801,59 @@ packages/figma-parser/src/variables/get-variables.ts:31
 
 ___
 
-### hasChildren
+### hasMethod
 
-▸ **hasChildren**\<`T`\>(`node`): node is NodeBase\<Node\> & Object
+▸ **hasMethod**\<`O`, `M`\>(`node`, `methodName`): node is O & \{ [P in string]: Function }
 
 #### Type parameters
 
-| Name |
-| :------ |
-| `T` |
+| Name | Type |
+| :------ | :------ |
+| `O` | extends `Record`\<`string`, `any`\> |
+| `M` | extends `string` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
+| `node` | `O` |
+| `methodName` | `M` |
 
 #### Returns
 
-node is NodeBase\<Node\> & Object
+node is O & \{ [P in string]: Function }
 
 #### Defined in
 
-packages/figma-parser/src/shared/types.ts:60
+packages/figma-parser/src/shared/types.ts:3
 
-▸ **hasChildren**(`node`): node is NodeBase\<Node\> & Object
+___
+
+### hasProperty
+
+▸ **hasProperty**\<`O`, `P`\>(`node`, `propertyName`): node is O & \{ [K in string]: O[K] }
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `O` | extends `Record`\<`string`, `any`\> |
+| `P` | extends `string` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
+| `node` | `O` |
+| `propertyName` | `P` |
 
 #### Returns
 
-node is NodeBase\<Node\> & Object
+node is O & \{ [K in string]: O[K] }
 
 #### Defined in
 
-packages/figma-parser/src/shared/types.ts:61
-
-▸ **hasChildren**(`node`): node is Node & Object
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `Node` |
-
-#### Returns
-
-node is Node & Object
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:62
-
-▸ **hasChildren**(`node`): node is ParentNode\<Object\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `ParentNode`\<{}\> |
-
-#### Returns
-
-node is ParentNode\<Object\>
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:63
+packages/figma-parser/src/shared/types.ts:7
 
 ___
 
@@ -921,46 +877,6 @@ packages/figma-parser/src/styles/types.ts:11
 
 ___
 
-### isBooleanOperationNode
-
-▸ **isBooleanOperationNode**(`node`): node is NodeBase\<BooleanOperationNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasChildrenTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<BooleanOperationNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasChildrenTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:33
-
-___
-
-### isCanvasNode
-
-▸ **isCanvasNode**(`node`): node is NodeBase\<CanvasNode\> & Object & IsLayerTrait & HasExportSettingsTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<CanvasNode\> & Object & IsLayerTrait & HasExportSettingsTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:58
-
-___
-
 ### isColorToken
 
 ▸ **isColorToken**(`token`): token is ColorToken
@@ -978,86 +894,6 @@ token is ColorToken
 #### Defined in
 
 packages/figma-parser/src/shared/design-tokens-format.types.ts:71
-
-___
-
-### isComponentNode
-
-▸ **isComponentNode**(`node`): node is NodeBase\<ComponentNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasChildrenTrait & HasLayoutTrait & HasFramePropertiesTrait & CornerTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & IndividualStrokesTrait & DevStatusTrait & ComponentPropertiesTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<ComponentNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasChildrenTrait & HasLayoutTrait & HasFramePropertiesTrait & CornerTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & IndividualStrokesTrait & DevStatusTrait & ComponentPropertiesTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:34
-
-___
-
-### isComponentSetNode
-
-▸ **isComponentSetNode**(`node`): node is NodeBase\<ComponentSetNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasChildrenTrait & HasLayoutTrait & HasFramePropertiesTrait & CornerTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & IndividualStrokesTrait & DevStatusTrait & ComponentPropertiesTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<ComponentSetNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasChildrenTrait & HasLayoutTrait & HasFramePropertiesTrait & CornerTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & IndividualStrokesTrait & DevStatusTrait & ComponentPropertiesTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:35
-
-___
-
-### isConnectorNode
-
-▸ **isConnectorNode**(`node`): node is NodeBase\<ConnectorNode\> & Object & IsLayerTrait & HasLayoutTrait & HasBlendModeAndOpacityTrait & HasEffectsTrait & HasExportSettingsTrait & HasTextSublayerTrait & MinimalStrokesTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<ConnectorNode\> & Object & IsLayerTrait & HasLayoutTrait & HasBlendModeAndOpacityTrait & HasEffectsTrait & HasExportSettingsTrait & HasTextSublayerTrait & MinimalStrokesTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:36
-
-___
-
-### isDocumentNode
-
-▸ **isDocumentNode**(`node`): node is NodeBase\<DocumentNode\> & Object & IsLayerTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<DocumentNode\> & Object & IsLayerTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:57
 
 ___
 
@@ -1101,46 +937,6 @@ packages/figma-parser/src/styles/types.ts:7
 
 ___
 
-### isEllipseNode
-
-▸ **isEllipseNode**(`node`): node is NodeBase\<EllipseNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<EllipseNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:37
-
-___
-
-### isEmbedNode
-
-▸ **isEmbedNode**(`node`): node is NodeBase\<EmbedNode\> & Object & IsLayerTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<EmbedNode\> & Object & IsLayerTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:38
-
-___
-
 ### isEmptyObject
 
 ▸ **isEmptyObject**(`value`): value is Record\<string, never\>
@@ -1158,26 +954,6 @@ value is Record\<string, never\>
 #### Defined in
 
 packages/figma-parser/src/shared/is-empty-object.util.ts:1
-
-___
-
-### isFauxNode
-
-▸ **isFauxNode**(`node`): node is GetterNode & Object & Object
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | [`GetterTreeNode`](modules.md#gettertreenode) |
-
-#### Returns
-
-node is GetterNode & Object & Object
-
-#### Defined in
-
-packages/figma-parser/src/contents/content-node.ts:18
 
 ___
 
@@ -1221,26 +997,6 @@ packages/figma-parser/src/styles/types.ts:3
 
 ___
 
-### isFrameNode
-
-▸ **isFrameNode**(`node`): node is NodeBase\<FrameNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasChildrenTrait & HasLayoutTrait & HasFramePropertiesTrait & CornerTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & IndividualStrokesTrait & DevStatusTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<FrameNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasChildrenTrait & HasLayoutTrait & HasFramePropertiesTrait & CornerTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & IndividualStrokesTrait & DevStatusTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:39
-
-___
-
 ### isGradientToken
 
 ▸ **isGradientToken**(`token`): token is GradientToken
@@ -1261,86 +1017,6 @@ packages/figma-parser/src/shared/design-tokens-format.types.ts:75
 
 ___
 
-### isGroupNode
-
-▸ **isGroupNode**(`node`): node is NodeBase\<GroupNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasChildrenTrait & HasLayoutTrait & HasFramePropertiesTrait & CornerTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & IndividualStrokesTrait & DevStatusTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<GroupNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasChildrenTrait & HasLayoutTrait & HasFramePropertiesTrait & CornerTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & IndividualStrokesTrait & DevStatusTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:40
-
-___
-
-### isInstanceNode
-
-▸ **isInstanceNode**(`node`): node is NodeBase\<InstanceNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasChildrenTrait & HasLayoutTrait & HasFramePropertiesTrait & CornerTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & IndividualStrokesTrait & DevStatusTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<InstanceNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasChildrenTrait & HasLayoutTrait & HasFramePropertiesTrait & CornerTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & IndividualStrokesTrait & DevStatusTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:41
-
-___
-
-### isLineNode
-
-▸ **isLineNode**(`node`): node is NodeBase\<LineNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<LineNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:42
-
-___
-
-### isLinkUnfurlNode
-
-▸ **isLinkUnfurlNode**(`node`): node is NodeBase\<LinkUnfurlNode\> & Object & IsLayerTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<LinkUnfurlNode\> & Object & IsLayerTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:43
-
-___
-
 ### isObject
 
 ▸ **isObject**(`value`): value is object
@@ -1358,66 +1034,6 @@ value is object
 #### Defined in
 
 packages/figma-parser/src/shared/is-object.util.ts:1
-
-___
-
-### isRectangleNode
-
-▸ **isRectangleNode**(`node`): node is NodeBase\<RectangleNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & CornerTrait & IndividualStrokesTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<RectangleNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & CornerTrait & IndividualStrokesTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:44
-
-___
-
-### isRegularPolygonNode
-
-▸ **isRegularPolygonNode**(`node`): node is NodeBase\<RegularPolygonNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & CornerTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<RegularPolygonNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & CornerTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:45
-
-___
-
-### isSectionNode
-
-▸ **isSectionNode**(`node`): node is NodeBase\<SectionNode\> & Object & IsLayerTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasChildrenTrait & HasLayoutTrait & DevStatusTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<SectionNode\> & Object & IsLayerTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasChildrenTrait & HasLayoutTrait & DevStatusTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:46
 
 ___
 
@@ -1461,26 +1077,6 @@ packages/figma-parser/src/shared/design-tokens-format.types.ts:69
 
 ___
 
-### isShapeWithTextNode
-
-▸ **isShapeWithTextNode**(`node`): node is NodeBase\<ShapeWithTextNode\> & Object & IsLayerTrait & HasLayoutTrait & HasBlendModeAndOpacityTrait & MinimalFillsTrait & HasMaskTrait & HasEffectsTrait & HasExportSettingsTrait & HasTextSublayerTrait & CornerTrait & MinimalStrokesTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<ShapeWithTextNode\> & Object & IsLayerTrait & HasLayoutTrait & HasBlendModeAndOpacityTrait & MinimalFillsTrait & HasMaskTrait & HasEffectsTrait & HasExportSettingsTrait & HasTextSublayerTrait & CornerTrait & MinimalStrokesTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:47
-
-___
-
 ### isSingleNode
 
 ▸ **isSingleNode**(`value`): value is Node
@@ -1501,106 +1097,6 @@ packages/figma-parser/src/document/types.ts:11
 
 ___
 
-### isSliceNode
-
-▸ **isSliceNode**(`node`): node is NodeBase\<SliceNode\> & Object & IsLayerTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<SliceNode\> & Object & IsLayerTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:48
-
-___
-
-### isStarNode
-
-▸ **isStarNode**(`node`): node is NodeBase\<StarNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & CornerTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<StarNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & CornerTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:49
-
-___
-
-### isStickyNode
-
-▸ **isStickyNode**(`node`): node is NodeBase\<StickyNode\> & Object & IsLayerTrait & HasLayoutTrait & HasBlendModeAndOpacityTrait & MinimalFillsTrait & HasMaskTrait & HasEffectsTrait & HasExportSettingsTrait & HasTextSublayerTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<StickyNode\> & Object & IsLayerTrait & HasLayoutTrait & HasBlendModeAndOpacityTrait & MinimalFillsTrait & HasMaskTrait & HasEffectsTrait & HasExportSettingsTrait & HasTextSublayerTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:50
-
-___
-
-### isTableCellNode
-
-▸ **isTableCellNode**(`node`): node is NodeBase\<TableCellNode\> & Object & IsLayerTrait & MinimalFillsTrait & HasLayoutTrait & HasTextSublayerTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<TableCellNode\> & Object & IsLayerTrait & MinimalFillsTrait & HasLayoutTrait & HasTextSublayerTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:52
-
-___
-
-### isTableNode
-
-▸ **isTableNode**(`node`): node is NodeBase\<TableNode\> & Object & IsLayerTrait & HasChildrenTrait & HasLayoutTrait & MinimalStrokesTrait & HasEffectsTrait & HasBlendModeAndOpacityTrait & HasExportSettingsTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<TableNode\> & Object & IsLayerTrait & HasChildrenTrait & HasLayoutTrait & MinimalStrokesTrait & HasEffectsTrait & HasBlendModeAndOpacityTrait & HasExportSettingsTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:51
-
-___
-
 ### isTextDefinition
 
 ▸ **isTextDefinition**(`definition`): definition is FigmaStyleDefinition & Object
@@ -1618,26 +1114,6 @@ definition is FigmaStyleDefinition & Object
 #### Defined in
 
 packages/figma-parser/src/styles/types.ts:15
-
-___
-
-### isTextNode
-
-▸ **isTextNode**(`node`): node is NodeBase\<TextNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & TypePropertiesTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<TextNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & TypePropertiesTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:53
 
 ___
 
@@ -1698,66 +1174,6 @@ value is VariableAlias
 #### Defined in
 
 packages/figma-parser/src/variables/variable.ts:4
-
-___
-
-### isVectorNode
-
-▸ **isVectorNode**(`node`): node is NodeBase\<VectorNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & CornerTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<VectorNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait & CornerTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:54
-
-___
-
-### isWashiTapeNode
-
-▸ **isWashiTapeNode**(`node`): node is NodeBase\<WashiTapeNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<WashiTapeNode\> & Object & IsLayerTrait & HasBlendModeAndOpacityTrait & HasLayoutTrait & MinimalFillsTrait & MinimalStrokesTrait & Object & HasExportSettingsTrait & HasEffectsTrait & HasMaskTrait & TransitionSourceTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:55
-
-___
-
-### isWidgetNode
-
-▸ **isWidgetNode**(`node`): node is NodeBase\<WidgetNode\> & Object & IsLayerTrait & HasExportSettingsTrait & HasChildrenTrait
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `NodeBase`\<`Node`\> |
-
-#### Returns
-
-node is NodeBase\<WidgetNode\> & Object & IsLayerTrait & HasExportSettingsTrait & HasChildrenTrait
-
-#### Defined in
-
-packages/figma-parser/src/shared/types.ts:56
 
 ___
 

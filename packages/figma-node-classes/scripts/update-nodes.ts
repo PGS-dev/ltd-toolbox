@@ -49,6 +49,7 @@ async function init(fileName: string) {
 
     return {
       name,
+      type: members.find(member => member.name === 'type')?.enum?.[0],
       hasChildren: !!members.find(member => member.name === 'children'),
       members,
     };

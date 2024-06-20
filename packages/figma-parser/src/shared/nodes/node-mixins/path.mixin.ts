@@ -1,6 +1,4 @@
-import type { TODO } from '../../../types';
 import { FigmaParserError } from '../../errors/figma-parser-error';
-import type { ParentNode } from '../parent.node';
 import { RichParentNode } from '../rich-parent.node';
 import type { Ctor, NodeKeys } from '../types';
 
@@ -8,14 +6,15 @@ export interface WithPathMixin<T> {
   /**
    * Returns an array with all the parent nodes to this current node.
    *
-   * ```
+   * @example
+   * ```typescript
    * const path = node.path()
    * ```
    */
   path(): T[];
 }
 
-export function WithPath<Base extends Ctor<ParentNode>>(BaseClass: Base) {
+export function WithPath<Base extends Ctor>(BaseClass: Base) {
   return class extends BaseClass {
     path(prop: NodeKeys = 'name'): this[] {
       // eslint-disable-next-line
@@ -33,7 +32,7 @@ export function WithPath<Base extends Ctor<ParentNode>>(BaseClass: Base) {
 
         path.push(parent);
 
-        parent = parent.parent as TODO;
+        parent = parent.parent;
       }
 
       return path.reverse();

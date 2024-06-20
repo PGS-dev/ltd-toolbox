@@ -2,7 +2,7 @@
 // @ts-nocheck
 /**
  * This is generated file. Do not edit manually!
- * Generated on 2024-06-09T14:57:34.152Z
+ * Generated on 2024-06-20T08:53:19.699Z
  */
 
 import type {
@@ -2581,6 +2581,8 @@ export class VectorNode {
     }
   }
 
+  children: SubcanvasNode[];
+
   /**
    * Bounding box of the node in absolute space coordinates.
    */
@@ -2887,6 +2889,8 @@ export class StarNode {
       this.children = raw.children.map(createNode);
     }
   }
+
+  children: SubcanvasNode[];
 
   /**
    * Bounding box of the node in absolute space coordinates.
@@ -3195,6 +3199,8 @@ export class LineNode {
     }
   }
 
+  children: SubcanvasNode[];
+
   /**
    * Bounding box of the node in absolute space coordinates.
    */
@@ -3484,6 +3490,8 @@ export class EllipseNode {
       this.children = raw.children.map(createNode);
     }
   }
+
+  children: SubcanvasNode[];
 
   /**
    * Bounding box of the node in absolute space coordinates.
@@ -3776,6 +3784,8 @@ export class RegularPolygonNode {
       this.children = raw.children.map(createNode);
     }
   }
+
+  children: SubcanvasNode[];
 
   /**
    * Bounding box of the node in absolute space coordinates.
@@ -4083,6 +4093,8 @@ export class RectangleNode {
       this.children = raw.children.map(createNode);
     }
   }
+
+  children: SubcanvasNode[];
 
   /**
    * Bounding box of the node in absolute space coordinates.
@@ -4396,6 +4408,8 @@ export class TextNode {
     }
   }
 
+  children: SubcanvasNode[];
+
   /**
    * Bounding box of the node in absolute space coordinates.
    */
@@ -4422,7 +4436,7 @@ export class TextNode {
   characters: string;
 
   /**
-   * The array corresponds to characters in the text box, where each element references the 'styleOverrideTable' to apply specific styles to each character. The array's length can be less than or equal to the number of characters due to the removal of trailing zeros. Elements with a value of 0 indicate characters that use the default type style. If the array is shorter than the total number of characters, the characters beyond the array's length also use the default style.
+   * Array with same number of elements as characters in text rendered using this style. Each element is a reference to the `styleOverrideTable` and maps to the corresponding character in the characters field. Elements with value 0 have the default type style.
    */
   characterStyleOverrides: undefined[];
 
@@ -4531,11 +4545,6 @@ export class TextNode {
    * - `FILL`: only valid on auto-layout frame children
    */
   layoutSizingVertical?: 'FIXED' | 'HUG' | 'FILL';
-
-  /**
-   * Internal property, preserved for backward compatibility. Avoid using this value.
-   */
-  layoutVersion?: number;
 
   /**
    * An array with the same number of elements as lines in the text node, where lines are delimited by newline or paragraph separator characters. Each element in the array corresponds to the indentation level of a specific line.
@@ -4950,6 +4959,8 @@ export class TableCellNode {
     }
   }
 
+  children: SubcanvasNode[];
+
   /**
    * Bounding box of the node in absolute space coordinates.
    */
@@ -5133,6 +5144,8 @@ export class SliceNode {
       this.children = raw.children.map(createNode);
     }
   }
+
+  children: SubcanvasNode[];
 
   /**
    * A mapping of field to the variables applied to this field. Most fields will only map to a single `VariableAlias`. However, for properties like `fills`, `strokes`, `size`, `componentProperties`, and `textRangeFills`, it is possible to have multiple variables bound to the field.
@@ -5658,6 +5671,8 @@ export class EmbedNode {
     }
   }
 
+  children: SubcanvasNode[];
+
   /**
    * A mapping of field to the variables applied to this field. Most fields will only map to a single `VariableAlias`. However, for properties like `fills`, `strokes`, `size`, `componentProperties`, and `textRangeFills`, it is possible to have multiple variables bound to the field.
    */
@@ -5672,11 +5687,6 @@ export class EmbedNode {
    * A mapping of variable collection ID to mode ID representing the explicitly set modes for this node.
    */
   explicitVariableModes?: object;
-
-  /**
-   * An array of export settings representing images to export from the node.
-   */
-  exportSettings?: ExportSetting[];
 
   /**
    * A string uniquely identifying this node within the document.
@@ -5738,6 +5748,8 @@ export class LinkUnfurlNode {
     }
   }
 
+  children: SubcanvasNode[];
+
   /**
    * A mapping of field to the variables applied to this field. Most fields will only map to a single `VariableAlias`. However, for properties like `fills`, `strokes`, `size`, `componentProperties`, and `textRangeFills`, it is possible to have multiple variables bound to the field.
    */
@@ -5752,11 +5764,6 @@ export class LinkUnfurlNode {
    * A mapping of variable collection ID to mode ID representing the explicitly set modes for this node.
    */
   explicitVariableModes?: object;
-
-  /**
-   * An array of export settings representing images to export from the node.
-   */
-  exportSettings?: ExportSetting[];
 
   /**
    * A string uniquely identifying this node within the document.
@@ -5817,6 +5824,8 @@ export class StickyNode {
       this.children = raw.children.map(createNode);
     }
   }
+
+  children: SubcanvasNode[];
 
   /**
    * Bounding box of the node in absolute space coordinates.
@@ -6046,6 +6055,8 @@ export class ShapeWithTextNode {
       this.children = raw.children.map(createNode);
     }
   }
+
+  children: SubcanvasNode[];
 
   /**
    * Bounding box of the node in absolute space coordinates.
@@ -6324,6 +6335,8 @@ export class ConnectorNode {
     }
   }
 
+  children: SubcanvasNode[];
+
   /**
    * Bounding box of the node in absolute space coordinates.
    */
@@ -6578,6 +6591,8 @@ export class WashiTapeNode {
       this.children = raw.children.map(createNode);
     }
   }
+
+  children: SubcanvasNode[];
 
   /**
    * Bounding box of the node in absolute space coordinates.
@@ -6946,32 +6961,32 @@ export class WidgetNode {
   visible?: boolean;
 }
 
-export const isDocumentNode = (node: AnyNode): node is DocumentNode => node instanceof DocumentNode;
-export const isCanvasNode = (node: AnyNode): node is CanvasNode => node instanceof CanvasNode;
-export const isBooleanOperationNode = (node: AnyNode): node is BooleanOperationNode => node instanceof BooleanOperationNode;
-export const isSectionNode = (node: AnyNode): node is SectionNode => node instanceof SectionNode;
-export const isFrameNode = (node: AnyNode): node is FrameNode => node instanceof FrameNode;
-export const isGroupNode = (node: AnyNode): node is GroupNode => node instanceof GroupNode;
-export const isComponentNode = (node: AnyNode): node is ComponentNode => node instanceof ComponentNode;
-export const isComponentSetNode = (node: AnyNode): node is ComponentSetNode => node instanceof ComponentSetNode;
-export const isVectorNode = (node: AnyNode): node is VectorNode => node instanceof VectorNode;
-export const isStarNode = (node: AnyNode): node is StarNode => node instanceof StarNode;
-export const isLineNode = (node: AnyNode): node is LineNode => node instanceof LineNode;
-export const isEllipseNode = (node: AnyNode): node is EllipseNode => node instanceof EllipseNode;
-export const isRegularPolygonNode = (node: AnyNode): node is RegularPolygonNode => node instanceof RegularPolygonNode;
-export const isRectangleNode = (node: AnyNode): node is RectangleNode => node instanceof RectangleNode;
-export const isTextNode = (node: AnyNode): node is TextNode => node instanceof TextNode;
-export const isTableNode = (node: AnyNode): node is TableNode => node instanceof TableNode;
-export const isTableCellNode = (node: AnyNode): node is TableCellNode => node instanceof TableCellNode;
-export const isSliceNode = (node: AnyNode): node is SliceNode => node instanceof SliceNode;
-export const isInstanceNode = (node: AnyNode): node is InstanceNode => node instanceof InstanceNode;
-export const isEmbedNode = (node: AnyNode): node is EmbedNode => node instanceof EmbedNode;
-export const isLinkUnfurlNode = (node: AnyNode): node is LinkUnfurlNode => node instanceof LinkUnfurlNode;
-export const isStickyNode = (node: AnyNode): node is StickyNode => node instanceof StickyNode;
-export const isShapeWithTextNode = (node: AnyNode): node is ShapeWithTextNode => node instanceof ShapeWithTextNode;
-export const isConnectorNode = (node: AnyNode): node is ConnectorNode => node instanceof ConnectorNode;
-export const isWashiTapeNode = (node: AnyNode): node is WashiTapeNode => node instanceof WashiTapeNode;
-export const isWidgetNode = (node: AnyNode): node is WidgetNode => node instanceof WidgetNode;
+export const isDocumentNodeInstance = <N extends AnyNode>(node: N): node is N & DocumentNode => 'type' in node && node.type === 'DOCUMENT';
+export const isCanvasNodeInstance = <N extends AnyNode>(node: N): node is N & CanvasNode => 'type' in node && node.type === 'CANVAS';
+export const isBooleanOperationNodeInstance = <N extends AnyNode>(node: N): node is N & BooleanOperationNode => 'type' in node && node.type === 'BOOLEAN_OPERATION';
+export const isSectionNodeInstance = <N extends AnyNode>(node: N): node is N & SectionNode => 'type' in node && node.type === 'SECTION';
+export const isFrameNodeInstance = <N extends AnyNode>(node: N): node is N & FrameNode => 'type' in node && node.type === 'FRAME';
+export const isGroupNodeInstance = <N extends AnyNode>(node: N): node is N & GroupNode => 'type' in node && node.type === 'GROUP';
+export const isComponentNodeInstance = <N extends AnyNode>(node: N): node is N & ComponentNode => 'type' in node && node.type === 'COMPONENT';
+export const isComponentSetNodeInstance = <N extends AnyNode>(node: N): node is N & ComponentSetNode => 'type' in node && node.type === 'COMPONENT_SET';
+export const isVectorNodeInstance = <N extends AnyNode>(node: N): node is N & VectorNode => 'type' in node && node.type === 'VECTOR';
+export const isStarNodeInstance = <N extends AnyNode>(node: N): node is N & StarNode => 'type' in node && node.type === 'STAR';
+export const isLineNodeInstance = <N extends AnyNode>(node: N): node is N & LineNode => 'type' in node && node.type === 'LINE';
+export const isEllipseNodeInstance = <N extends AnyNode>(node: N): node is N & EllipseNode => 'type' in node && node.type === 'ELLIPSE';
+export const isRegularPolygonNodeInstance = <N extends AnyNode>(node: N): node is N & RegularPolygonNode => 'type' in node && node.type === 'REGULAR_POLYGON';
+export const isRectangleNodeInstance = <N extends AnyNode>(node: N): node is N & RectangleNode => 'type' in node && node.type === 'RECTANGLE';
+export const isTextNodeInstance = <N extends AnyNode>(node: N): node is N & TextNode => 'type' in node && node.type === 'TEXT';
+export const isTableNodeInstance = <N extends AnyNode>(node: N): node is N & TableNode => 'type' in node && node.type === 'TABLE';
+export const isTableCellNodeInstance = <N extends AnyNode>(node: N): node is N & TableCellNode => 'type' in node && node.type === 'TABLE_CELL';
+export const isSliceNodeInstance = <N extends AnyNode>(node: N): node is N & SliceNode => 'type' in node && node.type === 'SLICE';
+export const isInstanceNodeInstance = <N extends AnyNode>(node: N): node is N & InstanceNode => 'type' in node && node.type === 'INSTANCE';
+export const isEmbedNodeInstance = <N extends AnyNode>(node: N): node is N & EmbedNode => 'type' in node && node.type === 'EMBED';
+export const isLinkUnfurlNodeInstance = <N extends AnyNode>(node: N): node is N & LinkUnfurlNode => 'type' in node && node.type === 'LINK_UNFURL';
+export const isStickyNodeInstance = <N extends AnyNode>(node: N): node is N & StickyNode => 'type' in node && node.type === 'STICKY';
+export const isShapeWithTextNodeInstance = <N extends AnyNode>(node: N): node is N & ShapeWithTextNode => 'type' in node && node.type === 'SHAPE_WITH_TEXT';
+export const isConnectorNodeInstance = <N extends AnyNode>(node: N): node is N & ConnectorNode => 'type' in node && node.type === 'CONNECTOR';
+export const isWashiTapeNodeInstance = <N extends AnyNode>(node: N): node is N & WashiTapeNode => 'type' in node && node.type === 'WASHI_TAPE';
+export const isWidgetNodeInstance = <N extends AnyNode>(node: N): node is N & WidgetNode => 'type' in node && node.type === 'WIDGET';
 export const hasChildren = (node: AnyNode): node is DocumentNode | CanvasNode | BooleanOperationNode | SectionNode | FrameNode | GroupNode | ComponentNode | ComponentSetNode | TableNode | InstanceNode | WidgetNode => 'children' in node;
 
 const typeConstructorMap = {
@@ -7013,4 +7028,15 @@ export type InstanceByRawNode<T extends RawNode> = T extends { type: infer R } ?
 
 export function createNode<N extends RawNode>(node: N): InstanceByRawNode<N> {
   return new typeConstructorMap[node.type](node);
+}
+
+export function withPrototype(prototype) {
+  return function createNode<N extends RawNode>(node: N): InstanceByRawNode<N> {
+    const nodeInstance = new typeConstructorMap[node.type](node);
+    return Object.setPrototypeOf(nodeInstance, prototype);
+  };
+}
+
+export function getNodeConstructor<N extends RawNode>(node: N): (typeof typeConstructorMap)[TypeOfRawNode<N>] {
+  return typeConstructorMap[node.type];
 }

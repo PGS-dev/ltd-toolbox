@@ -22,6 +22,12 @@ You can use it for example to find all unkown nodes
 
 **`Example`**
 
+```ts
+
+```
+
+**`Example`**
+
 ```typescript
  defaultGetter: (node) => ({
    type: 'unknown',
@@ -31,7 +37,7 @@ You can use it for example to find all unkown nodes
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:109
+packages/figma-parser/src/contents/types.ts:130
 
 ___
 
@@ -50,7 +56,7 @@ true
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:91
+packages/figma-parser/src/contents/types.ts:109
 
 ___
 
@@ -62,4 +68,4 @@ Whether nodes that's only property is `children` should be skipped, or not.
 
 #### Defined in
 
-packages/figma-parser/src/contents/types.ts:95
+packages/figma-parser/src/contents/types.ts:113

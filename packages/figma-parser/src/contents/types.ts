@@ -1,6 +1,8 @@
 import type { TypeStyle } from '@figma/rest-api-spec';
+import type { AnyNode } from '@ltd-toolbox/figma-node-classes'
+import type { FigmaApiInterface } from '../core';
+import type { ParentInterface } from '../shared/nodes/types';
 import type { OnPurposeAny } from '../types';
-import { ContentNode } from './content-node';
 
 export interface TypeStyleTable {
   [p: string]: TypeStyle;
@@ -14,43 +16,54 @@ export interface GetterNode {
 
 export type GetterTreeNode = GetterNode & { children?: GetterNode[] };
 
-export type GetterTestFn = (node: ContentNode) => boolean;
-export type GetterGetFn = (node: ContentNode) => GetterTreeNode & { children?: GetterTreeNode[] | false };
+export type GetterTestFn = <Node extends ParentInterface & AnyNode>(node: Node) => boolean;
+export type GetterGetFn = <Node extends ParentInterface & AnyNode>(node: Node) => GetterTreeNode & { children?: GetterTreeNode[] | false };
 
 export type Getter = {
   /**
    * Test function that determines if get method should be executed on current node.
    * You can use it to perform the getter only on nodes that match certain rules.
    *
+   *
+   * @example
+   *
    * @example
    * ```typescript
    * const getter: Getter = {
-   *  test: (node: ContentNode) => node.raw.type === 'INSTANCE' && node.raw.name === 'heading 1'
+   *  test: (node) => node.raw.type === 'INSTANCE' && node.raw.name === 'heading 1'
    *  [...]
    * }
    * ```
    */
   test: GetterTestFn;
   /**
-   * Getter function that gets the proper contents for current node if it passed the `test`.
+   * Getter function specifies what kind of data needs to be fetched from node and how to get it. It is executed only if node passed getter's `test` predicate.
+   *
+   *
+   * @example
    *
    * @example
    * ```typescript
    * const getter: Getter = {
    *   [...]
-   *   get: (node: ContentNode) => ({
+   *   get: (node) => ({
    *     type: 'table-row'
    *   })
    * }
-   * ```
+   *
+   * @example
+   * ```typescript
    *
    * If you wish to parse the children on your own, you can return your own `children`, and parser will not overwrite it.
+   *
+   *
+   * @example
    *
    * @example
    * ```typescript
    * const getter: Getter = {
    *   [...]
-   *   get: (node: ContentNode) => {
+   *   get: (node) => {
    *     const listItems: TreeNode[] = getListItems(node)
    *
    *     return {
@@ -59,14 +72,19 @@ export type Getter = {
    *     }
    *   }
    * }
-   * ```
+   *
+   * @example
+   * ```typescript
    *
    * If you don't want to provide any children for the TreeNode, return `children: false`. This property will be removed from final tree.
+   *
+   * @example
+   *
    * @example
    * ```typescript
    * const getter: Getter = {
    *   [...]
-   *   get: (node: ContentNode) => {
+   *   get: (node) => {
    *     const listItems: TreeNode[] = getListItems(node)
    *
    *     return {
@@ -97,6 +115,9 @@ export interface ParseTreeOptions {
    * Default getter for nodes that don't pass the test of any of provided getters.
    * By default it returns an empty object, which then is ommited, when `omitEmpty` is set to true.
    * You can use it for example to find all unkown nodes
+   *
+   *
+   * @example
    *
    * @example
    * ```typescript
@@ -169,3 +190,8 @@ export const defaultImageOptions: ImageOptions = {
   contents_only: true,
   use_absolute_bounds: false,
 };
+
+export interface CurrentContext {
+  apiClient: FigmaApiInterface;
+  fileId: string;
+}

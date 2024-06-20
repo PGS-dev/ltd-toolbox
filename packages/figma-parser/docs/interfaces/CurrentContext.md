@@ -6,14 +6,25 @@
 
 ### Properties
 
-- [a](CurrentContext.md#a)
+- [apiClient](CurrentContext.md#apiclient)
+- [fileId](CurrentContext.md#fileid)
 
 ## Properties
 
-### a
+### apiClient
 
-• `Optional` **a**: `number`
+• **apiClient**: [`FigmaApiInterface`](FigmaApiInterface.md)
 
 #### Defined in
 
-packages/figma-parser/src/contents/content-node.ts:23
+packages/figma-parser/src/contents/types.ts:195
+
+___
+
+### fileId
+
+• **fileId**: `string`
+
+#### Defined in
+
+packages/figma-parser/src/contents/types.ts:196

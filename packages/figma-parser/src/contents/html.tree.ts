@@ -1,18 +1,19 @@
+import { isInstanceNodeInstance, isTextNodeInstance } from '@ltd-toolbox/figma-node-classes';
 import { h } from 'hastscript';
-import { isInstanceNode, isTextNode } from '../shared/types';
-import { ContentNode } from './content-node';
+import type { OnPurposeAny } from '../types';
+
 import type { Getter } from './types';
 
-const getListItems = (node: ContentNode) => {
+const getListItems = (node: OnPurposeAny) => {
   let items: string[] = [];
 
-  if (node.children.length === 1 && isTextNode(node.children[0])) {
-    const text = node.children[0].getRawText()!;
+  if (node.children.length === 1 && isTextNodeInstance(node.children[0])) {
+    const text = typeof node.children[0].getRawText === 'function' ? node.children[0].getRawText() : '';
     items = text.split('\n').filter(Boolean);
   }
 
   if (node.children.length > 1) {
-    items = node.children.filter(isTextNode).map((node) => node.getRawText()!);
+    items = node.children.filter(isTextNodeInstance).map((node: OnPurposeAny) => node.getRawText());
   }
 
   return items;
@@ -20,7 +21,7 @@ const getListItems = (node: ContentNode) => {
 
 const heading: Getter = {
   test(node) {
-    return isInstanceNode(node) && ['Heading Lv.1', 'Heading Lv.2', 'Heading Lv.3', 'Heading Lv.4', 'Heading Lv.5', 'Heading Lv.6'].includes(node.name);
+    return isInstanceNodeInstance(node as OnPurposeAny) && ['Heading Lv.1', 'Heading Lv.2', 'Heading Lv.3', 'Heading Lv.4', 'Heading Lv.5', 'Heading Lv.6'].includes(node.name);
   },
   get(node) {
     const depth = node.name.at(-1)!;
@@ -31,7 +32,7 @@ const heading: Getter = {
 
 const unorderedList: Getter = {
   test(node) {
-    return isInstanceNode(node) && node.name === 'UnorderedList';
+    return isInstanceNodeInstance(node as OnPurposeAny) && node.name === 'UnorderedList';
   },
   get(node) {
     const items = getListItems(node);
@@ -44,7 +45,7 @@ const unorderedList: Getter = {
 
 const orderedList: Getter = {
   test(node) {
-    return isInstanceNode(node) && node.name === 'OrderedList';
+    return isInstanceNodeInstance(node as OnPurposeAny) && node.name === 'OrderedList';
   },
   get(node) {
     const items = getListItems(node);
@@ -57,7 +58,7 @@ const orderedList: Getter = {
 
 const paragraph: Getter = {
   test(node) {
-    return isInstanceNode(node) && node.name === 'Paragraph';
+    return isInstanceNodeInstance(node as OnPurposeAny) && node.name === 'Paragraph';
   },
   get(node) {
     return h('p', [node.getRawChildrenText()]);

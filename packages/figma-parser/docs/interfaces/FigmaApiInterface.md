@@ -17,11 +17,6 @@
 
 Requests given resources with path and params.
 
-```
-const api = figmaApi()
-const nodes == await api.request('/files/<FIGMAFILEID>/nodes', {ids: ['111:11', '111:12', depth: 1]})
-```
-
 #### Type parameters
 
 | Name | Type |
@@ -33,15 +28,24 @@ const nodes == await api.request('/files/<FIGMAFILEID>/nodes', {ids: ['111:11', 
 | Name | Type |
 | :------ | :------ |
 | `path` | `string` |
-| `params?` | `Record`\<`string`, `string`\> |
+| `params?` | `Record`\<`string`, `any`\> |
 
 #### Returns
 
 `Promise`\<`Response`\>
 
+**`Example`**
+
+```typescript
+const api = figmaApi()
+const nodes == await api.request('/files/<FIGMAFILEID>/nodes', {ids: ['111:11', '111:12', depth: 1]})
+
+@example
+```typescript
+
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:57
+packages/figma-parser/src/core/types.ts:66
 
 ___
 
@@ -50,14 +54,6 @@ ___
 ▸ **withErrorDescriptions**(`descriptions`): [`FigmaApiInterface`](FigmaApiInterface.md)
 
 Add custom error descriptions for error codes in form of an object.
-
-```
-const api = figmaApi()
-const withMyOwnErrorDescriptions = api.withErrorDescriptions({
-  404: 'These are not the resources you are looking for...',
-  403: (response) => response.message || 'Unknown error'
-})
-```
 
 #### Parameters
 
@@ -69,6 +65,18 @@ const withMyOwnErrorDescriptions = api.withErrorDescriptions({
 
 [`FigmaApiInterface`](FigmaApiInterface.md)
 
+**`Example`**
+
+```typescript
+const api = figmaApi()
+const withMyOwnErrorDescriptions = api.withErrorDescriptions({
+  404: 'These are not the resources you are looking for...',
+  403: (response) => response.message || 'Unknown error'
+})
+
+@example
+```typescript
+
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:45
+packages/figma-parser/src/core/types.ts:50

@@ -5,8 +5,8 @@
   "license": "MIT",
   "keywords": [],
   "scripts": {
-    "build": "yarn pkgroll",
-    "update": "yarn tsx scripts/update-nodes.ts",
+    "build": "pkgroll",
+    "update": "tsx scripts/update-nodes.ts",
     "format": "prettier ./src/ --write",
     "postinstall": "yarn update"
   },
@@ -40,6 +40,6 @@
     "tsx": "^4.13.2"
   },
   "dependencies": {
-    "@figma/rest-api-spec": "^0.15.0"
+    "@figma/rest-api-spec": "patch:@figma/rest-api-spec@npm%3A0.10.0#~/.yarn/patches/@figma-rest-api-spec-npm-0.10.0-287584738a.patch"
   }
 }

@@ -26,7 +26,7 @@ false
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:13
+packages/figma-parser/src/core/types.ts:14
 
 ___
 
@@ -44,7 +44,7 @@ Directory to store cached files
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:18
+packages/figma-parser/src/core/types.ts:19
 
 ___
 
@@ -62,4 +62,4 @@ Defines how long cache should live. Cache file creation time is used, therefore 
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:23
+packages/figma-parser/src/core/types.ts:24

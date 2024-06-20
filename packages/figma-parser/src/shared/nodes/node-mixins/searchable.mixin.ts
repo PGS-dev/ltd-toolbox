@@ -1,11 +1,13 @@
+import type { OnPurposeAny } from '../../../types';
 import { walk } from '../../walk.util';
-import type { ParentNode } from '../parent.node';
 import type { Ctor } from '../types';
 
 export interface SearchableMixin<T> {
   /**
    * Finds the first node in node's children that matches the given predicate.
-   * ```
+   *
+   * @example
+   * ```typescript
    * const title = section.find(node => node.name === 'title')
    * ```
    */
@@ -13,17 +15,19 @@ export interface SearchableMixin<T> {
 
   /**
    * Finds the first node deep in the tree that matches the given predicate.
-   * ```
+   *
+   * @example
+   * ```typescript
    * const section = contents.findDeep((node) => node.type === 'FRAME' && node.name === 'docs-section')
    * ```
    */
   findDeep(predicate: (node: T) => boolean): T | undefined;
 }
 
-export function Searchable<Base extends Ctor<ParentNode>>(BaseClass: Base) {
+export function Searchable<Base extends Ctor>(BaseClass: Base) {
   return class extends BaseClass {
     find(predicate: (node: this, index: number) => boolean): this | undefined {
-      return this.children.find((node, index) => predicate(node, index));
+      return this.children.find((node: OnPurposeAny, index: number) => predicate(node, index));
     }
 
     findDeep(predicate: (node: this) => boolean): this | undefined {

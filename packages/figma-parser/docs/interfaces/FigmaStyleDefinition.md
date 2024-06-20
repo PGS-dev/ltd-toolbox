@@ -15,7 +15,7 @@
 
 ### definition
 
-• **definition**: ``null`` \| `object` \| `Paint`[] \| `Effect`[] \| `TypeStyle`
+• **definition**: ``null`` \| `object` \| `TypeStyle` \| `Effect`[] \| `Paint`[]
 
 #### Defined in
 

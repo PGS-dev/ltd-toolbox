@@ -32,6 +32,8 @@ export class <%= definition.name %> { <% -%>
     }
   }
 
+<%= !(definition.members.find(member => member.name === 'children')) ? `children: SubcanvasNode[]` : '' -%>
+
 <% for (const member of definition.members) { %>
 <%
     const type = member.typeRef || (Array.isArray(member.type) ? member.type?.join(' | ') : member.type)
@@ -54,7 +56,7 @@ export class <%= definition.name %> { <% -%>
 <% } %>
 
 <% for (const definition of definitions) { %>
-export const is<%= definition.name %> = (node: AnyNode): node is <%= definition.name %> => node instanceof <%= definition.name %>;<% -%>
+export const is<%= definition.name %>Instance = <N extends AnyNode>(node: N): node is N & <%= definition.name %> => 'type' in node && node.type === '<%= definition.type %>';<% -%>
 <% } %>
 export const hasChildren = (node: AnyNode): node is <%= definitions.filter(def => def.hasChildren).map(def => def.name).join(' | ') %> => 'children' in node;
 
@@ -74,4 +76,15 @@ export type InstanceByRawNode< T extends RawNode> = T extends { type: infer R } 
 
 export function createNode<N extends RawNode>(node: N): InstanceByRawNode<N> {
   return new typeConstructorMap[node.type](node);
+}
+
+export function withPrototype(prototype) {
+  return function createNode<N extends RawNode>(node: N): InstanceByRawNode<N> {
+    const nodeInstance = new typeConstructorMap[node.type](node);
+    return Object.setPrototypeOf(nodeInstance, prototype)
+  }
+}
+
+export function getNodeConstructor<N extends RawNode>(node: N): (typeof typeConstructorMap)[TypeOfRawNode<N>] {
+  return typeConstructorMap[node.type]
 }
