@@ -53,10 +53,10 @@ export const DEFINITIONS_FIXTURE: FigmaStyleDefinition[] = [
         type: 'DROP_SHADOW',
         visible: true,
         color: {
-          r: 0.062745101749897,
-          g: 0.0941176488995552,
-          b: 0.1568627506494522,
-          a: 0.029999999329447746,
+          r: 1,
+          g: 0,
+          b: 0,
+          a: 1,
         },
         blendMode: 'NORMAL',
         offset: {
@@ -71,10 +71,10 @@ export const DEFINITIONS_FIXTURE: FigmaStyleDefinition[] = [
         type: 'DROP_SHADOW',
         visible: true,
         color: {
-          r: 0.062745101749897,
-          g: 0.0941176488995552,
-          b: 0.1568627506494522,
-          a: 0.07999999821186066,
+          r: 0,
+          g: 0,
+          b: 1,
+          a: 1,
         },
         blendMode: 'NORMAL',
         offset: {

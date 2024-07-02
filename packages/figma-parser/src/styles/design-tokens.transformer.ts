@@ -37,7 +37,7 @@ const shadowTransform = (style: Effect[]) => {
   const shadowStyles = style.filter((effect) => effect.type === 'DROP_SHADOW' || effect.type === 'INNER_SHADOW') as (DropShadowEffect | InnerShadowEffect)[];
   if (!shadowStyles.length) throw new GetStylesError('Expected Shadow Effect definitions in given style!');
 
-  return shadowStyles.map((effect) => {
+  return shadowStyles.reverse().map((effect) => {
     const requiredEffect = effect;
     return {
       color: rgbaToHexa(requiredEffect.color),

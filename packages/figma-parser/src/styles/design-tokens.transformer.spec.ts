@@ -56,8 +56,19 @@ describe('Design Tokens Transformer', () => {
         const output = DesignTokens()(DEFINITIONS_FIXTURE);
         const shadowToken = output['shadow.token']['$value'] as ShadowTokenValue;
 
+        console.log( shadowToken )
+
         shadowToken.forEach((shadow: ShadowStop) => expect(shadow).toMatchSchema(valueSchema));
       });
+
+      test('Shadow stops should have correct order', async () => {
+        // Figma Rest API sends gradient stops in reversed oreder.
+        const output = DesignTokens()(DEFINITIONS_FIXTURE);
+        const shadowToken = output['shadow.token']['$value'] as ShadowTokenValue;
+
+        expect(shadowToken[0].color).toEqual('#0000ffff')
+        expect(shadowToken[1].color).toEqual('#ff0000ff')
+      })
     });
 
     describe('Typography Token', () => {
