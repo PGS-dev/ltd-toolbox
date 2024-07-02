@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.8](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.7...@ltd-toolbox/figma-parser@0.1.0-alpha.8) (2024-07-02)
+
+### Bug Fixes
+
+- fixed shadow order in design tokens transformer ([9051087](https://github-devhajduk/PGS-dev/ltd-toolbox/commit/9051087d327460398fc1e5c769945d4e50d1c5b9))
+
+### Features
+
+- add getImageUrl and getImage to ContentNode ([8eba650](https://github-devhajduk/PGS-dev/ltd-toolbox/commit/8eba650e25b61e91dd4cfa8f8fe2b4f543b7f8c9))
+
 # [0.1.0-alpha.7](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.6...@ltd-toolbox/figma-parser@0.1.0-alpha.7) (2024-05-29)
 
 **Note:** Version bump only for package @ltd-toolbox/figma-parser
