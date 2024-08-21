@@ -1,9 +1,9 @@
-import { isEmptyObject } from '../shared';
+import { isEmptyObject, logger } from '../shared'
 import { FigmaParserError } from '../shared/errors/figma-parser-error';
 import { isObject } from '../shared/is-object.util';
 import { InMemoryCache } from './in-memory-cache';
 import { PersistentCache } from './persistent-cache';
-import { RequestError, requestLogger } from './request-error';
+import { RequestError } from './request-error';
 import type { ErrorDescriptions, FigmaApiInterface, FigmaPAT, FigmaParserOptions } from './types';
 
 class FigmaApi implements FigmaApiInterface {
@@ -25,6 +25,7 @@ class FigmaApi implements FigmaApiInterface {
     this.options = { ...this.options, ...userOptions } as FigmaParserOptions;
     this.cache = new PersistentCache(this.options.cacheDir, this.options.cacheLifetime);
     this.softCache = new InMemoryCache();
+    logger.level = this.options.logLevel
   }
 
   readonly defaultErrorDescriptions: ErrorDescriptions = {
@@ -52,6 +53,7 @@ class FigmaApi implements FigmaApiInterface {
   }
 
   private getFromPersistentCache(path: string) {
+    const requestLogger = logger.withTag('request')
     const cached = this.cache.get(path);
 
     if (cached && this.options.cache) {
@@ -65,6 +67,7 @@ class FigmaApi implements FigmaApiInterface {
   }
 
   public async request<Response = object>(path: string, params?: Record<string, string>): Promise<Response> {
+    const requestLogger = logger.withTag('request')
     const pathWithParams = this.buildPath(path, params);
     const requestUrl = `https://api.figma.com/v1/${pathWithParams}`;
 

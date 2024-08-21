@@ -1,5 +1,5 @@
 import type { GetImagesResponse } from '@figma/rest-api-spec'
-import { requestLogger } from '../../core/request-error'
+import { logger } from '../../shared'
 import { FigmaParserError } from '../../shared/errors/figma-parser-error'
 import { RichParentNode } from '../../shared/nodes/rich-parent.node'
 import type { Ctor } from '../../shared/nodes/types'
@@ -69,6 +69,7 @@ export function WithImagesGetters<Base extends Ctor>(Base: Base) {
     }
 
     async getImage(options?: Partial<ImageOptions>): Promise<Buffer> {
+      const requestLogger = logger.withTag('imageRequest')
       const context = this.#getCurrentContext()
       if (!context) throw new FigmaParserError(`No access to current api instance!`, `Couldn't find currentContext!.`);
 
@@ -95,6 +96,7 @@ export function WithImagesGetters<Base extends Ctor>(Base: Base) {
     }
 
     async * getImages(nodes: this[], options?: Partial<ImageOptions>): AsyncGenerator<[this, Buffer]>{
+      const requestLogger = logger.withTag('imageRequest')
       const context = this.#getCurrentContext()
       if (!context) throw new FigmaParserError(`No access to current api instance!`, `Couldn't find currentContext!.`);
 
@@ -123,7 +125,6 @@ export function WithImagesGetters<Base extends Ctor>(Base: Base) {
         requestLogger.debug('Request finalized successfuly.');
 
         if (clientOptions.cache) {
-          console.log( imageUrl )
           cache.set(imageUrl, img)
           requestLogger.debug(`Request cached.`);
         }

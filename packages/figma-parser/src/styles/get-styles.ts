@@ -1,6 +1,7 @@
 import type { GetFileNodesResponse, GetFileStylesResponse } from '@figma/rest-api-spec';
 import type { ErrorDescriptions, FigmaApiInterface } from '../core/types';
-import { GetStylesError, stylesLogger } from './get-styles.error';
+import { logger } from '../shared'
+import { GetStylesError } from './get-styles.error';
 import { StylesProcessor } from './styles-processor';
 
 const errorDescriptions: ErrorDescriptions = {
@@ -21,6 +22,7 @@ const errorDescriptions: ErrorDescriptions = {
  * Asynchronously fetches and processes styles from a specified Figma file.
  */
 export async function getStyles(api: FigmaApiInterface, fileId: string) {
+  const stylesLogger = logger.withTag('getStyles')
   if (!fileId) throw new GetStylesError('Expected fileId.');
   const apiWithErrors = api.withErrorDescriptions(errorDescriptions);
   const stylesUrl = `files/${fileId}/styles`;
