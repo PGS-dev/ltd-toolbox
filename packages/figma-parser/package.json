@@ -12,7 +12,7 @@
     "fetch"
   ],
   "scripts": {
-    "build": "pkgroll build && typedoc",
+    "build": "pkgroll build",
     "test": "vitest",
     "lint": "tsc && eslint ./src --ext ts --report-unused-disable-directives --max-warnings 0",
     "format": "prettier ./src/ --write",
@@ -35,8 +35,7 @@
   "dependencies": {
     "consola": "^3.2.3",
     "hastscript": "^9.0.0",
-    "type-fest": "^4.12.0",
-    "unist-builder": "^4.0.0"
+    "type-fest": "^4.12.0"
   },
   "publishConfig": {
     "access": "public"

@@ -1,5 +1,5 @@
-import type { OnPurposeAny, TODO } from '../../../types';
-import { RichParentNode } from '../rich-parent.node';
+import type { OnPurposeAny } from '../../../types';
+import type { RichParentNode } from '../rich-parent.node';
 import type { Ctor } from '../types';
 
 export interface FilterableMixin<T> {
@@ -29,22 +29,30 @@ export interface FilterableMixin<T> {
 
 export function Filterable<Base extends Ctor>(BaseClass: Base) {
   return class extends BaseClass {
-    fitler(predicate: (node: TODO) => boolean): TODO {
+    fitler(predicate: (node: this) => boolean): this[] {
       const children = this.children.filter(predicate);
 
       return children;
     }
 
-    filterDeep(predicate: (node: TODO) => boolean): TODO {
-      const mapper = (node: this): this | RichParentNode => {
-        const newNode = predicate(node) ? node : new RichParentNode();
+    filterDeep(predicate: (node: this) => boolean): this[] {
+      const out: this[] = [];
 
-        newNode.children = node.children.map((childNode: OnPurposeAny) => mapper(childNode));
+      const mapper = (node: this) => {
+        if (!node) return
 
-        return newNode;
+        if (predicate(node)) {
+          out.push(node)
+        }
+
+        if (!node || !node.children) return
+
+        node.children.forEach((childNode: OnPurposeAny) => mapper(childNode))
       };
 
-      return mapper(this);
+      mapper(this);
+
+      return out
     }
   };
 }

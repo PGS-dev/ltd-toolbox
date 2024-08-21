@@ -85,6 +85,7 @@ export function Traversable<Base extends Ctor>(BaseClass: Base) {
     glob(paths: string | string[]): this[] {
       const children: this[] = [];
       const pathsArray = Array.isArray(paths) ? paths : [paths];
+      // TODO: consider if converting to lower case is good idea, since it may provide wrong results
       const lowerCasePaths = pathsArray.map((p) => p.toLowerCase());
 
       const matcher = pm(lowerCasePaths);

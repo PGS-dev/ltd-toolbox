@@ -4,6 +4,7 @@ import { createConsola } from 'consola';
 export function createLogger(options?: Partial<ConsolaOptions>): ConsolaInstance {
   return createConsola({
     ...options,
+    level: 5,
     formatOptions: {
       date: false,
     },

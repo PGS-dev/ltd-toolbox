@@ -5,6 +5,7 @@ import type { OnPurposeAny } from '../types';
 import { Parseable, type ParsableMixin } from './node-mixins/parsable.mixin';
 import { WithImagesGetters, type WithImageGettersMixin } from './node-mixins/with-image-getters.mixin';
 import { WithTextGetters, type WithTextGettersMixin } from './node-mixins/with-text-getters.mixin';
+import type { CurrentContext } from './types'
 
 export type ContentUtilsInterface = ParsableMixin & WithImageGettersMixin & WithTextGettersMixin;
 
@@ -13,6 +14,7 @@ export function ContentUtils<Base extends Ctor>(BaseClass: Base) {
 }
 
 export interface Tree<N extends RawNode = RawNode> extends ContentUtilsInterface, NodeUtilsInterface<Tree>, Record<keyof RawNode, OnPurposeAny> {
+  currentContext?: CurrentContext;
   children: Tree<N>[];
   parent: Tree;
 }

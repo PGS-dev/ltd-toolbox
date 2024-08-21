@@ -1,8 +1,4 @@
-import { createLogger } from '../logger';
-
 export class FigmaParserError extends Error {
-  logger = createLogger();
-
   constructor(
     public message: string = '(no message provided)',
     public cause: string = '(no description provided)'

@@ -1,18 +1,10 @@
 import { isEmptyObject } from '../shared';
 import { FigmaParserError } from '../shared/errors/figma-parser-error';
 import { isObject } from '../shared/is-object.util';
-import { createLogger } from '../shared/logger';
 import { InMemoryCache } from './in-memory-cache';
 import { PersistentCache } from './persistent-cache';
 import { RequestError, requestLogger } from './request-error';
 import type { ErrorDescriptions, FigmaApiInterface, FigmaPAT, FigmaParserOptions } from './types';
-
-process.on('uncaughtException', (error: FigmaParserError) => {
-  const logger = error.logger || createLogger();
-  logger.error(error.message);
-  throw error;
-  process.exit(1);
-});
 
 class FigmaApi implements FigmaApiInterface {
   cache: PersistentCache;
@@ -22,6 +14,7 @@ class FigmaApi implements FigmaApiInterface {
     cache: false,
     cacheDir: './.cache',
     cacheLifetime: 1000 * 60 * 60 * 8, // 8 hours
+    logLevel: 3 // Informational logs
   };
 
   constructor(
@@ -62,7 +55,7 @@ class FigmaApi implements FigmaApiInterface {
     const cached = this.cache.get(path);
 
     if (cached && this.options.cache) {
-      requestLogger.success(`Matching cached request found. Retrieving from cache.`);
+      requestLogger.debug(`Matching cached request found. Retrieving from cache.`);
       return JSON.parse(cached);
     }
 
@@ -86,7 +79,7 @@ class FigmaApi implements FigmaApiInterface {
       return Promise.resolve(persistentlyCached) as Response;
     }
 
-    requestLogger.start(`Requesting ${requestUrl}...`);
+    requestLogger.debug(`Requesting ${requestUrl}...`);
 
     const headers = new Headers({
       'X-Figma-Token': this.token,
@@ -106,15 +99,15 @@ class FigmaApi implements FigmaApiInterface {
           throw new RequestError(response.status, response.statusText, errorDescription);
         }
 
-        requestLogger.success('Request finalized successfuly.');
+        requestLogger.debug('Request finalized successfuly.');
         return response.json() as Response;
       });
 
     this.softCache.set(path, JSON.stringify(data));
 
     if (this.options.cache) {
-      this.cache.set(path, JSON.stringify(data));
-      requestLogger.info(`Request cached.`);
+      this.cache.set(pathWithParams, JSON.stringify(data));
+      requestLogger.debug(`Request cached.`);
     }
 
     return data as Response;

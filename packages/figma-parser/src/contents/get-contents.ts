@@ -11,5 +11,10 @@ const errorDescriptions: ErrorDescriptions = {
 export async function getContents(apiClient: FigmaApiInterface, fileId: string) {
   const file = await apiClient.withErrorDescriptions(errorDescriptions).request<GetFileResponse>(`files/${fileId}`);
   const doc = file.document as unknown as RawDocumentNode;
-  return createTree(doc);
+  const out = createTree(doc);
+  out.currentContext = {
+    apiClient,
+    fileId
+  }
+  return out
 }
