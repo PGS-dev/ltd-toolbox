@@ -2,7 +2,7 @@
 // @ts-nocheck
 /**
  * This is generated file. Do not edit manually!
- * Generated on 2024-06-20T08:53:19.699Z
+ * Generated on 2024-08-22T07:54:03.398Z
  */
 
 import type {
@@ -656,7 +656,7 @@ export class SectionNode {
   constraints?: LayoutConstraint;
 
   /**
-   * Whether the node is marked ready for development.
+   * Represents whether or not a node has a particular handoff (or dev) status applied to it.
    */
   devStatus?: object;
 
@@ -958,7 +958,7 @@ export class FrameNode {
   counterAxisSpacing?: number;
 
   /**
-   * Whether the node is marked ready for development.
+   * Represents whether or not a node has a particular handoff (or dev) status applied to it.
    */
   devStatus?: object;
 
@@ -1382,7 +1382,7 @@ export class GroupNode {
   counterAxisSpacing?: number;
 
   /**
-   * Whether the node is marked ready for development.
+   * Represents whether or not a node has a particular handoff (or dev) status applied to it.
    */
   devStatus?: object;
 
@@ -1811,7 +1811,7 @@ export class ComponentNode {
   counterAxisSpacing?: number;
 
   /**
-   * Whether the node is marked ready for development.
+   * Represents whether or not a node has a particular handoff (or dev) status applied to it.
    */
   devStatus?: object;
 
@@ -2240,7 +2240,7 @@ export class ComponentSetNode {
   counterAxisSpacing?: number;
 
   /**
-   * Whether the node is marked ready for development.
+   * Represents whether or not a node has a particular handoff (or dev) status applied to it.
    */
   devStatus?: object;
 
@@ -4436,7 +4436,7 @@ export class TextNode {
   characters: string;
 
   /**
-   * Array with same number of elements as characters in text rendered using this style. Each element is a reference to the `styleOverrideTable` and maps to the corresponding character in the characters field. Elements with value 0 have the default type style.
+   * The array corresponds to characters in the text box, where each element references the 'styleOverrideTable' to apply specific styles to each character. The array's length can be less than or equal to the number of characters due to the removal of trailing zeros. Elements with a value of 0 indicate characters that use the default type style. If the array is shorter than the total number of characters, the characters beyond the array's length also use the default style.
    */
   characterStyleOverrides: undefined[];
 
@@ -4545,6 +4545,11 @@ export class TextNode {
    * - `FILL`: only valid on auto-layout frame children
    */
   layoutSizingVertical?: 'FIXED' | 'HUG' | 'FILL';
+
+  /**
+   * Internal property, preserved for backward compatibility. Avoid using this value.
+   */
+  layoutVersion?: number;
 
   /**
    * An array with the same number of elements as lines in the text node, where lines are delimited by newline or paragraph separator characters. Each element in the array corresponds to the indentation level of a specific line.
@@ -5315,7 +5320,7 @@ export class InstanceNode {
   counterAxisSpacing?: number;
 
   /**
-   * Whether the node is marked ready for development.
+   * Represents whether or not a node has a particular handoff (or dev) status applied to it.
    */
   devStatus?: object;
 
@@ -5689,6 +5694,11 @@ export class EmbedNode {
   explicitVariableModes?: object;
 
   /**
+   * An array of export settings representing images to export from the node.
+   */
+  exportSettings?: ExportSetting[];
+
+  /**
    * A string uniquely identifying this node within the document.
    */
   id: string;
@@ -5764,6 +5774,11 @@ export class LinkUnfurlNode {
    * A mapping of variable collection ID to mode ID representing the explicitly set modes for this node.
    */
   explicitVariableModes?: object;
+
+  /**
+   * An array of export settings representing images to export from the node.
+   */
+  exportSettings?: ExportSetting[];
 
   /**
    * A string uniquely identifying this node within the document.

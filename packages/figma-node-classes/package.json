@@ -40,6 +40,6 @@
     "tsx": "^4.13.2"
   },
   "dependencies": {
-    "@figma/rest-api-spec": "patch:@figma/rest-api-spec@npm%3A0.10.0#~/.yarn/patches/@figma-rest-api-spec-npm-0.10.0-287584738a.patch"
+    "@figma/rest-api-spec": "^0.17.0"
   }
 }
