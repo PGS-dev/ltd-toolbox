@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.9](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.8...@ltd-toolbox/figma-parser@0.1.0-alpha.9) (2024-08-22)
+
+### Bug Fixes
+
+- fix glob() method from traversable mixin ([bdd708f](https://github-devhajduk/PGS-dev/ltd-toolbox/commit/bdd708f8933104ca573ae4f1c28934e85a471bd1))
+
+### Features
+
+- add logLevel configuration ([980b99a](https://github-devhajduk/PGS-dev/ltd-toolbox/commit/980b99ade8be80cfa9fead688f98f3999e3c59f3))
+
 # [0.1.0-alpha.8](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.7...@ltd-toolbox/figma-parser@0.1.0-alpha.8) (2024-07-02)
 
 ### Bug Fixes
