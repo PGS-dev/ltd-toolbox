@@ -1,3 +1,5 @@
+export * from './components/index';
+
 export * from './contents/index';
 
 export * from './core/index';

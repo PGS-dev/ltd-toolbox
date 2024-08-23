@@ -1,9 +1,9 @@
 diff --git a/dist/api_types.d.ts b/dist/api_types.d.ts
 new file mode 100644
-index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e36a23a9d
+index 0000000000000000000000000000000000000000..426856fd7e30af02e412a6f663a6d3a802e33528
 --- /dev/null
 +++ b/dist/api_types.d.ts
-@@ -0,0 +1,5633 @@
+@@ -0,0 +1,5981 @@
 +export type IsLayerTrait = {
 +  /**
 +   * A string uniquely identifying this node within the document.
@@ -121,6 +121,22 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +    counterAxisSpacing?: VariableAlias
 +
 +    opacity?: VariableAlias
++
++    fontFamily?: VariableAlias[]
++
++    fontSize?: VariableAlias[]
++
++    fontStyle?: VariableAlias[]
++
++    fontWeight?: VariableAlias[]
++
++    letterSpacing?: VariableAlias[]
++
++    lineHeight?: VariableAlias[]
++
++    paragraphSpacing?: VariableAlias[]
++
++    paragraphIndent?: VariableAlias[]
 +
 +    fills?: VariableAlias[]
 +
@@ -590,11 +606,18 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +  style: TypeStyle
 +
 +  /**
-+   * Array with same number of elements as characters in text rendered using this style. Each element
-+   * is a reference to the `styleOverrideTable` and maps to the corresponding character in the
-+   * characters field. Elements with value 0 have the default type style.
++   * The array corresponds to characters in the text box, where each element references the
++   * 'styleOverrideTable' to apply specific styles to each character. The array's length can be less
++   * than or equal to the number of characters due to the removal of trailing zeros. Elements with a
++   * value of 0 indicate characters that use the default type style. If the array is shorter than the
++   * total number of characters, the characters beyond the array's length also use the default style.
 +   */
 +  characterStyleOverrides: number[]
++
++  /**
++   * Internal property, preserved for backward compatibility. Avoid using this value.
++   */
++  layoutVersion?: number
 +
 +  /**
 +   * Map from ID to TypeStyle for looking up style overrides.
@@ -648,9 +671,17 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +
 +export type DevStatusTrait = {
 +  /**
-+   * Whether the node is marked ready for development.
++   * Represents whether or not a node has a particular handoff (or dev) status applied to it.
 +   */
-+  devStatus?: { type: 'NONE' | 'READY_FOR_DEV' }
++  devStatus?: {
++    type: 'NONE' | 'READY_FOR_DEV' | 'COMPLETED'
++
++    /**
++     * An optional field where the designer can add more information about the design and what has
++     * changed.
++     */
++    description?: string
++  }
 +}
 +
 +export type FrameTraits = IsLayerTrait &
@@ -957,14 +988,16 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +   * The type of this node, represented by the string literal "EMBED"
 +   */
 +  type: 'EMBED'
-+} & IsLayerTrait
++} & IsLayerTrait &
++  HasExportSettingsTrait
 +
 +export type LinkUnfurlNode = {
 +  /**
 +   * The type of this node, represented by the string literal "LINK_UNFURL"
 +   */
 +  type: 'LINK_UNFURL'
-+} & IsLayerTrait
++} & IsLayerTrait &
++  HasExportSettingsTrait
 +
 +export type StickyNode = {
 +  /**
@@ -1136,7 +1169,7 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +  /**
 +   * Name of flow.
 +   */
-+  name: number
++  name: string
 +}
 +
 +/**
@@ -1274,7 +1307,7 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +}
 +
 +/**
-+ * A single color stop with its position along the gradient axis and color.
++ * A single color stop with its position along the gradient axis, color, and bound variables if any
 + */
 +export type ColorStop = {
 +  /**
@@ -1286,6 +1319,11 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +   * Color attached to corresponding position.
 +   */
 +  color: RGBA
++
++  /**
++   * The variables bound to a particular gradient stop
++   */
++  boundVariables?: { color?: VariableAlias }
 +}
 +
 +/**
@@ -1705,15 +1743,40 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +}
 +
 +/**
-+ * This type is a string enum with the following possible values
++ * This type is a string enum with the following possible values:
 + *
 + * - `EASE_IN`: Ease in with an animation curve similar to CSS ease-in.
 + * - `EASE_OUT`: Ease out with an animation curve similar to CSS ease-out.
 + * - `EASE_IN_AND_OUT`: Ease in and then out with an animation curve similar to CSS ease-in-out.
 + * - `LINEAR`: No easing, similar to CSS linear.
-+ * - `GENTLE_SPRING`: Gentle spring animation similar to react-spring.
++ * - `EASE_IN_BACK`: Ease in with an animation curve that moves past the initial keyframe's value and
++ *   then accelerates as it reaches the end.
++ * - `EASE_OUT_BACK`: Ease out with an animation curve that starts fast, then slows and goes past the
++ *   ending keyframe's value.
++ * - `EASE_IN_AND_OUT_BACK`: Ease in and then out with an animation curve that overshoots the initial
++ *   keyframe's value, then accelerates quickly before it slows and overshoots the ending keyframes
++ *   value.
++ * - `CUSTOM_CUBIC_BEZIER`: User-defined cubic bezier curve.
++ * - `GENTLE`: Gentle animation similar to react-spring.
++ * - `QUICK`: Quick spring animation, great for toasts and notifications.
++ * - `BOUNCY`: Bouncy spring, for delightful animations like a heart bounce.
++ * - `SLOW`: Slow spring, useful as a steady, natural way to scale up fullscreen content.
++ * - `CUSTOM_SPRING`: User-defined spring animation.
 + */
-+export type EasingType = 'EASE_IN' | 'EASE_OUT' | 'EASE_IN_AND_OUT' | 'LINEAR' | 'GENTLE_SPRING'
++export type EasingType =
++  | 'EASE_IN'
++  | 'EASE_OUT'
++  | 'EASE_IN_AND_OUT'
++  | 'LINEAR'
++  | 'EASE_IN_BACK'
++  | 'EASE_OUT_BACK'
++  | 'EASE_IN_AND_OUT_BACK'
++  | 'CUSTOM_CUBIC_BEZIER'
++  | 'GENTLE'
++  | 'QUICK'
++  | 'BOUNCY'
++  | 'SLOW'
++  | 'CUSTOM_SPRING'
 +
 +/**
 + * Individual stroke weights
@@ -1944,6 +2007,44 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +   * The unit of the line height value specified by the user.
 +   */
 +  lineHeightUnit?: 'PIXELS' | 'FONT_SIZE_%' | 'INTRINSIC_%'
++
++  /**
++   * The variables bound to a particular field on this style
++   */
++  boundVariables?: {
++    fontFamily?: VariableAlias
++
++    fontSize?: VariableAlias
++
++    fontStyle?: VariableAlias
++
++    fontWeight?: VariableAlias
++
++    letterSpacing?: VariableAlias
++
++    lineHeight?: VariableAlias
++
++    paragraphSpacing?: VariableAlias
++
++    paragraphIndent?: VariableAlias
++  }
++
++  /**
++   * Whether or not this style has overrides over a text style. The possible fields to override are
++   * semanticWeight, semanticItalic, hyperlink, and textDecoration. If this is true, then those fields
++   * are overrides if present.
++   */
++  isOverrideOverTextStyle?: boolean
++
++  /**
++   * Indicates how the font weight was overridden when there is a text style override.
++   */
++  semanticWeight?: 'BOLD' | 'NORMAL'
++
++  /**
++   * Indicates how the font style was overridden when there is a text style override.
++   */
++  semanticItalic?: 'ITALIC' | 'NORMAL'
 +}
 +
 +/**
@@ -2314,7 +2415,7 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +  /**
 +   * Only set for top level comments. The number displayed with the comment in the UI
 +   */
-+  order_id?: string
++  order_id: string | null
 +
 +  /**
 +   * An array of reactions to the comment
@@ -3308,16 +3409,15 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +}
 +
 +/**
-+ * Scopes allow a variable to be shown/hidden in the variable picker UI for various fields. This
-+ * declutters the Figma UI if you have a large number of variables. Currently only supported on
-+ * `FLOAT` and `COLOR` variables.
++ * Scopes allow a variable to be shown or hidden in the variable picker for various fields. This
++ * declutters the Figma UI if you have a large number of variables. Variable scopes are currently
++ * supported on `FLOAT`, `STRING`, and `COLOR` variables.
 + *
-+ * `ALL_SCOPES` is a special scope that means that the variable will be shown in the picker UI for
-+ * all current and any future fields. If `ALL_SCOPES` is set, no additional scopes can be set.
++ * `ALL_SCOPES` is a special scope that means that the variable will be shown in the variable picker
++ * for all variable fields. If `ALL_SCOPES` is set, no additional scopes can be set.
 + *
-+ * Likewise, `ALL_FILLS` is a special scope that means that the variable will be shown in the picker
-+ * UI for all current and any future color fill fields. If `ALL_FILLS` is set, no additional fill
-+ * scopes can be set.
++ * `ALL_FILLS` is a special scope that means that the variable will be shown in the variable picker
++ * for all fill fields. If `ALL_FILLS` is set, no additional fill scopes can be set.
 + *
 + * Valid scopes for `FLOAT` variables:
 + *
@@ -3328,6 +3428,19 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 + * - `STROKE_FLOAT`
 + * - `EFFECT_FLOAT`
 + * - `OPACITY`
++ * - `FONT_WEIGHT`
++ * - `FONT_SIZE`
++ * - `LINE_HEIGHT`
++ * - `LETTER_SPACING`
++ * - `PARAGRAPH_SPACING`
++ * - `PARAGRAPH_INDENT`
++ *
++ * Valid scopes for `STRING` variables:
++ *
++ * - `ALL_SCOPES`
++ * - `TEXT_CONTENT`
++ * - `FONT_FAMILY`
++ * - `FONT_STYLE`
 + *
 + * Valid scopes for `COLOR` variables:
 + *
@@ -3354,6 +3467,14 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +  | 'EFFECT_FLOAT'
 +  | 'EFFECT_COLOR'
 +  | 'OPACITY'
++  | 'FONT_FAMILY'
++  | 'FONT_STYLE'
++  | 'FONT_WEIGHT'
++  | 'FONT_SIZE'
++  | 'LINE_HEIGHT'
++  | 'LETTER_SPACING'
++  | 'PARAGRAPH_SPACING'
++  | 'PARAGRAPH_INDENT'
 +
 +/**
 + * An object containing platform-specific code syntax definitions for a variable. All platforms are
@@ -3866,6 +3987,121 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +   * The target node to attach the dev resource to.
 +   */
 +  node_id: string
++}
++
++/**
++ * Library analytics actions data broken down by component.
++ */
++export type LibraryAnalyticsActionsByComponent = {
++  /**
++   * The date in ISO 8601 format. e.g. 2023-12-13
++   */
++  week: string
++
++  /**
++   * Unique, stable id of the component.
++   */
++  component_key: string
++
++  /**
++   * Name of the component.
++   */
++  component_name: string
++
++  /**
++   * The number of detach events for this period.
++   */
++  detachments: number
++
++  /**
++   * The number of insertion events for this period.
++   */
++  insertions: number
++}
++
++/**
++ * Library analytics action data broken down by team.
++ */
++export type LibraryAnalyticsActionsByTeam = {
++  /**
++   * The date in ISO 8601 format. e.g. 2023-12-13
++   */
++  week: string
++
++  /**
++   * The name of the team using the library.
++   */
++  team_name: string
++
++  /**
++   * The name of the workspace that the team belongs to.
++   */
++  workspace_name?: string
++
++  /**
++   * The number of detach events for this period.
++   */
++  detachments: number
++
++  /**
++   * The number of insertion events for this period.
++   */
++  insertions: number
++}
++
++/**
++ * Library analytics usage data broken down by component.
++ */
++export type LibraryAnalyticsUsagesByComponent = {
++  /**
++   * Unique, stable id of the component.
++   */
++  component_key: string
++
++  /**
++   * Name of the component.
++   */
++  component_name: string
++
++  /**
++   * The number of instances of the component within the organization.
++   */
++  num_instances: number
++
++  /**
++   * The number of teams using the component within the organization.
++   */
++  num_teams_using: number
++
++  /**
++   * The number of files using the component within the organization.
++   */
++  num_files_using: number
++}
++
++/**
++ * Library analytics usage data broken down by file.
++ */
++export type LibraryAnalyticsUsagesByFile = {
++  /**
++   * The name of the file using the library.
++   */
++  file_name: string
++
++  /**
++   * The name of the team the file belongs to.
++   */
++  team_name: string
++
++  /**
++   * The name of the workspace that the file belongs to.
++   */
++  workspace_name?: string
++
++  /**
++   * The number of component instances from the library used within the file.
++   */
++  num_instances: number
 +}
 +
 +/**
@@ -4661,6 +4897,51 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 + * Response from the DELETE /v1/files/{file_key}/dev_resources/{dev_resource_id} endpoint.
 + */
 +export type DeleteDevResourceResponse = void
++
++/**
++ * Response from the GET /v1/analytics/libraries/{file_key}/actions.
++ */
++export type GetLibraryAnalyticsActionsResponse = {
++  /**
++   * An array of analytics data.
++   */
++  rows: LibraryAnalyticsActionsByComponent[] | LibraryAnalyticsActionsByTeam[]
++
++  /**
++   * Whether there is a next page of data that can be fetched.
++   */
++  next_page: boolean
++
++  /**
++   * The cursor to use to fetch the next page of data.
++   */
++  cursor?: string
++}
++
++/**
++ * Response from the PUT /v1/analytics/libraries/{file_key}/usages.
++ */
++export type GetLibraryAnalyticsUsagesResponse = {
++  /**
++   * An array of analytics data when breaking down usage by component.
++   */
++  components?: LibraryAnalyticsUsagesByComponent[]
++
++  /**
++   * An array of analytics data when breaking down usage by file.
++   */
++  files?: LibraryAnalyticsUsagesByFile[]
++
++  /**
++   * Whether there is a next page of data that can be fetched.
++   */
++  next_page: boolean
++
++  /**
++   * The cursor to use to fetch the next page of data.
++   */
++  cursor?: string
++}
 +
 +/**
 + * Bad request. Parameters are invalid or malformed. Please check the input formats. This error can
@@ -5637,12 +5918,79 @@ index 0000000000000000000000000000000000000000..2d6c9ce4476afa06d2186cd93375da8e
 +   */
 +  dev_resource_id: string
 +}
++
++/**
++ * Path parameters for GET /v1/analytics/libraries/{file_key}/actions
++ */
++export type GetLibraryAnalyticsActionsPathParams = {
++  /**
++   * File key of the library to fetch analytics data for.
++   */
++  file_key: string
++}
++
++/**
++ * Query parameters for GET /v1/analytics/libraries/{file_key}/actions
++ */
++export type GetLibraryAnalyticsActionsQueryParams = {
++  /**
++   * Cursor indicating what page of data to fetch. Obtained from prior API call.
++   */
++  cursor?: string
++  /**
++   * A dimension to group returned analytics data by. Accepts "component" or "team".
++   */
++  group_by: 'component' | 'team'
++  /**
++   * ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the
++   * nearest start of a week. Defaults to one year prior.
++   */
++  start_date?: string
++  /**
++   * ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the
++   * nearest end of a week. Defaults to the latest computed week.
++   */
++  end_date?: string
++  /**
++   * How to order response rows by week. This param can be either "asc" or "desc" (default).
++   */
++  order?: 'asc' | 'desc'
++}
++
++/**
++ * Path parameters for GET /v1/analytics/libraries/{file_key}/usages
++ */
++export type GetLibraryAnalyticsUsagesPathParams = {
++  /**
++   * File key of the library to fetch analytics data for.
++   */
++  file_key: string
++}
++
++/**
++ * Query parameters for GET /v1/analytics/libraries/{file_key}/usages
++ */
++export type GetLibraryAnalyticsUsagesQueryParams = {
++  /**
++   * Cursor indicating what page of data to fetch. Obtained from prior API call.
++   */
++  cursor?: string
++  /**
++   * A dimension to group returned analytics data by. Accepts "component" or "file".
++   */
++  group_by: 'component' | 'file'
++  /**
++   * How to order response rows by number of instances. This param can be either "asc" or "desc"
++   * (default).
++   */
++  order?: 'asc' | 'desc'
++}
 diff --git a/dist/api_types.ts b/dist/api_types.ts
 deleted file mode 100644
-index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..0000000000000000000000000000000000000000
+index 426856fd7e30af02e412a6f663a6d3a802e33528..0000000000000000000000000000000000000000
 --- a/dist/api_types.ts
 +++ /dev/null
-@@ -1,5633 +0,0 @@
+@@ -1,5981 +0,0 @@
 -export type IsLayerTrait = {
 -  /**
 -   * A string uniquely identifying this node within the document.
@@ -5760,6 +6108,22 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -    counterAxisSpacing?: VariableAlias
 -
 -    opacity?: VariableAlias
+-
+-    fontFamily?: VariableAlias[]
+-
+-    fontSize?: VariableAlias[]
+-
+-    fontStyle?: VariableAlias[]
+-
+-    fontWeight?: VariableAlias[]
+-
+-    letterSpacing?: VariableAlias[]
+-
+-    lineHeight?: VariableAlias[]
+-
+-    paragraphSpacing?: VariableAlias[]
+-
+-    paragraphIndent?: VariableAlias[]
 -
 -    fills?: VariableAlias[]
 -
@@ -6229,11 +6593,18 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -  style: TypeStyle
 -
 -  /**
--   * Array with same number of elements as characters in text rendered using this style. Each element
--   * is a reference to the `styleOverrideTable` and maps to the corresponding character in the
--   * characters field. Elements with value 0 have the default type style.
+-   * The array corresponds to characters in the text box, where each element references the
+-   * 'styleOverrideTable' to apply specific styles to each character. The array's length can be less
+-   * than or equal to the number of characters due to the removal of trailing zeros. Elements with a
+-   * value of 0 indicate characters that use the default type style. If the array is shorter than the
+-   * total number of characters, the characters beyond the array's length also use the default style.
 -   */
 -  characterStyleOverrides: number[]
+-
+-  /**
+-   * Internal property, preserved for backward compatibility. Avoid using this value.
+-   */
+-  layoutVersion?: number
 -
 -  /**
 -   * Map from ID to TypeStyle for looking up style overrides.
@@ -6287,9 +6658,17 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -
 -export type DevStatusTrait = {
 -  /**
--   * Whether the node is marked ready for development.
+-   * Represents whether or not a node has a particular handoff (or dev) status applied to it.
 -   */
--  devStatus?: { type: 'NONE' | 'READY_FOR_DEV' }
+-  devStatus?: {
+-    type: 'NONE' | 'READY_FOR_DEV' | 'COMPLETED'
+-
+-    /**
+-     * An optional field where the designer can add more information about the design and what has
+-     * changed.
+-     */
+-    description?: string
+-  }
 -}
 -
 -export type FrameTraits = IsLayerTrait &
@@ -6596,14 +6975,16 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -   * The type of this node, represented by the string literal "EMBED"
 -   */
 -  type: 'EMBED'
--} & IsLayerTrait
+-} & IsLayerTrait &
+-  HasExportSettingsTrait
 -
 -export type LinkUnfurlNode = {
 -  /**
 -   * The type of this node, represented by the string literal "LINK_UNFURL"
 -   */
 -  type: 'LINK_UNFURL'
--} & IsLayerTrait
+-} & IsLayerTrait &
+-  HasExportSettingsTrait
 -
 -export type StickyNode = {
 -  /**
@@ -6775,7 +7156,7 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -  /**
 -   * Name of flow.
 -   */
--  name: number
+-  name: string
 -}
 -
 -/**
@@ -6913,7 +7294,7 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -}
 -
 -/**
-- * A single color stop with its position along the gradient axis and color.
+- * A single color stop with its position along the gradient axis, color, and bound variables if any
 - */
 -export type ColorStop = {
 -  /**
@@ -6925,6 +7306,11 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -   * Color attached to corresponding position.
 -   */
 -  color: RGBA
+-
+-  /**
+-   * The variables bound to a particular gradient stop
+-   */
+-  boundVariables?: { color?: VariableAlias }
 -}
 -
 -/**
@@ -7344,15 +7730,40 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -}
 -
 -/**
-- * This type is a string enum with the following possible values
+- * This type is a string enum with the following possible values:
 - *
 - * - `EASE_IN`: Ease in with an animation curve similar to CSS ease-in.
 - * - `EASE_OUT`: Ease out with an animation curve similar to CSS ease-out.
 - * - `EASE_IN_AND_OUT`: Ease in and then out with an animation curve similar to CSS ease-in-out.
 - * - `LINEAR`: No easing, similar to CSS linear.
-- * - `GENTLE_SPRING`: Gentle spring animation similar to react-spring.
+- * - `EASE_IN_BACK`: Ease in with an animation curve that moves past the initial keyframe's value and
+- *   then accelerates as it reaches the end.
+- * - `EASE_OUT_BACK`: Ease out with an animation curve that starts fast, then slows and goes past the
+- *   ending keyframe's value.
+- * - `EASE_IN_AND_OUT_BACK`: Ease in and then out with an animation curve that overshoots the initial
+- *   keyframe's value, then accelerates quickly before it slows and overshoots the ending keyframes
+- *   value.
+- * - `CUSTOM_CUBIC_BEZIER`: User-defined cubic bezier curve.
+- * - `GENTLE`: Gentle animation similar to react-spring.
+- * - `QUICK`: Quick spring animation, great for toasts and notifications.
+- * - `BOUNCY`: Bouncy spring, for delightful animations like a heart bounce.
+- * - `SLOW`: Slow spring, useful as a steady, natural way to scale up fullscreen content.
+- * - `CUSTOM_SPRING`: User-defined spring animation.
 - */
--export type EasingType = 'EASE_IN' | 'EASE_OUT' | 'EASE_IN_AND_OUT' | 'LINEAR' | 'GENTLE_SPRING'
+-export type EasingType =
+-  | 'EASE_IN'
+-  | 'EASE_OUT'
+-  | 'EASE_IN_AND_OUT'
+-  | 'LINEAR'
+-  | 'EASE_IN_BACK'
+-  | 'EASE_OUT_BACK'
+-  | 'EASE_IN_AND_OUT_BACK'
+-  | 'CUSTOM_CUBIC_BEZIER'
+-  | 'GENTLE'
+-  | 'QUICK'
+-  | 'BOUNCY'
+-  | 'SLOW'
+-  | 'CUSTOM_SPRING'
 -
 -/**
 - * Individual stroke weights
@@ -7583,6 +7994,44 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -   * The unit of the line height value specified by the user.
 -   */
 -  lineHeightUnit?: 'PIXELS' | 'FONT_SIZE_%' | 'INTRINSIC_%'
+-
+-  /**
+-   * The variables bound to a particular field on this style
+-   */
+-  boundVariables?: {
+-    fontFamily?: VariableAlias
+-
+-    fontSize?: VariableAlias
+-
+-    fontStyle?: VariableAlias
+-
+-    fontWeight?: VariableAlias
+-
+-    letterSpacing?: VariableAlias
+-
+-    lineHeight?: VariableAlias
+-
+-    paragraphSpacing?: VariableAlias
+-
+-    paragraphIndent?: VariableAlias
+-  }
+-
+-  /**
+-   * Whether or not this style has overrides over a text style. The possible fields to override are
+-   * semanticWeight, semanticItalic, hyperlink, and textDecoration. If this is true, then those fields
+-   * are overrides if present.
+-   */
+-  isOverrideOverTextStyle?: boolean
+-
+-  /**
+-   * Indicates how the font weight was overridden when there is a text style override.
+-   */
+-  semanticWeight?: 'BOLD' | 'NORMAL'
+-
+-  /**
+-   * Indicates how the font style was overridden when there is a text style override.
+-   */
+-  semanticItalic?: 'ITALIC' | 'NORMAL'
 -}
 -
 -/**
@@ -7953,7 +8402,7 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -  /**
 -   * Only set for top level comments. The number displayed with the comment in the UI
 -   */
--  order_id?: string
+-  order_id: string | null
 -
 -  /**
 -   * An array of reactions to the comment
@@ -8947,16 +9396,15 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -}
 -
 -/**
-- * Scopes allow a variable to be shown/hidden in the variable picker UI for various fields. This
-- * declutters the Figma UI if you have a large number of variables. Currently only supported on
-- * `FLOAT` and `COLOR` variables.
+- * Scopes allow a variable to be shown or hidden in the variable picker for various fields. This
+- * declutters the Figma UI if you have a large number of variables. Variable scopes are currently
+- * supported on `FLOAT`, `STRING`, and `COLOR` variables.
 - *
-- * `ALL_SCOPES` is a special scope that means that the variable will be shown in the picker UI for
-- * all current and any future fields. If `ALL_SCOPES` is set, no additional scopes can be set.
+- * `ALL_SCOPES` is a special scope that means that the variable will be shown in the variable picker
+- * for all variable fields. If `ALL_SCOPES` is set, no additional scopes can be set.
 - *
-- * Likewise, `ALL_FILLS` is a special scope that means that the variable will be shown in the picker
-- * UI for all current and any future color fill fields. If `ALL_FILLS` is set, no additional fill
-- * scopes can be set.
+- * `ALL_FILLS` is a special scope that means that the variable will be shown in the variable picker
+- * for all fill fields. If `ALL_FILLS` is set, no additional fill scopes can be set.
 - *
 - * Valid scopes for `FLOAT` variables:
 - *
@@ -8967,6 +9415,19 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 - * - `STROKE_FLOAT`
 - * - `EFFECT_FLOAT`
 - * - `OPACITY`
+- * - `FONT_WEIGHT`
+- * - `FONT_SIZE`
+- * - `LINE_HEIGHT`
+- * - `LETTER_SPACING`
+- * - `PARAGRAPH_SPACING`
+- * - `PARAGRAPH_INDENT`
+- *
+- * Valid scopes for `STRING` variables:
+- *
+- * - `ALL_SCOPES`
+- * - `TEXT_CONTENT`
+- * - `FONT_FAMILY`
+- * - `FONT_STYLE`
 - *
 - * Valid scopes for `COLOR` variables:
 - *
@@ -8993,6 +9454,14 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -  | 'EFFECT_FLOAT'
 -  | 'EFFECT_COLOR'
 -  | 'OPACITY'
+-  | 'FONT_FAMILY'
+-  | 'FONT_STYLE'
+-  | 'FONT_WEIGHT'
+-  | 'FONT_SIZE'
+-  | 'LINE_HEIGHT'
+-  | 'LETTER_SPACING'
+-  | 'PARAGRAPH_SPACING'
+-  | 'PARAGRAPH_INDENT'
 -
 -/**
 - * An object containing platform-specific code syntax definitions for a variable. All platforms are
@@ -9505,6 +9974,121 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -   * The target node to attach the dev resource to.
 -   */
 -  node_id: string
+-}
+-
+-/**
+- * Library analytics actions data broken down by component.
+- */
+-export type LibraryAnalyticsActionsByComponent = {
+-  /**
+-   * The date in ISO 8601 format. e.g. 2023-12-13
+-   */
+-  week: string
+-
+-  /**
+-   * Unique, stable id of the component.
+-   */
+-  component_key: string
+-
+-  /**
+-   * Name of the component.
+-   */
+-  component_name: string
+-
+-  /**
+-   * The number of detach events for this period.
+-   */
+-  detachments: number
+-
+-  /**
+-   * The number of insertion events for this period.
+-   */
+-  insertions: number
+-}
+-
+-/**
+- * Library analytics action data broken down by team.
+- */
+-export type LibraryAnalyticsActionsByTeam = {
+-  /**
+-   * The date in ISO 8601 format. e.g. 2023-12-13
+-   */
+-  week: string
+-
+-  /**
+-   * The name of the team using the library.
+-   */
+-  team_name: string
+-
+-  /**
+-   * The name of the workspace that the team belongs to.
+-   */
+-  workspace_name?: string
+-
+-  /**
+-   * The number of detach events for this period.
+-   */
+-  detachments: number
+-
+-  /**
+-   * The number of insertion events for this period.
+-   */
+-  insertions: number
+-}
+-
+-/**
+- * Library analytics usage data broken down by component.
+- */
+-export type LibraryAnalyticsUsagesByComponent = {
+-  /**
+-   * Unique, stable id of the component.
+-   */
+-  component_key: string
+-
+-  /**
+-   * Name of the component.
+-   */
+-  component_name: string
+-
+-  /**
+-   * The number of instances of the component within the organization.
+-   */
+-  num_instances: number
+-
+-  /**
+-   * The number of teams using the component within the organization.
+-   */
+-  num_teams_using: number
+-
+-  /**
+-   * The number of files using the component within the organization.
+-   */
+-  num_files_using: number
+-}
+-
+-/**
+- * Library analytics usage data broken down by file.
+- */
+-export type LibraryAnalyticsUsagesByFile = {
+-  /**
+-   * The name of the file using the library.
+-   */
+-  file_name: string
+-
+-  /**
+-   * The name of the team the file belongs to.
+-   */
+-  team_name: string
+-
+-  /**
+-   * The name of the workspace that the file belongs to.
+-   */
+-  workspace_name?: string
+-
+-  /**
+-   * The number of component instances from the library used within the file.
+-   */
+-  num_instances: number
 -}
 -
 -/**
@@ -10300,6 +10884,51 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 - * Response from the DELETE /v1/files/{file_key}/dev_resources/{dev_resource_id} endpoint.
 - */
 -export type DeleteDevResourceResponse = void
+-
+-/**
+- * Response from the GET /v1/analytics/libraries/{file_key}/actions.
+- */
+-export type GetLibraryAnalyticsActionsResponse = {
+-  /**
+-   * An array of analytics data.
+-   */
+-  rows: LibraryAnalyticsActionsByComponent[] | LibraryAnalyticsActionsByTeam[]
+-
+-  /**
+-   * Whether there is a next page of data that can be fetched.
+-   */
+-  next_page: boolean
+-
+-  /**
+-   * The cursor to use to fetch the next page of data.
+-   */
+-  cursor?: string
+-}
+-
+-/**
+- * Response from the PUT /v1/analytics/libraries/{file_key}/usages.
+- */
+-export type GetLibraryAnalyticsUsagesResponse = {
+-  /**
+-   * An array of analytics data when breaking down usage by component.
+-   */
+-  components?: LibraryAnalyticsUsagesByComponent[]
+-
+-  /**
+-   * An array of analytics data when breaking down usage by file.
+-   */
+-  files?: LibraryAnalyticsUsagesByFile[]
+-
+-  /**
+-   * Whether there is a next page of data that can be fetched.
+-   */
+-  next_page: boolean
+-
+-  /**
+-   * The cursor to use to fetch the next page of data.
+-   */
+-  cursor?: string
+-}
 -
 -/**
 - * Bad request. Parameters are invalid or malformed. Please check the input formats. This error can
@@ -11276,16 +11905,83 @@ index 2d6c9ce4476afa06d2186cd93375da8e36a23a9d..00000000000000000000000000000000
 -   */
 -  dev_resource_id: string
 -}
+-
+-/**
+- * Path parameters for GET /v1/analytics/libraries/{file_key}/actions
+- */
+-export type GetLibraryAnalyticsActionsPathParams = {
+-  /**
+-   * File key of the library to fetch analytics data for.
+-   */
+-  file_key: string
+-}
+-
+-/**
+- * Query parameters for GET /v1/analytics/libraries/{file_key}/actions
+- */
+-export type GetLibraryAnalyticsActionsQueryParams = {
+-  /**
+-   * Cursor indicating what page of data to fetch. Obtained from prior API call.
+-   */
+-  cursor?: string
+-  /**
+-   * A dimension to group returned analytics data by. Accepts "component" or "team".
+-   */
+-  group_by: 'component' | 'team'
+-  /**
+-   * ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the
+-   * nearest start of a week. Defaults to one year prior.
+-   */
+-  start_date?: string
+-  /**
+-   * ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the
+-   * nearest end of a week. Defaults to the latest computed week.
+-   */
+-  end_date?: string
+-  /**
+-   * How to order response rows by week. This param can be either "asc" or "desc" (default).
+-   */
+-  order?: 'asc' | 'desc'
+-}
+-
+-/**
+- * Path parameters for GET /v1/analytics/libraries/{file_key}/usages
+- */
+-export type GetLibraryAnalyticsUsagesPathParams = {
+-  /**
+-   * File key of the library to fetch analytics data for.
+-   */
+-  file_key: string
+-}
+-
+-/**
+- * Query parameters for GET /v1/analytics/libraries/{file_key}/usages
+- */
+-export type GetLibraryAnalyticsUsagesQueryParams = {
+-  /**
+-   * Cursor indicating what page of data to fetch. Obtained from prior API call.
+-   */
+-  cursor?: string
+-  /**
+-   * A dimension to group returned analytics data by. Accepts "component" or "file".
+-   */
+-  group_by: 'component' | 'file'
+-  /**
+-   * How to order response rows by number of instances. This param can be either "asc" or "desc"
+-   * (default).
+-   */
+-  order?: 'asc' | 'desc'
+-}
 diff --git a/package.json b/package.json
-index 897565b44bce89612a0760abe00807b0d2b400ed..10d3f26e425b9db06b92896e359258caa33dc9b5 100644
+index 3481eb93bce88635c14f72634bced14f3e6ba5c5..8e336faa5ccb6cce5ab9781cd2c2dc83622fd06e 100644
 --- a/package.json
 +++ b/package.json
 @@ -2,7 +2,7 @@
    "name": "@figma/rest-api-spec",
-   "version": "0.10.0",
+   "version": "0.17.0",
    "description": "Typings for the Figma REST API",
 -  "main": "dist/api_types.ts",
-+  "types": "dist/api_types.d.ts",
++  "main": "dist/api_types.d.ts",
    "repository": {
      "type": "git",
      "url": "git+https://github.com/figma/rest-api-spec.git"
