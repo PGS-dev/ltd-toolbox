@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.10](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.9...@ltd-toolbox/figma-parser@0.1.0-alpha.10) (2024-08-23)
+
+### Features
+
+- add getComponents util ([#15](https://github-devhajduk/PGS-dev/ltd-toolbox/issues/15)) ([6b8be71](https://github-devhajduk/PGS-dev/ltd-toolbox/commit/6b8be718e31ccaafd11c74acb1a9ccb37a4c6020))
+
 # [0.1.0-alpha.9](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.8...@ltd-toolbox/figma-parser@0.1.0-alpha.9) (2024-08-22)
 
 ### Bug Fixes
