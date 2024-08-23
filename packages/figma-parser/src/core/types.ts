@@ -1,6 +1,6 @@
 import type { ErrorResponsePayloadWithErrMessage, ErrorResponsePayloadWithErrorBoolean } from '@figma/rest-api-spec';
 import type { OnPurposeAny } from '../types';
-import type { PersistentCache } from './persistent-cache'
+import type { PersistentCache } from './persistent-cache';
 
 /**
  * Figma Personal Access Token format.
@@ -33,7 +33,7 @@ export interface FigmaParserOptions {
    * 5: Trace logs
    * @default 3
    */
-  logLevel: 0 | 1 | 2 | 3 | 4 | 5
+  logLevel: 0 | 1 | 2 | 3 | 4 | 5;
 }
 
 export type ErrorResponse = Partial<ErrorResponsePayloadWithErrMessage & ErrorResponsePayloadWithErrorBoolean & Response>;
@@ -43,8 +43,8 @@ export type RequestErrorFn = (response: ErrorResponse) => string;
 export type ErrorDescriptions = Record<number, string | RequestErrorFn>;
 
 export interface FigmaApiInterface {
-  options: FigmaParserOptions
-  cache: PersistentCache
+  options: FigmaParserOptions;
+  cache: PersistentCache;
   /**
    * Add custom error descriptions for error codes in form of an object.
    *

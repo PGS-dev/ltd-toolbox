@@ -1,7 +1,7 @@
-import { isTextNodeInstance } from '@ltd-toolbox/figma-node-classes'
-import { hasMethod, isEmptyObject, isObject } from '../../shared'
+import { isTextNodeInstance } from '@ltd-toolbox/figma-node-classes';
+import { hasMethod, isEmptyObject, isObject } from '../../shared';
 import type { Ctor } from '../../shared/nodes/types';
-import type { OnPurposeAny } from '../../types'
+import type { OnPurposeAny } from '../../types';
 import type { Getter, GetterTreeNode, ParseTreeOptions } from '../types';
 import { isFauxNode } from '../utils';
 

@@ -14,7 +14,7 @@ export async function getContents(apiClient: FigmaApiInterface, fileId: string) 
   const out = createTree(doc);
   out.currentContext = {
     apiClient,
-    fileId
-  }
-  return out
+    fileId,
+  };
+  return out;
 }

@@ -56,7 +56,7 @@ describe('Design Tokens Transformer', () => {
         const output = DesignTokens()(DEFINITIONS_FIXTURE);
         const shadowToken = output['shadow.token']['$value'] as ShadowTokenValue;
 
-        console.log( shadowToken )
+        console.log(shadowToken);
 
         shadowToken.forEach((shadow: ShadowStop) => expect(shadow).toMatchSchema(valueSchema));
       });
@@ -66,9 +66,9 @@ describe('Design Tokens Transformer', () => {
         const output = DesignTokens()(DEFINITIONS_FIXTURE);
         const shadowToken = output['shadow.token']['$value'] as ShadowTokenValue;
 
-        expect(shadowToken[0].color).toEqual('#0000ffff')
-        expect(shadowToken[1].color).toEqual('#ff0000ff')
-      })
+        expect(shadowToken[0].color).toEqual('#0000ffff');
+        expect(shadowToken[1].color).toEqual('#ff0000ff');
+      });
     });
 
     describe('Typography Token', () => {

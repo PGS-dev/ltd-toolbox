@@ -1,9 +1,9 @@
-import type { GetImagesResponse } from '@figma/rest-api-spec'
-import { logger } from '../../shared'
-import { FigmaParserError } from '../../shared/errors/figma-parser-error'
-import { RichParentNode } from '../../shared/nodes/rich-parent.node'
-import type { Ctor } from '../../shared/nodes/types'
-import { type CurrentContext, defaultImageOptions, type ImageOptions } from '../types'
+import type { GetImagesResponse } from '@figma/rest-api-spec';
+import { logger } from '../../shared';
+import { FigmaParserError } from '../../shared/errors/figma-parser-error';
+import { RichParentNode } from '../../shared/nodes/rich-parent.node';
+import type { Ctor } from '../../shared/nodes/types';
+import { defaultImageOptions, type CurrentContext, type ImageOptions } from '../types';
 
 export interface WithImageGettersMixin {
   /**
@@ -38,7 +38,6 @@ export interface WithImageGettersMixin {
 
 export function WithImagesGetters<Base extends Ctor>(Base: Base) {
   return class extends Base {
-
     #getCurrentContext(): CurrentContext | undefined {
       // eslint-disable-next-line
       let parent = this;
@@ -51,13 +50,13 @@ export function WithImagesGetters<Base extends Ctor>(Base: Base) {
         parent = parent.parent;
 
         if (parent.id === '0:0') {
-          return parent.currentContext
+          return parent.currentContext;
         }
       }
     }
 
     async getImageUrl(options?: Partial<ImageOptions>): Promise<string | undefined> {
-      const context = this.#getCurrentContext()
+      const context = this.#getCurrentContext();
       if (!context) throw new FigmaParserError(`No access to current api instance!`, `Couldn't find currentContext!.`);
       const api = context.apiClient;
 
@@ -69,19 +68,19 @@ export function WithImagesGetters<Base extends Ctor>(Base: Base) {
     }
 
     async getImage(options?: Partial<ImageOptions>): Promise<Buffer> {
-      const requestLogger = logger.withTag('imageRequest')
-      const context = this.#getCurrentContext()
+      const requestLogger = logger.withTag('imageRequest');
+      const context = this.#getCurrentContext();
       if (!context) throw new FigmaParserError(`No access to current api instance!`, `Couldn't find currentContext!.`);
 
-      const clientOptions = context.apiClient.options
-      const cache = context.apiClient.cache
+      const clientOptions = context.apiClient.options;
+      const cache = context.apiClient.cache;
       const imageUrl = await this.getImageUrl(options);
       if (!imageUrl) throw new FigmaParserError(`Couldn't get image url!`);
 
       if (clientOptions.cache) {
-        const cached = cache.get(imageUrl)
+        const cached = cache.get(imageUrl);
         requestLogger.debug(`Matching cached request found. Retrieving from cache.`);
-        if (cached) return Promise.resolve(Buffer.from(cached))
+        if (cached) return Promise.resolve(Buffer.from(cached));
       }
 
       requestLogger.debug(`Requesting ${imageUrl}...`);
@@ -89,34 +88,34 @@ export function WithImagesGetters<Base extends Ctor>(Base: Base) {
       requestLogger.debug('Request finalized successfuly.');
 
       if (clientOptions.cache) {
-        cache.set(imageUrl, img)
+        cache.set(imageUrl, img);
         requestLogger.debug(`Request cached.`);
       }
       return Buffer.from(img);
     }
 
-    async * getImages(nodes: this[], options?: Partial<ImageOptions>): AsyncGenerator<[this, Buffer]>{
-      const requestLogger = logger.withTag('imageRequest')
-      const context = this.#getCurrentContext()
+    async *getImages(nodes: this[], options?: Partial<ImageOptions>): AsyncGenerator<[this, Buffer]> {
+      const requestLogger = logger.withTag('imageRequest');
+      const context = this.#getCurrentContext();
       if (!context) throw new FigmaParserError(`No access to current api instance!`, `Couldn't find currentContext!.`);
 
-      const clientOptions = context.apiClient.options
-      const ids: string[] = nodes.map(node => node.id)
-      const cache = context.apiClient.cache
+      const clientOptions = context.apiClient.options;
+      const ids: string[] = nodes.map((node) => node.id);
+      const cache = context.apiClient.cache;
       const api = context.apiClient;
       const fileId = context.fileId;
       const params = { ids, ...defaultImageOptions, ...options };
       const imagesResponse = await api.request<GetImagesResponse>(`images/${fileId}`, params).then((response) => response.images);
 
       for (const node of nodes) {
-        const imageUrl = imagesResponse[node.id]!
+        const imageUrl = imagesResponse[node.id]!;
 
         if (clientOptions.cache) {
-          const cached = cache.get(imageUrl)
-          if (cached){
+          const cached = cache.get(imageUrl);
+          if (cached) {
             requestLogger.debug(`Matching cached request found. Retrieving from cache.`);
-            yield [node, Buffer.from(cached)]
-            continue
+            yield [node, Buffer.from(cached)];
+            continue;
           }
         }
 
@@ -125,7 +124,7 @@ export function WithImagesGetters<Base extends Ctor>(Base: Base) {
         requestLogger.debug('Request finalized successfuly.');
 
         if (clientOptions.cache) {
-          cache.set(imageUrl, img)
+          cache.set(imageUrl, img);
           requestLogger.debug(`Request cached.`);
         }
 
@@ -134,13 +133,13 @@ export function WithImagesGetters<Base extends Ctor>(Base: Base) {
     }
 
     async getImagesArray(nodes: this[], options?: Partial<ImageOptions>): Promise<[this, Buffer][]> {
-      const out: [this, Buffer][] = []
+      const out: [this, Buffer][] = [];
 
       for await (const image of this.getImages(nodes, options)) {
-        out.push(image)
+        out.push(image);
       }
 
-      return out
+      return out;
     }
   };
 }

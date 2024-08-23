@@ -39,20 +39,20 @@ export function Filterable<Base extends Ctor>(BaseClass: Base) {
       const out: this[] = [];
 
       const mapper = (node: this) => {
-        if (!node) return
+        if (!node) return;
 
         if (predicate(node)) {
-          out.push(node)
+          out.push(node);
         }
 
-        if (!node || !node.children) return
+        if (!node || !node.children) return;
 
-        node.children.forEach((childNode: OnPurposeAny) => mapper(childNode))
+        node.children.forEach((childNode: OnPurposeAny) => mapper(childNode));
       };
 
       mapper(this);
 
-      return out
+      return out;
     }
   };
 }

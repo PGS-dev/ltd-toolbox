@@ -1,5 +1,5 @@
 import type { TypeStyle } from '@figma/rest-api-spec';
-import type { AnyNode } from '@ltd-toolbox/figma-node-classes'
+import type { AnyNode } from '@ltd-toolbox/figma-node-classes';
 import type { FigmaApiInterface } from '../core';
 import type { ParentInterface } from '../shared/nodes/types';
 import type { OnPurposeAny } from '../types';
