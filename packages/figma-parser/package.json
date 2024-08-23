@@ -19,7 +19,7 @@
     "codecheck": "tsc --noEmit && yarn lint && yarn prettier ./src --check"
   },
   "devDependencies": {
-    "@figma/rest-api-spec": "patch:@figma/rest-api-spec@npm%3A0.10.0#~/.yarn/patches/@figma-rest-api-spec-npm-0.10.0-287584738a.patch",
+    "@figma/rest-api-spec": "patch:@figma/rest-api-spec@npm%3A0.17.0#~/.yarn/patches/@figma-rest-api-spec-npm-0.17.0-1e290570d1.patch",
     "@types/node": "^20.8.0",
     "@types/picomatch": "^2.3.2",
     "@types/unist": "^3.0.2",
