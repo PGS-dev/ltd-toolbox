@@ -1,5 +1,4 @@
 import { isTextNodeInstance } from '@ltd-toolbox/figma-node-classes';
-import { hasMethod } from '../../shared';
 import type { Ctor } from '../../shared/nodes/types';
 import { walk } from '../../shared/walk.util';
 import type { OnPurposeAny } from '../../types';
