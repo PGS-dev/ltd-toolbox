@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.11](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.10...@ltd-toolbox/figma-parser@0.1.0-alpha.11) (2024-09-24)
+
+### Bug Fixes
+
+- fix getRecursiveText method ([1e6606e](https://github-devhajduk/PGS-dev/ltd-toolbox/commit/1e6606e73a025e9ab5ae0a5e4fc621ee2bb4b982))
+
 # [0.1.0-alpha.10](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.9...@ltd-toolbox/figma-parser@0.1.0-alpha.10) (2024-08-23)
 
 ### Features
