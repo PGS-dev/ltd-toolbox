@@ -49,7 +49,7 @@ export function WithImagesGetters<Base extends Ctor>(Base: Base) {
 
         parent = parent.parent;
 
-        if (parent.id === '0:0') {
+        if (parent?.parent === undefined) {
           return parent.currentContext;
         }
       }
@@ -57,7 +57,7 @@ export function WithImagesGetters<Base extends Ctor>(Base: Base) {
 
     async getImageUrl(options?: Partial<ImageOptions>): Promise<string | undefined> {
       const context = this.#getCurrentContext();
-      if (!context) throw new FigmaParserError(`No access to current api instance!`, `Couldn't find currentContext!.`);
+      if (!context) throw new FigmaParserError(`No access to current api instance!`, `Couldn't find currentContext!`);
       const api = context.apiClient;
 
       const fileId = context.fileId;
@@ -70,7 +70,7 @@ export function WithImagesGetters<Base extends Ctor>(Base: Base) {
     async getImage(options?: Partial<ImageOptions>): Promise<Buffer> {
       const requestLogger = logger.withTag('imageRequest');
       const context = this.#getCurrentContext();
-      if (!context) throw new FigmaParserError(`No access to current api instance!`, `Couldn't find currentContext!.`);
+      if (!context) throw new FigmaParserError(`No access to current api instance!`, `Couldn't find currentContext!`);
 
       const clientOptions = context.apiClient.options;
       const cache = context.apiClient.cache;
@@ -97,7 +97,7 @@ export function WithImagesGetters<Base extends Ctor>(Base: Base) {
     async *getImages(nodes: this[], options?: Partial<ImageOptions>): AsyncGenerator<[this, Buffer]> {
       const requestLogger = logger.withTag('imageRequest');
       const context = this.#getCurrentContext();
-      if (!context) throw new FigmaParserError(`No access to current api instance!`, `Couldn't find currentContext!.`);
+      if (!context) throw new FigmaParserError(`No access to current api instance!`, `Couldn't find currentContext!`);
 
       const clientOptions = context.apiClient.options;
       const ids: string[] = nodes.map((node) => node.id);

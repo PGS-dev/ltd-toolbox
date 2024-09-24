@@ -16,8 +16,8 @@ export interface GetterNode {
 
 export type GetterTreeNode = GetterNode & { children?: GetterNode[] };
 
-export type GetterTestFn = <Node extends ParentInterface & AnyNode>(node: Node) => boolean;
-export type GetterGetFn = <Node extends ParentInterface & AnyNode>(node: Node) => GetterTreeNode & { children?: GetterTreeNode[] | false };
+export type GetterTestFn = <Node extends ParentInterface & AnyNode>(node: Node) => boolean | Promise<boolean>;
+export type GetterGetFn = <Node extends ParentInterface & AnyNode>(node: Node) => GetterTreeNode & { children?: GetterTreeNode[] | false } | Promise<GetterTreeNode & { children?: GetterTreeNode[] | false }>;
 
 export type Getter = {
   /**

@@ -26,14 +26,10 @@ export function WithTextGetters<Base extends Ctor>(Base: Base) {
     }
 
     getRecursiveText(asArray = false) {
-      if (!isTextNodeInstance(this as OnPurposeAny)) return;
-
       const contents: (string | undefined)[] = [];
 
       walk(this, (node: OnPurposeAny) => {
-        if (hasMethod(node, 'getText')) {
-          contents.push(node.getText());
-        }
+        contents.push(node.getText());
       });
 
       if (asArray) return contents.filter(Boolean);
