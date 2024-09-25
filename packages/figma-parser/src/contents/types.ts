@@ -17,7 +17,7 @@ export interface GetterNode {
 export type GetterTreeNode = GetterNode & { children?: GetterNode[] };
 
 export type GetterTestFn = <Node extends ParentInterface & AnyNode>(node: Node) => boolean | Promise<boolean>;
-export type GetterGetFn = <Node extends ParentInterface & AnyNode>(node: Node) => GetterTreeNode & { children?: GetterTreeNode[] | false } | Promise<GetterTreeNode & { children?: GetterTreeNode[] | false }>;
+export type GetterGetFn = <Node extends ParentInterface & AnyNode>(node: Node) => (GetterTreeNode & { children?: GetterTreeNode[] | false }) | Promise<GetterTreeNode & { children?: GetterTreeNode[] | false }>;
 
 export type Getter = {
   /**
@@ -194,4 +194,39 @@ export const defaultImageOptions: ImageOptions = {
 export interface CurrentContext {
   apiClient: FigmaApiInterface;
   fileId: string;
+}
+
+export interface GetContentsOptions {
+  /**
+   * Optional node Id that needs to be fetched. Using `nodeId` will overwrite all nodes provided in `ids` property.
+   */
+  nodeId?: string;
+  /**
+   * Optional branch id to be fetched.
+   */
+  branchId?: string;
+  /**
+   * A specific version ID to get. Omitting this will get the current version of the file
+   */
+  version?: string;
+  /**
+   * Comma separated list of nodes that you care about in the document. If specified, only a subset of the document will be returned corresponding to the nodes listed, their children, and everything between the root node and the listed nodes.
+   *
+   * Note: There may be other nodes included in the returned JSON that are outside the ancestor chains of the desired nodes. The response may also include dependencies of anything in the nodes' subtrees. For example, if a node subtree contains an instance of a local component that lives elsewhere in that file, that component and its ancestor chain will also be included.
+   *
+   * For historical reasons, top-level canvas nodes are always returned, regardless of whether they are listed in the ids parameter. This quirk may be removed in a future version of the API.
+   */
+  ids?: string;
+  /**
+   * Positive integer representing how deep into the document tree to traverse. For example, setting this to 1 returns only Pages, setting it to 2 returns Pages and all top level objects on each page. Not setting this parameter returns all nodes
+   */
+  depth?: number;
+  /**
+   * Set to "paths" to export vector data
+   */
+  geometry?: string;
+  /**
+   * A comma separated list of plugin IDs and/or the string "shared". Any data present in the document written by those plugins will be included in the result in the `pluginData` and `sharedPluginData` properties.
+   */
+  plugin_data?: string;
 }
