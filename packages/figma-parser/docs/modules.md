@@ -1,6 +1,6 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.8](README.md) / Exports
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.11](README.md) / Exports
 
-# @ltd-toolbox/figma-parser - v0.1.0-alpha.8
+# @ltd-toolbox/figma-parser - v0.1.0-alpha.11
 
 ## Table of contents
 
@@ -22,6 +22,7 @@
 - [FigmaApiInterface](interfaces/FigmaApiInterface.md)
 - [FigmaParserOptions](interfaces/FigmaParserOptions.md)
 - [FigmaStyleDefinition](interfaces/FigmaStyleDefinition.md)
+- [GetContentsOptions](interfaces/GetContentsOptions.md)
 - [GetterNode](interfaces/GetterNode.md)
 - [GlobSearchNodes](interfaces/GlobSearchNodes.md)
 - [GradientStop](interfaces/GradientStop.md)
@@ -70,16 +71,16 @@
 
 - [defaultImageOptions](modules.md#defaultimageoptions)
 - [htmlGetters](modules.md#htmlgetters)
+- [logger](modules.md#logger)
 
 ### Functions
 
 - [DesignTokens](modules.md#designtokens)
 - [combineSchema](modules.md#combineschema)
-- [createLogger](modules.md#createlogger)
-- [createModuleLogger](modules.md#createmodulelogger)
 - [deepMerge](modules.md#deepmerge)
 - [entriesToDeepObject](modules.md#entriestodeepobject)
 - [figmaApi](modules.md#figmaapi)
+- [getComponents](modules.md#getcomponents)
 - [getContents](modules.md#getcontents)
 - [getDocument](modules.md#getdocument)
 - [getStyles](modules.md#getstyles)
@@ -162,7 +163,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:31
+packages/figma-parser/src/core/types.ts:43
 
 ___
 
@@ -172,7 +173,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:27
+packages/figma-parser/src/core/types.ts:39
 
 ___
 
@@ -194,7 +195,7 @@ Figma Personal Access Token format.
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:7
+packages/figma-parser/src/core/types.ts:8
 
 ___
 
@@ -275,11 +276,11 @@ ___
 
 ### GetterGetFn
 
-Ƭ **GetterGetFn**: \<Node\>(`node`: `Node`) => [`GetterTreeNode`](modules.md#gettertreenode) & \{ `children?`: [`GetterTreeNode`](modules.md#gettertreenode)[] \| ``false``  }
+Ƭ **GetterGetFn**: \<Node\>(`node`: `Node`) => [`GetterTreeNode`](modules.md#gettertreenode) & \{ `children?`: [`GetterTreeNode`](modules.md#gettertreenode)[] \| ``false``  } \| `Promise`\<[`GetterTreeNode`](modules.md#gettertreenode) & \{ `children?`: [`GetterTreeNode`](modules.md#gettertreenode)[] \| ``false``  }\>
 
 #### Type declaration
 
-▸ \<`Node`\>(`node`): [`GetterTreeNode`](modules.md#gettertreenode) & \{ `children?`: [`GetterTreeNode`](modules.md#gettertreenode)[] \| ``false``  }
+▸ \<`Node`\>(`node`): [`GetterTreeNode`](modules.md#gettertreenode) & \{ `children?`: [`GetterTreeNode`](modules.md#gettertreenode)[] \| ``false``  } \| `Promise`\<[`GetterTreeNode`](modules.md#gettertreenode) & \{ `children?`: [`GetterTreeNode`](modules.md#gettertreenode)[] \| ``false``  }\>
 
 ##### Type parameters
 
@@ -295,7 +296,7 @@ ___
 
 ##### Returns
 
-[`GetterTreeNode`](modules.md#gettertreenode) & \{ `children?`: [`GetterTreeNode`](modules.md#gettertreenode)[] \| ``false``  }
+[`GetterTreeNode`](modules.md#gettertreenode) & \{ `children?`: [`GetterTreeNode`](modules.md#gettertreenode)[] \| ``false``  } \| `Promise`\<[`GetterTreeNode`](modules.md#gettertreenode) & \{ `children?`: [`GetterTreeNode`](modules.md#gettertreenode)[] \| ``false``  }\>
 
 #### Defined in
 
@@ -305,11 +306,11 @@ ___
 
 ### GetterTestFn
 
-Ƭ **GetterTestFn**: \<Node\>(`node`: `Node`) => `boolean`
+Ƭ **GetterTestFn**: \<Node\>(`node`: `Node`) => `boolean` \| `Promise`\<`boolean`\>
 
 #### Type declaration
 
-▸ \<`Node`\>(`node`): `boolean`
+▸ \<`Node`\>(`node`): `boolean` \| `Promise`\<`boolean`\>
 
 ##### Type parameters
 
@@ -325,7 +326,7 @@ ___
 
 ##### Returns
 
-`boolean`
+`boolean` \| `Promise`\<`boolean`\>
 
 #### Defined in
 
@@ -415,7 +416,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:29
+packages/figma-parser/src/core/types.ts:41
 
 ___
 
@@ -466,6 +467,16 @@ ___
 #### Defined in
 
 packages/figma-parser/src/contents/html.tree.ts:68
+
+___
+
+### logger
+
+• `Const` **logger**: `ConsolaInstance`
+
+#### Defined in
+
+packages/figma-parser/src/shared/logger.ts:3
 
 ## Functions
 
@@ -557,47 +568,6 @@ packages/figma-parser/src/shared/combine-schema.util.ts:5
 
 ___
 
-### createLogger
-
-▸ **createLogger**(`options?`): `ConsolaInstance`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `options?` | `Partial`\<`ConsolaOptions`\> |
-
-#### Returns
-
-`ConsolaInstance`
-
-#### Defined in
-
-packages/figma-parser/src/shared/logger.ts:4
-
-___
-
-### createModuleLogger
-
-▸ **createModuleLogger**(`moduleName`, `options?`): `ConsolaInstance`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `moduleName` | `string` |
-| `options?` | `Partial`\<`ConsolaOptions`\> |
-
-#### Returns
-
-`ConsolaInstance`
-
-#### Defined in
-
-packages/figma-parser/src/shared/logger.ts:13
-
-___
-
 ### deepMerge
 
 ▸ **deepMerge**\<`First`, `Second`\>(`first`, `second`): `MergeDeep`\<`First`, `Second`\>
@@ -657,7 +627,7 @@ ___
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:124
+packages/figma-parser/src/core/api.ts:120
 
 ▸ **figmaApi**(`token`): `FigmaApi`
 
@@ -673,7 +643,7 @@ packages/figma-parser/src/core/api.ts:124
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:125
+packages/figma-parser/src/core/api.ts:121
 
 ▸ **figmaApi**(`options`): `FigmaApi`
 
@@ -689,7 +659,7 @@ packages/figma-parser/src/core/api.ts:125
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:126
+packages/figma-parser/src/core/api.ts:122
 
 ▸ **figmaApi**(`token`, `options?`): `FigmaApi`
 
@@ -706,13 +676,13 @@ packages/figma-parser/src/core/api.ts:126
 
 #### Defined in
 
-packages/figma-parser/src/core/api.ts:127
+packages/figma-parser/src/core/api.ts:123
 
 ___
 
-### getContents
+### getComponents
 
-▸ **getContents**(`apiClient`, `fileId`): `Promise`\<`Tree`\<`Node`\>\>
+▸ **getComponents**(`apiClient`, `fileId`): `Promise`\<`Components`\>
 
 #### Parameters
 
@@ -723,7 +693,29 @@ ___
 
 #### Returns
 
-`Promise`\<`Tree`\<`Node`\>\>
+`Promise`\<`Components`\>
+
+#### Defined in
+
+packages/figma-parser/src/components/get-components.ts:25
+
+___
+
+### getContents
+
+▸ **getContents**(`apiClient`, `fileId`, `options?`): `Promise`\<`any`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `apiClient` | [`FigmaApiInterface`](interfaces/FigmaApiInterface.md) |
+| `fileId` | `string` |
+| `options?` | [`GetContentsOptions`](interfaces/GetContentsOptions.md) |
+
+#### Returns
+
+`Promise`\<`any`\>
 
 #### Defined in
 
@@ -773,7 +765,7 @@ Asynchronously fetches and processes styles from a specified Figma file.
 
 #### Defined in
 
-packages/figma-parser/src/styles/get-styles.ts:23
+packages/figma-parser/src/styles/get-styles.ts:24
 
 ___
 

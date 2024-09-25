@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.8](../README.md) / [Exports](../modules.md) / WithTextGettersMixin
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.11](../README.md) / [Exports](../modules.md) / WithTextGettersMixin
 
 # Interface: WithTextGettersMixin
 
@@ -30,7 +30,7 @@ Useful for extracting plain text from a node tree.
 
 #### Defined in
 
-packages/figma-parser/src/contents/node-mixins/with-text-getters.mixin.ts:17
+packages/figma-parser/src/contents/node-mixins/with-text-getters.mixin.ts:16
 
 ___
 
@@ -46,4 +46,4 @@ Gets raw text without any formatting
 
 #### Defined in
 
-packages/figma-parser/src/contents/node-mixins/with-text-getters.mixin.ts:11
+packages/figma-parser/src/contents/node-mixins/with-text-getters.mixin.ts:10

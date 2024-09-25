@@ -1,13 +1,38 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.8](../README.md) / [Exports](../modules.md) / FigmaApiInterface
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.11](../README.md) / [Exports](../modules.md) / FigmaApiInterface
 
 # Interface: FigmaApiInterface
 
 ## Table of contents
 
+### Properties
+
+- [cache](FigmaApiInterface.md#cache)
+- [options](FigmaApiInterface.md#options)
+
 ### Methods
 
 - [request](FigmaApiInterface.md#request)
 - [withErrorDescriptions](FigmaApiInterface.md#witherrordescriptions)
+
+## Properties
+
+### cache
+
+• **cache**: `PersistentCache`
+
+#### Defined in
+
+packages/figma-parser/src/core/types.ts:47
+
+___
+
+### options
+
+• **options**: [`FigmaParserOptions`](FigmaParserOptions.md)
+
+#### Defined in
+
+packages/figma-parser/src/core/types.ts:46
 
 ## Methods
 
@@ -45,7 +70,7 @@ const nodes == await api.request('/files/<FIGMAFILEID>/nodes', {ids: ['111:11', 
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:66
+packages/figma-parser/src/core/types.ts:80
 
 ___
 
@@ -79,4 +104,4 @@ const withMyOwnErrorDescriptions = api.withErrorDescriptions({
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:50
+packages/figma-parser/src/core/types.ts:64

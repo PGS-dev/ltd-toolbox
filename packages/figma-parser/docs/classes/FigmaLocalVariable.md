@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.8](../README.md) / [Exports](../modules.md) / FigmaLocalVariable
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.11](../README.md) / [Exports](../modules.md) / FigmaLocalVariable
 
 # Class: FigmaLocalVariable
 

@@ -1,4 +1,4 @@
-[@ltd-toolbox/figma-parser - v0.1.0-alpha.8](../README.md) / [Exports](../modules.md) / FigmaParserOptions
+[@ltd-toolbox/figma-parser - v0.1.0-alpha.11](../README.md) / [Exports](../modules.md) / FigmaParserOptions
 
 # Interface: FigmaParserOptions
 
@@ -9,6 +9,7 @@
 - [cache](FigmaParserOptions.md#cache)
 - [cacheDir](FigmaParserOptions.md#cachedir)
 - [cacheLifetime](FigmaParserOptions.md#cachelifetime)
+- [logLevel](FigmaParserOptions.md#loglevel)
 
 ## Properties
 
@@ -26,7 +27,7 @@ false
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:14
+packages/figma-parser/src/core/types.ts:15
 
 ___
 
@@ -44,7 +45,7 @@ Directory to store cached files
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:19
+packages/figma-parser/src/core/types.ts:20
 
 ___
 
@@ -62,4 +63,28 @@ Defines how long cache should live. Cache file creation time is used, therefore 
 
 #### Defined in
 
-packages/figma-parser/src/core/types.ts:24
+packages/figma-parser/src/core/types.ts:25
+
+___
+
+### logLevel
+
+• **logLevel**: ``0`` \| ``1`` \| ``2`` \| ``3`` \| ``4`` \| ``5``
+
+Defines what types of feedback you will see:
+0: Fatal and Error
+1: Warnings
+2: Normal logs
+3: Informational logs, success, fail, ready, start, ...
+4: Debug logs
+5: Trace logs
+
+**`Default`**
+
+```ts
+3
+```
+
+#### Defined in
+
+packages/figma-parser/src/core/types.ts:36
