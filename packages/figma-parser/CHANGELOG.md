@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.12](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.11...@ltd-toolbox/figma-parser@0.1.0-alpha.12) (2024-09-25)
+
+### Features
+
+- add params to getContents ([391cbdc](https://github-devhajduk/PGS-dev/ltd-toolbox/commit/391cbdc01c2075a2d30d3bc9ebbfe8773b151c90))
+
 # [0.1.0-alpha.11](https://github-devhajduk/PGS-dev/ltd-toolbox/compare/@ltd-toolbox/figma-parser@0.1.0-alpha.10...@ltd-toolbox/figma-parser@0.1.0-alpha.11) (2024-09-24)
 
 ### Bug Fixes
